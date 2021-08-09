@@ -98,27 +98,27 @@ function LineBreak()
 end
 
 function Emph(s)
-  return '<em>' .. s .. '</em>'
+  return '_' .. s .. '_'
 end
 
 function Strong(s)
-  return '<strong>' .. s .. '</strong>'
+  return '**' .. s .. '**'
 end
 
 function Subscript(s)
-  return '<sub>' .. s .. '</sub>'
+  return '_' .. s
 end
 
 function Superscript(s)
-  return '<sup>' .. s .. '</sup>'
+  return '^' .. s
 end
 
 function SmallCaps(s)
-  return '<span style="font-variant: small-caps;">' .. s .. '</span>'
+  return s
 end
 
 function Strikeout(s)
-  return '<del>' .. s .. '</del>'
+  return '~' .. s .. '~'
 end
 
 function Link(s, tgt, tit, attr)
@@ -173,23 +173,45 @@ function Plain(s)
   return s
 end
 
+local current_element = nil
+
 function Para(s)
-  local t = {}
-  local current_line = ''
-  for word in string.gmatch(s, '([^%s]+)') do
-    if string.match(word, '[.]') and #word == 1 then
-      current_line = current_line .. word
-    elseif (#current_line + #word) > 78 then
-      table.insert(t, current_line)
-      current_line = word
-    elseif #current_line == 0 then
-      current_line = word
-    else
-      current_line = current_line .. ' ' .. word
+  if current_element then
+    local t = {}
+    local current_line = current_element .. string.rep(' ', 78 - 40 - #current_element)
+    for word in string.gmatch(s, '([^%s]+)') do
+      if string.match(word, '[.]') and #word == 1 then
+        current_line = current_line .. word
+      elseif (#current_line + #word) > 78 then
+        table.insert(t, current_line)
+        current_line = string.rep(' ', 40 - 1) .. word
+      elseif #current_line == 0 then
+        current_line = string.rep(' ', 40 - 1) .. word
+      else
+        current_line = current_line .. ' ' .. word
+      end
     end
+    table.insert(t, current_line)
+    current_element = nil
+    return table.concat(t, '\n') .. '\n'
+  else
+    local t = {}
+    local current_line = ''
+    for word in string.gmatch(s, '([^%s]+)') do
+      if string.match(word, '[.]') and #word == 1 then
+        current_line = current_line .. word
+      elseif (#current_line + #word) > 78 then
+        table.insert(t, current_line)
+        current_line = word
+      elseif #current_line == 0 then
+        current_line = word
+      else
+        current_line = current_line .. ' ' .. word
+      end
+    end
+    table.insert(t, current_line)
+    return table.concat(t, '\n')
   end
-  table.insert(t, current_line)
-  return table.concat(t, '\n')
 end
 
 local header_count = 1
@@ -204,6 +226,8 @@ function Header(lev, s, attr)
     padding = string.rep(' ', 78 - #left - #right)
     s = string.format('%s%s%s', left, padding, right)
     header_count = header_count + 1
+    current_element = nil
+    s = string.rep('=', 78) .. '\n' .. s
     return s
   end
   if lev == 2 then
@@ -212,20 +236,35 @@ function Header(lev, s, attr)
     right = string.format('*%s-%s*', meta.project[1].c, right)
     padding = string.rep(' ', 78 - #left - #right)
     s = string.format('%s%s%s', left, padding, right)
+    current_element = nil
     return s
+  end
+  if lev == 3 then
+    left = ''
+    current_element = s
+    right = string.gsub(s, '{.+}', '')
+    right = string.gsub(right, '%[.+%]', '')
+    right = string.gsub(right, '^%s*(.-)%s*$', '%1')
+    right = string.format('*%s-%s*', meta.project[1].c, right)
+    if attr.doc then
+      right = right .. ' *' .. attr.doc .. '*'
+    end
+    padding = string.rep(' ', 78 - #left - #right)
+    local r = string.format('%s%s%s', left, padding, right)
+    return r
   end
 end
 
 function BlockQuote(s)
-  return '<blockquote>\n' .. s .. '\n</blockquote>'
+  return '>\n' .. s .. '\n<\n'
 end
 
 function HorizontalRule()
-  return '<hr/>'
+  return string.rep('-', 78)
 end
 
 function LineBlock(ls)
-  return '<div style="white-space: pre-line;">' .. table.concat(ls, '\n') .. '</div>'
+  return table.concat(ls, '\n')
 end
 
 function CodeBlock(s, attr)
@@ -240,26 +279,26 @@ end
 function BulletList(items)
   local buffer = {}
   for _, item in pairs(items) do
-    table.insert(buffer, '<li>' .. item .. '</li>')
+    table.insert(buffer, '-' .. item)
   end
-  return '<ul>\n' .. table.concat(buffer, '\n') .. '\n</ul>'
+  return '\n' .. table.concat(buffer, '\n') .. '\n'
 end
 
 function OrderedList(items)
   local buffer = {}
-  for _, item in pairs(items) do
-    table.insert(buffer, '<li>' .. item .. '</li>')
+  for i, item in pairs(items) do
+    table.insert(buffer, '1. ' .. item)
   end
-  return '<ol>\n' .. table.concat(buffer, '\n') .. '\n</ol>'
+  return '\n' .. table.concat(buffer, '\n') .. '\n'
 end
 
 function DefinitionList(items)
   local buffer = {}
   for _, item in pairs(items) do
     local k, v = next(item)
-    table.insert(buffer, '<dt>' .. k .. '</dt>\n<dd>' .. table.concat(v, '</dd>\n<dd>') .. '</dd>')
+    table.insert(buffer, k .. string.rep(' ', 78 - 40 + 1 - #k) .. table.concat(v, '\n'))
   end
-  return '<dl>\n' .. table.concat(buffer, '\n') .. '\n</dl>'
+  return '\n' .. table.concat(buffer, '\n') .. '\n'
 end
 
 -- Convert pandoc alignment to something HTML can use.
@@ -289,41 +328,32 @@ function Table(caption, aligns, widths, headers, rows)
   local function add(s)
     table.insert(buffer, s)
   end
-  add('<table>')
   if caption ~= '' then
-    add('<caption>' .. caption .. '</caption>')
-  end
-  if widths and widths[1] ~= 0 then
-    for _, w in pairs(widths) do
-      add('<col width="' .. string.format('%.0f%%', w * 100) .. '" />')
-    end
+    add('Caption: ' .. caption)
   end
   local header_row = {}
+  local head
   local empty_header = true
   for i, h in pairs(headers) do
-    local align = html_align(aligns[i])
-    table.insert(header_row, '<th align="' .. align .. '">' .. h .. '</th>')
+    table.insert(header_row, h)
     empty_header = empty_header and h == ''
   end
   if empty_header then
     head = ''
   else
-    add('<tr class="header">')
+    local header_line = ''
     for _, h in pairs(header_row) do
-      add(h)
+      header_line = header_line .. h .. ' '
     end
-    add('</tr>')
+    add(header_line)
   end
-  local class = 'even'
   for _, row in pairs(rows) do
-    class = (class == 'even' and 'odd') or 'even'
-    add('<tr class="' .. class .. '">')
+    local row_line = ''
     for i, c in pairs(row) do
-      add('<td align="' .. html_align(aligns[i]) .. '">' .. c .. '</td>')
+      row_line = row_line .. c .. ' '
     end
-    add('</tr>')
+    add(row_line)
   end
-  add('</table>')
   return table.concat(buffer, '\n')
 end
 
