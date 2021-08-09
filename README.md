@@ -19,3 +19,8 @@ Sub headings are converted to columns
 Multi line Code blocks are indented 4 spaces and
 are formatted appropriately
 ```
+
+# Heading
+
+Main headings are numbered.
+Sub headings are upper cased.
