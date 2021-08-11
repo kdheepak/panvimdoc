@@ -47,6 +47,20 @@ function Blocksep()
   return '\n\n'
 end
 
+local function osExecute(cmd)
+  local fileHandle     = assert(io.popen(cmd, 'r'))
+  local commandOutput  = assert(fileHandle:read('*a'))
+  local returnTable    = {fileHandle:close()}
+  return commandOutput,returnTable[3]            -- rc[3] contains returnCode
+end
+
+local function mod(a, b)
+  a = a - 1
+  b = b
+  return (a - (math.floor(a / b) * b)) + 1
+end
+
+
 -- This function is called once for the whole document. Parameters:
 -- body is a string, metadata is a table, variables is a table.
 -- This gives you a fragment.  You could use the metadata table to
@@ -57,19 +71,34 @@ function Doc(body, metadata, variables)
   local function add(s)
     table.insert(buffer, s)
   end
-  local neovim_version = metadata.neovimversion
-  if neovim_version == nil then
-    neovim_version = 'v0.5.0' -- TODO get version from external process
+  local vim_version = metadata.vimversion
+  if vim_version == nil then
+    vim_version = osExecute('nvim --version'):gmatch("([^\n]*)\n?")()
+    if string.find(vim_version , '-dev') then
+      vim_version = string.gsub(vim_version, '(.*)-dev.*', '%1')
+    end
+  elseif vim_version == 'vim' then
+    vim_version = osExecute('vim --version'):gmatch("([^\n]*)\n?")()
   end
-  local vimdoctitle = metadata.vimdoctitle
-  if vimdoctitle == nil then
+
+  local vim_doc_title = metadata.vimdoctitle
+  if vim_doc_title == nil then
     error('vimdoctitle metadata not found')
   end
   local date = metadata.date
   if date == nil then
     date = os.date('%Y %B %d')
   end
-  add(vimdoctitle .. '    For Neovim ' .. neovim_version .. '    ' .. 'Last change: ' .. date)
+  local l = vim_doc_title
+  local m = 'For ' .. vim_version
+  local r = 'Last change: ' .. date
+  local n = math.floor(math.max(0, 78 - #l - #m - #r)/2)
+  local s = string.rep(' ', n)
+  if mod(n, 2) == 1 then
+    add(l .. s .. m .. s .. ' ' .. r)
+  else
+    add(l .. s .. m .. s .. r)
+  end
   add('')
   add(body)
   add('vim:tw=78:ts=8:noet:ft=help:norl:')
@@ -320,41 +349,189 @@ function CaptionedImage(src, tit, caption, attr)
              .. '<p class="caption">' .. escape(caption) .. '</p>\n</div>'
 end
 
+-- Position some text within a wider string (stuffed with blanks)
+-- 'way' is '0' to left justify, '1' for right and '2' for center
+function _position(txt, width, way)
+  if way < 0 or way > 2 then
+    return txt
+  end
+  local l = #txt
+    if width > l then
+    local b = (way == 0 and 0) or math.floor((width - l) / way)
+    local a = width - l - b
+    return string.rep(' ', b) .. txt .. string.rep(' ', a)
+  else
+    return txt
+  end
+end
+
+function _getNthRowLine(txt, nth, height, width)
+  local s = ''
+  if nth == height then
+    s = subString(txt, (nth - 1) * width, width + 1) -- Avoid cutting last UTF8 sequence
+  else
+    s = subString(txt, (nth - 1) * width, width)
+  end
+  return s
+end
+
+
+
+function get_1st_letter(s)
+  local function get_1st_letter_rec(s, acc)
+    if #s == 0 then
+      return "", ""
+    elseif #s == 1 then
+      return s, ""
+    else
+      local m = s:match("^\27%[[0-9;]+m")
+
+      if m == nil then
+        local m = s:match("^[^\27]\27%[[0-9;]+m")
+        if m == nil then
+          return acc .. s:sub(1,1), s:sub(2)
+        else
+          return acc .. m, s:sub(#m + 1)
+        end
+      else
+        return get_1st_letter_rec(s:sub(#m + 1), acc .. m)
+      end
+    end
+  end
+  return get_1st_letter_rec(s, "")
+end
+--
+-- Returns a substring of 's', starting after 'orig' and of length 'nb'
+-- Escape sequences are NOT counted as characters and thus are not cut.
+function subString(s, orig, nb)
+  local col = 0
+  local buf = ""
+  local h
+
+  while #s > 0 and col < orig do
+    h, s = get_1st_letter(s)
+    col = col + 1
+  end
+
+  col = 0
+  while #s > 0 and col < nb do
+    h, s = get_1st_letter(s)
+    buf = buf .. h
+    col = col + 1
+  end
+  return buf
+end
+
+MAX_COL_WIDTH = 42
+MIN_COL_WIDTH = 5
+
 -- Caption is a string, aligns is an array of strings,
 -- widths is an array of floats, headers is an array of
 -- strings, rows is an array of arrays of strings.
 function Table(caption, aligns, widths, headers, rows)
   local buffer = {}
-  local function add(s)
+  local table_width_for_adjust = 0
+  local max_table_width_for_adjust = 78
+  local align = {["AlignDefault"] = 0, ["AlignLeft"] = 0, ["AlignRight"] = 1, ["AlignCenter"] = 2}
+  local function add_row(s)
     table.insert(buffer, s)
   end
-  if caption ~= '' then
-    add('Caption: ' .. caption)
+  -- Find maximum width for each column:
+  local col_width = {}
+  local row_height = {}
+  for j, row in pairs(rows) do
+    row_height[j] = 1
+  end
+  local header_height = 1
+  local cell_width = 0
+  local cell_height = 0
+  table_width_for_adjust = #headers + 3 -- # of columns + 2 for borders + 1 for margin
+  for i, header in pairs(headers) do
+    table.insert(col_width, i, #header)
+    for j, row in pairs(rows) do
+      cell_width = #row[i]
+      if cell_width > col_width[i] then
+        col_width[i] = cell_width
+      end
+    end
+    if (col_width[i] > MIN_COL_WIDTH) then
+      -- Sum of all widths for columns that could be reduced
+      table_width_for_adjust = table_width_for_adjust + col_width[i]
+    else
+      max_table_width_for_adjust = max_table_width_for_adjust - col_width[i]
+    end
+  end
+  -- Reduce large cells if needed:
+  local xs = table_width_for_adjust - max_table_width_for_adjust
+  if xs > 0 then
+    for i, w in pairs(col_width) do
+      if w > MIN_COL_WIDTH then
+        col_width[i] = w - math.floor(w * xs / table_width_for_adjust + 1)
+      end
+      cell_height = math.floor(#headers[i] / col_width[i]) + 1
+      if cell_height > header_height then
+        header_height = cell_height
+      end
+      for j, row in pairs(rows) do
+        text_width = #row[i]
+        cell_height = math.floor(text_width / col_width[i]) + 1
+        if cell_height > row_height[j] then
+          row_height[j] = cell_height
+        end
+      end
+    end
+  end
+
+  local last = #col_width
+  local tmpl = ''
+  for i, w in pairs(col_width) do
+    -- Here, 'c' stands for "crossing char" and will be replaced
+    tmpl = tmpl .. string.rep('─', w) .. (i < last and 'c' or '')
+  end
+  local CELL_SEP = '│'
+
+  if caption ~= "" then
+    add_row(Strong(caption))
+    add_row('')
   end
   local header_row = {}
-  local head
   local empty_header = true
   for i, h in pairs(headers) do
-    table.insert(header_row, h)
-    empty_header = empty_header and h == ''
+    -- Table headers have same color as document headers
+    empty_header = empty_header and h == ""
   end
-  if empty_header then
-    head = ''
-  else
-    local header_line = ''
-    for _, h in pairs(header_row) do
-      header_line = header_line .. h .. ' '
+  local content = ''
+  local s = ''
+  if not empty_header then
+    for k = 1, header_height do -- Break long lines
+      content = ''
+      s = ''
+      for i, h in pairs(headers) do
+        s = _getNthRowLine(h, k, header_height, col_width[i])
+        s = _position(s, col_width[i], 2)
+        content = content .. CELL_SEP .. s
+      end
+      add_row(content .. CELL_SEP)
     end
-    add(header_line)
   end
-  for _, row in pairs(rows) do
-    local row_line = ''
-    for i, c in pairs(row) do
-      row_line = row_line .. c .. ' '
+  for i, row in pairs(rows) do
+    content = ''
+    for k = 1, row_height[i] do -- Break long lines
+      content = ''
+      s = ''
+      for j, c in pairs(row) do
+        if (col_width[j]) then
+          s = _getNthRowLine(c, k, row_height[i], col_width[j])
+          content = content .. CELL_SEP .. _position(s, col_width[j], align[aligns[j]])
+        end
+      end
+      add_row(content .. CELL_SEP)
     end
-    add(row_line)
+    if i < #rows then
+    end
   end
-  return table.concat(buffer, '\n')
+  add_row('')
+  return table.concat(buffer,'\n')
 end
 
 function RawBlock(format, str)

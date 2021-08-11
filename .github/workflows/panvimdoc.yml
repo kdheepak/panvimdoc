@@ -15,7 +15,7 @@ jobs:
           sudo apt install pandoc
       - name: Generating docs
         run: |
-          pandoc -t scripts/panvimdoc.lua README.md -o doc/panvimdoc.txt
+          pandoc -t scripts/panvimdoc.lua doc/panvimdoc.md -o doc/panvimdoc.txt
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: "Auto generate docs"
