@@ -303,7 +303,6 @@ function LineBlock(ls)
 end
 
 function CodeBlock(s, attr)
-  print(require'inspect'.inspect(attr))
   if attr.class == 'vimdoc' then
     return s
   else
