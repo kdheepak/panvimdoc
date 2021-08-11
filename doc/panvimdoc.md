@@ -76,6 +76,8 @@ The following markdown:
 
 is converted to the following vimdoc:
 
+## Links
+
 ```
 You can link to the tags by using |sub-heading-2|
 ```
