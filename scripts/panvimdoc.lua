@@ -303,12 +303,17 @@ function LineBlock(ls)
 end
 
 function CodeBlock(s, attr)
-  local t = {}
-  for line in s:gmatch('([^\n]*)\n?') do
-    table.insert(t, '    ' .. escape(line))
+  print(require'inspect'.inspect(attr))
+  if attr.class == 'vimdoc' then
+    return s
+  else
+    local t = {}
+    for line in s:gmatch('([^\n]*)\n?') do
+      table.insert(t, '    ' .. escape(line))
 
+    end
+    return '>\n' .. table.concat(t, '\n') .. '\n<\n'
   end
-  return '>\n' .. table.concat(t, '\n') .. '\n<\n'
 end
 
 function BulletList(items)
