@@ -43,7 +43,7 @@ Main headings are numbered.
 
 Sub headings are upper cased heading.
 
-All headings have tags. 
+All headings have tags.
 You can link to the tags by using [link](#sub-heading-2)
 
 ## Mappings
@@ -66,6 +66,7 @@ Command that operates over highlighted lines.
 
 ## Table
 
+<!-- prettier-ignore-start -->
   Right     Left     Center     Default
 -------     ------ ----------   -------
      12     12        12            12
@@ -73,3 +74,4 @@ Command that operates over highlighted lines.
       1     1          1             1
 
 Table:  Demonstration of simple table syntax.
+<!-- prettier-ignore-end -->
