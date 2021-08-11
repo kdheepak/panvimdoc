@@ -6,8 +6,7 @@ Table of Contents                                *panvimdoc-table-of-contents*
 ==============================================================================
 1. panvimdoc                                             *panvimdoc-panvimdoc*
 
-Write documentation in |pandoc markdown| <https://pandoc.org/MANUAL.html>.
-Generate documentation in vimdoc.
+Write documentation in |pandoc markdown|. Generate documentation in vimdoc.
 
 CODEBLOCKS                                              *panvimdoc-codeblocks*
 
@@ -73,7 +72,25 @@ Sub headings are upper cased heading.
 
 Notice that both headings and subheadings have tags.
 
-You can link to the tags by using |link| <#sub-heading-2>
+You can link to the tags by using |sub-heading-2|.
+
+The following markdown:
+
+>
+    [sub-heading-2](#sub-heading-2)
+<
+
+
+is converted to the following vimdoc:
+
+>
+    You can link to the tags by using |sub-heading-2|
+<
+
+
+This way, any links will work in markdown README on GitHub / on the web using
+anchors AND will work as tags and links in vimdoc. The anchors are simply
+dropped in vimdoc.
 
 MAPPINGS                                                  *panvimdoc-mappings*
 
