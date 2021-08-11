@@ -84,6 +84,7 @@ You can link to the tags by using |sub-heading-2|
 
 This way, any links will work in markdown README on GitHub / on the web using anchors AND will work as tags and links in vimdoc.
 The anchors are simply dropped in vimdoc.
+The onus is on the documentation writer to write the correct link.
 
 ## Mappings
 
