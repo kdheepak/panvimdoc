@@ -12,7 +12,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: Install pandoc
         run: |
-          sudo apt install pandoc
+          sudo apt install pandoc vim
       - name: Generating docs
         run: |
           pandoc -t scripts/panvimdoc.lua doc/panvimdoc.md -o doc/panvimdoc.txt

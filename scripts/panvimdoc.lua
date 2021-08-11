@@ -76,6 +76,13 @@ function Doc(body, metadata, variables)
     if string.find(vim_version, '-dev') then
       vim_version = string.gsub(vim_version, '(.*)-dev.*', '%1')
     end
+    if vim_version == '' then
+      vim_version = osExecute('vim --version'):gmatch('([^\n]*)\n?')()
+      vim_version = string.gsub(vim_version, '(.*) %(.*%)', '%1')
+    end
+    if vim_version == '' then
+      vim_version = 'vim'
+    end
   elseif vim_version == 'vim' then
     vim_version = osExecute('vim --version'):gmatch('([^\n]*)\n?')()
   end
