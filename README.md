@@ -15,3 +15,4 @@ See [panvimdoc.md](./doc/panvimdoc.md) for input and [panvimdoc.txt](./doc/panvi
 # References
 
 - <https://learnvimscriptthehardway.stevelosh.com/chapters/54.html>
+- <https://github.com/mjlbach/babelfish.nvim>
