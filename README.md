@@ -17,7 +17,7 @@ See [References](#references) for more information.
 It would be nice to write documentation in Markdown and convert to vimdoc.
 [@mjlbach](https://github.com/mjlbach) has already implemented a neovim treesitter markdown to vimdoc converter that works fairly well.
 I found two other projects that do something similar, again linked in the references.
-As far as I can tell, these projects are all in use and actively maintained.
+As far as I can tell, these projects are all in use and actively maintained and these projects may suit your need.
 
 However, none of these projects use Pandoc.
 Pandoc Markdown supports a wide number of features.
