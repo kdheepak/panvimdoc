@@ -103,7 +103,7 @@ function Doc(body, metadata, variables)
   if mod(n, 2) == 1 then
     add(l .. s .. m .. s .. ' ' .. r)
   else
-    add(l .. s .. m .. s .. r)
+    add(l .. s .. m .. s .. '  ' .. r)
   end
   add('')
   add(body)
