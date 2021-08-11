@@ -98,12 +98,12 @@ function Doc(body, metadata, variables)
   local l = vim_doc_title
   local m = 'For ' .. vim_version
   local r = 'Last change: ' .. date
-  local n = math.floor(math.max(0, 77 - #l - #m - #r) / 2)
-  local s = string.rep(' ', n)
+  local n = math.max(0, 78 - #l - #m - #r)
+  local s = string.rep(' ', math.floor(n / 2))
   if mod(n, 2) == 1 then
     add(l .. s .. m .. s .. ' ' .. r)
   else
-    add(l .. s .. m .. s .. '  ' .. r)
+    add(l .. s .. m .. s .. r)
   end
   add('')
   add(body)
