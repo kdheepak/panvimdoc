@@ -48,10 +48,10 @@ function Blocksep()
 end
 
 local function osExecute(cmd)
-  local fileHandle     = assert(io.popen(cmd, 'r'))
-  local commandOutput  = assert(fileHandle:read('*a'))
-  local returnTable    = {fileHandle:close()}
-  return commandOutput,returnTable[3]            -- rc[3] contains returnCode
+  local fileHandle = assert(io.popen(cmd, 'r'))
+  local commandOutput = assert(fileHandle:read('*a'))
+  local returnTable = { fileHandle:close() }
+  return commandOutput, returnTable[3] -- rc[3] contains returnCode
 end
 
 local function mod(a, b)
@@ -59,7 +59,6 @@ local function mod(a, b)
   b = b
   return (a - (math.floor(a / b) * b)) + 1
 end
-
 
 -- This function is called once for the whole document. Parameters:
 -- body is a string, metadata is a table, variables is a table.
@@ -73,12 +72,12 @@ function Doc(body, metadata, variables)
   end
   local vim_version = metadata.vimversion
   if vim_version == nil then
-    vim_version = osExecute('nvim --version'):gmatch("([^\n]*)\n?")()
-    if string.find(vim_version , '-dev') then
+    vim_version = osExecute('nvim --version'):gmatch('([^\n]*)\n?')()
+    if string.find(vim_version, '-dev') then
       vim_version = string.gsub(vim_version, '(.*)-dev.*', '%1')
     end
   elseif vim_version == 'vim' then
-    vim_version = osExecute('vim --version'):gmatch("([^\n]*)\n?")()
+    vim_version = osExecute('vim --version'):gmatch('([^\n]*)\n?')()
   end
 
   local vim_doc_title = metadata.vimdoctitle
@@ -92,7 +91,7 @@ function Doc(body, metadata, variables)
   local l = vim_doc_title
   local m = 'For ' .. vim_version
   local r = 'Last change: ' .. date
-  local n = math.floor(math.max(0, 78 - #l - #m - #r)/2)
+  local n = math.floor(math.max(0, 77 - #l - #m - #r) / 2)
   local s = string.rep(' ', n)
   if mod(n, 2) == 1 then
     add(l .. s .. m .. s .. ' ' .. r)
@@ -356,7 +355,7 @@ function _position(txt, width, way)
     return txt
   end
   local l = #txt
-    if width > l then
+  if width > l then
     local b = (way == 0 and 0) or math.floor((width - l) / way)
     local a = width - l - b
     return string.rep(' ', b) .. txt .. string.rep(' ', a)
@@ -375,21 +374,19 @@ function _getNthRowLine(txt, nth, height, width)
   return s
 end
 
-
-
 function get_1st_letter(s)
   local function get_1st_letter_rec(s, acc)
     if #s == 0 then
-      return "", ""
+      return '', ''
     elseif #s == 1 then
-      return s, ""
+      return s, ''
     else
-      local m = s:match("^\27%[[0-9;]+m")
+      local m = s:match('^\27%[[0-9;]+m')
 
       if m == nil then
-        local m = s:match("^[^\27]\27%[[0-9;]+m")
+        local m = s:match('^[^\27]\27%[[0-9;]+m')
         if m == nil then
-          return acc .. s:sub(1,1), s:sub(2)
+          return acc .. s:sub(1, 1), s:sub(2)
         else
           return acc .. m, s:sub(#m + 1)
         end
@@ -398,14 +395,14 @@ function get_1st_letter(s)
       end
     end
   end
-  return get_1st_letter_rec(s, "")
+  return get_1st_letter_rec(s, '')
 end
 --
 -- Returns a substring of 's', starting after 'orig' and of length 'nb'
 -- Escape sequences are NOT counted as characters and thus are not cut.
 function subString(s, orig, nb)
   local col = 0
-  local buf = ""
+  local buf = ''
   local h
 
   while #s > 0 and col < orig do
@@ -432,7 +429,7 @@ function Table(caption, aligns, widths, headers, rows)
   local buffer = {}
   local table_width_for_adjust = 0
   local max_table_width_for_adjust = 78
-  local align = {["AlignDefault"] = 0, ["AlignLeft"] = 0, ["AlignRight"] = 1, ["AlignCenter"] = 2}
+  local align = { ['AlignDefault'] = 0, ['AlignLeft'] = 0, ['AlignRight'] = 1, ['AlignCenter'] = 2 }
   local function add_row(s)
     table.insert(buffer, s)
   end
@@ -490,7 +487,7 @@ function Table(caption, aligns, widths, headers, rows)
   end
   local CELL_SEP = '│'
 
-  if caption ~= "" then
+  if caption ~= '' then
     add_row(Strong(caption))
     add_row('')
   end
@@ -498,7 +495,7 @@ function Table(caption, aligns, widths, headers, rows)
   local empty_header = true
   for i, h in pairs(headers) do
     -- Table headers have same color as document headers
-    empty_header = empty_header and h == ""
+    empty_header = empty_header and h == ''
   end
   local content = ''
   local s = ''
@@ -531,7 +528,7 @@ function Table(caption, aligns, widths, headers, rows)
     end
   end
   add_row('')
-  return table.concat(buffer,'\n')
+  return table.concat(buffer, '\n')
 end
 
 function RawBlock(format, str)
