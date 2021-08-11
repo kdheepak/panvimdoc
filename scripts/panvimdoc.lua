@@ -50,6 +50,7 @@ end
 
 -- Table to store footnotes, so they can be included at the end.
 local notes = {}
+local toc = {}
 
 -- Blocksep is used to separate block elements.
 function Blocksep()
@@ -67,6 +68,22 @@ local function mod(a, b)
   a = a - 1
   b = b
   return (a - (math.floor(a / b) * b)) + 1
+end
+
+local function renderToc(project)
+  local t = {}
+  local function add(s)
+    table.insert(t, s)
+  end
+  add(string.rep('=', 78))
+  local l = 'Table of Contents'
+  local tag = '*' .. meta.project[1].c .. '-' .. string.gsub(string.lower(l), '%s', '-') .. '*'
+  add(l .. string.rep(' ', 78 - #l - #tag) .. tag)
+  for i, elem in pairs(toc) do
+    add(i .. '' .. elem)
+  end
+  add('')
+  return table.concat(t, '\n')
 end
 
 -- This function is called once for the whole document. Parameters:
@@ -115,6 +132,7 @@ function Doc(body, metadata, variables)
     add(l .. s .. m .. s .. r)
   end
   add('')
+  add(renderToc(vim_doc_title))
   add(body)
   add('vim:tw=78:ts=8:noet:ft=help:norl:')
   return table.concat(buffer, '\n') .. '\n'

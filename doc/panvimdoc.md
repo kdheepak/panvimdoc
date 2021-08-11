@@ -9,25 +9,42 @@ toc: true
 Write documentation in [pandoc markdown](https://pandoc.org/MANUAL.html).
 Generate documentation in vimdoc.
 
-## Sub Heading 2
-
-Sub headings are converted to columns
-
 ## Codeblocks
 
 ```
 Multi line Code blocks are indented 4 spaces and
-are formatted appropriately
+
+are formatted
+
+appropriately with > and <.
 ```
 
+Alternatively, you can use `vimdoc` as the language for the code block to write code that will be inserted into the final document.
+
+For example, the following:
+
+````
 ```vimdoc
-Escape codeblocks that have language as `vimdoc`.
+You can use codeblocks that have language as `vimdoc` to write raw vimdoc.
+```
+````
+
+will be rendered as below:
+
+```vimdoc
+You can use codeblocks that have language as `vimdoc` to write raw vimdoc.
 ```
 
 # Heading
 
 Main headings are numbered.
-Sub headings are upper cased.
+
+## Sub Heading 2
+
+Sub headings are upper cased heading.
+
+All headings have tags. 
+You can link to the tags by using [link](#sub-heading-2)
 
 ## Mappings
 
