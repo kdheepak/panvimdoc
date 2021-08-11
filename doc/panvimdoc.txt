@@ -1,12 +1,10 @@
-panvimdoc.txt    For Neovim v0.5.0    Last change: 2021 August 11
+panvimdoc.txt                 For                   Last change: 2021 August 11
 
 ==============================================================================
-1. panvimdoc.nvim                                   *panvimdoc-panvimdoc.nvim*
+1. panvimdoc                                             *panvimdoc-panvimdoc*
 
 Write documentation in |pandoc markdown| <https://pandoc.org/MANUAL.html>.
 Generate documentation in vimdoc.
-
-Handles **Bold**, **bold** and _italic_.
 
 SUB HEADING 2                                        *panvimdoc-sub-heading-2*
 
@@ -49,17 +47,7 @@ pvd                                    Command that takes [count] lines.
                                        lines.
 
 
-
-Term 1                                 Definition 1
-Term 2 with _inline markup_            Definition 2
-
->
-    { some code, part of Definition 2 }
-<
-
-
-Third paragraph of definition 2.
-
+TABLE                                                        *panvimdoc-table*
 
 Right Left Center Default
 
