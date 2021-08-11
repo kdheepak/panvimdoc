@@ -1,4 +1,4 @@
-panvimdoc.txt                For                 Last change: 2021 August 11
+panvimdoc.txt      For VIM - Vi IMproved 8.1        Last change: 2021 August 11
 
 ==============================================================================
 1. panvimdoc                                             *panvimdoc-panvimdoc*
