@@ -184,7 +184,7 @@ function Strikeout(s)
 end
 
 function Link(s, tgt, tit, attr)
-  return '|' .. s .. '| ' .. '<' .. escape(tgt, true) .. '>'
+  return '|' .. s .. '|'
 end
 
 function Image(s, src, tit, attr)
