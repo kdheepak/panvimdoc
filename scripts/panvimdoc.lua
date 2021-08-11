@@ -5,6 +5,15 @@
 local pipe = pandoc.pipe
 local stringify = (require 'pandoc.utils').stringify
 -- local inspect = require 'inspect'
+--
+function dump(s)
+  local m, status = pcall(require, 'inspect')
+  if m == nil then
+    print(s)
+  else
+    print(require'inspect'.inspect(s))
+  end
+end
 
 -- The global variable PANDOC_DOCUMENT contains the full AST of
 -- the document which is going to be written. It can be used to
