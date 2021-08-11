@@ -4,7 +4,7 @@
 -- Invoke with: pandoc -t vimdoc.lua README.md
 local pipe = pandoc.pipe
 local stringify = (require 'pandoc.utils').stringify
-local inspect = require 'inspect'
+-- local inspect = require 'inspect'
 
 -- The global variable PANDOC_DOCUMENT contains the full AST of
 -- the document which is going to be written. It can be used to

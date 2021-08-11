@@ -1,0 +1,22 @@
+name: panvimdoc
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  vimdocgen:
+    runs-on: [ubuntu-latest]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install pandoc
+        run: |
+          sudo apt install pandoc
+      - name: Generating docs
+        run: |
+          pandoc -t scripts/vimdoc.lua README.md -o doc/vimdoc.txt
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: "Auto generate docs"
+          branch: ${{ github.head_ref }}
