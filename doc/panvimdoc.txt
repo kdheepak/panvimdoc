@@ -37,16 +37,43 @@ will be rendered as below:
 You can use codeblocks that have language as `vimdoc` to write raw vimdoc.
 
 ==============================================================================
-2. Heading                                                 *panvimdoc-heading*
+2. Title                                                     *panvimdoc-title*
+
+The first line of the documentation that is generated will look something like
+this:
+
+>
+    panvimdoc.txt      For VIM - Vi IMproved 8.1       Last change: 2021 August 11
+<
+
+
+==============================================================================
+3. Heading                                                 *panvimdoc-heading*
 
 Main headings are numbered.
+
+>
+    ==============================================================================
+    2. Heading                                                 *panvimdoc-heading*
+    
+    Main headings are numbered.
+<
+
 
 SUB HEADING 2                                        *panvimdoc-sub-heading-2*
 
 Sub headings are upper cased heading.
 
-All headings have tags. You can link to the tags by using |link|
-<#sub-heading-2>
+>
+    SUB HEADING 2                                        *panvimdoc-sub-heading-2*
+    
+    Sub headings are upper cased heading.
+<
+
+
+Notice that both headings and subheadings have tags.
+
+You can link to the tags by using |link| <#sub-heading-2>
 
 MAPPINGS                                                  *panvimdoc-mappings*
 
@@ -74,7 +101,10 @@ pvd                                    Command that takes [count] lines.
 
 TABLE                                                        *panvimdoc-table*
 
-**Demonstration of simple table syntax.**
+<!-- prettier-ignore-start -->
+
+**Demonstration of simple table syntax.
+<!-- prettier-ignore-end -->**
 
 │Right│Left│Center│Default│
 │   12│12  │  12  │12     │
