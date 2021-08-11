@@ -1,4 +1,4 @@
-# panvimdoc.nvim
+# panvimdoc
 
 Write documentation in [pandoc markdown](https://pandoc.org/MANUAL.html).
 Generate documentation in vimdoc.
