@@ -9,8 +9,8 @@ Writing documentation is hard.
 Decreasing friction when writing documentation is useful.
 
 Writing vim documentation requires conforming to a few simple rules.
-`vimdoc` is not a well defined spec but when a text file is in `vimdoc` compatible format and when the `filetype=help` in vim, some nicer syntax highlighting and features are enabled.
-Namely, links and tags work well in vim documentation.
+Although `vimdoc` is not a well defined spec, it does have some nice syntax highlighting and features like tags and links when a text file is in `vimdoc` compatible format and when the `filetype=help` in vim.
+Also, typically, while vim documentation is just plain text files, they are usually formatted well using whitespace.
 
 See [References](#references) for more information.
 
