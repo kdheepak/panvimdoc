@@ -569,9 +569,17 @@ function Table(caption, aligns, widths, headers, rows)
   return table.concat(buffer, '\n')
 end
 
+function string.starts(String, Start)
+  return string.sub(String, 1, string.len(Start)) == Start
+end
+
 function RawBlock(format, str)
   if format == 'html' then
-    return str
+    if string.starts(str, '<!--') then
+      return ''
+    else
+      return str
+    end
   else
     return ''
   end

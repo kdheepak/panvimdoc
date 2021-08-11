@@ -12,9 +12,9 @@ CODEBLOCKS                                              *panvimdoc-codeblocks*
 
 >
     Multi line Code blocks are indented 4 spaces and
-    
+
     are formatted
-    
+
     appropriately with > and <.
 <
 
@@ -54,7 +54,7 @@ Main headings are numbered.
 >
     ==============================================================================
     2. Heading                                                 *panvimdoc-heading*
-    
+
     Main headings are numbered.
 <
 
@@ -65,7 +65,7 @@ Sub headings are upper cased heading.
 
 >
     SUB HEADING 2                                        *panvimdoc-sub-heading-2*
-    
+
     Sub headings are upper cased heading.
 <
 
@@ -121,10 +121,8 @@ pvd                                    Command that takes [count] lines.
 
 TABLE                                                        *panvimdoc-table*
 
-<!-- prettier-ignore-start -->
 
 **Demonstration of simple table syntax.
-<!-- prettier-ignore-end -->**
 
 │Right│Left│Center│Default│
 │   12│12  │  12  │12     │
@@ -132,4 +130,3 @@ TABLE                                                        *panvimdoc-table*
 │    1│1   │  1   │1      │
 
 vim:tw=78:ts=8:noet:ft=help:norl:
-
