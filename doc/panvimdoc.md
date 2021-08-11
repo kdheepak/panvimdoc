@@ -47,11 +47,25 @@ panvimdoc.txt      For VIM - Vi IMproved 8.1       Last change: 2021 August 11
 
 Main headings are numbered.
 
+```
+==============================================================================
+2. Heading                                                 *panvimdoc-heading*
+
+Main headings are numbered.
+```
+
 ## Sub Heading 2
 
 Sub headings are upper cased heading.
 
-All headings have tags.
+```
+SUB HEADING 2                                        *panvimdoc-sub-heading-2*
+
+Sub headings are upper cased heading.
+```
+
+Notice that both headings and subheadings have tags.
+
 You can link to the tags by using [link](#sub-heading-2)
 
 ## Mappings
