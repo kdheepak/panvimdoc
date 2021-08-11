@@ -21,13 +21,16 @@ See [References](#references) for more information.
 
 It would be nice to write documentation in Markdown and convert to vimdoc.
 [@mjlbach](https://github.com/mjlbach) has already implemented a neovim treesitter markdown to vimdoc converter that works fairly well.
+This approach is close to ideal. There are no dependencies ( except for the Markdown treesitter parser ). While it appears that the markdown parser may cause crashes, I have not experienced any in my use. It is neovim only but you can use this on github actions even for a vim plugin documentation.
+
 I found two other projects that do something similar, again linked in the references.
 As far as I can tell, these projects are all in use and actively maintained and these projects may suit your need.
 
 However, none of these projects use Pandoc.
 Pandoc Markdown supports a wide number of features.
-Firstly, it supports a range of Markdown formats and flavors.
-Secondly, Pandoc has lua filters and a custom output writer that can be configured in lua.
+Most importantly, it supports a range of Markdown formats and flavors.
+And, Pandoc has lua filters and a custom output writer that can be configured in lua.
+Pandoc filters are easy to write and maintain too.
 
 This project aims to write a specification in Pandoc Markdown, and take advantage of Pandoc filters, to convert a Markdown file to a vim documentation help file.
 
