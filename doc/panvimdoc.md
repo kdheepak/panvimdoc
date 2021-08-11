@@ -37,7 +37,7 @@ You can use codeblocks that have language as `vimdoc` to write raw vimdoc.
 
 # Title
 
-The first line of the documentation that is generated will look like this:
+The first line of the documentation that is generated will look something like this:
 
 ```
 panvimdoc.txt      For VIM - Vi IMproved 8.1       Last change: 2021 August 11
