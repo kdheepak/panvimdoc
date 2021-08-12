@@ -8,7 +8,7 @@ jobs:
     name: pandoc to vimdoc
     steps:
       - uses: actions/checkout@v2
-      - name: PanVimDoc
+      - name: panvimdoc
         uses: ./
         with:
           pandoc: doc/panvimdoc.md
