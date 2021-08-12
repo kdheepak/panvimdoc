@@ -97,7 +97,7 @@ jobs:
     name: pandoc to vimdoc
     steps:
       - uses: actions/checkout@v2
-      - name: PanVimDoc
+      - name: panvimdoc
         uses: kdheepak/panvimdoc@v1
         with:
           pandoc: INPUT_FILENAME.md
