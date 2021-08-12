@@ -342,10 +342,25 @@ function CodeBlock(s, attr)
   end
 end
 
+function indent(s, fl, ol)
+  local ret = {}
+  local i = 1
+
+  for l in s:gmatch('[^\r\n]+') do
+    if i == 1 then
+      ret[i] = fl .. l
+    else
+      ret[i] = ol .. l
+    end
+    i = i + 1
+  end
+  return table.concat(ret, '\n')
+end
+
 function BulletList(items)
   local buffer = {}
   for _, item in pairs(items) do
-    table.insert(buffer, '- ' .. item)
+    table.insert(buffer, indent(item, '- ', '    '))
   end
   return '\n' .. table.concat(buffer, '\n') .. '\n'
 end
