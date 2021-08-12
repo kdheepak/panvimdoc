@@ -1,6 +1,7 @@
 # action.yml
 name: "panvimdoc"
 description: "Convert pandoc input to vimdoc output"
+label: file-text
 inputs:
   pandoc:
     description: "Input pandoc file"
