@@ -192,7 +192,7 @@ function Image(s, src, tit, attr)
 end
 
 function Code(s, attr)
-  return '>\n' .. escape(s) .. '\n<'
+  return '>' .. escape(s) .. '<'
 end
 
 function InlineMath(s)
