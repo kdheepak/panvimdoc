@@ -48,6 +48,7 @@ This project provides a reference implementation of the specification as well.
 # Features
 
 - Autogenerate title for vim documentation
+- Autogenerate table of contents
 - Generate links and tags
 - Support markdown syntax for tables
 - Support raw vimdoc syntax where ever needed for manual control.
