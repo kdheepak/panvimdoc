@@ -61,7 +61,7 @@ The generated output is in [panvimdoc.txt](./doc/panvimdoc.txt).
 The reference implementation of the Pandoc lua filter is in [panvimdoc.lua](./scripts/panvimdoc.lua).
 See [entrypoint.sh](./entrypoint.sh) for how to use this script, or check the [Usage](#usage) section.
 
-If you would like to contribute to the specification please feel free to comment on this issue: <https://github.com/kdheepak/panvimdoc/issues/1>.
+If you would like to contribute to the specification, have feature requests or opinions, please feel free to comment on this issue to start a discussion: <https://github.com/kdheepak/panvimdoc/issues/1>.
 
 # Usage
 
