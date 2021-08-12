@@ -54,25 +54,25 @@ help file.
 3. Goals:                                                   *panvimdoc-goals:*
 
 
--Markdown file must be readable when the file is presented as the README on GitHub / GitLab.
--Markdown file converted to HTML using Pandoc must be web friendly and render appropriately (if the user chooses to do so).
--Vim documentation generated must support links and tags.
--Vim documentation generated should be aesthetically pleasing to view, in vim and as a plain text file.
+- Markdown file must be readable when the file is presented as the README on GitHub / GitLab.
+- Markdown file converted to HTML using Pandoc must be web friendly and render appropriately (if the user chooses to do so).
+- Vim documentation generated must support links and tags.
+- Vim documentation generated should be aesthetically pleasing to view, in vim and as a plain text file.
 
 
--This means using column and spacing appropriately.
+- This means using column and spacing appropriately.
 
--Use built in Vim documentation as guidelines but not rules.
+- Use built in Vim documentation as guidelines but not rules.
 
 
 ==============================================================================
 4. Features                                               *panvimdoc-features*
 
 
--Autogenerate title for vim documentation
--Generate links and tags
--Support markdown syntax for tables
--Support raw vimdoc syntax where ever needed for manual control.
+- Autogenerate title for vim documentation
+- Generate links and tags
+- Support markdown syntax for tables
+- Support raw vimdoc syntax where ever needed for manual control.
 
 
 ==============================================================================
@@ -96,10 +96,10 @@ comment on this issue: |https://github.com/kdheepak/panvimdoc/issues/1|.
 The following are the metadata fields that the custom writer uses:
 
 
-->project< (String) _required_: This is typically the plugin name. This is prefixed to all generated tags
-->vimdoctitle< (String) _required_: This is the name of the documentation file that you want to generate
-->vimversion< (String) _optional_: The version vim / neovim that the plugin is targeting. If not present, the version of vim in the available environment is used.
-->toc< (Boolean) _optional_: Whether to generate table of contents or not
+- >project< (String) _required_: This is typically the plugin name. This is prefixed to all generated tags
+- >vimdoctitle< (String) _required_: This is the name of the documentation file that you want to generate
+- >vimversion< (String) _optional_: The version vim / neovim that the plugin is targeting. If not present, the version of vim in the available environment is used.
+- >toc< (Boolean) _optional_: Whether to generate table of contents or not
 
 
 Example:
@@ -147,11 +147,11 @@ Choose >INPUT_FILENAME< and >OUTPUT_FILENAME< appropriately.
 7. References                                           *panvimdoc-references*
 
 
--|https://learnvimscriptthehardway.stevelosh.com/chapters/54.html|
--|https://github.com/nanotee/vimdoc-notes|
--|https://github.com/mjlbach/babelfish.nvim|
--|https://foosoft.net/projects/md2vim/|
--|https://github.com/wincent/docvim|
+- |https://learnvimscriptthehardway.stevelosh.com/chapters/54.html|
+- |https://github.com/nanotee/vimdoc-notes|
+- |https://github.com/mjlbach/babelfish.nvim|
+- |https://foosoft.net/projects/md2vim/|
+- |https://github.com/wincent/docvim|
 
 
 CODEBLOCKS                                              *panvimdoc-codeblocks*
