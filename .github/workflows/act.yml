@@ -5,8 +5,9 @@ jobs:
     runs-on: ubuntu-latest
     name: Test
     steps:
+      - uses: actions/checkout@v2
       - name: PanVimDoc
-        uses: ./ # Uses an action in the root directory
+        uses: ./
         with:
           markdown: README.md
           vimdoc: doc/panvimdoc.txt
