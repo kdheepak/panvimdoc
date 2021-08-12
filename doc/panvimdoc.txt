@@ -152,6 +152,9 @@ Choose >INPUT_FILENAME< and >OUTPUT_FILENAME< appropriately.
 - |https://github.com/wincent/docvim|
 
 
+==============================================================================
+8. Specification                                     *panvimdoc-specification*
+
 CODEBLOCKS                                              *panvimdoc-codeblocks*
 
 >
@@ -180,7 +183,7 @@ will be rendered as below:
 You can use codeblocks that have language as `vimdoc` to write raw vimdoc.
 
 ==============================================================================
-8. Title                                                     *panvimdoc-title*
+9. Title                                                     *panvimdoc-title*
 
 The first line of the documentation that is generated will look something like
 this:
@@ -191,7 +194,7 @@ this:
 
 
 ==============================================================================
-9. Heading                                                 *panvimdoc-heading*
+10. Heading                                                *panvimdoc-heading*
 
 Main headings are numbered.
 
