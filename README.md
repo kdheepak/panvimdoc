@@ -40,7 +40,7 @@ This project aims to write a specification in Pandoc Markdown, and take advantag
 - Markdown file converted to HTML using Pandoc must be web friendly and render appropriately (if the user chooses to do so).
 - Vim documentation generated must support links and tags.
 - Vim documentation generated should be aesthetically pleasing to view, in vim and as a plain text file.
-  - This means using column and spacing appropriately.
+  - This means using columns and spacing appropriately.
 - Use built in Vim documentation as guidelines but not rules.
 
 # Features
