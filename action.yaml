@@ -13,4 +13,4 @@ runs:
   using: "docker"
   image: "Dockerfile"
   args:
-    - ${{ inputs.input inputs.output }}
+    - ${{ inputs.markdown inputs.vimdoc }}
