@@ -1,4 +1,4 @@
 #!/bin/bash
 set -e
 
-pandoc -t $GITHUB_WORKSPACE/scripts/panvimdoc.lua $1 -o $2
+pandoc --lua-filter scripts/include-files.lua -t scripts/panvimdoc.lua $1 -o $2

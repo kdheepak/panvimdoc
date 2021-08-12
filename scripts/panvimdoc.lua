@@ -1,14 +1,14 @@
 -- This is a vimdoc custom writer for pandoc.
 -- It produces output that can be used as vimdoc documentation
 --
--- Invoke with: pandoc -t vimdoc.lua README.md
+-- Invoke with: pandoc -t panvimdoc.lua README.md
 local pipe = pandoc.pipe
 local stringify = (require 'pandoc.utils').stringify
 -- local inspect = require 'inspect'
---
+
 function dump(s)
   local m, status = pcall(require, 'inspect')
-  if m == nil then
+  if not m then
     print(s)
   else
     print(require'inspect'.inspect(s))
@@ -328,6 +328,8 @@ end
 function LineBlock(ls)
   return table.concat(ls, '\n')
 end
+
+local List = require 'pandoc.List'
 
 function CodeBlock(s, attr)
   if attr.class == 'vimdoc' then
