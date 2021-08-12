@@ -104,7 +104,7 @@ jobs:
       - name: panvimdoc
         uses: kdheepak/panvimdoc@v1
         with:
-          pandoc: README.md # default
+          pandoc: INPUT_FILENAME.md # default: README.md
           vimdoc: doc/OUTPUT_FILENAME.txt
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
