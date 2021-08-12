@@ -4,7 +4,7 @@ vimdoctitle: panvimdoc.txt
 toc: true
 ---
 
-```include
+```{.include}
 README.md
 ```
 
