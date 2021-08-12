@@ -92,7 +92,7 @@ comment on this issue: |https://github.com/kdheepak/panvimdoc/issues/1|.
 6. Usage                                                     *panvimdoc-usage*
 
 >
-    pandoc --lua-filter scripts/include-files.lua -t scripts/panvimdoc.lua ${INPUT} ${OUTPUT}
+    pandoc --lua-filter scripts/include-files.lua -t scripts/panvimdoc.lua ${INPUT} -o ${OUTPUT}
 <
 
 
