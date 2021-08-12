@@ -41,7 +41,7 @@ This project aims to write a specification in Pandoc Markdown, and take advantag
 - Vim documentation generated must support links and tags.
 - Vim documentation generated should be aesthetically pleasing to view, in vim and as a plain text file.
   - This means using columns and spacing appropriately.
-- Use built in Vim documentation as guidelines but not rules.
+- Format of built in Vim documentation is used as guidelines but not as rules.
 
 # Features
 
