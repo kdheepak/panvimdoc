@@ -1,13 +1,6 @@
-FROM alpine:latest
-LABEL maintainer="Dheepak Krishnamurthy me@kdheepak.com"
+FROM pandoc/core:2.14.0.1
 
-ENV PANDOC_VERSION=2.14.1
-
-RUN apk --no-cache --update add make tree findutils vim neovim
-RUN wget https://github.com/jgm/pandoc/releases/download/${PANDOC_VERSION}/pandoc-${PANDOC_VERSION}-linux-amd64.tar.gz \
-    && tar -xvf pandoc-${PANDOC_VERSION}-linux-amd64.tar.gz \
-    && mv pandoc-${PANDOC_VERSION}/bin/pandoc /usr/local/bin \
-    && rm -rf pandoc-${PANDOC_VERSION}*
+RUN apk add bash
 
 # Copies your code file  repository to the filesystem
 COPY entrypoint.sh /entrypoint.sh
