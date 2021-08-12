@@ -1,6 +1,6 @@
 # action.yml
-name: "Hello World"
-description: "Greet someone and record the time"
+name: "panvimdoc"
+description: "Convert pandoc input to vimdoc output"
 inputs:
   pandoc:
     description: "Input pandoc file"
