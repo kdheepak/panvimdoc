@@ -58,6 +58,58 @@ The reference implementation of the Pandoc lua filter is in [panvimdoc.lua](./sc
 
 If you would like to contribute to the specification please feel free to comment on this issue: <https://github.com/kdheepak/panvimdoc/issues/1>.
 
+# Usage
+
+```bash
+pandoc -t scripts/panvimdoc.lua ${INPUT} ${OUTPUT}
+```
+
+The following are the metadata fields that the custom writer uses:
+
+- `project` (String) _required_: This is typically the plugin name. This is prefixed to all generated tags
+- `vimdoctitle` (String) _required_: This is the name of the documentation file that you want to generate
+- `vimversion` (String) _optional_: The version vim / neovim that the plugin is targeting. If not present, the version of vim in the available environment is used.
+- `toc` (Boolean) _optional_: Whether to generate table of contents or not
+
+Example:
+
+```markdown
+---
+project: panvimdoc
+vimdoctitle: panvimdoc.txt
+vimversion: Neovim v0.5.0
+toc: true
+---
+```
+
+## Using Github Actions
+
+Add the following to `./.github/workflows/pandocvim.yml`:
+
+```yaml
+name: panvimdoc
+
+on: [push]
+
+jobs:
+  custom_test:
+    runs-on: ubuntu-latest
+    name: pandoc to vimdoc
+    steps:
+      - uses: actions/checkout@v2
+      - name: PanVimDoc
+        uses: kdheepak/panvimdoc@v1
+        with:
+          pandoc: INPUT_FILENAME.md
+          vimdoc: doc/OUTPUT_FILENAME.txt
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: "Auto generate docs"
+          branch: ${{ github.head_ref }}
+```
+
+Choose `INPUT_FILENAME` and `OUTPUT_FILENAME` appropriately.
+
 # References
 
 - <https://learnvimscriptthehardway.stevelosh.com/chapters/54.html>
