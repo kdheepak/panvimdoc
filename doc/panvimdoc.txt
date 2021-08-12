@@ -135,7 +135,7 @@ Add the following to >./.github/workflows/pandocvim.yml<:
           - name: panvimdoc
             uses: kdheepak/panvimdoc@v1
             with:
-              pandoc: INPUT_FILENAME.md
+              pandoc: README.md # default
               vimdoc: doc/OUTPUT_FILENAME.txt
           - uses: stefanzweifel/git-auto-commit-action@v4
             with:
