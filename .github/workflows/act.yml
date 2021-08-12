@@ -1,0 +1,12 @@
+on: [push]
+
+jobs:
+  custom_test:
+    runs-on: ubuntu-latest
+    name: Test
+    steps:
+      - name: PanVimDoc
+        uses: ./ # Uses an action in the root directory
+        with:
+          markdown: README.md
+          vimdoc: doc/panvimdoc.txt
