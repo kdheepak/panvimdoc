@@ -33,7 +33,8 @@ And, Pandoc has lua filters and a custom output writer that can be configured in
 Pandoc filters can extend the capability of Pandoc with minimal lua scripting.
 Pandoc filters and the custom output writer in lua are very easy to write and maintain too.
 
-This project aims to write a specification in Pandoc Markdown, and take advantage of Pandoc filters, to convert a Markdown file to a vim documentation help file.
+This project aims to write a specification in Pandoc Markdown, and to take advantage of Pandoc filters and the custom output writer capability, to convert a Markdown file to a vim documentation help file.
+This project provides a reference implementation of the specification as well.
 
 # Goals:
 
