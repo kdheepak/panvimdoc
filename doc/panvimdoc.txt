@@ -49,9 +49,10 @@ lua. Pandoc filters can extend the capability of Pandoc with minimal lua
 scripting. Pandoc filters and the custom output writer in lua are very easy to
 write and maintain too.
 
-This project aims to write a specification in Pandoc Markdown, and take
-advantage of Pandoc filters, to convert a Markdown file to a vim documentation
-help file.
+This project aims to write a specification in Pandoc Markdown, and to take
+advantage of Pandoc filters and the custom output writer capability, to convert
+a Markdown file to a vim documentation help file. This project provides a
+reference implementation of the specification as well.
 
 ==============================================================================
 3. Goals:                                                   *panvimdoc-goals:*
@@ -157,6 +158,20 @@ Choose >INPUT_FILENAME< and >OUTPUT_FILENAME< appropriately.
 
 ==============================================================================
 8. Specification                                     *panvimdoc-specification*
+
+EXTERNAL INCLUDES                                *panvimdoc-external-includes*
+
+Use the following in your markdown file to include any other markdown file
+
+>
+    ```{.include}
+    README.md
+    ```
+<
+
+
+The path of the file is with respect to the working directory where >pandoc< is
+executed.
 
 CODEBLOCKS                                              *panvimdoc-codeblocks*
 
