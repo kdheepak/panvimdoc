@@ -90,7 +90,7 @@ toc: true
 Generates the following:
 
 ```
-panvimdoc.txt           For NVIM v0.5.0            Last change: 2021 August 12
+panvimdoc.txt           For Neovim v0.5.0          Last change: 2021 August 12
 
 ==============================================================================
 Table of Contents                                *panvimdoc-table-of-contents*
