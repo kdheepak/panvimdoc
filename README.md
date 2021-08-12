@@ -36,7 +36,7 @@ Pandoc filters and the custom output writer in lua are very easy to write and ma
 This project aims to write a specification in Pandoc Markdown, and to take advantage of Pandoc filters and the custom output writer capability, to convert a Markdown file to a vim documentation help file.
 This project provides a reference implementation of the specification as well.
 
-# Goals:
+# Goals
 
 - Markdown file must be readable when the file is presented as the README on GitHub / GitLab.
 - Markdown file converted to HTML using Pandoc must be web friendly and render appropriately (if the user chooses to do so).

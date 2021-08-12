@@ -79,8 +79,9 @@ local function renderToc(project)
   local l = 'Table of Contents'
   local tag = '*' .. meta.project[1].c .. '-' .. string.gsub(string.lower(l), '%s', '-') .. '*'
   add(l .. string.rep(' ', 78 - #l - #tag) .. tag)
+  add('')
   for i, elem in pairs(toc) do
-    add(i .. '' .. elem)
+    add(i .. '. ' .. elem)
   end
   add('')
   return table.concat(t, '\n')
@@ -132,7 +133,9 @@ function Doc(body, metadata, variables)
     add(l .. s .. m .. s .. r)
   end
   add('')
-  add(renderToc(vim_doc_title))
+  if metadata.toc == nil or metadata.toc then
+    add(renderToc(vim_doc_title))
+  end
   add(body)
   add('vim:tw=78:ts=8:noet:ft=help:norl:')
   return table.concat(buffer, '\n') .. '\n'
@@ -280,12 +283,14 @@ local header_count = 1
 
 -- lev is an integer, the header level.
 function Header(lev, s, attr)
-  local left, right, padding
+  local left, right, right_link, padding
   if lev == 1 then
     left = string.format('%d. %s', header_count, s)
     right = string.lower(string.gsub(s, '%s', '-'))
+    right_link = string.format('|%s-%s|', meta.project[1].c, right)
     right = string.format('*%s-%s*', meta.project[1].c, right)
     padding = string.rep(' ', 78 - #left - #right)
+    table.insert(toc, s .. padding .. right_link)
     s = string.format('%s%s%s', left, padding, right)
     header_count = header_count + 1
     current_element = nil
