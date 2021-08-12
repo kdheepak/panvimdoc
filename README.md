@@ -27,7 +27,7 @@ I found two other projects that do something similar, again linked in the refere
 As far as I can tell, these projects are all in use and actively maintained and these projects may suit your need.
 
 However, none of these projects use Pandoc.
-Pandoc Markdown supports a wide number of features.
+Pandoc Markdown supports a wide number of features: See <https://pandoc.org/MANUAL.html> for more information.
 Most importantly, it supports a range of Markdown formats and flavors.
 And, Pandoc has lua filters and a custom output writer that can be configured in lua.
 Pandoc filters are easy to write and maintain too.
