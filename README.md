@@ -14,7 +14,7 @@ This way, plugin authors will have to write documentation just once ( for exampl
 
 Writing vim documentation requires conforming to a few simple rules.
 Although `vimdoc` is not a well defined spec, it does have some nice syntax highlighting and features like tags and links when the text file is in `vimdoc` compatible format and when `filetype=help` in vim.
-Also, typically, while vim documentation is just plain text files, they are usually formatted well using whitespace.
+Also, typically, while vim documentation are just plain text files, they are usually formatted well using whitespace.
 Preserving these features and characteristics is important.
 
 See [References](#references) for more information.
