@@ -3,6 +3,17 @@ panvimdoc.txt           For NVIM v0.4.3            Last change: 2021 August 12
 ==============================================================================
 Table of Contents                                *panvimdoc-table-of-contents*
 
+1. panvimdoc                                             |panvimdoc-panvimdoc|
+2. Motivation                                           |panvimdoc-motivation|
+3. Goals                                                     |panvimdoc-goals|
+4. Features                                               |panvimdoc-features|
+5. Specification                                     |panvimdoc-specification|
+6. Usage                                                     |panvimdoc-usage|
+7. References                                           |panvimdoc-references|
+8. Specification                                     |panvimdoc-specification|
+9. Title                                                     |panvimdoc-title|
+10. Heading                                                |panvimdoc-heading|
+
 ==============================================================================
 1. panvimdoc                                             *panvimdoc-panvimdoc*
 
@@ -55,7 +66,7 @@ a Markdown file to a vim documentation help file. This project provides a
 reference implementation of the specification as well.
 
 ==============================================================================
-3. Goals:                                                   *panvimdoc-goals:*
+3. Goals                                                     *panvimdoc-goals*
 
 
 - Markdown file must be readable when the file is presented as the README on GitHub / GitLab.
@@ -71,6 +82,7 @@ reference implementation of the specification as well.
 
 
 - Autogenerate title for vim documentation
+- Autogenerate table of contents
 - Generate links and tags
 - Support markdown syntax for tables
 - Support raw vimdoc syntax where ever needed for manual control.
