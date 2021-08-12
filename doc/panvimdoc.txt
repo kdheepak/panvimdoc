@@ -70,6 +70,7 @@ help file.
 - Generate links and tags
 - Support markdown syntax for tables
 - Support raw vimdoc syntax where ever needed for manual control.
+- Support including multiple Markdown files
 
 
 ==============================================================================
