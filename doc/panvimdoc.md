@@ -10,6 +10,18 @@ README.md
 
 # Specification
 
+## External includes
+
+Use the following in your markdown file to include any other markdown file
+
+````markdown
+```{.include}
+README.md
+```
+````
+
+The path of the file is with respect to the working directory where `pandoc` is executed.
+
 ## Codeblocks
 
 ```
