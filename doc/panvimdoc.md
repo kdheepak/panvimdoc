@@ -32,7 +32,7 @@ are formatted
 appropriately with > and <.
 ```
 
-Alternatively, you can use `vimdoc` as the language for the code block to write code that will be inserted into the final document.
+Alternatively, you can use `vimdoc` as the language for the code block to write raw text that will be inserted into the final document.
 
 For example, the following:
 
