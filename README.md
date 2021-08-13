@@ -30,8 +30,7 @@ However, none of these projects use Pandoc.
 Pandoc Markdown supports a wide number of features: See <https://pandoc.org/MANUAL.html> for more information.
 Most importantly, it supports a range of Markdown formats and flavors.
 And, Pandoc has filters and a custom output writer that can be configured in lua.
-Pandoc filters can extend the capability of Pandoc with minimal lua scripting.
-Pandoc filters and the custom output writer in lua are very easy to write and maintain too.
+Pandoc filters can extend the capability of Pandoc with minimal lua scripting, and these are are very easy to write and maintain too.
 
 This project aims to write a specification in Pandoc Markdown, and to take advantage of Pandoc filters and the custom output writer capability, to convert a Markdown file to a vim documentation help file.
 This project provides a reference implementation of the specification as well.
