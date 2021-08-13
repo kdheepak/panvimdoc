@@ -1,4 +1,4 @@
-panvimdoc.txt           For NVIM v0.4.3            Last change: 2021 August 12
+panvimdoc.txt           For NVIM v0.4.3            Last change: 2021 August 13
 
 ==============================================================================
 Table of Contents                                *panvimdoc-table-of-contents*
@@ -22,7 +22,7 @@ Write documentation in |pandoc markdown|. Generate documentation in vimdoc.
 ==============================================================================
 2. Motivation                                           *panvimdoc-motivation*
 
-Writing documentation is hard. Writing documentation for vim plugins in vimdoc
+Writing documentation is hard. Writing documentation in vimdoc for vim plugins
 is an additional hassle. Making writing vim plugin documentation frictionless
 is important.
 
