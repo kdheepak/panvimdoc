@@ -175,9 +175,11 @@ Choose >PANDOC_INPUT_FILENAME< and >VIMDOC_PROJECT_NAME< appropriately. For an
 example of how this is used, see one of the following workflows:
 
 
-- |kdheepak/panvimdoc|
-- |kdheepak/tabline.nvim|
+- |kdheepak/panvimdoc|: |doc/panvimdoc.txt|
+- |kdheepak/tabline.nvim|: |doc/tabline|
 
+
+_Feel free to submit a PR to add your documentation as an example here._
 
 ==============================================================================
 7. References                                           *panvimdoc-references*
