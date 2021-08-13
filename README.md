@@ -72,7 +72,7 @@ The following are the metadata fields that the custom writer uses:
 
 - `project` (String) _required_: This is typically the plugin name. This is prefixed to all generated tags. (e.g. `*project-heading*`)
 - `vimversion` (String) _optional_: The version vim / neovim that the plugin is targeting. If not present, the version of vim in the available environment is used.
-- `toc` (Boolean) _optional_: Whether to generate table of contents or not.
+- `toc` (Boolean) _optional_: Whether to generate table of contents or not. If not present, this value is set to `true`.
 
 Example:
 
