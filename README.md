@@ -15,16 +15,15 @@ This way, plugin authors will have to write documentation just once ( for exampl
 Writing vim documentation requires conforming to a few simple rules.
 Although `vimdoc` is not a well defined spec, vim does have some nice syntax highlighting and features like tags and links when the text file is in `vimdoc` compatible format and when `filetype=help` in vim.
 Also, typically, while vim documentation are just plain text files, they are usually formatted well using whitespace.
-Preserving these features and characteristics is important.
-
-See [References](#references) for more information.
+See <https://vimhelp.org/helphelp.txt.html#help-writing> or [@nanotree's project](https://github.com/nanotee/vimdoc-notes) for more information.
+I think preserving these features and characteristics of vimdoc for documentation of vim plugins is important.
 
 Writing documentation in Markdown and converting it to vimdoc is not a novel idea.
-[@mjlbach](https://github.com/mjlbach) has already implemented a neovim treesitter based markdown to vimdoc converter that works fairly well.
+[@mjlbach](https://github.com/mjlbach) has already implemented a [neovim treesitter based markdown to vimdoc converter](https://github.com/mjlbach/babelfish.nvim) that works fairly well.
 This approach is close to ideal. There are no dependencies ( except for the Markdown treesitter parser ). While it appears that the markdown parser may cause crashes, I have not experienced any issues in my use. It is neovim only but you can use this on github actions even for a vim plugin documentation.
 
-I found two other projects that do something similar, again linked in the references.
-As far as I can tell, these projects are all in use and actively maintained and may suit your need.
+I found two other projects that do something similar, [docvim](https://github.com/wincent/docvim) by [@wincent](https://github.com/wincent/) and [md2vim](https://github.com/FooSoft/md2vim).
+As far as I can tell, these projects are actively in use and actively maintained and may suit your need.
 
 However, none of these projects use Pandoc.
 Pandoc Markdown supports a wide number of features: See <https://pandoc.org/MANUAL.html> for more information.
