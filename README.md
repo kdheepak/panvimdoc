@@ -24,7 +24,7 @@ See [mjlbach/babelfish.nvim](https://github.com/mjlbach/babelfish.nvim) for more
 This approach is close to ideal. There are no dependencies ( except for the Markdown treesitter parser ). While it appears that the markdown parser may cause crashes, I have not experienced any issues in my use. It is neovim only but you can use this on github actions even for a vim plugin documentation.
 
 I found two other projects that do something similar, [wincent/docvim](https://github.com/wincent/docvim) and [FooSoft/md2vim](https://github.com/FooSoft/md2vim).
-As far as I can tell, these projects are actively in use and actively maintained and may suit your need.
+As far as I can tell, these projects are actively maintained and may suit your need.
 
 However, none of these projects use Pandoc.
 Pandoc Markdown supports a wide number of features: See <https://pandoc.org/MANUAL.html> for more information.
