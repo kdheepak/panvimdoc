@@ -72,7 +72,7 @@ pandoc --lua-filter scripts/include-files.lua -t scripts/panvimdoc.lua ${INPUT} 
 The following are the metadata fields that the custom writer uses:
 
 - `project` (String) _required_: This is typically the plugin name. This is prefixed to all generated tags. (e.g. `*project-heading*`)
-- `vimdoctitle` (String) _required_: This is the name of the documentation file that you want to generate. This is used in the first line. `e.g. `
+- `vimdoctitle` (String) _required_: This is the name of the documentation file that you want to generate. This is used in the first line.
 - `vimversion` (String) _optional_: The version vim / neovim that the plugin is targeting. If not present, the version of vim in the available environment is used.
 - `toc` (Boolean) _optional_: Whether to generate table of contents or not.
 
