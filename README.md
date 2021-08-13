@@ -128,7 +128,7 @@ Choose `PANDOC_INPUT_FILENAME` and `VIMDOC_PROJECT_NAME` appropriately.
 For an example of how this is used, see one of the following workflows:
 
 - [kdheepak/panvimdoc](./.github/workflows/panvimdoc.yml)
-- [kdheepak/tabline.nvim](https://github.com/kdheepak/tabline.nvim/).
+- [kdheepak/tabline.nvim](https://github.com/kdheepak/tabline.nvim/)
 
 # References
 
