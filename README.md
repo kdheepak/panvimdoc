@@ -127,8 +127,10 @@ jobs:
 Choose `PANDOC_INPUT_FILENAME` and `VIMDOC_PROJECT_NAME` appropriately.
 For an example of how this is used, see one of the following workflows:
 
-- [kdheepak/panvimdoc](./.github/workflows/panvimdoc.yml)
-- [kdheepak/tabline.nvim](https://github.com/kdheepak/tabline.nvim/)
+- [kdheepak/panvimdoc](./.github/workflows/panvimdoc.yml): [doc/panvimdoc.txt](./doc/panvimdoc.txt)
+- [kdheepak/tabline.nvim](https://github.com/kdheepak/tabline.nvim/blob/main/.github/workflows/ci.yml): [doc/tabline](https://github.com/kdheepak/tabline.nvim/blob/main/doc/tabline.txt)
+
+_Feel free to submit a PR to add your documentation as an example here._
 
 # References
 
