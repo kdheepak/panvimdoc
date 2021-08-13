@@ -73,7 +73,7 @@ local function renderToc(project)
   end
   add(string.rep('=', 78))
   local l = 'Table of Contents'
-  local tag = '*' .. meta.project .. '-' .. string.gsub(string.lower(l), '%s', '-') .. '*'
+  local tag = '*' .. stringify(meta.project) .. '-' .. string.gsub(string.lower(l), '%s', '-') .. '*'
   add(l .. string.rep(' ', 78 - #l - #tag) .. tag)
   add('')
   for i, elem in pairs(toc) do
@@ -135,8 +135,8 @@ function Doc(body, metadata, variables)
   add(body)
   local left = 'Links'
   local right = string.lower(left)
-  local right_link = string.format('|%s-%s|', meta.project, right)
-  right = string.format('*%s-%s*', meta.project, right)
+  local right_link = string.format('|%s-%s|', stringify(meta.project), right)
+  right = string.format('*%s-%s*', stringify(meta.project), right)
   local padding = string.rep(' ', 78 - #left - #right)
   table.insert(toc, s .. padding .. right_link)
   add(string.rep('=', 78) .. '\n' .. string.format('%s%s%s', left, padding, right))
@@ -302,8 +302,8 @@ function Header(lev, s, attr)
   if lev == 1 then
     left = string.format('%d. %s', header_count, s)
     right = string.lower(string.gsub(s, '%s', '-'))
-    right_link = string.format('|%s-%s|', meta.project, right)
-    right = string.format('*%s-%s*', meta.project, right)
+    right_link = string.format('|%s-%s|', stringify(meta.project), right)
+    right = string.format('*%s-%s*', stringify(meta.project), right)
     padding = string.rep(' ', 78 - #left - #right)
     table.insert(toc, s .. padding .. right_link)
     s = string.format('%s%s%s', left, padding, right)
@@ -315,7 +315,7 @@ function Header(lev, s, attr)
   if lev == 2 then
     left = string.upper(s)
     right = string.lower(string.gsub(s, '%s', '-'))
-    right = string.format('*%s-%s*', meta.project, right)
+    right = string.format('*%s-%s*', stringify(meta.project), right)
     padding = string.rep(' ', 78 - #left - #right)
     s = string.format('%s%s%s', left, padding, right)
     current_element = nil
@@ -327,7 +327,7 @@ function Header(lev, s, attr)
     right = string.gsub(s, '{.+}', '')
     right = string.gsub(right, '%[.+%]', '')
     right = string.gsub(right, '^%s*(.-)%s*$', '%1')
-    right = string.format('*%s-%s*', meta.project, right)
+    right = string.format('*%s-%s*', stringify(meta.project), right)
     if attr.doc then
       right = right .. ' *' .. attr.doc .. '*'
     end
