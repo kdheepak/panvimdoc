@@ -215,7 +215,7 @@ CODEBLOCKS                                              *panvimdoc-codeblocks*
 
 
 Alternatively, you can use >vimdoc< as the language for the code block to write
-code that will be inserted into the final document.
+raw text that will be inserted into the final document.
 
 For example, the following:
 
