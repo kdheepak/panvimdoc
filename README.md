@@ -19,7 +19,7 @@ Preserving these features and characteristics is important.
 
 See [References](#references) for more information.
 
-Writing documentation in Markdown and convert to vimdoc is not a novel idea.
+Writing documentation in Markdown and converting it to vimdoc is not a novel idea.
 [@mjlbach](https://github.com/mjlbach) has already implemented a neovim treesitter based markdown to vimdoc converter that works fairly well.
 This approach is close to ideal. There are no dependencies ( except for the Markdown treesitter parser ). While it appears that the markdown parser may cause crashes, I have not experienced any in my use. It is neovim only but you can use this on github actions even for a vim plugin documentation.
 
