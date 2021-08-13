@@ -24,7 +24,7 @@ Writing documentation in Markdown and converting it to vimdoc is not a novel ide
 This approach is close to ideal. There are no dependencies ( except for the Markdown treesitter parser ). While it appears that the markdown parser may cause crashes, I have not experienced any in my use. It is neovim only but you can use this on github actions even for a vim plugin documentation.
 
 I found two other projects that do something similar, again linked in the references.
-As far as I can tell, these projects are all in use and actively maintained and these projects may suit your need.
+As far as I can tell, these projects are all in use and actively maintained and may suit your need.
 
 However, none of these projects use Pandoc.
 Pandoc Markdown supports a wide number of features: See <https://pandoc.org/MANUAL.html> for more information.
