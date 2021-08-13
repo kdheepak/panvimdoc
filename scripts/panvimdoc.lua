@@ -46,6 +46,7 @@ end
 -- Table to store footnotes, so they can be included at the end.
 local notes = {}
 local toc = {}
+local links = {}
 
 -- Blocksep is used to separate block elements.
 function Blocksep()
@@ -132,6 +133,22 @@ function Doc(body, metadata, variables)
     add(renderToc(vim_doc_title))
   end
   add(body)
+  local left = 'Links'
+  local right = string.lower(left)
+  local right_link = string.format('|%s-%s|', meta.project, right)
+  right = string.format('*%s-%s*', meta.project, right)
+  local padding = string.rep(' ', 78 - #left - #right)
+  table.insert(toc, s .. padding .. right_link)
+  add(string.rep('=', 78) .. '\n' .. string.format('%s%s%s', left, padding, right))
+  add('')
+  for k, v in pairs(links) do
+    local padding = string.rep(' ', 78 - #v - #k - 4)
+    if #padding < 4 then
+      padding = '    '
+    end
+    add('- *' .. k .. '*' .. padding .. v)
+  end
+  add('')
   add('vim:tw=78:ts=8:noet:ft=help:norl:')
   return table.concat(buffer, '\n') .. '\n'
 end
@@ -182,6 +199,9 @@ function Strikeout(s)
 end
 
 function Link(s, tgt, tit, attr)
+  if not string.starts(tgt, '#') and not string.starts(s, 'http') then
+    links[s] = tgt
+  end
   return '|' .. s .. '|'
 end
 
