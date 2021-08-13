@@ -1,4 +1,4 @@
 #!/bin/bash
 set -e
 
-pandoc --lua-filter scripts/include-files.lua -t scripts/panvimdoc.lua $1 -o $2
+pandoc --metadata=project:$1 --lua-filter scripts/include-files.lua -t scripts/panvimdoc.lua $2 -o $1.txt

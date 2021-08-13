@@ -65,13 +65,12 @@ If you would like to contribute to the specification, have feature requests or o
 # Usage
 
 ```bash
-pandoc --lua-filter scripts/include-files.lua -t scripts/panvimdoc.lua ${INPUT} -o ${OUTPUT}
+pandoc --metadata=project:${PROJECT} --lua-filter scripts/include-files.lua -t scripts/panvimdoc.lua ${INPUT} -o ${OUTPUT}
 ```
 
 The following are the metadata fields that the custom writer uses:
 
 - `project` (String) _required_: This is typically the plugin name. This is prefixed to all generated tags. (e.g. `*project-heading*`)
-- `vimdoctitle` (String) _required_: This is the name of the documentation file that you want to generate. This is used in the first line.
 - `vimversion` (String) _optional_: The version vim / neovim that the plugin is targeting. If not present, the version of vim in the available environment is used.
 - `toc` (Boolean) _optional_: Whether to generate table of contents or not.
 
@@ -80,7 +79,6 @@ Example:
 ```markdown
 ---
 project: panvimdoc
-vimdoctitle: panvimdoc.txt
 vimversion: Neovim v0.5.0
 toc: true
 ---
@@ -116,17 +114,21 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: panvimdoc
-        uses: kdheepak/panvimdoc@v1
+        uses: kdheepak/panvimdoc@v2
         with:
-          pandoc: INPUT_FILENAME.md # default: README.md
-          vimdoc: doc/OUTPUT_FILENAME.txt
+          vimdoc: VIMDOC_PROJECT_NAME
+          pandoc: PANDOC_INPUT_FILENAME # default: README.md
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: "Auto generate docs"
           branch: ${{ github.head_ref }}
 ```
 
-Choose `INPUT_FILENAME` and `OUTPUT_FILENAME` appropriately.
+Choose `PANDOC_INPUT_FILENAME` and `VIMDOC_PROJECT_NAME` appropriately.
+For an example of how this is used, see one of the following workflows:
+
+- [kdheepak/panvimdoc](./.github/workflows/panvimdoc.yml)
+- [kdheepak/tabline.nvim](https://github.com/kdheepak/tabline.nvim/).
 
 # References
 

@@ -1,9 +1,3 @@
----
-project: panvimdoc
-vimdoctitle: panvimdoc.txt
-toc: true
----
-
 ```{.include}
 README.md
 ```

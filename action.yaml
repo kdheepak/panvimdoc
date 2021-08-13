@@ -5,16 +5,16 @@ branding:
   icon: file-text
   color: gray-dark
 inputs:
+  vimdoc:
+    description: "Output vimdoc project name"
+    required: true
   pandoc:
     description: "Input pandoc file"
     required: true
     default: "README.md"
-  vimdoc:
-    description: "Output vimdoc file"
-    required: true
 runs:
   using: "docker"
   image: "Dockerfile"
   args:
-    - ${{ inputs.pandoc }}
     - ${{ inputs.vimdoc }}
+    - ${{ inputs.pandoc }}
