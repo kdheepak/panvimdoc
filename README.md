@@ -114,7 +114,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: panvimdoc
-        uses: kdheepak/panvimdoc@v2.0.0
+        uses: kdheepak/panvimdoc
         with:
           vimdoc: VIMDOC_PROJECT_NAME
           pandoc: PANDOC_INPUT_FILENAME # default: README.md
