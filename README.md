@@ -6,7 +6,7 @@ Generate documentation in vimdoc.
 # Motivation
 
 Writing documentation is hard.
-Writing documentation for vim plugins in vimdoc is an additional hassle.
+Writing documentation in vimdoc for vim plugins is an additional hassle.
 Making writing vim plugin documentation frictionless is important.
 
 Writing documentation in markdown and converting it to vimdoc can help toward that goal.
