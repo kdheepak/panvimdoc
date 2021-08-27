@@ -47,6 +47,7 @@ end
 local notes = {}
 local toc = {}
 local links = {}
+local header_count = 1
 
 -- Blocksep is used to separate block elements.
 function Blocksep()
@@ -140,12 +141,12 @@ function Doc(body, metadata, variables)
     add(renderToc(vim_doc_title))
   end
   add(body)
-  local left = "Links"
-  local right = string.lower(left)
+  local left = header_count .. ". Links"
+  local right = "links"
   local right_link = string.format("|%s-%s|", stringify(meta.project), right)
   right = string.format("*%s-%s*", stringify(meta.project), right)
   local padding = string.rep(" ", 78 - #left - #right)
-  table.insert(toc, { 1, s .. padding .. right_link })
+  table.insert(toc, { 1, left, right_link })
   add(string.rep("=", 78) .. "\n" .. string.format("%s%s%s", left, padding, right))
   add("")
   for i, v in ipairs(links) do
@@ -300,8 +301,6 @@ function Para(s)
     return table.concat(t, "\n")
   end
 end
-
-local header_count = 1
 
 -- lev is an integer, the header level.
 function Header(lev, s, attr)
