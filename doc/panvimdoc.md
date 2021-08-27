@@ -103,7 +103,7 @@ The onus is on the documentation writer to choose the correct anchor for the app
 In vim doc tags are created for anchors to the internal document.
 For external links, the links are populated in a separate links section.
 
-If the external link is to the neovim documentation, an internal vim link is generated. See [cursorcolumn](https://neovim.io/doc/user/options.html#'cursorcolumn') as an example.
+If the external link is to the neovim documentation, an internal vim link is generated. See [cursorcolumn](https://neovim.io/doc/user/options.html#'cursorcolumn') or [`completeopt`](https://neovim.io/doc/user/options.html#'completeopt') as an example.
 
 ## Mappings
 

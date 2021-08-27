@@ -203,9 +203,13 @@ function Strikeout(s)
 end
 
 function Link(s, tgt, tit, attr)
-  if string.starts(tgt, "https://neovim.io/doc/") then
-    return "|'" .. s .. "'|"
-  elseif not string.starts(tgt, "#") and not string.starts(s, "http") then
+  if string.starts_with(tgt, "https://neovim.io/doc/") then
+    if string.starts_with(s, "`") and string.ends_with(s, "`") then
+      return "|" .. s .. "|"
+    else
+      return "|'" .. s .. "'|"
+    end
+  elseif not string.starts_with(tgt, "#") and not string.starts_with(s, "http") then
     links[#links + 1] = { stringify(meta.project) .. "-" .. s:gsub("%s", "-"), tgt }
   end
   return "|" .. stringify(meta.project) .. "-" .. s:gsub("%s", "-") .. "|"
@@ -216,7 +220,7 @@ function Image(s, src, tit, attr)
 end
 
 function Code(s, attr)
-  return ">" .. escape(s) .. "<"
+  return "`" .. escape(s) .. "`"
 end
 
 function InlineMath(s)
@@ -621,13 +625,17 @@ function Table(caption, aligns, widths, headers, rows)
   return table.concat(buffer, "\n")
 end
 
-function string.starts(String, Start)
-  return string.sub(String, 1, string.len(Start)) == Start
+function string.starts_with(str, starts)
+  return str:sub(1, #starts) == starts
+end
+
+function string.ends_with(str, ends)
+  return ends == "" or str:sub(-#ends) == ends
 end
 
 function RawBlock(format, str)
   if format == "html" then
-    if string.starts(str, "<!--") then
+    if string.starts_with(str, "<!--") then
       return ""
     else
       return str
