@@ -203,16 +203,20 @@ function Strikeout(s)
 end
 
 function Link(s, tgt, tit, attr)
+  -- links[#links + 1] = { stringify(meta.project) .. "-" .. s:gsub("%s", "-"), tgt }
   if string.starts_with(tgt, "https://neovim.io/doc/") then
     if string.starts_with(s, "`") and string.ends_with(s, "`") then
       return "|" .. s .. "|"
     else
       return "|'" .. s .. "'|"
     end
-  elseif not string.starts_with(tgt, "#") and not string.starts_with(s, "http") then
-    links[#links + 1] = { stringify(meta.project) .. "-" .. s:gsub("%s", "-"), tgt }
+  elseif string.starts_with(tgt, "#") then
+    return "|" .. stringify(meta.project) .. "-" .. s:gsub("%s", "-") .. "|"
+  elseif string.starts_with(s, "http") then
+    return s
+  else
+    return s .. " <" .. tgt .. ">"
   end
-  return "|" .. stringify(meta.project) .. "-" .. s:gsub("%s", "-") .. "|"
 end
 
 function Image(s, src, tit, attr)
@@ -329,7 +333,7 @@ function Header(lev, s, attr)
     right = string.lower(string.gsub(s, "%s", "-"))
     right_link = string.format("|%s-%s|", stringify(meta.project), right)
     right = string.format("*%s-%s*", stringify(meta.project), right)
-    padding = string.rep(" ", 74 - #left - #right)
+    padding = string.rep(" ", 78 - #left - #right)
     table.insert(toc, { 2, s, right_link })
     s = string.format("%s%s%s", left, padding, right)
     current_element = nil
