@@ -238,36 +238,25 @@ Content that needs to be presented only in Markdown can be inside `panvimdoc-ign
 ```
 <!-- panvimdoc-ignore-start -->
 
-  Right     Left     Center     Default
--------     ------ ----------   -------
-     12     12        12            12
-    123     123       123          123
-      1     1          1             1
+<details>
+    <summary>Vimdoc Ignored Section</summary>
 
-Table:  Demonstration of simple table syntax.
+This section will ignored when generating the vimdoc file.
+This will only show up in the Markdown file.
+
+</details>
 
 <!-- panvimdoc-ignore-end -->
 ```
 
-<!-- prettier-ignore-start -->
-
 <!-- panvimdoc-ignore-start -->
 
 <details>
-    <summary>Ignored section</summary>
+    <summary>Vimdoc Ignored Section</summary>
 
-This section should be ignored.
+This section will ignored when generating the vimdoc file.
+This will only show up in the Markdown file.
 
 </details>
-
-  Right     Left     Center     Default
--------     ------ ----------   -------
-     12     12        12            12
-    123     123       123          123
-      1     1          1             1
-
-Table:  Demonstration of simple table syntax.
-
-<!-- prettier-ignore-end -->
 
 <!-- panvimdoc-ignore-end -->
