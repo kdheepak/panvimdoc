@@ -1,4 +1,4 @@
-*panvimdoc.txt*          For NVIM v0.6.0           Last change: 2021 August 27
+*panvimdoc.txt*          For NVIM v0.4.3           Last change: 2021 August 27
 
 ==============================================================================
 Table of Contents                                *panvimdoc-table-of-contents*
@@ -145,10 +145,10 @@ Generates the following:
 
 >
     *panvimdoc.txt*         For Neovim v0.5.0          Last change: 2021 August 12
-
+    
     ==============================================================================
     Table of Contents                                *panvimdoc-table-of-contents*
-
+    
     1. panvimdoc                                             |panvimdoc-panvimdoc|
     2. Motivation                                           |panvimdoc-motivation|
     3. Goals                                                     |panvimdoc-goals|
@@ -162,9 +162,9 @@ Add the following to `./.github/workflows/pandocvim.yml`:
 
 >
     name: panvimdoc
-
+    
     on: [push]
-
+    
     jobs:
       custom_test:
         runs-on: ubuntu-latest
@@ -225,9 +225,9 @@ CODEBLOCKS                                              *panvimdoc-codeblocks*
 
 >
     Multi line Code blocks are indented 4 spaces and
-
+    
     are formatted
-
+    
     appropriately with > and <.
 <
 
@@ -327,7 +327,7 @@ For example, the level 3 heading and the contents of the section as follows:
 
 >
     ### abc{xyz}
-
+    
     Docstring for abc {xyz}.
 <
 
@@ -360,7 +360,7 @@ The following vimdoc mapping is generated:
 
 >
                                                                     *projectName-pv*
-
+    
     pv{motion}                             Command that operates over {motion}
                                            moved.
 <
@@ -375,7 +375,7 @@ The following vimdoc mapping is generated:
 
 >
                                                                    *projectName-pvd*
-
+    
     pvd                                    Command that takes [count] lines.
 <
 
@@ -388,9 +388,9 @@ The following vimdoc mapping is generated:
 The following vimdoc mapping is generated:
 
 >
-
+    
                                             *projectName-:CommandName* *CommandName*
-
+    
     :[range]CommandName                    Command that operates over [range].
 <
 
@@ -408,7 +408,7 @@ The following vimdoc mapping is generated:
 
 >
                                                                     *panvimdoc-pv*
-
+    
     {Visual}pv                             Command that operates over highlighted
                                            lines.
 <
@@ -443,15 +443,15 @@ Content that needs to be presented only in Markdown can be inside
 
 >
     <!-- panvimdoc-ignore-start -->
-
+    
       Right     Left     Center     Default
     -------     ------ ----------   -------
          12     12        12            12
         123     123       123          123
           1     1          1             1
-
+    
     Table:  Demonstration of simple table syntax.
-
+    
     <!-- panvimdoc-ignore-end -->
 <
 
