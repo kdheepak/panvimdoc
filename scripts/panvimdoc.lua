@@ -204,11 +204,7 @@ end
 
 function Link(s, tgt, tit, attr)
   if string.starts_with(tgt, "https://neovim.io/doc/") then
-    if string.starts_with(s, "`") and string.ends_with(s, "`") then
-      return "|" .. s .. "|"
-    else
-      return "|'" .. s .. "'|"
-    end
+    return "|" .. s .. "|"
   elseif string.starts_with(tgt, "#") then
     return "|" .. stringify(meta.project) .. "-" .. s:gsub("%s", "-") .. "|"
   elseif string.starts_with(s, "http") then

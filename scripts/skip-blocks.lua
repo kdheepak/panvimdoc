@@ -14,6 +14,9 @@ function RawBlock(el)
   elseif str == "<!-- panvimdoc-ignore-end -->" then
     COMMENT = false
   end
+  if COMMENT == true then
+    return pandoc.Null()
+  end
   return el
 end
 

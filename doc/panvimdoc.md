@@ -242,6 +242,13 @@ Table:  Demonstration of simple table syntax.
 
 <!-- panvimdoc-ignore-start -->
 
+<details>
+    <summary>Ignored section</summary>
+
+This section should be ignored.
+
+</details>
+
   Right     Left     Center     Default
 -------     ------ ----------   -------
      12     12        12            12
