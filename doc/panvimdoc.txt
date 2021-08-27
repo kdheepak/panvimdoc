@@ -9,10 +9,18 @@ Table of Contents                                *panvimdoc-table-of-contents*
 4. Features                                               |panvimdoc-features|
 5. Specification                                     |panvimdoc-specification|
 6. Usage                                                     |panvimdoc-usage|
+  - Using Github Actions                      |panvimdoc-using-github-actions|
 7. References                                           |panvimdoc-references|
 8. Specification                                     |panvimdoc-specification|
+  - External includes                            |panvimdoc-external-includes|
+  - Codeblocks                                          |panvimdoc-codeblocks|
 9. Title                                                     |panvimdoc-title|
 10. Heading                                                |panvimdoc-heading|
+  - Sub Heading 2                                    |panvimdoc-sub-heading-2|
+  - Links                                                    |panvimdoc-links|
+  - Mappings                                              |panvimdoc-mappings|
+  - Table                                                    |panvimdoc-table|
+  - Markdown only content                    |panvimdoc-markdown-only-content|
 
 ==============================================================================
 1. panvimdoc                                             *panvimdoc-panvimdoc*
@@ -146,7 +154,7 @@ Generates the following:
 <
 
 
-USING GITHUB ACTIONS                          *panvimdoc-using-github-actions*
+USING GITHUB ACTIONS                      *panvimdoc-using-github-actions*
 
 Add the following to >./.github/workflows/pandocvim.yml<:
 
@@ -197,7 +205,7 @@ _Feel free to submit a PR to add your documentation as an example here._
 ==============================================================================
 8. Specification                                     *panvimdoc-specification*
 
-EXTERNAL INCLUDES                                *panvimdoc-external-includes*
+EXTERNAL INCLUDES                            *panvimdoc-external-includes*
 
 Use the following in your markdown file to include any other markdown file
 
@@ -211,7 +219,7 @@ Use the following in your markdown file to include any other markdown file
 The path of the file is with respect to the working directory where >pandoc< is
 executed.
 
-CODEBLOCKS                                              *panvimdoc-codeblocks*
+CODEBLOCKS                                          *panvimdoc-codeblocks*
 
 >
     Multi line Code blocks are indented 4 spaces and
@@ -260,7 +268,7 @@ Main headings are numbered.
 
 
 
-SUB HEADING 2                                        *panvimdoc-sub-heading-2*
+SUB HEADING 2                                    *panvimdoc-sub-heading-2*
 
 Sub headings are upper cased heading.
 
@@ -272,7 +280,7 @@ Sub headings are upper cased heading.
 
 Notice that both headings and subheadings have tags.
 
-LINKS                                                        *panvimdoc-links*
+LINKS                                                    *panvimdoc-links*
 
 You can use markdown links in vimdoc. For example: |panvimdoc-links|
 
@@ -297,7 +305,7 @@ correct anchor for the appropriate Markdown link. In vim doc tags are created
 for anchors to the internal document. For external links, the links are
 populated in a separate links section.
 
-MAPPINGS                                                  *panvimdoc-mappings*
+MAPPINGS                                              *panvimdoc-mappings*
 
 Any markdown header of level 3 is a special header. It can be used to generate
 documentation of mappings. All content in curly braces >{...}< is dropped and a
@@ -376,7 +384,7 @@ The following vimdoc mapping is generated:
 <
 
 
-TABLE                                                        *panvimdoc-table*
+TABLE                                                    *panvimdoc-table*
 
 Support for markdown tables is also available:
 
@@ -398,7 +406,7 @@ Support for markdown tables is also available:
 <
 
 
-MARKDOWN ONLY CONTENT                        *panvimdoc-markdown-only-content*
+MARKDOWN ONLY CONTENT                    *panvimdoc-markdown-only-content*
 
 Content that needs to be presented only in Markdown can be inside
 >panvimdoc-ignore-{start/end}< blocks:
