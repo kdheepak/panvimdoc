@@ -77,7 +77,14 @@ local function renderToc(project)
   add(l .. string.rep(" ", 78 - #l - #tag) .. tag)
   add("")
   for i, elem in pairs(toc) do
-    add(i .. ". " .. elem)
+    local level, item, link = elem[1], elem[2], elem[3]
+    if level == 1 then
+      local padding = string.rep(" ", 78 - #item - #link)
+      add(item .. padding .. link)
+    elseif level == 2 then
+      local padding = string.rep(" ", 74 - #item - #link)
+      add("  - " .. item .. padding .. link)
+    end
   end
   add("")
   return table.concat(t, "\n")
@@ -138,7 +145,7 @@ function Doc(body, metadata, variables)
   local right_link = string.format("|%s-%s|", stringify(meta.project), right)
   right = string.format("*%s-%s*", stringify(meta.project), right)
   local padding = string.rep(" ", 78 - #left - #right)
-  table.insert(toc, s .. padding .. right_link)
+  table.insert(toc, { 1, s .. padding .. right_link })
   add(string.rep("=", 78) .. "\n" .. string.format("%s%s%s", left, padding, right))
   add("")
   for i, v in ipairs(links) do
@@ -305,7 +312,7 @@ function Header(lev, s, attr)
     right_link = string.format("|%s-%s|", stringify(meta.project), right)
     right = string.format("*%s-%s*", stringify(meta.project), right)
     padding = string.rep(" ", 78 - #left - #right)
-    table.insert(toc, s .. padding .. right_link)
+    table.insert(toc, { 1, left, right_link })
     s = string.format("%s%s%s", left, padding, right)
     header_count = header_count + 1
     current_element = nil
@@ -315,8 +322,10 @@ function Header(lev, s, attr)
   if lev == 2 then
     left = string.upper(s)
     right = string.lower(string.gsub(s, "%s", "-"))
+    right_link = string.format("|%s-%s|", stringify(meta.project), right)
     right = string.format("*%s-%s*", stringify(meta.project), right)
-    padding = string.rep(" ", 78 - #left - #right)
+    padding = string.rep(" ", 74 - #left - #right)
+    table.insert(toc, { 2, s, right_link })
     s = string.format("%s%s%s", left, padding, right)
     current_element = nil
     return s
