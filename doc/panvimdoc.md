@@ -36,11 +36,15 @@ You can use codeblocks that have language as `vimdoc` to write raw vimdoc.
 ```
 ````
 
-will be rendered as below:
+will be rendered verbatim in the generated documentation as below:
 
 ```vimdoc
 You can use codeblocks that have language as `vimdoc` to write raw vimdoc.
 ```
+
+This can be used to write any custom whitespace formatted documentation in the generated vimdoc (for mappings, options etc).
+
+Also see [mappings](#mappings) for a Markdown friendly way to write documentation for mappings.
 
 # Title
 
