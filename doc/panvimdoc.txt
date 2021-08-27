@@ -282,7 +282,7 @@ Notice that both headings and subheadings have tags.
 
 LINKS                                                    *panvimdoc-links*
 
-You can use markdown links in vimdoc. For example: |panvimdoc-links|
+You can use markdown links in vimdoc. For example, see |panvimdoc-links|.
 
 The following markdown:
 
@@ -436,7 +436,7 @@ Content that needs to be presented only in Markdown can be inside
 
 
 ==============================================================================
-Links                                                        *panvimdoc-links*
+11. Links                                                    *panvimdoc-links*
 
 1. *panvimdoc-pandoc-markdown*: https://pandoc.org/MANUAL.html
 2. *panvimdoc-mjlbach/babelfish.nvim*: https://github.com/mjlbach/babelfish.nvim
