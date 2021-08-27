@@ -126,7 +126,7 @@ function Doc(body, metadata, variables)
   if date == nil then
     date = os.date("%Y %B %d")
   end
-  local l = vim_doc_title
+  local l = "*" .. vim_doc_title .. "*"
   local m = "For " .. vim_version
   local r = "Last change: " .. date
   local n = math.max(0, 78 - #l - #m - #r)
