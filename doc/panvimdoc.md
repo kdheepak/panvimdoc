@@ -112,9 +112,26 @@ Lastly, if the markdown text is a url, the link is not added to the links sectio
 ## Mappings
 
 Any markdown header of level 3 is a special header. It can be used to generate documentation of mappings.
-All content in curly braces `{...}` is dropped and a tag is created.
+All of the content in curly braces `{...}` that is part of the header is dropped and a tag is created.
 
-The heading `### pv{motion}` becomes the tag `*projectName-pv*`.
+For example, the level 3 heading and the contents of the section as follows:
+
+```
+### abc{xyz}
+
+Docstring for abc {xyz}.
+```
+
+becomes the following vimdoc:
+
+```
+                                                               *projectName-abc*
+
+abc{xyz}                               Docstring for abc {xyz}
+                                       moved.
+```
+
+Notice that the tag `*projectName-abc` is generated for you:
 
 Additionally, content in square brackets `[...]` is also dropped for creating the tag name.
 
