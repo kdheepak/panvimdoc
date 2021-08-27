@@ -203,7 +203,9 @@ function Strikeout(s)
 end
 
 function Link(s, tgt, tit, attr)
-  if not string.starts(tgt, "#") and not string.starts(s, "http") then
+  if string.starts(tgt, "https://neovim.io/doc/") then
+    return "|'" .. s .. "'|"
+  elseif not string.starts(tgt, "#") and not string.starts(s, "http") then
     links[#links + 1] = { stringify(meta.project) .. "-" .. s:gsub("%s", "-"), tgt }
   end
   return "|" .. stringify(meta.project) .. "-" .. s:gsub("%s", "-") .. "|"

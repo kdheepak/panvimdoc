@@ -103,6 +103,8 @@ The onus is on the documentation writer to choose the correct anchor for the app
 In vim doc tags are created for anchors to the internal document.
 For external links, the links are populated in a separate links section.
 
+If the external link is to the neovim documentation, an internal vim link is generated. See [cursorcolumn](https://neovim.io/doc/user/options.html#'cursorcolumn') as an example.
+
 ## Mappings
 
 Any markdown header of level 3 is a special header. It can be used to generate documentation of mappings.
