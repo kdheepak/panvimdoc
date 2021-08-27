@@ -15,11 +15,11 @@ This way, plugin authors will have to write documentation just once ( for exampl
 Writing vim documentation requires conforming to a few simple rules.
 Although `vimdoc` is not a well defined spec, vim does have some nice syntax highlighting and features like tags and links when the text file is in `vimdoc` compatible format and when `filetype=help` in vim.
 Also, typically, while vim documentation are just plain text files, they are usually formatted well using whitespace.
-See <https://vimhelp.org/helphelp.txt.html#help-writing> or [@nanotree's project](https://github.com/nanotee/vimdoc-notes) for more information.
+See <https://vimhelp.org/helphelp.txt.html#help-writing> or [`@nanotree`'s project](https://github.com/nanotee/vimdoc-notes) for more information.
 I think preserving these features and characteristics of vimdoc for documentation of vim plugins is important.
 
 Writing documentation in Markdown and converting it to vimdoc is not a novel idea.
-[@mjlbach](https://github.com/mjlbach) has already implemented a neovim treesitter based markdown to vimdoc converter that works fairly well.
+[`@mjlbach`](https://github.com/mjlbach){#reference} has already implemented a neovim treesitter based markdown to vimdoc converter that works fairly well.
 See [mjlbach/babelfish.nvim](https://github.com/mjlbach/babelfish.nvim) for more information.
 This approach is close to ideal. There are no dependencies ( except for the Markdown treesitter parser ). While it appears that the markdown parser may cause crashes, I have not experienced any issues in my use. It is neovim only but you can use this on github actions even for a vim plugin documentation.
 

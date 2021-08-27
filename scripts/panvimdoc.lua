@@ -203,8 +203,10 @@ function Strikeout(s)
 end
 
 function Link(s, tgt, tit, attr)
-  -- links[#links + 1] = { stringify(meta.project) .. "-" .. s:gsub("%s", "-"), tgt }
-  if string.starts_with(tgt, "https://neovim.io/doc/") then
+  if attr.id == "reference" then
+    links[#links + 1] = { stringify(meta.project) .. "-" .. s:gsub("%s", "-"), tgt }
+    return "|" .. stringify(meta.project) .. "-" .. s:gsub("%s", "-") .. "|"
+  elseif string.starts_with(tgt, "https://neovim.io/doc/") then
     if string.starts_with(s, "`") and string.ends_with(s, "`") then
       return "|" .. s .. "|"
     else
