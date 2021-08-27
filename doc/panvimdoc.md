@@ -81,6 +81,10 @@ Sub headings are upper cased heading.
 
 Notice that both headings and subheadings have tags.
 
+### Sub Heading 3
+
+Sub headings are upper cased, but do not have tags. They are also not included in the TOC.
+
 ## Markdown Links
 
 You can use markdown links in vimdoc. For example, see the [links](#links) section in the generated vim document.
@@ -111,13 +115,13 @@ Lastly, if the markdown text is a url, the link is not added to the links sectio
 
 ## Mappings
 
-Any markdown header of level 3 is a special header. It can be used to generate documentation of mappings.
+Any markdown header of level 4 is a special header. It can be used to generate documentation of mappings.
 All of the content in curly braces `{...}` that is part of the header is dropped and a tag is created.
 
-For example, the level 3 heading and the contents of the section as follows:
+For example, the level 4 heading and the contents of the section as follows:
 
 ```
-### abc{xyz}
+#### abc{xyz}
 
 Docstring for abc {xyz}.
 ```
@@ -138,7 +142,7 @@ The heading `### :[range]Command` becomes the tag `*projectName-:Command*`.
 
 See following headings as examples:
 
-### pv{motion}
+#### pv{motion}
 
 Command that operates over {motion} moved.
 
@@ -152,7 +156,7 @@ pv{motion}                             Command that operates over {motion}
 
 ```
 
-### pvd
+#### pvd
 
 Command that takes [count] lines.
 
@@ -165,7 +169,7 @@ pvd                                    Command that takes [count] lines.
 
 ```
 
-### :[range]CommandName {doc=CommandName}
+#### :[range]CommandName {doc=CommandName}
 
 Command that operates over [range].
 
@@ -180,7 +184,7 @@ The following vimdoc mapping is generated:
 
 You can use `{doc=AdditionalTag}` to generate one additional tag for each header.
 
-### {Visual}pv
+#### {Visual}pv
 
 Command that operates over highlighted lines.
 

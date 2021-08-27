@@ -338,6 +338,11 @@ function Header(lev, s, attr)
     return s
   end
   if lev == 3 then
+    left = string.upper(s)
+    current_element = nil
+    return left
+  end
+  if lev == 4 then
     left = ""
     current_element = s
     right = string.gsub(s, "{.+}", "")
