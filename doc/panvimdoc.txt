@@ -446,18 +446,16 @@ Content that needs to be presented only in Markdown can be inside
 >
     <!-- panvimdoc-ignore-start -->
     
-      Right     Left     Center     Default
-    -------     ------ ----------   -------
-         12     12        12            12
-        123     123       123          123
-          1     1          1             1
+    <details>
+        <summary>Vimdoc Ignored Section</summary>
     
-    Table:  Demonstration of simple table syntax.
+    This section will ignored when generating the vimdoc file.
+    This will only show up in the Markdown file.
+    
+    </details>
     
     <!-- panvimdoc-ignore-end -->
 <
-
-
 
 
 
