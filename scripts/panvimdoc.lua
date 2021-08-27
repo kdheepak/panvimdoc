@@ -343,7 +343,7 @@ function Header(lev, s, attr)
     right = string.gsub(s, "{.+}", "")
     right = string.gsub(right, "%[.+%]", "")
     right = string.gsub(right, "^%s*(.-)%s*$", "%1")
-    right = string.gsub(s, "%s", "-")
+    right = string.gsub(right, "%s", "-")
     right = string.format("*%s-%s*", stringify(meta.project), right)
     if attr.doc then
       right = right .. " *" .. attr.doc .. "*"
