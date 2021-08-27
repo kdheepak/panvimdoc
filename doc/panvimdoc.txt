@@ -1,4 +1,4 @@
-panvimdoc.txt           For NVIM v0.4.3            Last change: 2021 August 16
+panvimdoc.txt           For NVIM v0.4.3            Last change: 2021 August 27
 
 ==============================================================================
 Table of Contents                                *panvimdoc-table-of-contents*
@@ -252,23 +252,20 @@ this:
 
 Main headings are numbered.
 
->
-    ==============================================================================
-    2. Heading                                                 *panvimdoc-heading*
-    
-    Main headings are numbered.
-<
+
+
+
+
 
 
 SUB HEADING 2                                        *panvimdoc-sub-heading-2*
 
 Sub headings are upper cased heading.
 
->
-    SUB HEADING 2                                        *panvimdoc-sub-heading-2*
-    
-    Sub headings are upper cased heading.
-<
+
+
+
+
 
 
 Notice that both headings and subheadings have tags.
@@ -381,12 +378,10 @@ Support for markdown tables is also available:
 
 
 
-**Demonstration of simple table syntax.**
 
-│Right│Left│Center│Default│
-│   12│12  │  12  │12     │
-│  123│123 │ 123  │123    │
-│    1│1   │  1   │1      │
+
+
+
 
 
 
@@ -398,20 +393,50 @@ Support for markdown tables is also available:
     │    1│1   │  1   │1      │
 <
 
+
+MARKDOWN ONLY CONTENT                        *panvimdoc-markdown-only-content*
+
+Content that needs to be presented only in Markdown can be inside
+>panvimdoc-ignore-{start/end}< blocks:
+
+>
+    <!-- panvimdoc-ignore-start -->
+    
+      Right     Left     Center     Default
+    -------     ------ ----------   -------
+         12     12        12            12
+        123     123       123          123
+          1     1          1             1
+    
+    Table:  Demonstration of simple table syntax.
+    
+    <!-- panvimdoc-ignore-end -->
+<
+
+
+
+
+
+
+
+
+
+
+
 ==============================================================================
 Links                                                        *panvimdoc-links*
 
 - *panvimdoc.md*                                            ./doc/panvimdoc.md
-- *panvimdoc.txt*                                          ./doc/panvimdoc.txt
-- *kdheepak/panvimdoc*                       ./.github/workflows/panvimdoc.yml
-- *FooSoft/md2vim*                           https://github.com/FooSoft/md2vim
+- *mjlbach/babelfish.nvim*           https://github.com/mjlbach/babelfish.nvim
+- *pandoc markdown*                             https://pandoc.org/MANUAL.html
+- *panvimdoc.lua*                                      ./scripts/panvimdoc.lua
 - *doc/tabline.txt*    https://github.com/kdheepak/tabline.nvim/blob/main/doc/tabline.txt
 - *entrypoint.sh*                                              ./entrypoint.sh
-- *pandoc markdown*                             https://pandoc.org/MANUAL.html
+- *panvimdoc.txt*                                          ./doc/panvimdoc.txt
+- *FooSoft/md2vim*                           https://github.com/FooSoft/md2vim
 - *kdheepak/tabline.nvim*    https://github.com/kdheepak/tabline.nvim/blob/main/.github/workflows/ci.yml
-- *doc/panvimdoc.txt*                                      ./doc/panvimdoc.txt
-- *panvimdoc.lua*                                      ./scripts/panvimdoc.lua
 - *wincent/docvim*                           https://github.com/wincent/docvim
-- *mjlbach/babelfish.nvim*           https://github.com/mjlbach/babelfish.nvim
+- *doc/panvimdoc.txt*                                      ./doc/panvimdoc.txt
+- *kdheepak/panvimdoc*                       ./.github/workflows/panvimdoc.yml
 
 vim:tw=78:ts=8:noet:ft=help:norl:
