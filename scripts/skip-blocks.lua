@@ -7,6 +7,15 @@ local pandoc = _G.pandoc
 
 local COMMENT = false
 
+function Blocks(blocks)
+  for i = #blocks - 1, 1, -1 do
+    if blocks[i].t == "Null" then
+      blocks:remove(i)
+    end
+  end
+  return blocks
+end
+
 function RawBlock(el)
   local str = el.c[2]
   if str == "<!-- panvimdoc-ignore-start -->" then
