@@ -306,6 +306,9 @@ correct anchor for the appropriate Markdown link. In vim doc tags are created
 for anchors to the internal document. For external links, the links are
 populated in a separate links section.
 
+If the external link is to the neovim documentation, an internal vim link is
+generated. See |'cursorcolumn'| as an example.
+
 MAPPINGS                                              *panvimdoc-mappings*
 
 Any markdown header of level 3 is a special header. It can be used to generate
