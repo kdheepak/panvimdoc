@@ -141,12 +141,8 @@ function Doc(body, metadata, variables)
   table.insert(toc, s .. padding .. right_link)
   add(string.rep("=", 78) .. "\n" .. string.format("%s%s%s", left, padding, right))
   add("")
-  for k, v in pairs(links) do
-    local padding = string.rep(" ", 78 - #v - #k - 4)
-    if #padding < 4 then
-      padding = "    "
-    end
-    add("- *" .. k .. "*" .. padding .. v)
+  for i, v in ipairs(links) do
+    add(i .. ". *" .. v[1] .. "*" .. ": " .. v[2])
   end
   add("")
   add("vim:tw=78:ts=8:noet:ft=help:norl:")
@@ -200,9 +196,9 @@ end
 
 function Link(s, tgt, tit, attr)
   if not string.starts(tgt, "#") and not string.starts(s, "http") then
-    links[s] = tgt
+    links[#links + 1] = { stringify(meta.project) .. "-" .. s:gsub("%s", "-"), tgt }
   end
-  return "|" .. s .. "|"
+  return "|" .. stringify(meta.project) .. "-" .. s:gsub("%s", "-") .. "|"
 end
 
 function Image(s, src, tit, attr)

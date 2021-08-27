@@ -81,25 +81,27 @@ Sub headings are upper cased heading.
 
 Notice that both headings and subheadings have tags.
 
-You can link to the tags by using [sub-heading-2](#sub-heading-2).
+## Links
+
+You can use markdown links in vimdoc. For example: [links](#links)
 
 The following markdown:
 
 ```markdown
-[sub-heading-2](#sub-heading-2)
+You can link to the tags by using [sub heading 2](#sub-heading-2).
 ```
 
 is converted to the following vimdoc:
 
-## Links
-
 ```
-You can link to the tags by using |sub-heading-2|
+You can link to the tags by using |projectName-sub-heading-2|
 ```
 
 This way, any links will work in markdown README on GitHub or on the web using anchors AND will work as tags and links in vimdoc.
 The anchors are simply dropped in vimdoc.
-The onus is on the documentation writer to write the correct link.
+The onus is on the documentation writer to choose the correct anchor for the appropriate Markdown link.
+In vim doc tags are created for anchors to the internal document.
+For external links, the links are populated in a separate links section.
 
 ## Mappings
 
