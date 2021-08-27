@@ -17,7 +17,7 @@ Table of Contents                                *panvimdoc-table-of-contents*
 9. Title                                                     |panvimdoc-title|
 10. Heading                                                |panvimdoc-heading|
   - Sub Heading 2                                    |panvimdoc-sub-heading-2|
-  - Links                                                    |panvimdoc-links|
+  - Markdown Links                                  |panvimdoc-markdown-links|
   - Mappings                                              |panvimdoc-mappings|
   - Table                                                    |panvimdoc-table|
   - Markdown only content                    |panvimdoc-markdown-only-content|
@@ -280,7 +280,7 @@ Sub headings are upper cased heading.
 
 Notice that both headings and subheadings have tags.
 
-LINKS                                                    *panvimdoc-links*
+MARKDOWN LINKS                                  *panvimdoc-markdown-links*
 
 You can use markdown links in vimdoc. For example, see |panvimdoc-links| in the
 generated vim document.
