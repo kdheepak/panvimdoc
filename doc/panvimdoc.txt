@@ -266,17 +266,9 @@ Main headings are numbered.
 
 
 
-
-
-
-
 SUB HEADING 2                                        *panvimdoc-sub-heading-2*
 
 Sub headings are upper cased heading.
-
-
-
-
 
 
 
@@ -422,12 +414,6 @@ Support for markdown tables is also available:
 
 
 
-
-
-
-
-
-
 >
     │Right│Left│Center│Default│
     │   12│12  │  12  │12     │
@@ -454,24 +440,6 @@ Content that needs to be presented only in Markdown can be inside
     
     <!-- panvimdoc-ignore-end -->
 <
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
