@@ -275,6 +275,11 @@ Sub headings are upper cased heading.
 
 Notice that both headings and subheadings have tags.
 
+SUB HEADING 3
+
+Sub headings are upper cased, but do not have tags. They are also not included
+in the TOC.
+
 MARKDOWN LINKS                                      *panvimdoc-markdown-links*
 
 You can use markdown links in vimdoc. For example, see the |panvimdoc-links|
@@ -312,14 +317,14 @@ section and instead is placed inline.
 
 MAPPINGS                                                  *panvimdoc-mappings*
 
-Any markdown header of level 3 is a special header. It can be used to generate
+Any markdown header of level 4 is a special header. It can be used to generate
 documentation of mappings. All of the content in curly braces `{...}` that is
 part of the header is dropped and a tag is created.
 
-For example, the level 3 heading and the contents of the section as follows:
+For example, the level 4 heading and the contents of the section as follows:
 
 >
-    ### abc{xyz}
+    #### abc{xyz}
     
     Docstring for abc {xyz}.
 <
