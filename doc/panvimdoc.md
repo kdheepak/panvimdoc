@@ -127,8 +127,7 @@ becomes the following vimdoc:
 ```
                                                                *projectName-abc*
 
-abc{xyz}                               Docstring for abc {xyz}
-                                       moved.
+abc{xyz}                               Docstring for abc {xyz}.
 ```
 
 Notice that the tag `*projectName-abc` is generated for you:
