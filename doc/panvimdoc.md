@@ -6,7 +6,7 @@ README.md
 
 ## External includes
 
-Use the following in your markdown file to include any other markdown file
+Use the following in your markdown file to include any other markdown file:
 
 ````markdown
 ```{.include}
@@ -47,7 +47,7 @@ You can use codeblocks that have language as `vimdoc` to write raw vimdoc.
 The first line of the documentation that is generated will look something like this:
 
 ```
-panvimdoc.txt      For VIM - Vi IMproved 8.1       Last change: 2021 August 11
+*panvimdoc.txt*    For VIM - Vi IMproved 8.1       Last change: 2021 August 11
 ```
 
 # Heading
@@ -83,7 +83,7 @@ Notice that both headings and subheadings have tags.
 
 ## Markdown Links
 
-You can use markdown links in vimdoc. For example, see [links](#links) in the generated vim document.
+You can use markdown links in vimdoc. For example, see the [links](#links) section in the generated vim document.
 
 The following markdown:
 
