@@ -207,7 +207,7 @@ _Feel free to submit a PR to add your documentation as an example here._
 
 EXTERNAL INCLUDES                            *panvimdoc-external-includes*
 
-Use the following in your markdown file to include any other markdown file
+Use the following in your markdown file to include any other markdown file:
 
 >
     ```{.include}
@@ -253,7 +253,7 @@ The first line of the documentation that is generated will look something like
 this:
 
 >
-    panvimdoc.txt      For VIM - Vi IMproved 8.1       Last change: 2021 August 11
+    *panvimdoc.txt*    For VIM - Vi IMproved 8.1       Last change: 2021 August 11
 <
 
 
@@ -282,8 +282,8 @@ Notice that both headings and subheadings have tags.
 
 MARKDOWN LINKS                                  *panvimdoc-markdown-links*
 
-You can use markdown links in vimdoc. For example, see |panvimdoc-links| in the
-generated vim document.
+You can use markdown links in vimdoc. For example, see the |panvimdoc-links|
+section in the generated vim document.
 
 The following markdown:
 
