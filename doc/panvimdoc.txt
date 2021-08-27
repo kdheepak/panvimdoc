@@ -108,7 +108,7 @@ The specification is described in panvimdoc.md <./doc/panvimdoc.md> along with
 examples. The generated output is in panvimdoc.txt <./doc/panvimdoc.txt>. The
 reference implementation of the Pandoc lua filter is in panvimdoc.lua
 <./scripts/panvimdoc.lua>. See entrypoint.sh <./entrypoint.sh> for how to use
-this script, or check the |panvimdoc-Usage| section.
+this script, or check the |panvimdoc-usage| section.
 
 If you would like to contribute to the specification, have feature requests or
 opinions, please feel free to comment on this issue to start a discussion:
