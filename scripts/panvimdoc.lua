@@ -206,7 +206,7 @@ function Link(s, tgt, tit, attr)
   if string.starts_with(tgt, "https://neovim.io/doc/") then
     return "|" .. s .. "|"
   elseif string.starts_with(tgt, "#") then
-    return "|" .. stringify(meta.project) .. "-" .. s:gsub("%s", "-") .. "|"
+    return "|" .. stringify(meta.project) .. "-" .. s:lower():gsub("%s", "-") .. "|"
   elseif string.starts_with(s, "http") then
     return s
   else
