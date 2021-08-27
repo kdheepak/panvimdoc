@@ -116,7 +116,7 @@ opinions, please feel free to comment on this issue to start a discussion:
 6. Usage                                                     *panvimdoc-usage*
 
 >
-    pandoc --metadata=project:${PROJECT} --lua-filter scripts/include-files.lua -t scripts/panvimdoc.lua ${INPUT} -o ${OUTPUT}
+    pandoc --metadata=project:${PROJECT} --lua-filter scripts/skip-blocks.lua --lua-filter scripts/include-files.lua -t scripts/panvimdoc.lua ${INPUT} -o ${OUTPUT}
 <
 
 
