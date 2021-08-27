@@ -65,7 +65,7 @@ If you would like to contribute to the specification, have feature requests or o
 # Usage
 
 ```bash
-pandoc --metadata=project:${PROJECT} --lua-filter scripts/include-files.lua -t scripts/panvimdoc.lua ${INPUT} -o ${OUTPUT}
+pandoc --metadata=project:${PROJECT} --lua-filter scripts/skip-blocks.lua --lua-filter scripts/include-files.lua -t scripts/panvimdoc.lua ${INPUT} -o ${OUTPUT}
 ```
 
 The following are the metadata fields that the custom writer uses:
