@@ -83,7 +83,7 @@ Notice that both headings and subheadings have tags.
 
 ## Links
 
-You can use markdown links in vimdoc. For example: [links](#links)
+You can use markdown links in vimdoc. For example, see [links](#links).
 
 The following markdown:
 
