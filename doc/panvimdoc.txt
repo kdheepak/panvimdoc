@@ -343,7 +343,7 @@ The heading `### :[range]Command` becomes the tag `*projectName-:Command*`.
 
 See following headings as examples:
 
-                                                        *panvimdoc-pv{motion}*
+                                                                *panvimdoc-pv*
 
 pv{motion}                             Command that operates over {motion}
                                        moved.
@@ -373,7 +373,7 @@ The following vimdoc mapping is generated:
 <
 
 
-                                 *panvimdoc-:[range]CommandName* *CommandName*
+                                        *panvimdoc-:CommandName* *CommandName*
 
 :[range]CommandName                    Command that operates over [range].
 
@@ -391,7 +391,7 @@ The following vimdoc mapping is generated:
 You can use `{doc=AdditionalTag}` to generate one additional tag for each
 header.
 
-                                                        *panvimdoc-{Visual}pv*
+                                                                *panvimdoc-pv*
 
 {Visual}pv                             Command that operates over highlighted
                                        lines.
