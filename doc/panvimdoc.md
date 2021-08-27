@@ -81,7 +81,7 @@ Sub headings are upper cased heading.
 
 Notice that both headings and subheadings have tags.
 
-## Links
+## Markdown Links
 
 You can use markdown links in vimdoc. For example, see [links](#links) in the generated vim document.
 
