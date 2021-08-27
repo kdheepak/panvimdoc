@@ -54,6 +54,8 @@ panvimdoc.txt      For VIM - Vi IMproved 8.1       Last change: 2021 August 11
 
 Main headings are numbered.
 
+<!-- panvimdoc-ignore-start -->
+
 ```
 ==============================================================================
 2. Heading                                                 *panvimdoc-heading*
@@ -61,15 +63,21 @@ Main headings are numbered.
 Main headings are numbered.
 ```
 
+<!-- panvimdoc-ignore-end -->
+
 ## Sub Heading 2
 
 Sub headings are upper cased heading.
+
+<!-- panvimdoc-ignore-start -->
 
 ```
 SUB HEADING 2                                        *panvimdoc-sub-heading-2*
 
 Sub headings are upper cased heading.
 ```
+
+<!-- panvimdoc-ignore-end -->
 
 Notice that both headings and subheadings have tags.
 
@@ -166,6 +174,9 @@ The following vimdoc mapping is generated:
 Support for markdown tables is also available:
 
 <!-- prettier-ignore-start -->
+
+<!-- panvimdoc-ignore-start -->
+
   Right     Left     Center     Default
 -------     ------ ----------   -------
      12     12        12            12
@@ -176,9 +187,45 @@ Table:  Demonstration of simple table syntax.
 
 <!-- prettier-ignore-end -->
 
+<!-- panvimdoc-ignore-end -->
+
 ```
 │Right│Left│Center│Default│
 │   12│12  │  12  │12     │
 │  123│123 │ 123  │123    │
 │    1│1   │  1   │1      │
 ```
+
+## Markdown only content
+
+Content that needs to be presented only in Markdown can be inside `panvimdoc-ignore-{start/end}` blocks:
+
+```
+<!-- panvimdoc-ignore-start -->
+
+  Right     Left     Center     Default
+-------     ------ ----------   -------
+     12     12        12            12
+    123     123       123          123
+      1     1          1             1
+
+Table:  Demonstration of simple table syntax.
+
+<!-- panvimdoc-ignore-end -->
+```
+
+<!-- prettier-ignore-start -->
+
+<!-- panvimdoc-ignore-start -->
+
+  Right     Left     Center     Default
+-------     ------ ----------   -------
+     12     12        12            12
+    123     123       123          123
+      1     1          1             1
+
+Table:  Demonstration of simple table syntax.
+
+<!-- prettier-ignore-end -->
+
+<!-- panvimdoc-ignore-end -->

@@ -3,11 +3,11 @@
 --
 -- Invoke with: pandoc -t panvimdoc.lua README.md
 local pipe = pandoc.pipe
-local stringify = (require 'pandoc.utils').stringify
+local stringify = (require("pandoc.utils")).stringify
 -- local inspect = require 'inspect'
 
 function dump(s)
-  print(require'scripts.inspect'.inspect(s))
+  print(require("scripts.inspect").inspect(s))
 end
 
 -- The global variable PANDOC_DOCUMENT contains the full AST of
@@ -17,14 +17,14 @@ local meta = PANDOC_DOCUMENT.meta
 
 -- Choose the image format based on the value of the
 -- `image_format` meta value.
-local image_format = meta.image_format and stringify(meta.image_format) or 'png'
+local image_format = meta.image_format and stringify(meta.image_format) or "png"
 local image_mime_type = ({
-  jpeg = 'image/jpeg',
-  jpg = 'image/jpeg',
-  gif = 'image/gif',
-  png = 'image/png',
-  svg = 'image/svg+xml',
-})[image_format] or error('unsupported image format `' .. image_format .. '`')
+  jpeg = "image/jpeg",
+  jpg = "image/jpeg",
+  gif = "image/gif",
+  png = "image/png",
+  svg = "image/svg+xml",
+})[image_format] or error("unsupported image format `" .. image_format .. "`")
 
 -- Character escaping
 local function escape(s, in_attribute)
@@ -36,8 +36,8 @@ end
 local function attributes(attr)
   local attr_table = {}
   for x, y in pairs(attr) do
-    if y and y ~= '' then
-      table.insert(attr_table, ' ' .. x .. '="' .. escape(y, true) .. '"')
+    if y and y ~= "" then
+      table.insert(attr_table, " " .. x .. '="' .. escape(y, true) .. '"')
     end
   end
   return table.concat(attr_table)
@@ -50,12 +50,12 @@ local links = {}
 
 -- Blocksep is used to separate block elements.
 function Blocksep()
-  return '\n\n'
+  return "\n\n"
 end
 
 local function osExecute(cmd)
-  local fileHandle = assert(io.popen(cmd, 'r'))
-  local commandOutput = assert(fileHandle:read('*a'))
+  local fileHandle = assert(io.popen(cmd, "r"))
+  local commandOutput = assert(fileHandle:read("*a"))
   local returnTable = { fileHandle:close() }
   return commandOutput, returnTable[3] -- rc[3] contains returnCode
 end
@@ -71,16 +71,16 @@ local function renderToc(project)
   local function add(s)
     table.insert(t, s)
   end
-  add(string.rep('=', 78))
-  local l = 'Table of Contents'
-  local tag = '*' .. stringify(meta.project) .. '-' .. string.gsub(string.lower(l), '%s', '-') .. '*'
-  add(l .. string.rep(' ', 78 - #l - #tag) .. tag)
-  add('')
+  add(string.rep("=", 78))
+  local l = "Table of Contents"
+  local tag = "*" .. stringify(meta.project) .. "-" .. string.gsub(string.lower(l), "%s", "-") .. "*"
+  add(l .. string.rep(" ", 78 - #l - #tag) .. tag)
+  add("")
   for i, elem in pairs(toc) do
-    add(i .. '. ' .. elem)
+    add(i .. ". " .. elem)
   end
-  add('')
-  return table.concat(t, '\n')
+  add("")
+  return table.concat(t, "\n")
 end
 
 -- This function is called once for the whole document. Parameters:
@@ -95,62 +95,62 @@ function Doc(body, metadata, variables)
   end
   local vim_version = metadata.vimversion
   if vim_version == nil then
-    vim_version = osExecute('nvim --version'):gmatch('([^\n]*)\n?')()
-    if string.find(vim_version, '-dev') then
-      vim_version = string.gsub(vim_version, '(.*)-dev.*', '%1')
+    vim_version = osExecute("nvim --version"):gmatch("([^\n]*)\n?")()
+    if string.find(vim_version, "-dev") then
+      vim_version = string.gsub(vim_version, "(.*)-dev.*", "%1")
     end
-    if vim_version == '' then
-      vim_version = osExecute('vim --version'):gmatch('([^\n]*)\n?')()
-      vim_version = string.gsub(vim_version, '(.*) %(.*%)', '%1')
+    if vim_version == "" then
+      vim_version = osExecute("vim --version"):gmatch("([^\n]*)\n?")()
+      vim_version = string.gsub(vim_version, "(.*) %(.*%)", "%1")
     end
-    if vim_version == '' then
-      vim_version = 'vim'
+    if vim_version == "" then
+      vim_version = "vim"
     end
-  elseif vim_version == 'vim' then
-    vim_version = osExecute('vim --version'):gmatch('([^\n]*)\n?')()
+  elseif vim_version == "vim" then
+    vim_version = osExecute("vim --version"):gmatch("([^\n]*)\n?")()
   end
 
   local vim_doc_title = metadata.vimdoctitle
   if vim_doc_title == nil then
-    vim_doc_title = metadata.project .. '.txt'
+    vim_doc_title = metadata.project .. ".txt"
   end
   local date = metadata.date
   if date == nil then
-    date = os.date('%Y %B %d')
+    date = os.date("%Y %B %d")
   end
   local l = vim_doc_title
-  local m = 'For ' .. vim_version
-  local r = 'Last change: ' .. date
+  local m = "For " .. vim_version
+  local r = "Last change: " .. date
   local n = math.max(0, 78 - #l - #m - #r)
-  local s = string.rep(' ', math.floor(n / 2))
+  local s = string.rep(" ", math.floor(n / 2))
   if mod(n, 2) == 1 then
-    add(l .. s .. m .. s .. ' ' .. r)
+    add(l .. s .. m .. s .. " " .. r)
   else
     add(l .. s .. m .. s .. r)
   end
-  add('')
+  add("")
   if metadata.toc == nil or metadata.toc then
     add(renderToc(vim_doc_title))
   end
   add(body)
-  local left = 'Links'
+  local left = "Links"
   local right = string.lower(left)
-  local right_link = string.format('|%s-%s|', stringify(meta.project), right)
-  right = string.format('*%s-%s*', stringify(meta.project), right)
-  local padding = string.rep(' ', 78 - #left - #right)
+  local right_link = string.format("|%s-%s|", stringify(meta.project), right)
+  right = string.format("*%s-%s*", stringify(meta.project), right)
+  local padding = string.rep(" ", 78 - #left - #right)
   table.insert(toc, s .. padding .. right_link)
-  add(string.rep('=', 78) .. '\n' .. string.format('%s%s%s', left, padding, right))
-  add('')
+  add(string.rep("=", 78) .. "\n" .. string.format("%s%s%s", left, padding, right))
+  add("")
   for k, v in pairs(links) do
-    local padding = string.rep(' ', 78 - #v - #k - 4)
+    local padding = string.rep(" ", 78 - #v - #k - 4)
     if #padding < 4 then
-      padding = '    '
+      padding = "    "
     end
-    add('- *' .. k .. '*' .. padding .. v)
+    add("- *" .. k .. "*" .. padding .. v)
   end
-  add('')
-  add('vim:tw=78:ts=8:noet:ft=help:norl:')
-  return table.concat(buffer, '\n') .. '\n'
+  add("")
+  add("vim:tw=78:ts=8:noet:ft=help:norl:")
+  return table.concat(buffer, "\n") .. "\n"
 end
 
 -- The functions that follow render corresponding pandoc elements.
@@ -163,31 +163,31 @@ function Str(s)
 end
 
 function Space()
-  return ' '
+  return " "
 end
 
 function SoftBreak()
-  return '\n'
+  return "\n"
 end
 
 function LineBreak()
-  return '<br/>'
+  return "<br/>"
 end
 
 function Emph(s)
-  return '_' .. s .. '_'
+  return "_" .. s .. "_"
 end
 
 function Strong(s)
-  return '**' .. s .. '**'
+  return "**" .. s .. "**"
 end
 
 function Subscript(s)
-  return '_' .. s
+  return "_" .. s
 end
 
 function Superscript(s)
-  return '^' .. s
+  return "^" .. s
 end
 
 function SmallCaps(s)
@@ -195,34 +195,34 @@ function SmallCaps(s)
 end
 
 function Strikeout(s)
-  return '~' .. s .. '~'
+  return "~" .. s .. "~"
 end
 
 function Link(s, tgt, tit, attr)
-  if not string.starts(tgt, '#') and not string.starts(s, 'http') then
+  if not string.starts(tgt, "#") and not string.starts(s, "http") then
     links[s] = tgt
   end
-  return '|' .. s .. '|'
+  return "|" .. s .. "|"
 end
 
 function Image(s, src, tit, attr)
-  return '<img src=\'' .. escape(src, true) .. '\' title=\'' .. escape(tit, true) .. '\'/>'
+  return "<img src='" .. escape(src, true) .. "' title='" .. escape(tit, true) .. "'/>"
 end
 
 function Code(s, attr)
-  return '>' .. escape(s) .. '<'
+  return ">" .. escape(s) .. "<"
 end
 
 function InlineMath(s)
-  return '`' .. escape(s) .. '`'
+  return "`" .. escape(s) .. "`"
 end
 
 function DisplayMath(s)
-  return '`' .. escape(s) .. '`'
+  return "`" .. escape(s) .. "`"
 end
 
 function SingleQuoted(s)
-  return '\'' .. s .. '\''
+  return "'" .. s .. "'"
 end
 
 function DoubleQuoted(s)
@@ -233,15 +233,19 @@ function Note(s)
   return s
 end
 
+function Null(s)
+  return ""
+end
+
 function Span(s, attr)
   return s
 end
 
 function RawInline(format, str)
-  if format == 'html' then
+  if format == "html" then
     return str
   else
-    return ''
+    return ""
   end
 end
 
@@ -258,27 +262,27 @@ local current_element = nil
 function Para(s)
   if current_element then
     local t = {}
-    local current_line = current_element .. string.rep(' ', 78 - 40 - #current_element)
-    for word in string.gmatch(s, '([^%s]+)') do
-      if string.match(word, '[.]') and #word == 1 then
+    local current_line = current_element .. string.rep(" ", 78 - 40 - #current_element)
+    for word in string.gmatch(s, "([^%s]+)") do
+      if string.match(word, "[.]") and #word == 1 then
         current_line = current_line .. word
       elseif (#current_line + #word) > 78 then
         table.insert(t, current_line)
-        current_line = string.rep(' ', 40 - 1) .. word
+        current_line = string.rep(" ", 40 - 1) .. word
       elseif #current_line == 0 then
-        current_line = string.rep(' ', 40 - 1) .. word
+        current_line = string.rep(" ", 40 - 1) .. word
       else
-        current_line = current_line .. ' ' .. word
+        current_line = current_line .. " " .. word
       end
     end
     table.insert(t, current_line)
     current_element = nil
-    return table.concat(t, '\n') .. '\n'
+    return table.concat(t, "\n") .. "\n"
   else
     local t = {}
-    local current_line = ''
-    for word in string.gmatch(s, '([^%s]+)') do
-      if string.match(word, '[.]') and #word == 1 then
+    local current_line = ""
+    for word in string.gmatch(s, "([^%s]+)") do
+      if string.match(word, "[.]") and #word == 1 then
         current_line = current_line .. word
       elseif (#current_line + #word) > 78 then
         table.insert(t, current_line)
@@ -286,11 +290,11 @@ function Para(s)
       elseif #current_line == 0 then
         current_line = word
       else
-        current_line = current_line .. ' ' .. word
+        current_line = current_line .. " " .. word
       end
     end
     table.insert(t, current_line)
-    return table.concat(t, '\n')
+    return table.concat(t, "\n")
   end
 end
 
@@ -300,67 +304,66 @@ local header_count = 1
 function Header(lev, s, attr)
   local left, right, right_link, padding
   if lev == 1 then
-    left = string.format('%d. %s', header_count, s)
-    right = string.lower(string.gsub(s, '%s', '-'))
-    right_link = string.format('|%s-%s|', stringify(meta.project), right)
-    right = string.format('*%s-%s*', stringify(meta.project), right)
-    padding = string.rep(' ', 78 - #left - #right)
+    left = string.format("%d. %s", header_count, s)
+    right = string.lower(string.gsub(s, "%s", "-"))
+    right_link = string.format("|%s-%s|", stringify(meta.project), right)
+    right = string.format("*%s-%s*", stringify(meta.project), right)
+    padding = string.rep(" ", 78 - #left - #right)
     table.insert(toc, s .. padding .. right_link)
-    s = string.format('%s%s%s', left, padding, right)
+    s = string.format("%s%s%s", left, padding, right)
     header_count = header_count + 1
     current_element = nil
-    s = string.rep('=', 78) .. '\n' .. s
+    s = string.rep("=", 78) .. "\n" .. s
     return s
   end
   if lev == 2 then
     left = string.upper(s)
-    right = string.lower(string.gsub(s, '%s', '-'))
-    right = string.format('*%s-%s*', stringify(meta.project), right)
-    padding = string.rep(' ', 78 - #left - #right)
-    s = string.format('%s%s%s', left, padding, right)
+    right = string.lower(string.gsub(s, "%s", "-"))
+    right = string.format("*%s-%s*", stringify(meta.project), right)
+    padding = string.rep(" ", 78 - #left - #right)
+    s = string.format("%s%s%s", left, padding, right)
     current_element = nil
     return s
   end
   if lev == 3 then
-    left = ''
+    left = ""
     current_element = s
-    right = string.gsub(s, '{.+}', '')
-    right = string.gsub(right, '%[.+%]', '')
-    right = string.gsub(right, '^%s*(.-)%s*$', '%1')
-    right = string.format('*%s-%s*', stringify(meta.project), right)
+    right = string.gsub(s, "{.+}", "")
+    right = string.gsub(right, "%[.+%]", "")
+    right = string.gsub(right, "^%s*(.-)%s*$", "%1")
+    right = string.format("*%s-%s*", stringify(meta.project), right)
     if attr.doc then
-      right = right .. ' *' .. attr.doc .. '*'
+      right = right .. " *" .. attr.doc .. "*"
     end
-    padding = string.rep(' ', 78 - #left - #right)
-    local r = string.format('%s%s%s', left, padding, right)
+    padding = string.rep(" ", 78 - #left - #right)
+    local r = string.format("%s%s%s", left, padding, right)
     return r
   end
 end
 
 function BlockQuote(s)
-  return '>\n' .. s .. '\n<\n'
+  return ">\n" .. s .. "\n<\n"
 end
 
 function HorizontalRule()
-  return string.rep('-', 78)
+  return string.rep("-", 78)
 end
 
 function LineBlock(ls)
-  return table.concat(ls, '\n')
+  return table.concat(ls, "\n")
 end
 
-local List = require 'pandoc.List'
+local List = require("pandoc.List")
 
 function CodeBlock(s, attr)
-  if attr.class == 'vimdoc' then
+  if attr.class == "vimdoc" then
     return s
   else
     local t = {}
-    for line in s:gmatch('([^\n]*)\n?') do
-      table.insert(t, '    ' .. escape(line))
-
+    for line in s:gmatch("([^\n]*)\n?") do
+      table.insert(t, "    " .. escape(line))
     end
-    return '>\n' .. table.concat(t, '\n') .. '\n<\n'
+    return ">\n" .. table.concat(t, "\n") .. "\n<\n"
   end
 end
 
@@ -368,7 +371,7 @@ function indent(s, fl, ol)
   local ret = {}
   local i = 1
 
-  for l in s:gmatch('[^\r\n]+') do
+  for l in s:gmatch("[^\r\n]+") do
     if i == 1 then
       ret[i] = fl .. l
     else
@@ -376,51 +379,57 @@ function indent(s, fl, ol)
     end
     i = i + 1
   end
-  return table.concat(ret, '\n')
+  return table.concat(ret, "\n")
 end
 
 function BulletList(items)
   local buffer = {}
   for _, item in pairs(items) do
-    table.insert(buffer, indent(item, '- ', '    '))
+    table.insert(buffer, indent(item, "- ", "    "))
   end
-  return '\n' .. table.concat(buffer, '\n') .. '\n'
+  return "\n" .. table.concat(buffer, "\n") .. "\n"
 end
 
 function OrderedList(items)
   local buffer = {}
   for i, item in pairs(items) do
-    table.insert(buffer, '1. ' .. item)
+    table.insert(buffer, "1. " .. item)
   end
-  return '\n' .. table.concat(buffer, '\n') .. '\n'
+  return "\n" .. table.concat(buffer, "\n") .. "\n"
 end
 
 function DefinitionList(items)
   local buffer = {}
   for _, item in pairs(items) do
     local k, v = next(item)
-    table.insert(buffer, k .. string.rep(' ', 78 - 40 + 1 - #k) .. table.concat(v, '\n'))
+    table.insert(buffer, k .. string.rep(" ", 78 - 40 + 1 - #k) .. table.concat(v, "\n"))
   end
-  return '\n' .. table.concat(buffer, '\n') .. '\n'
+  return "\n" .. table.concat(buffer, "\n") .. "\n"
 end
 
 -- Convert pandoc alignment to something HTML can use.
 -- align is AlignLeft, AlignRight, AlignCenter, or AlignDefault.
 local function html_align(align)
-  if align == 'AlignLeft' then
-    return 'left'
-  elseif align == 'AlignRight' then
-    return 'right'
-  elseif align == 'AlignCenter' then
-    return 'center'
+  if align == "AlignLeft" then
+    return "left"
+  elseif align == "AlignRight" then
+    return "right"
+  elseif align == "AlignCenter" then
+    return "center"
   else
-    return 'left'
+    return "left"
   end
 end
 
 function CaptionedImage(src, tit, caption, attr)
-  return '<div class="figure">\n<img src="' .. escape(src, true) .. '" title="' .. escape(tit, true) .. '"/>\n'
-             .. '<p class="caption">' .. escape(caption) .. '</p>\n</div>'
+  return '<div class="figure">\n<img src="'
+    .. escape(src, true)
+    .. '" title="'
+    .. escape(tit, true)
+    .. '"/>\n'
+    .. '<p class="caption">'
+    .. escape(caption)
+    .. "</p>\n</div>"
 end
 
 -- Position some text within a wider string (stuffed with blanks)
@@ -433,14 +442,14 @@ function _position(txt, width, way)
   if width > l then
     local b = (way == 0 and 0) or math.floor((width - l) / way)
     local a = width - l - b
-    return string.rep(' ', b) .. txt .. string.rep(' ', a)
+    return string.rep(" ", b) .. txt .. string.rep(" ", a)
   else
     return txt
   end
 end
 
 function _getNthRowLine(txt, nth, height, width)
-  local s = ''
+  local s = ""
   if nth == height then
     s = subString(txt, (nth - 1) * width, width + 1) -- Avoid cutting last UTF8 sequence
   else
@@ -452,14 +461,14 @@ end
 function get_1st_letter(s)
   local function get_1st_letter_rec(s, acc)
     if #s == 0 then
-      return '', ''
+      return "", ""
     elseif #s == 1 then
-      return s, ''
+      return s, ""
     else
-      local m = s:match('^\27%[[0-9;]+m')
+      local m = s:match("^\27%[[0-9;]+m")
 
       if m == nil then
-        local m = s:match('^[^\27]\27%[[0-9;]+m')
+        local m = s:match("^[^\27]\27%[[0-9;]+m")
         if m == nil then
           return acc .. s:sub(1, 1), s:sub(2)
         else
@@ -470,14 +479,14 @@ function get_1st_letter(s)
       end
     end
   end
-  return get_1st_letter_rec(s, '')
+  return get_1st_letter_rec(s, "")
 end
 --
 -- Returns a substring of 's', starting after 'orig' and of length 'nb'
 -- Escape sequences are NOT counted as characters and thus are not cut.
 function subString(s, orig, nb)
   local col = 0
-  local buf = ''
+  local buf = ""
   local h
 
   while #s > 0 and col < orig do
@@ -504,7 +513,7 @@ function Table(caption, aligns, widths, headers, rows)
   local buffer = {}
   local table_width_for_adjust = 0
   local max_table_width_for_adjust = 78
-  local align = { ['AlignDefault'] = 0, ['AlignLeft'] = 0, ['AlignRight'] = 1, ['AlignCenter'] = 2 }
+  local align = { ["AlignDefault"] = 0, ["AlignLeft"] = 0, ["AlignRight"] = 1, ["AlignCenter"] = 2 }
   local function add_row(s)
     table.insert(buffer, s)
   end
@@ -526,7 +535,7 @@ function Table(caption, aligns, widths, headers, rows)
         col_width[i] = cell_width
       end
     end
-    if (col_width[i] > MIN_COL_WIDTH) then
+    if col_width[i] > MIN_COL_WIDTH then
       -- Sum of all widths for columns that could be reduced
       table_width_for_adjust = table_width_for_adjust + col_width[i]
     else
@@ -555,29 +564,29 @@ function Table(caption, aligns, widths, headers, rows)
   end
 
   local last = #col_width
-  local tmpl = ''
+  local tmpl = ""
   for i, w in pairs(col_width) do
     -- Here, 'c' stands for "crossing char" and will be replaced
-    tmpl = tmpl .. string.rep('─', w) .. (i < last and 'c' or '')
+    tmpl = tmpl .. string.rep("─", w) .. (i < last and "c" or "")
   end
-  local CELL_SEP = '│'
+  local CELL_SEP = "│"
 
-  if caption ~= '' then
+  if caption ~= "" then
     add_row(Strong(caption))
-    add_row('')
+    add_row("")
   end
   local header_row = {}
   local empty_header = true
   for i, h in pairs(headers) do
     -- Table headers have same color as document headers
-    empty_header = empty_header and h == ''
+    empty_header = empty_header and h == ""
   end
-  local content = ''
-  local s = ''
+  local content = ""
+  local s = ""
   if not empty_header then
     for k = 1, header_height do -- Break long lines
-      content = ''
-      s = ''
+      content = ""
+      s = ""
       for i, h in pairs(headers) do
         s = _getNthRowLine(h, k, header_height, col_width[i])
         s = _position(s, col_width[i], 2)
@@ -587,12 +596,12 @@ function Table(caption, aligns, widths, headers, rows)
     end
   end
   for i, row in pairs(rows) do
-    content = ''
+    content = ""
     for k = 1, row_height[i] do -- Break long lines
-      content = ''
-      s = ''
+      content = ""
+      s = ""
       for j, c in pairs(row) do
-        if (col_width[j]) then
+        if col_width[j] then
           s = _getNthRowLine(c, k, row_height[i], col_width[j])
           content = content .. CELL_SEP .. _position(s, col_width[j], align[aligns[j]])
         end
@@ -602,8 +611,8 @@ function Table(caption, aligns, widths, headers, rows)
     if i < #rows then
     end
   end
-  add_row('')
-  return table.concat(buffer, '\n')
+  add_row("")
+  return table.concat(buffer, "\n")
 end
 
 function string.starts(String, Start)
@@ -611,19 +620,19 @@ function string.starts(String, Start)
 end
 
 function RawBlock(format, str)
-  if format == 'html' then
-    if string.starts(str, '<!--') then
-      return ''
+  if format == "html" then
+    if string.starts(str, "<!--") then
+      return ""
     else
       return str
     end
   else
-    return ''
+    return ""
   end
 end
 
 function Div(s, attr)
-  return '<div' .. attributes(attr) .. '>\n' .. s .. '</div>'
+  return "<div" .. attributes(attr) .. ">\n" .. s .. "</div>"
 end
 
 -- The following code will produce runtime warnings when you haven't defined
@@ -631,9 +640,9 @@ end
 -- to include when you're working on a writer.
 local meta = {}
 meta.__index = function(_, key)
-  io.stderr:write(string.format('WARNING: Undefined function \'%s\'\n', key))
+  io.stderr:write(string.format("WARNING: Undefined function '%s'\n", key))
   return function()
-    return ''
+    return ""
   end
 end
 setmetatable(_G, meta)
