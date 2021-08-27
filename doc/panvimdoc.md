@@ -119,7 +119,10 @@ Lastly, if the markdown text is a url, the link is not added to the links sectio
 
 ## Mappings
 
-Any markdown header of level 4 is a special header. It can be used to generate documentation of mappings.
+While you can use codeblocks with the language `vimdoc` to insert text in the generated vimdoc, it can be useful to have a markdown friendly way to write documentation for mappings.
+
+Any markdown header of level 4 will be considered as a special header.
+This can be used to generate documentation of mappings.
 All of the content in curly braces `{...}` that is part of the header is dropped and a tag is created.
 
 For example, the level 4 heading and the contents of the section as follows:
