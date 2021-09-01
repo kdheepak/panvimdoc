@@ -167,7 +167,11 @@ end
 -- Comments indicate the types of other variables.
 
 function Str(s)
-  return escape(s)
+  if string.starts_with(s, "(http") and string.ends_with(s, ")") then
+    return " <" .. string.sub(s, 2, #s - 2) .. ">"
+  else
+    return escape(s)
+  end
 end
 
 function Space()
@@ -263,7 +267,11 @@ function RawInline(format, str)
 end
 
 function Cite(s, cs)
-  return s
+  if #cs == 1 then
+    return string.sub(s, 2, (#s - 1))
+  else
+    return s
+  end
 end
 
 function Plain(s)
@@ -361,7 +369,11 @@ function Header(lev, s, attr)
 end
 
 function BlockQuote(s)
-  return ">\n" .. s .. "\n<\n"
+  local lines = {}
+  for line in s:gmatch("[^\r\n]+") do
+    table.insert(lines, line)
+  end
+  return "\n  " .. table.concat(lines, "\n  ") .. "\n"
 end
 
 function HorizontalRule()
