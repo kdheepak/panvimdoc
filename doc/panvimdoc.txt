@@ -1,4 +1,4 @@
-*panvimdoc.txt*          For NVIM v0.4.3           Last change: 2021 August 27
+*panvimdoc.txt*         For NVIM v0.4.3         Last change: 2021 September 01
 
 ==============================================================================
 Table of Contents                                *panvimdoc-table-of-contents*
