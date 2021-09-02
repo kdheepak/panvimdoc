@@ -561,7 +561,8 @@ function Table(caption, aligns, widths, headers, rows)
   for i, header in pairs(headers) do
     table.insert(col_width, i, #header)
     for j, row in pairs(rows) do
-      cell_width = #row[i]
+      local _, n = row[i]:gsub("`", "")
+      cell_width = #row[i] + n
       if cell_width > col_width[i] then
         col_width[i] = cell_width
       end
@@ -585,8 +586,9 @@ function Table(caption, aligns, widths, headers, rows)
         header_height = cell_height
       end
       for j, row in pairs(rows) do
-        text_width = #row[i]
-        cell_height = math.floor(text_width / col_width[i]) + 1
+        local _, n = row[i]:gsub("`", "")
+        cell_width = #row[i] + n
+        cell_height = math.floor(cell_width / col_width[i]) + 1
         if cell_height > row_height[j] then
           row_height[j] = cell_height
         end
@@ -621,7 +623,8 @@ function Table(caption, aligns, widths, headers, rows)
       for i, h in pairs(headers) do
         s = _getNthRowLine(h, k, header_height, col_width[i])
         s = _position(s, col_width[i], 2)
-        content = content .. CELL_SEP .. s
+        local _, n = string.gsub(h, "`", "")
+        content = content .. CELL_SEP .. s .. string.rep(" ", n)
       end
       add_row(content .. CELL_SEP)
     end
@@ -634,7 +637,8 @@ function Table(caption, aligns, widths, headers, rows)
       for j, c in pairs(row) do
         if col_width[j] then
           s = _getNthRowLine(c, k, row_height[i], col_width[j])
-          content = content .. CELL_SEP .. _position(s, col_width[j], align[aligns[j]])
+          local _, n = string.gsub(c, "`", "")
+          content = content .. CELL_SEP .. _position(s, col_width[j], align[aligns[j]]) .. string.rep(" ", n)
         end
       end
       add_row(content .. CELL_SEP)
@@ -667,7 +671,7 @@ function RawBlock(format, str)
 end
 
 function Div(s, attr)
-  return "<div" .. attributes(attr) .. ">\n" .. s .. "</div>"
+  return s
 end
 
 -- The following code will produce runtime warnings when you haven't defined
