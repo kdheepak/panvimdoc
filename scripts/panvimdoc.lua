@@ -621,10 +621,10 @@ function Table(caption, aligns, widths, headers, rows)
       content = ""
       s = ""
       for i, h in pairs(headers) do
+        local h, _ = string.gsub(h, "`", "")
         s = _getNthRowLine(h, k, header_height, col_width[i])
         s = _position(s, col_width[i], 2)
-        local _, n = string.gsub(h, "`", "")
-        content = content .. CELL_SEP .. s .. string.rep(" ", n)
+        content = content .. CELL_SEP .. s
       end
       add_row(content .. CELL_SEP)
     end
@@ -636,9 +636,9 @@ function Table(caption, aligns, widths, headers, rows)
       s = ""
       for j, c in pairs(row) do
         if col_width[j] then
+          local c, _ = string.gsub(c, "`", "")
           s = _getNthRowLine(c, k, row_height[i], col_width[j])
-          local _, n = string.gsub(c, "`", "")
-          content = content .. CELL_SEP .. _position(s, col_width[j], align[aligns[j]]) .. string.rep(" ", n)
+          content = content .. CELL_SEP .. _position(s, col_width[j], align[aligns[j]])
         end
       end
       add_row(content .. CELL_SEP)
