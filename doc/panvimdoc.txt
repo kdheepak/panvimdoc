@@ -271,13 +271,9 @@ this:
 
 Main headings are numbered.
 
-
-
 SUB HEADING 2                                        *panvimdoc-sub-heading-2*
 
 Sub headings are upper cased heading.
-
-
 
 Notice that both headings and subheadings have tags.
 
@@ -425,8 +421,6 @@ The following vimdoc mapping is generated:
 TABLE                                                        *panvimdoc-table*
 
 Support for markdown tables is also available:
-
-
 
 
 
