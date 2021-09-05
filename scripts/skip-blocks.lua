@@ -22,8 +22,10 @@ function RawBlock(el)
   local str = el.c[2]
   if str == "<!-- panvimdoc-ignore-start -->" then
     COMMENT = true
+    return pandoc.Null()
   elseif str == "<!-- panvimdoc-ignore-end -->" then
     COMMENT = false
+    return pandoc.Null()
   end
   if COMMENT == true then
     return pandoc.Null()
