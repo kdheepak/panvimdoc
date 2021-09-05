@@ -7,6 +7,8 @@ local pandoc = _G.pandoc
 
 local COMMENT = false
 
+local List = require("pandoc.List")
+
 function Blocks(blocks)
   for i = #blocks - 1, 1, -1 do
     if blocks[i].t == "Null" then
@@ -65,6 +67,13 @@ function Plain(el)
 end
 
 function OrderedList(el)
+  if COMMENT == true then
+    return pandoc.Null()
+  end
+  return el
+end
+
+function BulletList(el)
   if COMMENT == true then
     return pandoc.Null()
   end
