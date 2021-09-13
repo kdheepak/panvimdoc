@@ -81,7 +81,7 @@ a reference implementation of the specification as well.
 3. Goals                                                     *panvimdoc-goals*
 
 
-- Markdown file must be readable when the file is presented as the README on GitHub / GitLab.
+- Markdown file must be readable when the file is presented as the README on GitHub / GitLab / SourceHut etc.
 - Markdown file converted to HTML using Pandoc must be web friendly and render appropriately (if the user chooses to do so).
 - Vim documentation generated must support links and tags.
 - Vim documentation generated should be aesthetically pleasing to view, in vim and as a plain text file.
