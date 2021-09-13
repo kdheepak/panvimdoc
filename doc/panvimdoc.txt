@@ -1,4 +1,4 @@
-*panvimdoc.txt*         For NVIM v0.4.3         Last change: 2021 September 05
+*panvimdoc.txt*         For NVIM v0.4.3         Last change: 2021 September 13
 
 ==============================================================================
 Table of Contents                                *panvimdoc-table-of-contents*
@@ -421,8 +421,6 @@ The following vimdoc mapping is generated:
 TABLE                                                        *panvimdoc-table*
 
 Support for markdown tables is also available:
-
-
 
 >
     │Right│Left│Center│Default│
