@@ -166,7 +166,7 @@ Add the following to `./.github/workflows/pandocvim.yml`:
     on: [push]
     
     jobs:
-      custom_test:
+      docs:
         runs-on: ubuntu-latest
         name: pandoc to vimdoc
         steps:
