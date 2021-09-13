@@ -5,6 +5,10 @@ end
 
 local pandoc = _G.pandoc
 
+function P(s)
+  print(require("scripts.inspect").inspect(s))
+end
+
 local COMMENT = false
 
 local List = require("pandoc.List")
@@ -18,6 +22,14 @@ function Blocks(blocks)
   return blocks
 end
 
+function string.starts_with(str, starts)
+  return str:sub(1, #starts) == starts
+end
+
+function string.ends_with(str, ends)
+  return ends == "" or str:sub(-#ends) == ends
+end
+
 function RawBlock(el)
   local str = el.c[2]
   if str == "<!-- panvimdoc-ignore-start -->" then
@@ -27,10 +39,19 @@ function RawBlock(el)
     COMMENT = false
     return pandoc.Null()
   end
-  if COMMENT == true then
+  if string.starts_with(str, "<!--") then
     return pandoc.Null()
+  elseif str == "<p>" or str == "</p>" then
+    return pandoc.Null()
+  elseif str == "<details>" or str == "</details>" then
+    return pandoc.Null()
+  elseif str == "<summary>" or str == "</summary>" then
+    return pandoc.Null()
+  elseif COMMENT == true then
+    return pandoc.Null()
+  else
+    return el
   end
-  return el
 end
 
 function Header(el)

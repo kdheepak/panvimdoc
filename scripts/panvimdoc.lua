@@ -6,7 +6,7 @@ local pipe = pandoc.pipe
 local stringify = (require("pandoc.utils")).stringify
 -- local inspect = require 'inspect'
 
-function dump(s)
+function P(s)
   print(require("scripts.inspect").inspect(s))
 end
 
@@ -260,7 +260,13 @@ end
 
 function RawInline(format, str)
   if format == "html" then
-    return str
+    if str == "<b>" or str == "</b>" then
+      return "**"
+    elseif str == "<i>" or str == "</i>" then
+      return "_"
+    else
+      return str
+    end
   else
     return ""
   end
@@ -365,6 +371,11 @@ function Header(lev, s, attr)
     padding = string.rep(" ", 78 - #left - #right)
     local r = string.format("%s%s%s", left, padding, right)
     return r
+  end
+  if lev >= 5 then
+    left = string.upper(s)
+    current_element = nil
+    return left
   end
 end
 
@@ -661,6 +672,12 @@ end
 function RawBlock(format, str)
   if format == "html" then
     if string.starts_with(str, "<!--") then
+      return ""
+    elseif str == "<p>" or str == "</p>" then
+      return ""
+    elseif str == "<details>" or str == "</details>" then
+      return ""
+    elseif str == "<summary>" or str == "</summary>" then
       return ""
     else
       return str
