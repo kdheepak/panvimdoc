@@ -12,9 +12,19 @@ inputs:
     description: "Input pandoc file"
     required: true
     default: "README.md"
+  version:
+    description: "Vim version"
+    required: true
+    default: "NVIM v0.5.0"
+  toc:
+    description: "Table of contents"
+    required: true
+    default: true
 runs:
   using: "docker"
   image: "Dockerfile"
   args:
     - ${{ inputs.vimdoc }}
     - ${{ inputs.pandoc }}
+    - ${{ inputs.version }}
+    - ${{ inputs.toc }}
