@@ -108,7 +108,7 @@ name: panvimdoc
 on: [push]
 
 jobs:
-  custom_test:
+  docs:
     runs-on: ubuntu-latest
     name: pandoc to vimdoc
     steps:
