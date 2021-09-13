@@ -117,14 +117,28 @@ jobs:
         uses: kdheepak/panvimdoc@main
         with:
           vimdoc: VIMDOC_PROJECT_NAME
-          pandoc: PANDOC_INPUT_FILENAME # default: README.md
+          # the following are defaults on github actions
+          # pandoc: "README.md"
+          # version: "NVIM v0.5.0"
+          # toc: true
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: "Auto generate docs"
           branch: ${{ github.head_ref }}
 ```
 
-Choose `PANDOC_INPUT_FILENAME` and `VIMDOC_PROJECT_NAME` appropriately.
+Choose `VIMDOC_PROJECT_NAME` appropriately.
+This is usually the name of the plugin or the documentation file without the `.txt` extension. For example, the following:
+
+```
+      - name: panvimdoc
+        uses: kdheepak/panvimdoc@main
+        with:
+          vimdoc: panvimdoc
+```
+
+Will output a file `doc/panvimdoc.txt` and the vim help tag for it will be `panvimdoc.
+
 For an example of how this is used, see one of the following workflows:
 
 - [kdheepak/panvimdoc](./.github/workflows/panvimdoc.yml): [doc/panvimdoc.txt](./doc/panvimdoc.txt)
