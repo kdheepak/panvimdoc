@@ -105,7 +105,6 @@ Adding the `description`:
 ---
 project: panvimdoc
 description: pandoc markdown to vimdoc
-toc: true
 ---
 ```
 
