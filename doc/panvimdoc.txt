@@ -495,7 +495,7 @@ DETAILS AND SUMMARY                            *panvimdoc-details-and-summary*
 
 You can even use `<details>` and `<summary>` tags for your README.md.
 
-Summary
+Summary ~
 
 This section is the details.
 
@@ -503,7 +503,7 @@ The `html` tags are dropped and the following output is generated in the vimdoc
 file.
 
 >
-    Summary
+    Summary ~
     
     This section is the details.
 <
