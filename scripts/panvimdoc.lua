@@ -136,7 +136,7 @@ function Doc(body, metadata, variables)
     project_description = s .. m .. s .. r
   end
   local padding_len = math.max(0, 78 - #vim_doc_title_tag - #project_description)
-  add(vim_doc_title_tag..string.rep(" ", padding_len)..project_description)
+  add(vim_doc_title_tag .. string.rep(" ", padding_len) .. project_description)
   add("")
   if metadata.toc == nil or metadata.toc then
     add(renderToc(vim_doc_title))
@@ -356,7 +356,7 @@ function Header(lev, s, attr)
   if lev == 3 then
     left = string.upper(s)
     current_element = nil
-    return left
+    return left .. " ~"
   end
   if lev == 4 then
     left = ""
