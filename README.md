@@ -103,10 +103,10 @@ Adding the `description`:
 
 ```markdown
 ---
-
 project: panvimdoc
 description: pandoc markdown to vimdoc
 toc: true
+---
 ```
 
 generates the following:
