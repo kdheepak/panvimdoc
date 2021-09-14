@@ -1,4 +1,4 @@
-*panvimdoc.txt*         For NVIM v0.5.0         Last change: 2021 September 13
+*panvimdoc.txt*                                      pandoc markdown to vimdoc
 
 ==============================================================================
 Table of Contents                                *panvimdoc-table-of-contents*
@@ -128,6 +128,7 @@ The following are the metadata fields that the custom writer uses:
 - `project` (String) _required_: This is typically the plugin name. This is prefixed to all generated tags. (e.g. `*project-heading*`)
 - `vimversion` (String) _optional_: The version vim / neovim that the plugin is targeting. If not present, the version of vim in the available environment is used.
 - `toc` (Boolean) _optional_: Whether to generate table of contents or not. If not present, this value is set to `true`.
+- `description` (String) _optional_: The description for your plugin. If not present, the `vimversion` and current date is used.
 
 
 Example:
@@ -178,6 +179,7 @@ Add the following to `./.github/workflows/pandocvim.yml`:
               # the following are defaults on github actions
               # pandoc: "README.md"
               # version: "NVIM v0.5.0"
+              # description: ""
               # toc: true
           - uses: stefanzweifel/git-auto-commit-action@v4
             with:
@@ -195,11 +197,13 @@ following:
             uses: kdheepak/panvimdoc@main
             with:
               vimdoc: panvimdoc
+              description: pandoc markdown to vimdoc
 <
 
 
 Will output a file `doc/panvimdoc.txt` and the vim help tag for it will be
-`panvimdoc.
+`panvimdoc`. See `entrypoint.sh` <./entrypoint.sh> for exact shell command
+executed.
 
 For an example of how this is used, see one of the following workflows:
 
