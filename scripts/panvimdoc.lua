@@ -135,11 +135,8 @@ function Doc(body, metadata, variables)
     local s = string.rep(" ", math.floor(n / 2))
     project_description = s .. m .. s .. r
   end
-  if mod(math.max(0, 78 - #vim_doc_title_tag - #project_description), 2) == 1 then
-    add(vim_doc_title_tag.." "..project_description)
-  else
-    add(vim_doc_title_tag..project_description)
-  end
+  local padding_len = math.max(0, 78 - #vim_doc_title_tag - #project_description)
+  add(vim_doc_title_tag..string.rep(" ", padding_len)..project_description)
   add("")
   if metadata.toc == nil or metadata.toc then
     add(renderToc(vim_doc_title))
