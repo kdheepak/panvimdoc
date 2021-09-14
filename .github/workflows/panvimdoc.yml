@@ -13,6 +13,7 @@ jobs:
         with:
           vimdoc: panvimdoc
           pandoc: doc/panvimdoc.md
+          description: pandoc markdown to vimdoc
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: "Auto generate docs"
