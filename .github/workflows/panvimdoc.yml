@@ -1,6 +1,6 @@
 name: panvimdoc
 
-on: [push, pull_request]
+on: [push]
 
 jobs:
   custom_test:
