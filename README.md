@@ -71,9 +71,9 @@ pandoc --metadata=project:${PROJECT} --lua-filter scripts/skip-blocks.lua --lua-
 The following are the metadata fields that the custom writer uses:
 
 - `project` (String) _required_: This is typically the plugin name. This is prefixed to all generated tags. (e.g. `*project-heading*`)
-- `vimversion` (String) _optional_: The version vim / neovim that the plugin is targeting. If not present, the version of vim in the available environment is used.
 - `toc` (Boolean) _optional_: Whether to generate table of contents or not. If not present, this value is set to `true`.
 - `description` (String) _optional_: The description for your plugin. If not present, the `vimversion` and current date is used.
+- `vimversion` (String) _optional_: The version vim / neovim that the plugin is targeting. If not present, the version of vim in the available environment is used.
 
 Example:
 
@@ -99,6 +99,22 @@ Table of Contents                                *panvimdoc-table-of-contents*
 ...
 ```
 
+Adding the `description`:
+
+```markdown
+---
+
+project: panvimdoc
+description: pandoc markdown to vimdoc
+toc: true
+```
+
+generates the following:
+
+```
+*panvimdoc.txt*                                      pandoc markdown to vimdoc
+```
+
 ## Using Github Actions
 
 Add the following to `./.github/workflows/pandocvim.yml`:
@@ -120,9 +136,9 @@ jobs:
           vimdoc: VIMDOC_PROJECT_NAME
           # the following are defaults on github actions
           # pandoc: "README.md"
-          # version: "NVIM v0.5.0"
-          # description: ""
           # toc: true
+          # description: ""
+          # version: "NVIM v0.5.0"
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: "Auto generate docs"
