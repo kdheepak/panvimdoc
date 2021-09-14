@@ -107,7 +107,7 @@ function Doc(body, metadata, variables)
   end
   local vim_doc_title_tag = "*" .. vim_doc_title .. "*"
   local project_description = metadata.description
-  if not project_description then
+  if not project_description or #project_description == 0 then
     local vim_version = metadata.vimversion
     if vim_version == nil then
       vim_version = osExecute("nvim --version"):gmatch("([^\n]*)\n?")()

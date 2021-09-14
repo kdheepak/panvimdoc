@@ -20,6 +20,10 @@ inputs:
     description: "Table of contents"
     required: true
     default: true
+  description:
+    description: "Project description"
+    required: false
+    default: true
 runs:
   using: "docker"
   image: "Dockerfile"
@@ -28,3 +32,4 @@ runs:
     - ${{ inputs.pandoc }}
     - ${{ inputs.version }}
     - ${{ inputs.toc }}
+    - ${{ inputs.description }}
