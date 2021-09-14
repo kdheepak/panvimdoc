@@ -101,40 +101,44 @@ function Doc(body, metadata, variables)
   local function add(s)
     table.insert(buffer, s)
   end
-  local vim_version = metadata.vimversion
-  if vim_version == nil then
-    vim_version = osExecute("nvim --version"):gmatch("([^\n]*)\n?")()
-    if string.find(vim_version, "-dev") then
-      vim_version = string.gsub(vim_version, "(.*)-dev.*", "%1")
-    end
-    if vim_version == "" then
-      vim_version = osExecute("vim --version"):gmatch("([^\n]*)\n?")()
-      vim_version = string.gsub(vim_version, "(.*) %(.*%)", "%1")
-    end
-    if vim_version == "" then
-      vim_version = "vim"
-    end
-  elseif vim_version == "vim" then
-    vim_version = osExecute("vim --version"):gmatch("([^\n]*)\n?")()
-  end
-
   local vim_doc_title = metadata.vimdoctitle
   if vim_doc_title == nil then
     vim_doc_title = metadata.project .. ".txt"
   end
-  local date = metadata.date
-  if date == nil then
-    date = os.date("%Y %B %d")
+  local vim_doc_title_tag = "*" .. vim_doc_title .. "*"
+  local project_description = metadata.description
+  if not project_description then
+    local vim_version = metadata.vimversion
+    if vim_version == nil then
+      vim_version = osExecute("nvim --version"):gmatch("([^\n]*)\n?")()
+      if string.find(vim_version, "-dev") then
+        vim_version = string.gsub(vim_version, "(.*)-dev.*", "%1")
+      end
+      if vim_version == "" then
+        vim_version = osExecute("vim --version"):gmatch("([^\n]*)\n?")()
+        vim_version = string.gsub(vim_version, "(.*) %(.*%)", "%1")
+      end
+      if vim_version == "" then
+        vim_version = "vim"
+      end
+    elseif vim_version == "vim" then
+      vim_version = osExecute("vim --version"):gmatch("([^\n]*)\n?")()
+    end
+
+    local date = metadata.date
+    if date == nil then
+      date = os.date("%Y %B %d")
+    end
+    local m = "For " .. vim_version
+    local r = "Last change: " .. date
+    local n = math.max(0, 78 - #vim_doc_title_tag - #m - #r)
+    local s = string.rep(" ", math.floor(n / 2))
+    project_description = s .. m .. s .. r
   end
-  local l = "*" .. vim_doc_title .. "*"
-  local m = "For " .. vim_version
-  local r = "Last change: " .. date
-  local n = math.max(0, 78 - #l - #m - #r)
-  local s = string.rep(" ", math.floor(n / 2))
-  if mod(n, 2) == 1 then
-    add(l .. s .. m .. s .. " " .. r)
+  if mod(math.max(0, 78 - #vim_doc_title_tag - #project_description), 2) == 1 then
+    add(vim_doc_title_tag.." "..project_description)
   else
-    add(l .. s .. m .. s .. r)
+    add(vim_doc_title_tag..project_description)
   end
   add("")
   if metadata.toc == nil or metadata.toc then
