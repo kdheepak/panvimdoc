@@ -88,6 +88,7 @@ Notice that both headings and subheadings have tags.
 ### Sub Heading 3
 
 Sub headings are upper cased, but do not have tags. They are also not included in the TOC.
+They are suffixed with ` ~` which highlights as **bold** text when the file is viewed on GitHub.
 
 ## Markdown Links
 
