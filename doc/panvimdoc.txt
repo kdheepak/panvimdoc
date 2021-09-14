@@ -317,7 +317,7 @@ Sub headings are upper cased heading.
 
 Notice that both headings and subheadings have tags.
 
-SUB HEADING 3
+SUB HEADING 3 ~
 
 Sub headings are upper cased, but do not have tags. They are also not included
 in the TOC.
