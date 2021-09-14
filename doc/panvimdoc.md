@@ -260,3 +260,23 @@ This will only show up in the Markdown file.
 </details>
 
 <!-- panvimdoc-ignore-end -->
+
+## Details and summary
+
+You can even use `<details>` and `<summary>` tags for your README.md.
+
+<details>
+
+<summary>Summary</summary>
+
+This section is the details.
+
+</details>
+
+The `html` tags are dropped and the following output is generated in the vimdoc file.
+
+```
+Summary
+
+This section is the details.
+```
