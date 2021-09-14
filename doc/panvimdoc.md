@@ -281,3 +281,6 @@ Summary ~
 
 This section is the details.
 ```
+
+If you are using html `<b> ... </b>` tags, use them on new lines. <b>Inline bold tags</b> will have
+a ` ~` appended to the text and that may not be what you want.
