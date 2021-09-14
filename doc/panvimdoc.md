@@ -268,7 +268,7 @@ You can even use `<details>` and `<summary>` tags for your README.md.
 
 <details>
 
-<summary>Summary</summary>
+<summary><b>Summary</b></summary>
 
 This section is the details.
 
@@ -277,7 +277,7 @@ This section is the details.
 The `html` tags are dropped and the following output is generated in the vimdoc file.
 
 ```
-Summary
+Summary ~
 
 This section is the details.
 ```

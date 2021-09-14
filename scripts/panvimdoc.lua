@@ -261,8 +261,10 @@ end
 
 function RawInline(format, str)
   if format == "html" then
-    if str == "<b>" or str == "</b>" then
-      return "**"
+    if str == "<b>" then
+      return ""
+    elseif str == "</b>" then
+      return " ~"
     elseif str == "<i>" or str == "</i>" then
       return "_"
     else
