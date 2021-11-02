@@ -124,6 +124,8 @@ git commit -am "Add empty doc"
 git push
 ```
 
+You don't actually need the file, just the `doc` folder but it is easiest to create a file.
+
 Then add the following to `./.github/workflows/panvimdoc.yml`:
 
 ```yaml
