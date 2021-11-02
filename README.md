@@ -116,7 +116,7 @@ generates the following:
 
 ## Using Github Actions
 
-Add the following to `./.github/workflows/pandocvim.yml`:
+Add the following to `./.github/workflows/panvimdoc.yml`:
 
 ```yaml
 name: panvimdoc
