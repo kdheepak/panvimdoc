@@ -116,7 +116,15 @@ generates the following:
 
 ## Using Github Actions
 
-Add the following to `./.github/workflows/panvimdoc.yml`:
+Create an empty doc file:
+
+```
+touch doc/${VIMDOC_PROJECT_NAME}.txt
+git commit -am "Add empty doc"
+git push
+```
+
+Then add the following to `./.github/workflows/panvimdoc.yml`:
 
 ```yaml
 name: panvimdoc
@@ -132,11 +140,11 @@ jobs:
       - name: panvimdoc
         uses: kdheepak/panvimdoc@main
         with:
-          vimdoc: VIMDOC_PROJECT_NAME
+          vimdoc: ${VIMDOC_PROJECT_NAME}
+          description: ${VIMDOC_PROJECT_DESCRIPTION}
           # the following are defaults on github actions
           # pandoc: "README.md"
           # toc: true
-          # description: ""
           # version: "NVIM v0.5.0"
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
