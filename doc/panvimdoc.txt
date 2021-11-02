@@ -177,7 +177,7 @@ generates the following:
 
 USING GITHUB ACTIONS                          *panvimdoc-using-github-actions*
 
-Add the following to `./.github/workflows/pandocvim.yml`:
+Add the following to `./.github/workflows/panvimdoc.yml`:
 
 >
     name: panvimdoc
