@@ -255,6 +255,7 @@ _Feel free to submit a PR to add your documentation as an example here._
 - https://github.com/mjlbach/babelfish.nvim
 - https://foosoft.net/projects/md2vim/
 - https://github.com/wincent/docvim
+- https://github.com/Orange-OpenSource/pandoc-terminal-writer/
 
 
 ==============================================================================
