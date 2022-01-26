@@ -1,4 +1,4 @@
-FROM pandoc/core:2.14.0.1
+FROM pandoc/core:2.16.2
 
 RUN apk update && apk upgrade && apk add bash vim neovim
 
