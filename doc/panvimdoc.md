@@ -323,7 +323,7 @@ You must leave new line spaces before and after a comment tag. For example, **do
 
 ```
 <!-- panvimdoc-ignore-start -->
-![screenshot](./github/gif.gif)
+![screenshot](./gif.gif)
 <!-- panvimdoc-ignore-end -->
 ```
 
@@ -332,7 +332,7 @@ because it may cause the rest of your document to be ignored. Do this instead:
 ```
 <!-- panvimdoc-ignore-start -->
 
-![screenshot](./github/gif.gif)
+![screenshot](./gif.gif)
 
 <!-- panvimdoc-ignore-end -->
 ```
