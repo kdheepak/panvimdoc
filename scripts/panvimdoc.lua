@@ -260,6 +260,7 @@ function Span(s, attr)
 end
 
 function RawInline(format, str)
+  print(format, str)
   if format == "html" then
     if str == "<b>" then
       return ""
@@ -267,6 +268,8 @@ function RawInline(format, str)
       return " ~"
     elseif str == "<i>" or str == "</i>" then
       return "_"
+    elseif str == "<kbd>" or str == "</kbd>" then
+      return ""
     else
       return str
     end

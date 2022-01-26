@@ -314,3 +314,17 @@ This section is the details.
 
 If you are using html `<b> ... </b>` tags, use them on new lines. <b>Inline bold tags</b> will have
 a ` ~` appended to the text and that may not be what you want.
+
+## Keyboard HTML tag
+
+Use `<kbd><leader>o</kbd>` in markdown, for example <kbd><leader>o</kbd>.
+
+<!-- panvimdoc-ignore-start -->
+
+This gets rendered as:
+
+```
+Use `<kbd><leader>o</kbd>` in markdown, for example <leader>o.
+```
+
+<!-- panvimdoc-ignore-end -->
