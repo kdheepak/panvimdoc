@@ -461,6 +461,27 @@ Content that needs to be presented only in Markdown can be inside
 <
 
 
+You must leave new line spaces before and after a comment tag. For example,
+doing this:
+
+>
+    <!-- panvimdoc-ignore-start -->
+    ![screenshot](./github/gif.gif)
+    <!-- panvimdoc-ignore-end -->
+<
+
+
+may cause the rest of your document to be ignored. Do this instead:
+
+>
+    <!-- panvimdoc-ignore-start -->
+    
+    ![screenshot](./github/gif.gif)
+    
+    <!-- panvimdoc-ignore-end -->
+<
+
+
 DETAILS AND SUMMARY                            *panvimdoc-details-and-summary*
 
 You can even use `<details>` and `<summary>` tags for your README.md.
