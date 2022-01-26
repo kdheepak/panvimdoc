@@ -317,14 +317,14 @@ a ` ~` appended to the text and that may not be what you want.
 
 ## Keyboard HTML tag
 
-Use `<kbd><leader>o</kbd>` in markdown, for example <kbd><leader>o</kbd>.
+Use `<kbd>CMD + o</kbd>` in markdown, for example <kbd>CMD + o</kbd>.
 
 <!-- panvimdoc-ignore-start -->
 
 This gets rendered as:
 
 ```
-Use `<kbd><leader>o</kbd>` in markdown, for example <leader>o.
+Use `<kbd>CMD + o</kbd>` in markdown, for example CMD + o.
 ```
 
 <!-- panvimdoc-ignore-end -->
