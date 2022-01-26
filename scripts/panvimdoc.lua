@@ -260,7 +260,6 @@ function Span(s, attr)
 end
 
 function RawInline(format, str)
-  print(format, str)
   if format == "html" then
     if str == "<b>" then
       return ""

@@ -209,6 +209,14 @@ function Quoted(el)
 end
 
 function RawInline(el)
+  local str = el.text
+  if str == "<!-- panvimdoc-ignore-start -->" then
+    COMMENT = true
+    return pandoc.Str("")
+  elseif str == "<!-- panvimdoc-ignore-end -->" then
+    COMMENT = false
+    return pandoc.Str("")
+  end
   if COMMENT == true then
     return pandoc.Str("")
   end
