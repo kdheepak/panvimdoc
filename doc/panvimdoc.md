@@ -211,26 +211,30 @@ Support for markdown tables is also available:
 
 <!-- prettier-ignore-start -->
 
-<!-- panvimdoc-ignore-start -->
-
-  Right     Left     Center     Default
--------     ------ ----------   -------
-   `12`     12        12            12
-    123     `123`     123          123
-      1     1          1             1
-
-Table:  Demonstration of simple table syntax.
+| Option                             | Background | Default | Description                                                               |
+| ---------------------------------- | ---------- | ------- | ------------------------------------------------------------------------- |
+| lightness                          | light      | `nil`   | Change background colors lightness. Options: `'bright'`, `'dim'`.         |
+| darkness                           | dark       | `nil`   | Change background colors darkness. Options: `'stark'`, `'warm'`.          |
+| solid_vert_split                   | both       | `false` | Solid \|hl-VertSplit\| background.                                        |
+| solid_line_nr                      | both       | `false` | Solid \|hl-LineNr\| background.                                           |
+| solid_float_border                 | both       | `false` | Make \|hl-FloatBorder\| have a more distinguishable background highlight. |
+| darken_noncurrent_window           | light      | `false` | Make non-current window background darker than _Normal_.                  |
+| lighten_noncurrent_window          | dark       | `false` | Make non-current window background lighter than _Normal_.                 |
+| italic_comments                    | both       | `true`  | Make comments italicize.                                                  |
+| darken_comments                    | light      | `38`    | Percentage to darken comments relative to Normal bg.                      |
+| lighten_comments                   | dark       | `38`    | Percentage to lighten comments relative to Normal bg.                     |
+| darken_non_text                    | light      | `25`    | Percentage to darken \|hl-NonText\| relative to Normal bg.                |
+| lighten_non_text                   | dark       | `30`    | Percentage to lighten \|hl-NonText\| relative to Normal bg.               |
+| darken_line_nr                     | light      | `33`    | Percentage to darken \|hl-LineNr\| relative to Normal bg.                 |
+| lighten_line_nr                    | dark       | `35`    | Percentage to lighten \|hl-LineNr\| relative to Normal bg.                |
+| darken_cursor_line                 | light      | `3`     | Percentage to darken \|hl-CursorLine\| relative to Normal bg.             |
+| lighten_cursor_line                | dark       | `4`     | Percentage to lighten \|hl-CursorLine\| relative to Normal bg.            |
+| colorize_diagnostic_underline_text | both       | `false` | Colorize the fg of `DiagnosticUnderline*`.                                |
+| transparent_background             | both       | `false` | Make background transparent.                                              |
 
 <!-- prettier-ignore-end -->
 
-<!-- panvimdoc-ignore-end -->
-
-```
-│Right│Left│Center│Default│
-│   12│12  │  12  │12     │
-│  123│123 │ 123  │123    │
-│    1│1   │  1   │1      │
-```
+<!-- panvimdoc-ignore-start -->
 
 ```
 | Option                             | Background | Default | Description                                                               |
@@ -254,6 +258,8 @@ Table:  Demonstration of simple table syntax.
 | colorize_diagnostic_underline_text | both       | `false` | Colorize the fg of `DiagnosticUnderline*`.                                |
 | transparent_background             | both       | `false` | Make background transparent.                                              |
 ```
+
+<!-- panvimdoc-ignore-end -->
 
 ## Markdown only content
 

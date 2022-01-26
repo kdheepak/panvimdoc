@@ -557,7 +557,6 @@ MIN_COL_WIDTH = 5
 function Table(caption, aligns, widths, headers, rows)
   local buffer = {}
   local table_width_for_adjust = 0
-  local max_table_width_for_adjust = 78
   local align = { ["AlignDefault"] = 0, ["AlignLeft"] = 0, ["AlignRight"] = 1, ["AlignCenter"] = 2 }
   local function add_row(s)
     table.insert(buffer, s)
@@ -584,32 +583,8 @@ function Table(caption, aligns, widths, headers, rows)
     if col_width[i] > MIN_COL_WIDTH then
       -- Sum of all widths for columns that could be reduced
       table_width_for_adjust = table_width_for_adjust + col_width[i]
-    else
-      max_table_width_for_adjust = max_table_width_for_adjust - col_width[i]
     end
   end
-  -- Reduce large cells if needed:
-  local xs = table_width_for_adjust - max_table_width_for_adjust
-  if xs > 0 then
-    for i, w in pairs(col_width) do
-      if w > MIN_COL_WIDTH then
-        col_width[i] = w - math.floor(w * xs / table_width_for_adjust + 1)
-      end
-      cell_height = math.floor(#headers[i] / col_width[i]) + 1
-      if cell_height > header_height then
-        header_height = cell_height
-      end
-      for j, row in pairs(rows) do
-        local _, n = row[i]:gsub("`", "")
-        cell_width = #row[i] + n
-        cell_height = math.floor(cell_width / col_width[i]) + 1
-        if cell_height > row_height[j] then
-          row_height[j] = cell_height
-        end
-      end
-    end
-  end
-
   local last = #col_width
   local tmpl = ""
   for i, w in pairs(col_width) do
