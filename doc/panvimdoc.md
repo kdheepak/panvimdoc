@@ -4,6 +4,8 @@ README.md
 
 # Specification
 
+See [./panvimdoc.txt](./panvimdoc.txt) for generated output of this file.
+
 ## External includes
 
 Use the following in your markdown file to include any other markdown file:
@@ -36,11 +38,17 @@ You can use codeblocks that have language as `vimdoc` to write raw vimdoc.
 ```
 ````
 
-will be rendered verbatim in the generated documentation as below:
+will be rendered verbatim in the generated documentation.
+
+<!-- panvimdoc-ignore-start -->
+
+The following is generated:
 
 ```vimdoc
 You can use codeblocks that have language as `vimdoc` to write raw vimdoc.
 ```
+
+<!-- panvimdoc-ignore-end -->
 
 This can be used to write any custom whitespace formatted documentation in the generated vimdoc (for mappings, options etc).
 
@@ -94,17 +102,25 @@ They are suffixed with ` ~` which highlights as **bold** text when the file is v
 
 You can use markdown links in vimdoc. For example, see the [links](#links) section in the generated vim document.
 
+<!-- panvimdoc-ignore-start -->
+
 The following markdown:
+
+<!-- panvimdoc-ignore-end -->
 
 ```markdown
 You can link to the tags by using [sub heading 2](#sub-heading-2).
 ```
+
+<!-- panvimdoc-ignore-start -->
 
 is converted to the following vimdoc:
 
 ```
 You can link to the tags by using |projectName-sub-heading-2|.
 ```
+
+<!-- panvimdoc-ignore-end -->
 
 This way, any links will work in markdown README on GitHub or on the web using anchors AND will work as tags and links in vimdoc.
 The anchors are simply dropped in vimdoc inline.
@@ -126,7 +142,7 @@ Any markdown header of level 4 will be considered as a special header.
 This can be used to generate documentation of mappings.
 All of the content in curly braces `{...}` that is part of the header is dropped and a tag is created.
 
-For example, the level 4 heading and the contents of the section as follows:
+For example, the level 4 heading and the contents of the section is as follows:
 
 ```
 #### abc{xyz}
@@ -134,13 +150,17 @@ For example, the level 4 heading and the contents of the section as follows:
 Docstring for abc {xyz}.
 ```
 
-becomes the following vimdoc:
+<!-- panvimdoc-ignore-start -->
+
+This becomes the following vimdoc:
 
 ```
                                                                *projectName-abc*
 
 abc{xyz}                               Docstring for abc {xyz}.
 ```
+
+<!-- panvimdoc-ignore-end -->
 
 Notice that the tag `*projectName-abc` is generated for you:
 
@@ -154,6 +174,8 @@ See following headings as examples:
 
 Command that operates over {motion} moved.
 
+<!-- panvimdoc-ignore-start -->
+
 The following vimdoc mapping is generated:
 
 ```
@@ -164,9 +186,13 @@ pv{motion}                             Command that operates over {motion}
 
 ```
 
+<!-- panvimdoc-ignore-end -->
+
 #### pvd
 
 Command that takes [count] lines.
+
+<!-- panvimdoc-ignore-start -->
 
 The following vimdoc mapping is generated:
 
@@ -177,9 +203,13 @@ pvd                                    Command that takes [count] lines.
 
 ```
 
+<!-- panvimdoc-ignore-end -->
+
 #### :[range]CommandName {doc=CommandName}
 
 Command that operates over [range].
+
+<!-- panvimdoc-ignore-start -->
 
 The following vimdoc mapping is generated:
 
@@ -190,11 +220,15 @@ The following vimdoc mapping is generated:
 :[range]CommandName                    Command that operates over [range].
 ```
 
+<!-- panvimdoc-ignore-end -->
+
 You can use `{doc=AdditionalTag}` to generate one additional tag for each header.
 
 #### {Visual}pv
 
 Command that operates over highlighted lines.
+
+<!-- panvimdoc-ignore-start -->
 
 The following vimdoc mapping is generated:
 
@@ -204,6 +238,8 @@ The following vimdoc mapping is generated:
 {Visual}pv                             Command that operates over highlighted
                                        lines.
 ```
+
+<!-- panvimdoc-ignore-end -->
 
 ## Table
 
