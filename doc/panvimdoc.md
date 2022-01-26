@@ -316,6 +316,24 @@ This will only show up in the Markdown file.
 <!-- panvimdoc-ignore-end -->
 ```
 
+You must leave new line spaces before and after a comment tag. For example, doing this:
+
+```
+<!-- panvimdoc-ignore-start -->
+![screenshot](./github/gif.gif)
+<!-- panvimdoc-ignore-end -->
+```
+
+may cause the rest of your document to be ignored. Do this instead:
+
+```
+<!-- panvimdoc-ignore-start -->
+
+![screenshot](./github/gif.gif)
+
+<!-- panvimdoc-ignore-end -->
+```
+
 <!-- panvimdoc-ignore-start -->
 
 <details>
