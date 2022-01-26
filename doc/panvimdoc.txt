@@ -541,7 +541,7 @@ tags ~ will have a `~` appended to the text and that may not be what you want.
 
 KEYBOARD HTML TAG                                *panvimdoc-keyboard-html-tag*
 
-Use `<kbd><leader>o</kbd>` in markdown, for example <leader>o.
+Use `<kbd>CMD + o</kbd>` in markdown, for example CMD + o.
 
 
 
