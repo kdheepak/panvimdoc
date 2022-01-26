@@ -262,6 +262,8 @@ _Feel free to submit a PR to add your documentation as an example here._
 ==============================================================================
 8. Specification                                     *panvimdoc-specification*
 
+See ./panvimdoc.txt <./panvimdoc.txt> for generated output of this file.
+
 EXTERNAL INCLUDES                                *panvimdoc-external-includes*
 
 Use the following in your markdown file to include any other markdown file:
@@ -299,9 +301,7 @@ For example, the following:
 <
 
 
-will be rendered verbatim in the generated documentation as below:
-
-You can use codeblocks that have language as `vimdoc` to write raw vimdoc.
+will be rendered verbatim in the generated documentation.
 
 This can be used to write any custom whitespace formatted documentation in the
 generated vimdoc (for mappings, options etc).
@@ -342,17 +342,8 @@ MARKDOWN LINKS                                      *panvimdoc-markdown-links*
 You can use markdown links in vimdoc. For example, see the |panvimdoc-links|
 section in the generated vim document.
 
-The following markdown:
-
 >
     You can link to the tags by using [sub heading 2](#sub-heading-2).
-<
-
-
-is converted to the following vimdoc:
-
->
-    You can link to the tags by using |projectName-sub-heading-2|.
 <
 
 
@@ -382,21 +373,12 @@ Any markdown header of level 4 will be considered as a special header. This can
 be used to generate documentation of mappings. All of the content in curly
 braces `{...}` that is part of the header is dropped and a tag is created.
 
-For example, the level 4 heading and the contents of the section as follows:
+For example, the level 4 heading and the contents of the section is as follows:
 
 >
     #### abc{xyz}
     
     Docstring for abc {xyz}.
-<
-
-
-becomes the following vimdoc:
-
->
-                                                                   *projectName-abc*
-    
-    abc{xyz}                               Docstring for abc {xyz}.
 <
 
 
@@ -415,43 +397,14 @@ pv{motion}                             Command that operates over {motion}
                                        moved.
 
 
-The following vimdoc mapping is generated:
-
->
-                                                                    *projectName-pv*
-    
-    pv{motion}                             Command that operates over {motion}
-                                           moved.
-<
-
-
                                                                *panvimdoc-pvd*
 
 pvd                                    Command that takes [count] lines.
 
 
-The following vimdoc mapping is generated:
-
->
-                                                                   *projectName-pvd*
-    
-    pvd                                    Command that takes [count] lines.
-<
-
-
                                         *panvimdoc-:CommandName* *CommandName*
 
 :[range]CommandName                    Command that operates over [range].
-
-
-The following vimdoc mapping is generated:
-
->
-    
-                                            *projectName-:CommandName* *CommandName*
-    
-    :[range]CommandName                    Command that operates over [range].
-<
 
 
 You can use `{doc=AdditionalTag}` to generate one additional tag for each
@@ -461,16 +414,6 @@ header.
 
 {Visual}pv                             Command that operates over highlighted
                                        lines.
-
-
-The following vimdoc mapping is generated:
-
->
-                                                                    *panvimdoc-pv*
-    
-    {Visual}pv                             Command that operates over highlighted
-                                           lines.
-<
 
 
 TABLE                                                        *panvimdoc-table*
