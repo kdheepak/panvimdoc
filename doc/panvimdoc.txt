@@ -462,7 +462,7 @@ Content that needs to be presented only in Markdown can be inside
 
 
 You must leave new line spaces before and after a comment tag. For example,
-doing this:
+**do not** do this:
 
 >
     <!-- panvimdoc-ignore-start -->
@@ -471,7 +471,7 @@ doing this:
 <
 
 
-may cause the rest of your document to be ignored. Do this instead:
+because it may cause the rest of your document to be ignored. Do this instead:
 
 >
     <!-- panvimdoc-ignore-start -->
