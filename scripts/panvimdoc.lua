@@ -37,7 +37,7 @@ local function attributes(attr)
   local attr_table = {}
   for x, y in pairs(attr) do
     if y and y ~= "" then
-      table.insert(attr_table, " " .. x .. '="' .. escape(y, true) .. '"')
+      table.insert(attr_table, " " .. x .. "=\"" .. escape(y, true) .. "\"")
     end
   end
   return table.concat(attr_table)
@@ -244,7 +244,7 @@ function SingleQuoted(s)
 end
 
 function DoubleQuoted(s)
-  return '"' .. s .. '"'
+  return "\"" .. s .. "\""
 end
 
 function Note(s)
@@ -467,12 +467,12 @@ local function html_align(align)
 end
 
 function CaptionedImage(src, tit, caption, attr)
-  return '<div class="figure">\n<img src="'
+  return "<div class=\"figure\">\n<img src=\""
     .. escape(src, true)
-    .. '" title="'
+    .. "\" title=\""
     .. escape(tit, true)
-    .. '"/>\n'
-    .. '<p class="caption">'
+    .. "\"/>\n"
+    .. "<p class=\"caption\">"
     .. escape(caption)
     .. "</p>\n</div>"
 end
