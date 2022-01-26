@@ -316,6 +316,9 @@ This will only show up in the Markdown file.
 <!-- panvimdoc-ignore-end -->
 ```
 
+The convenient feature of using `panvimdoc-ignore-{start/end}` blocks is that it is not rendered in HTML, keeping your README rendered on GitHub more readable.
+If you want to see examples of this, see the raw markdown version of this file.
+
 You must leave new line spaces before and after a comment tag. For example, **do not** do this:
 
 ```
@@ -341,6 +344,7 @@ because it may cause the rest of your document to be ignored. Do this instead:
 
 This section will ignored when generating the vimdoc file.
 This will only show up in the Markdown file.
+See the raw markdown of this file for examples.
 
 </details>
 
