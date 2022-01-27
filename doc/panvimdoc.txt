@@ -245,8 +245,8 @@ Then add the following to `./.github/workflows/panvimdoc.yml`:
             uses: kdheepak/panvimdoc@main
             with:
               vimdoc: ${VIMDOC_PROJECT_NAME}
-              description: ${VIMDOC_PROJECT_DESCRIPTION}
               # the following are defaults on github actions
+              # description: ""
               # pandoc: "README.md"
               # toc: true
               # version: "NVIM v0.5.0"
@@ -266,13 +266,11 @@ following:
             uses: kdheepak/panvimdoc@main
             with:
               vimdoc: panvimdoc
-              description: pandoc markdown to vimdoc
 <
 
 
 Will output a file `doc/panvimdoc.txt` and the vim help tag for it will be
-`panvimdoc`. See `entrypoint.sh` <./entrypoint.sh> for exact shell command
-executed.
+`panvimdoc`.
 
 For an example of how this is used, see one of the following workflows:
 
