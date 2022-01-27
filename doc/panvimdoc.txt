@@ -551,13 +551,6 @@ This section is the details.
 The `html` tags are dropped and the following output is generated in the vimdoc
 file.
 
->
-    Summary ~
-    
-    This section is the details.
-<
-
-
 If you are using html `<b> ... </b>` tags, use them on new lines. Inline bold
 tags ~ will have a `~` appended to the text and that may not be what you want.
 
