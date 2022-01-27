@@ -379,13 +379,19 @@ This section is the details.
 
 </details>
 
-The `html` tags are dropped and the following output is generated in the vimdoc file.
+<!-- panvimdoc-ignore-start -->
+
+This gets rendered as:
 
 ```
 Summary ~
 
 This section is the details.
 ```
+
+<!-- panvimdoc-ignore-end -->
+
+The `html` tags are dropped and the following output is generated in the vimdoc file.
 
 If you are using html `<b> ... </b>` tags, use them on new lines. <b>Inline bold tags</b> will have
 a ` ~` appended to the text and that may not be what you want.
