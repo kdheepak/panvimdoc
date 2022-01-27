@@ -346,7 +346,7 @@ See the raw markdown of this file for examples.
 
 <!-- panvimdoc-ignore-end -->
 
-The convenient feature of using `panvimdoc-ignore-{start/end}` blocks is that it is not rendered in HTML, keeping your README rendered on GitHub more readable.
+The convenient advantage of using `<!-- panvimdoc-ignore-{start/end} -->` blocks in a HTML comment syntax is that the comment will not rendered in HTML or on GitHub, giving the documentation writers control to present the information differently on GitHub and in vimdoc.
 If you want to see examples of this, see the raw markdown version of this file.
 
 You must leave new line spaces before and after a comment tag. For example, **do not** do this:
