@@ -146,6 +146,8 @@ The following is generated in vimdoc:
 ```
 - |cursorcolumn|
 - |`completeopt`|
+- vim <https://github.com/vim/vim>
+- neovim <https://github.com/neovim/neovim>
 ```
 
 <!-- panvimdoc-ignore-end -->
