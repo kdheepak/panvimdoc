@@ -154,6 +154,9 @@ https://github.com/kdheepak/panvimdoc/issues/1.
 ==============================================================================
 7. Usage                                                     *panvimdoc-usage*
 
+If your project is on GitHub, see
+|panvimdoc-this-section-for-how-to-use-it-with-github-actions|.
+
 >
     pandoc --metadata=project:${PROJECT} --lua-filter scripts/skip-blocks.lua --lua-filter scripts/include-files.lua -t scripts/panvimdoc.lua ${INPUT} -o ${OUTPUT}
 <
