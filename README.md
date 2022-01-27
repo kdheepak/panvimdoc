@@ -174,8 +174,8 @@ jobs:
         uses: kdheepak/panvimdoc@main
         with:
           vimdoc: ${VIMDOC_PROJECT_NAME}
-          description: ${VIMDOC_PROJECT_DESCRIPTION}
           # the following are defaults on github actions
+          # description: ""
           # pandoc: "README.md"
           # toc: true
           # version: "NVIM v0.5.0"
