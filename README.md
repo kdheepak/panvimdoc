@@ -1,5 +1,6 @@
 # panvimdoc
 
+Decrease friction when writing documentation for your plugins.
 Write documentation in [pandoc markdown](https://pandoc.org/MANUAL.html).
 Generate documentation in vimdoc.
 
