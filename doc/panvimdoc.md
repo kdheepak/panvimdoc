@@ -160,7 +160,7 @@ Any markdown header of level 4 will be considered as a special header.
 This can be used to generate documentation of mappings.
 All of the content in curly braces `{...}` that is part of the header is dropped and a tag is created.
 
-For example, the level 4 heading and the contents of the section is as follows:
+For example, the level 4 heading and the contents of the section:
 
 ```
 #### abc{xyz}
@@ -168,17 +168,13 @@ For example, the level 4 heading and the contents of the section is as follows:
 Docstring for abc {xyz}.
 ```
 
-<!-- panvimdoc-ignore-start -->
-
-This becomes the following vimdoc:
+becomes the following vimdoc:
 
 ```
                                                                *projectName-abc*
 
 abc{xyz}                               Docstring for abc {xyz}.
 ```
-
-<!-- panvimdoc-ignore-end -->
 
 Notice that the tag `*projectName-abc` is generated for you:
 
