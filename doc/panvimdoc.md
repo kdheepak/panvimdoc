@@ -331,9 +331,9 @@ This will only show up in the Markdown file.
 <!-- panvimdoc-ignore-end -->
 ```
 
-<!-- panvimdoc-ignore-start -->
-
 The following will only be present in the Markdown document.
+
+<!-- panvimdoc-ignore-start -->
 
 <details>
     <summary>Vimdoc Ignored Section</summary>
