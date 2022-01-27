@@ -3,6 +3,35 @@
 Write documentation in [pandoc markdown](https://pandoc.org/MANUAL.html).
 Generate documentation in vimdoc.
 
+# TLDR
+
+1. Choose `${VIMDOC_PROJECT_NAME}` and `${VIMDOC_PROJECT_DESCRIPTION}`.
+2. Add the following to `./.github/workflows/panvimdoc.yml`:
+
+   ```
+   name: panvimdoc
+
+   on: [push]
+
+   jobs:
+     docs:
+       runs-on: ubuntu-latest
+       name: pandoc to vimdoc
+       steps:
+         - uses: actions/checkout@v2
+         - name: panvimdoc
+           uses: kdheepak/panvimdoc@main
+           with:
+             vimdoc: ${VIMDOC_PROJECT_NAME}
+             description: ${VIMDOC_PROJECT_DESCRIPTION}
+         - uses: stefanzweifel/git-auto-commit-action@v4
+           with:
+             commit_message: "Auto generate docs"
+             branch: ${{ github.head_ref }}
+   ```
+
+3. `README.md` gets converted to `./doc/${VIMDOC_PROJECT_NAME}.txt` and committed to the repo.
+
 # Motivation
 
 Writing documentation is hard.
@@ -150,7 +179,7 @@ jobs:
           # version: "NVIM v0.5.0"
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          commit_message: "Auto generate docs"
+          commit_message: 'Auto generate docs'
           branch: ${{ github.head_ref }}
 ```
 
