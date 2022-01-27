@@ -193,7 +193,6 @@ This is usually the name of the plugin or the documentation file without the `.t
         uses: kdheepak/panvimdoc@main
         with:
           vimdoc: panvimdoc
-          description: pandoc markdown to vimdoc
 ```
 
 Will output a file `doc/panvimdoc.txt` and the vim help tag for it will be `panvimdoc`.
