@@ -314,7 +314,7 @@ The following gets generated:
 
 ## Markdown only content
 
-Sometimes you may want to show content that only needs to be presented in Markdown and on the rendered view on GitHub but ignored in the generated vimdoc.
+Sometimes you want to show content that only needs to be presented in Markdown and on the rendered view on GitHub but ignored in the generated vimdoc.
 This can be placed inside `panvimdoc-ignore-{start/end}` blocks:
 
 ```
