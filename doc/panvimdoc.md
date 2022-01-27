@@ -349,7 +349,7 @@ See the raw markdown of this file for examples.
 The convenient advantage of using `<!-- panvimdoc-ignore-{start/end} -->` blocks in a HTML comment syntax is that the comment will not rendered in HTML or on GitHub, giving the documentation writers control to present the information differently on GitHub and in vimdoc.
 If you want to see examples of this, see the raw markdown version of this file.
 
-You must leave new line spaces before and after a comment tag. For example, **do not** do this:
+The only thing to keep in mind is that you must leave new line spaces before and after a comment tag. For example, **do not** do this:
 
 ```
 <!-- panvimdoc-ignore-start -->
