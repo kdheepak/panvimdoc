@@ -176,7 +176,7 @@ becomes the following vimdoc:
 abc{xyz}                               Docstring for abc {xyz}.
 ```
 
-Notice that the tag `*projectName-abc` is generated for you:
+Notice that the tag `*projectName-abc*` is generated for you:
 
 Additionally, content in square brackets `[...]` is also dropped for creating the tag name.
 
