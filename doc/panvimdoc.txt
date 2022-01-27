@@ -492,9 +492,9 @@ Support for markdown tables is also available:
 
 MARKDOWN ONLY CONTENT                        *panvimdoc-markdown-only-content*
 
-Sometimes you want to show content that only needs to be presented in Markdown
-and on the rendered view on GitHub but ignored in the generated vimdoc. This
-can be placed inside `panvimdoc-ignore-{start/end}` blocks:
+Sometimes you want to show content that is to be present in Markdown and on the
+rendered view on GitHub but ignored in the generated vimdoc. This can be placed
+inside `panvimdoc-ignore-{start/end}` blocks:
 
 >
     <!-- panvimdoc-ignore-start -->
@@ -510,6 +510,8 @@ can be placed inside `panvimdoc-ignore-{start/end}` blocks:
     <!-- panvimdoc-ignore-end -->
 <
 
+
+The following will only be present in the Markdown document.
 
 The convenient feature of using `panvimdoc-ignore-{start/end}` blocks is that
 it is not rendered in HTML, keeping your README rendered on GitHub more
