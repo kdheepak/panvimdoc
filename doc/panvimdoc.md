@@ -314,7 +314,7 @@ The following gets generated:
 
 ## Markdown only content
 
-Sometimes you want to show content that only needs to be presented in Markdown and on the rendered view on GitHub but ignored in the generated vimdoc.
+Sometimes you want to show content that is to be present in Markdown and on the rendered view on GitHub but ignored in the generated vimdoc.
 This can be placed inside `panvimdoc-ignore-{start/end}` blocks:
 
 ```
@@ -330,6 +330,21 @@ This will only show up in the Markdown file.
 
 <!-- panvimdoc-ignore-end -->
 ```
+
+<!-- panvimdoc-ignore-start -->
+
+The following will only be present in the Markdown document.
+
+<details>
+    <summary>Vimdoc Ignored Section</summary>
+
+This section will ignored when generating the vimdoc file.
+This will only show up in the Markdown file.
+See the raw markdown of this file for examples.
+
+</details>
+
+<!-- panvimdoc-ignore-end -->
 
 The convenient feature of using `panvimdoc-ignore-{start/end}` blocks is that it is not rendered in HTML, keeping your README rendered on GitHub more readable.
 If you want to see examples of this, see the raw markdown version of this file.
@@ -351,19 +366,6 @@ because it may cause the rest of your document to be ignored. Do this instead:
 
 <!-- panvimdoc-ignore-end -->
 ```
-
-<!-- panvimdoc-ignore-start -->
-
-<details>
-    <summary>Vimdoc Ignored Section</summary>
-
-This section will ignored when generating the vimdoc file.
-This will only show up in the Markdown file.
-See the raw markdown of this file for examples.
-
-</details>
-
-<!-- panvimdoc-ignore-end -->
 
 ## Details and summary
 
