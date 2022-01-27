@@ -1,32 +1,32 @@
 # action.yml
-name: "panvimdoc"
-description: "Convert pandoc input to vimdoc output"
+name: 'panvimdoc'
+description: 'Convert pandoc input to vimdoc output'
 branding:
   icon: file-text
   color: gray-dark
 inputs:
   vimdoc:
-    description: "Output vimdoc project name"
+    description: 'Output vimdoc project name'
     required: true
   pandoc:
-    description: "Input pandoc file"
+    description: 'Input pandoc file'
     required: true
-    default: "README.md"
+    default: 'README.md'
   version:
-    description: "Vim version"
+    description: 'Vim version'
     required: true
-    default: "NVIM v0.5.0"
+    default: 'NVIM v0.5.0'
   toc:
-    description: "Table of contents"
+    description: 'Table of contents'
     required: true
     default: true
   description:
-    description: "Project description"
+    description: 'Project description'
     required: false
-    default: true
+    default: ''
 runs:
-  using: "docker"
-  image: "Dockerfile"
+  using: 'docker'
+  image: 'Dockerfile'
   args:
     - ${{ inputs.vimdoc }}
     - ${{ inputs.pandoc }}
