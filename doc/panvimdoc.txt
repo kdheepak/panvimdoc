@@ -340,10 +340,8 @@ For example, the following:
 will be rendered verbatim in the generated documentation.
 
 This can be used to write any custom whitespace formatted documentation in the
-generated vimdoc (for mappings, options etc).
-
-Also see |panvimdoc-mappings| for a Markdown friendly way to write
-documentation for mappings.
+generated vimdoc (for mappings, options etc). Also see |panvimdoc-mappings| for
+a Markdown friendly way to write documentation for mappings.
 
 ==============================================================================
 10. Title                                                    *panvimdoc-title*
