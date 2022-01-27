@@ -6,7 +6,7 @@ Generate documentation in vimdoc.
 
 # TLDR
 
-1. Choose `${VIMDOC_PROJECT_NAME}` and `${VIMDOC_PROJECT_DESCRIPTION}`. See [.github/workflows/panvimdoc.yml](./.github/workflows/panvimdoc.yml) as an example.
+1. Choose `${VIMDOC_PROJECT_NAME}`. See [.github/workflows/panvimdoc.yml](./.github/workflows/panvimdoc.yml) as an example.
 2. Add the following to `./.github/workflows/panvimdoc.yml`:
 
    ```
@@ -24,7 +24,6 @@ Generate documentation in vimdoc.
            uses: kdheepak/panvimdoc@main
            with:
              vimdoc: ${VIMDOC_PROJECT_NAME}
-             description: ${VIMDOC_PROJECT_DESCRIPTION}
          - uses: stefanzweifel/git-auto-commit-action@v4
            with:
              commit_message: "Auto generate docs"
