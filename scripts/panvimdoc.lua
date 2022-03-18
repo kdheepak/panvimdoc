@@ -440,7 +440,7 @@ end
 function OrderedList(items)
   local buffer = {}
   for i, item in pairs(items) do
-    table.insert(buffer, "1. " .. item)
+    table.insert(buffer, ("%s. %s"):format(i,  item))
   end
   return "\n" .. table.concat(buffer, "\n") .. "\n"
 end
