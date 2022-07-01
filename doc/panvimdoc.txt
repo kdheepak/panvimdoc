@@ -1,4 +1,4 @@
-*panvimdoc.txt*           For NVIM v0.5.0           Last change: 2022 March 18
+*panvimdoc.txt*            For NVIM v0.5.0           Last change: 2022 July 01
 
 ==============================================================================
 Table of Contents                                *panvimdoc-table-of-contents*
@@ -88,14 +88,12 @@ information. I think preserving these features and characteristics of vimdoc
 for documentation of vim plugins is important.
 
 Writing documentation in Markdown and converting it to vimdoc is not a novel
-idea. `@mjlbach` <https://github.com/mjlbach> has already implemented a neovim
-treesitter based markdown to vimdoc converter that works fairly well. See
-mjlbach/babelfish.nvim <https://github.com/mjlbach/babelfish.nvim> for more
-information. This approach is close to ideal. There are no dependencies (
-except for the Markdown treesitter parser ). While it appears that the markdown
-parser may cause crashes, I have not experienced any issues in my use. It is
-neovim only but you can use this on github actions even for a vim plugin
-documentation.
+idea. For example, one can implement a neovim treesitter based markdown to
+vimdoc converter that works fairly well. See ibhagwan/ts-vimdoc.nvim
+<https://github.com/ibhagwan/ts-vimdoc.nvim> for more information. This
+approach is close to ideal. There are no dependencies, except for the Markdown
+treesitter parser. It is neovim only but you can use this on github actions
+even for a vim plugin documentation.
 
 I found two other projects that do something similar, wincent/docvim
 <https://github.com/wincent/docvim> and FooSoft/md2vim
