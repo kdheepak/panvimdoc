@@ -1,4 +1,4 @@
-local demojify = require("Demojify")
+local demojify = require("lib.Demojify")
 
 -- keep track if a emoji was removed previously
 local prevEmoji = false
