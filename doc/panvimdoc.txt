@@ -1,4 +1,4 @@
-*panvimdoc.txt*            For NVIM v0.5.0           Last change: 2022 July 01
+*panvimdoc.txt*            For NVIM v0.5.0           Last change: 2022 July 24
 
 ==============================================================================
 Table of Contents                                *panvimdoc-table-of-contents*
@@ -248,6 +248,7 @@ Then add the following to `./.github/workflows/panvimdoc.yml`:
               # pandoc: "README.md"
               # toc: true
               # version: "NVIM v0.5.0"
+              # demojify: false
           - uses: stefanzweifel/git-auto-commit-action@v4
             with:
               commit_message: 'Auto generate docs'
