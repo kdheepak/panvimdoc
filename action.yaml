@@ -19,11 +19,15 @@ inputs:
   toc:
     description: 'Table of contents'
     required: true
-    default: true
+    default: "true"
   description:
     description: 'Project description'
     required: false
     default: ''
+  demojify:
+    description: 'Strip emojis from the vimdoc'
+    required: false
+    default: "false"
 runs:
   using: 'docker'
   image: 'Dockerfile'
@@ -33,3 +37,4 @@ runs:
     - ${{ inputs.version }}
     - ${{ inputs.toc }}
     - ${{ inputs.description }}
+    - ${{ inputs.demojify }}
