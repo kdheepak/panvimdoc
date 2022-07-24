@@ -179,6 +179,7 @@ jobs:
           # pandoc: "README.md"
           # toc: true
           # version: "NVIM v0.5.0"
+          # demojify: false
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: 'Auto generate docs'
