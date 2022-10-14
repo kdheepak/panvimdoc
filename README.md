@@ -203,7 +203,7 @@ For an example of how this is used, see one of the following workflows:
 - [kdheepak/panvimdoc](./.github/workflows/panvimdoc.yml): [doc/panvimdoc.txt](./doc/panvimdoc.txt)
 - [kdheepak/tabline.nvim](https://github.com/kdheepak/tabline.nvim/blob/main/.github/workflows/ci.yml): [doc/tabline.txt](https://github.com/kdheepak/tabline.nvim/blob/main/doc/tabline.txt)
 - [mcchrish/zenbones.nvim](https://github.com/mcchrish/zenbones.nvim/blob/main/.github/workflows/doc.yml): [doc/zenbones.txt](https://github.com/mcchrish/zenbones.nvim/blob/main/doc/zenbones.txt)
-- [nvim-lualine/lualine.nvim](https://github.com/nvim-lualine/lualine.nvim/blob/master/.github/workflows/docs.yml): [doc/lualine.txt](https://github.com/nvim-lualine/lualine.nvim/blob/master/doc/lualine.txt)
+- [nvim-lualine/lualine.nvim](https://github.com/nvim-lualine/lualine.nvim/blob/master/.github/workflows/autogen.yml): [doc/lualine.txt](https://github.com/nvim-lualine/lualine.nvim/blob/master/doc/lualine.txt)
 
 _Feel free to submit a PR to add your documentation as an example here._
 
