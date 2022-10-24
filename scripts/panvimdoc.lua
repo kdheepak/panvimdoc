@@ -27,6 +27,7 @@ local image_mime_type = ({
 })[image_format] or error("unsupported image format `" .. image_format .. "`")
 
 local CURRENT_HEADER = nil
+local DEDUP_SUBHEADINGS = false
 
 -- Character escaping
 local function escape(s, in_attribute)
@@ -102,6 +103,9 @@ function Doc(body, metadata, variables)
   local buffer = {}
   local function add(s)
     table.insert(buffer, s)
+  end
+  if metadata.dedupsubheadings == true or metadata.dedupsubheadings == "true" then
+    DEDUP_SUBHEADINGS = true
   end
   local vim_doc_title = metadata.vimdoctitle
   if vim_doc_title == nil then
@@ -352,8 +356,13 @@ function Header(lev, s, attr)
   if lev == 2 then
     left = string.upper(s)
     right = string.lower(string.gsub(s, "%s", "-"))
-    right_link = string.format("|%s-%s-%s|", stringify(meta.project), CURRENT_HEADER, right)
-    right = string.format("*%s-%s-%s*", stringify(meta.project), CURRENT_HEADER, right)
+    if DEDUP_SUBHEADINGS then
+      right_link = string.format("|%s-%s-%s|", stringify(meta.project), CURRENT_HEADER, right)
+      right = string.format("*%s-%s-%s*", stringify(meta.project), CURRENT_HEADER, right)
+    else
+      right_link = string.format("|%s-%s|", stringify(meta.project), right)
+      right = string.format("*%s-%s*", stringify(meta.project), right)
+    end
     padding = string.rep(" ", 78 - #left - #right)
     table.insert(toc, { 2, s, right_link })
     s = string.format("%s%s%s", left, padding, right)

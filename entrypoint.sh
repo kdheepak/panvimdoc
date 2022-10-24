@@ -6,6 +6,7 @@ ARGS=(
 "--metadata=toc:$4"
 "--metadata=vimversion:$3"
 "--metadata=description:$5"
+"--metadata=dedupsubheadings:$6"
 "--lua-filter=/scripts/skip-blocks.lua"
 "--lua-filter=/scripts/include-files.lua"
 )
