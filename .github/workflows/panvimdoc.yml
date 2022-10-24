@@ -13,7 +13,6 @@ jobs:
         with:
           vimdoc: panvimdoc
           pandoc: doc/panvimdoc.md
-          dedupsubheadings: true
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: "Auto generate docs"
