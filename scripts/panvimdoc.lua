@@ -26,6 +26,8 @@ local image_mime_type = ({
   svg = "image/svg+xml",
 })[image_format] or error("unsupported image format `" .. image_format .. "`")
 
+local CURRENT_HEADER = nil
+
 -- Character escaping
 local function escape(s, in_attribute)
   return s
@@ -336,6 +338,7 @@ function Header(lev, s, attr)
   if lev == 1 then
     left = string.format("%d. %s", header_count, s)
     right = string.lower(string.gsub(s, "%s", "-"))
+    CURRENT_HEADER = right
     right_link = string.format("|%s-%s|", stringify(meta.project), right)
     right = string.format("*%s-%s*", stringify(meta.project), right)
     padding = string.rep(" ", 78 - #left - #right)
@@ -349,8 +352,8 @@ function Header(lev, s, attr)
   if lev == 2 then
     left = string.upper(s)
     right = string.lower(string.gsub(s, "%s", "-"))
-    right_link = string.format("|%s-%s|", stringify(meta.project), right)
-    right = string.format("*%s-%s*", stringify(meta.project), right)
+    right_link = string.format("|%s-%s-%s|", stringify(meta.project), CURRENT_HEADER, right)
+    right = string.format("*%s-%s-%s*", stringify(meta.project), CURRENT_HEADER, right)
     padding = string.rep(" ", 78 - #left - #right)
     table.insert(toc, { 2, s, right_link })
     s = string.format("%s%s%s", left, padding, right)
@@ -440,7 +443,7 @@ end
 function OrderedList(items)
   local buffer = {}
   for i, item in pairs(items) do
-    table.insert(buffer, ("%s. %s"):format(i,  item))
+    table.insert(buffer, ("%s. %s"):format(i, item))
   end
   return "\n" .. table.concat(buffer, "\n") .. "\n"
 end

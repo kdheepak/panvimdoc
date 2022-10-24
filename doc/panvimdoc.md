@@ -413,3 +413,11 @@ Use `<kbd>CMD + o</kbd>` in markdown, for example CMD + o.
 ```
 
 <!-- panvimdoc-ignore-end -->
+
+## Examples
+
+First example
+
+## Examples
+
+Second example
