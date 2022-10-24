@@ -104,6 +104,7 @@ function Doc(body, metadata, variables)
   local function add(s)
     table.insert(buffer, s)
   end
+  P(metadata)
   if metadata.dedupsubheadings == true or metadata.dedupsubheadings == "true" then
     DEDUP_SUBHEADINGS = true
   end
