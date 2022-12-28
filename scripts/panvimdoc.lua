@@ -374,22 +374,7 @@ function Header(lev, s, attr)
     current_element = nil
     return left .. " ~"
   end
-  if lev == 4 then
-    left = ""
-    current_element = s
-    right = string.gsub(s, "{.+}", "")
-    right = string.gsub(right, "%[.+%]", "")
-    right = string.gsub(right, "^%s*(.-)%s*$", "%1")
-    right = string.gsub(right, "%s", "-")
-    right = string.format("*%s-%s*", stringify(meta.project), right)
-    if attr.doc then
-      right = right .. " *" .. attr.doc .. "*"
-    end
-    padding = string.rep(" ", 78 - #left - #right)
-    local r = string.format("%s%s%s", left, padding, right)
-    return r
-  end
-  if lev >= 5 then
+  if lev >= 4 then
     left = string.upper(s)
     current_element = nil
     return left
