@@ -403,11 +403,15 @@ function CodeBlock(s, attr)
   if attr.class == "vimdoc" then
     return s
   else
+    local lang = ""
+    if (meta.treesitter == "true" or meta.treesitter == true) and attr.class then
+      lang = attr.class
+    end
     local t = {}
     for line in s:gmatch("([^\n]*)\n?") do
       table.insert(t, "    " .. escape(line))
     end
-    return ">\n" .. table.concat(t, "\n") .. "\n<\n"
+    return ">" .. lang .. "\n" .. table.concat(t, "\n") .. "\n<\n"
   end
 end
 

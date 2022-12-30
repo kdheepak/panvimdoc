@@ -3,10 +3,11 @@ set -e
 
 ARGS=(
 "--metadata=project:$1"
-"--metadata=toc:$4"
 "--metadata=vimversion:$3"
+"--metadata=toc:$4"
 "--metadata=description:$5"
 "--metadata=dedupsubheadings:$6"
+"--metadata=treesitter:$7"
 "--lua-filter=/scripts/skip-blocks.lua"
 "--lua-filter=/scripts/include-files.lua"
 )

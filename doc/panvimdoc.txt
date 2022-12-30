@@ -1,4 +1,4 @@
-*panvimdoc.txt*          For NVIM v0.5.0          Last change: 2022 October 24
+*panvimdoc.txt*          For NVIM v0.8.0         Last change: 2022 December 30
 
 ==============================================================================
 Table of Contents                                *panvimdoc-table-of-contents*
@@ -157,7 +157,7 @@ https://github.com/kdheepak/panvimdoc/discussions/11.
 If your project is on GitHub, see
 |panvimdoc-this-section-for-how-to-use-it-with-github-actions|.
 
->
+>bash
     pandoc --metadata=project:${PROJECT} --lua-filter scripts/skip-blocks.lua --lua-filter scripts/include-files.lua -t scripts/panvimdoc.lua ${INPUT} -o ${OUTPUT}
 <
 
@@ -173,7 +173,7 @@ The following are the metadata fields that the custom writer uses:
 
 Example:
 
->
+>markdown
     ---
     project: panvimdoc
     vimversion: Neovim v0.5.0
@@ -199,7 +199,7 @@ Generates the following:
 
 Adding the `description`:
 
->
+>markdown
     ---
     project: panvimdoc
     description: pandoc markdown to vimdoc
@@ -230,7 +230,7 @@ create a file.
 
 Then add the following to `./.github/workflows/panvimdoc.yml`:
 
->
+>yaml
     name: panvimdoc
     
     on: [push]
@@ -305,7 +305,7 @@ EXTERNAL INCLUDES                                *panvimdoc-external-includes*
 
 Use the following in your markdown file to include any other markdown file:
 
->
+>markdown
     ```{.include}
     README.md
     ```
@@ -376,7 +376,7 @@ MARKDOWN LINKS                                      *panvimdoc-markdown-links*
 
 You can use markdown links in vimdoc.
 
->
+>markdown
     You can link to the tags by using [sub heading 2](#sub-heading-2).
 <
 
