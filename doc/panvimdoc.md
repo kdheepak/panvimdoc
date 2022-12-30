@@ -183,9 +183,7 @@ abc{xyz}                               Docstring for abc {xyz}.
 Notice that the tag `*projectName-abc*` is generated for you.
 
 Additionally, content in square brackets `[...]` is dropped for creating the tag name.
-
 The heading `### :[range]Command` becomes the tag `*projectName-:Command*`.
-
 You can also use `{doc=AdditionalTag}` to generate one additional tag for each header.
 
 See following headings as examples:
@@ -208,21 +206,27 @@ Command that operates over highlighted lines.
 
 <!-- panvimdoc-ignore-start -->
 
+The above generates the following vimdoc text:
+
 ```
+
                                                                 *projectName-pv*
 
 pv{motion}                             Command that operates over {motion}
                                        moved.
 
+
                                                                *projectName-pvd*
 
 pvd                                    Command that takes [count] lines.
+
 
                                         *projectName-:CommandName* *CommandName*
 
 :[range]CommandName                    Command that operates over [range].
 
-                                                                *panvimdoc-pv*
+
+                                                                *projectName-pv*
 
 {Visual}pv                             Command that operates over highlighted
                                        lines.
