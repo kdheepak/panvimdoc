@@ -435,12 +435,9 @@ becomes the following vimdoc:
 Notice that the tag `*projectName-abc*` is generated for you.
 
 Additionally, content in square brackets `[...]` is dropped for creating the
-tag name.
-
-The heading `### :[range]Command` becomes the tag `*projectName-:Command*`.
-
-You can also use `{doc=AdditionalTag}` to generate one additional tag for each
-header.
+tag name. The heading `### :[range]Command` becomes the tag
+`*projectName-:Command*`. You can also use `{doc=AdditionalTag}` to generate
+one additional tag for each header.
 
 See following headings as examples:
 
