@@ -8,6 +8,7 @@ ARGS=(
 "--metadata=description:$5"
 "--metadata=dedupsubheadings:$6"
 "--metadata=treesitter:$7"
+"--metadata=level4headingstags:$8"
 "--lua-filter=/scripts/skip-blocks.lua"
 "--lua-filter=/scripts/include-files.lua"
 )
