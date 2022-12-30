@@ -26,8 +26,7 @@ local image_mime_type = ({
   svg = "image/svg+xml",
 })[image_format] or error("unsupported image format `" .. image_format .. "`")
 
-local CURRENT_HEADER = nil
-local DEDUP_SUBHEADINGS = false
+local current_headers = { len = 0 }
 
 -- Character escaping
 local function escape(s, in_attribute)
@@ -103,9 +102,6 @@ function Doc(body, metadata, variables)
   local buffer = {}
   local function add(s)
     table.insert(buffer, s)
-  end
-  if metadata.dedupsubheadings == true or metadata.dedupsubheadings == "true" then
-    DEDUP_SUBHEADINGS = true
   end
   local vim_doc_title = metadata.vimdoctitle
   if vim_doc_title == nil then
@@ -336,13 +332,26 @@ function Para(s)
   end
 end
 
+local function update_current_headers(lev, heading)
+  current_headers[lev] = heading
+  current_headers.len = lev
+end
+
+local function get_dedub_tag()
+  local tag = stringify(meta.project)
+  for i = 1, current_headers.len do
+    tag = string.format("%s-%s", tag, current_headers[i])
+  end
+  return tag
+end
+
 -- lev is an integer, the header level.
 function Header(lev, s, attr)
   local left, right, right_link, padding
   if lev == 1 then
     left = string.format("%d. %s", header_count, s)
     right = string.lower(string.gsub(s, "%s", "-"))
-    CURRENT_HEADER = right
+    update_current_headers(lev, right)
     right_link = string.format("|%s-%s|", stringify(meta.project), right)
     right = string.format("*%s-%s*", stringify(meta.project), right)
     padding = string.rep(" ", 78 - #left - #right)
@@ -356,9 +365,11 @@ function Header(lev, s, attr)
   if lev == 2 then
     left = string.upper(s)
     right = string.lower(string.gsub(s, "%s", "-"))
-    if DEDUP_SUBHEADINGS then
-      right_link = string.format("|%s-%s-%s|", stringify(meta.project), CURRENT_HEADER, right)
-      right = string.format("*%s-%s-%s*", stringify(meta.project), CURRENT_HEADER, right)
+    if meta.dedupsubheadings == true or meta.dedupsubheadings == "true" then
+      update_current_headers(lev, right)
+      local tag = get_dedub_tag()
+      right_link = string.format("|%s|", tag)
+      right = string.format("*%s*", tag)
     else
       right_link = string.format("|%s-%s|", stringify(meta.project), right)
       right = string.format("*%s-%s*", stringify(meta.project), right)
@@ -371,6 +382,7 @@ function Header(lev, s, attr)
   end
   if lev == 3 then
     left = string.upper(s)
+    update_current_headers(lev, string.lower(string.gsub(s, "%s", "-")))
     current_element = nil
     return left .. " ~"
   end
@@ -381,7 +393,13 @@ function Header(lev, s, attr)
     right = string.gsub(right, "%[.+%]", "")
     right = string.gsub(right, "^%s*(.-)%s*$", "%1")
     right = string.gsub(right, "%s", "-")
-    right = string.format("*%s-%s*", stringify(meta.project), right)
+    if meta.dedupsubheadings == true or meta.dedupsubheadings == "true" then
+      update_current_headers(lev, right)
+      local tag = get_dedub_tag()
+      right = string.format("*%s*", tag)
+    else
+      right = string.format("*%s-%s*", stringify(meta.project), right)
+    end
     if attr.doc then
       right = right .. " *" .. attr.doc .. "*"
     end
