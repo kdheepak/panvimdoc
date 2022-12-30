@@ -32,6 +32,10 @@ inputs:
     description: "Add heading to subheading links"
     required: false
     default: "false"
+  treesitter:
+    description: "Use treesitter for highlighting codeblocks"
+    required: false
+    default: "false"
 runs:
   using: "docker"
   image: "Dockerfile"
@@ -42,3 +46,4 @@ runs:
     - ${{ inputs.toc }}
     - ${{ inputs.description }}
     - ${{ inputs.demojify }}
+    - ${{ inputs.treesitter }}
