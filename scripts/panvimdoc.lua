@@ -382,7 +382,6 @@ function Header(lev, s, attr)
   end
   if lev == 3 then
     left = string.upper(s)
-    update_current_headers(lev, string.lower(string.gsub(s, "%s", "-")))
     current_element = nil
     return left .. " ~"
   end
@@ -393,13 +392,7 @@ function Header(lev, s, attr)
     right = string.gsub(right, "%[.+%]", "")
     right = string.gsub(right, "^%s*(.-)%s*$", "%1")
     right = string.gsub(right, "%s", "-")
-    if meta.dedupsubheadings == true or meta.dedupsubheadings == "true" then
-      update_current_headers(lev, right)
-      local tag = get_dedub_tag()
-      right = string.format("*%s*", tag)
-    else
-      right = string.format("*%s-%s*", stringify(meta.project), right)
-    end
+    right = string.format("*%s-%s*", stringify(meta.project), right)
     if attr.doc then
       right = right .. " *" .. attr.doc .. "*"
     end
