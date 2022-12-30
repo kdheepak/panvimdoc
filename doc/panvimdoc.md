@@ -164,7 +164,7 @@ Any markdown header of level 4 will be considered as a special header.
 This can be used to generate documentation of mappings.
 All of the content in curly braces `{...}` that is part of the header is dropped and a tag is created.
 
-For example, the level 4 heading and the contents of the section:
+For example, the following level 4 heading and the contents of the section:
 
 ```
 #### abc{xyz}
@@ -180,11 +180,13 @@ becomes the following vimdoc:
 abc{xyz}                               Docstring for abc {xyz}.
 ```
 
-Notice that the tag `*projectName-abc*` is generated for you:
+Notice that the tag `*projectName-abc*` is generated for you.
 
-Additionally, content in square brackets `[...]` is also dropped for creating the tag name.
+Additionally, content in square brackets `[...]` is dropped for creating the tag name.
 
 The heading `### :[range]Command` becomes the tag `*projectName-:Command*`.
+
+You can also use `{doc=AdditionalTag}` to generate one additional tag for each header.
 
 See following headings as examples:
 
@@ -192,55 +194,13 @@ See following headings as examples:
 
 Command that operates over {motion} moved.
 
-<!-- panvimdoc-ignore-start -->
-
-The following vimdoc mapping is generated:
-
-```
-                                                                *projectName-pv*
-
-pv{motion}                             Command that operates over {motion}
-                                       moved.
-
-```
-
-<!-- panvimdoc-ignore-end -->
-
 #### pvd
 
 Command that takes [count] lines.
 
-<!-- panvimdoc-ignore-start -->
-
-The following vimdoc mapping is generated:
-
-```
-                                                               *projectName-pvd*
-
-pvd                                    Command that takes [count] lines.
-
-```
-
-<!-- panvimdoc-ignore-end -->
-
 #### :[range]CommandName {doc=CommandName}
 
 Command that operates over [range].
-
-<!-- panvimdoc-ignore-start -->
-
-The following vimdoc mapping is generated:
-
-```
-
-                                        *projectName-:CommandName* *CommandName*
-
-:[range]CommandName                    Command that operates over [range].
-```
-
-<!-- panvimdoc-ignore-end -->
-
-You can use `{doc=AdditionalTag}` to generate one additional tag for each header.
 
 #### {Visual}pv
 
@@ -248,9 +208,20 @@ Command that operates over highlighted lines.
 
 <!-- panvimdoc-ignore-start -->
 
-The following vimdoc mapping is generated:
-
 ```
+                                                                *projectName-pv*
+
+pv{motion}                             Command that operates over {motion}
+                                       moved.
+
+                                                               *projectName-pvd*
+
+pvd                                    Command that takes [count] lines.
+
+                                        *projectName-:CommandName* *CommandName*
+
+:[range]CommandName                    Command that operates over [range].
+
                                                                 *panvimdoc-pv*
 
 {Visual}pv                             Command that operates over highlighted
