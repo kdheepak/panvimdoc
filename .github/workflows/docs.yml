@@ -2,8 +2,6 @@ name: docs
 
 on:
   push:
-    branches:
-      - main
 
 permissions:
   contents: write
@@ -18,6 +16,7 @@ jobs:
         uses: docker://pandoc/latex:3.1
         with:
           args: >-
+            --standalone
             docs/panvimdoc.md
             --lua-filter=scripts/include-files.lua
             -t html
