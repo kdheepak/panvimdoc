@@ -1,0 +1,8 @@
+indent = 2
+margin = 120
+always_for_in = true
+remove_extra_newlines = true
+pipe_to_function_call = true
+format_docstrings = true
+normalize_line_endings = "unix"
+separate_kwargs_with_semicolon = true

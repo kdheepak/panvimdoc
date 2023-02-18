@@ -3,7 +3,7 @@
 --- Copyright: © 2019–2021 Albert Krewinkel
 --- License:   MIT – see LICENSE file for details
 -- Module pandoc.path is required and was added in version 2.12
-PANDOC_VERSION:must_be_at_least("3.1")
+PANDOC_VERSION:must_be_at_least("3.0")
 
 local List = require("pandoc.List")
 local path = require("pandoc.path")
