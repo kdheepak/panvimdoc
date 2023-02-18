@@ -40,10 +40,19 @@ runs:
   using: "docker"
   image: "Dockerfile"
   args:
+    - --project-name
     - ${{ inputs.vimdoc }}
+    - --input-file
     - ${{ inputs.pandoc }}
+    - --vim-version
     - ${{ inputs.version }}
+    - --toc
     - ${{ inputs.toc }}
+    - --description
     - ${{ inputs.description }}
+    - --dedup-subheadings
+    - ${{ inputs.dedupsubheadings }}
+    - --demojify
     - ${{ inputs.demojify }}
+    - --treesitter
     - ${{ inputs.treesitter }}

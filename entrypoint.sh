@@ -1,27 +1,109 @@
 #!/bin/bash
-set -e
+set -euo pipefail
 
+# Check if the script was called with no arguments and show help in that case
+if [ $# -eq 0 ]; then
+  echo "Usage: $0 --project-name PROJECT_NAME --input-file INPUT_FILE --vim-version VIM_VERSION --toc TOC --description DESCRIPTION --dedup-subheadings DEDUP_SUBHEADINGS --treesitter TREESITTER"
+  echo ""
+  echo "Arguments:"
+  echo "  --project-name: the name of the project"
+  echo "  --input-file: the input markdown file"
+  echo "  --vim-version: the version of Vim that the project is compatible with"
+  echo "  --toc: 'true' if the output should include a table of contents, 'false' otherwise"
+  echo "  --description: a description of the project"
+  echo "  --dedup-subheadings: 'true' if duplicate subheadings should be removed, 'false' otherwise"
+  echo "  --demojify: 'false' if emojis should not be removed, 'true' otherwise"
+  echo "  --treesitter: 'true' if the project uses Tree-sitter syntax highlighting, 'false' otherwise"
+  exit 1
+fi
+
+# Parse command line arguments
+while [[ $# -gt 0 ]]
+do
+key="$1"
+
+case $key in
+    --project-name)
+    PROJECT_NAME="$2"
+    shift # past argument
+    shift # past value
+    ;;
+    --input-file)
+    INPUT_FILE="$2"
+    shift # past argument
+    shift # past value
+    ;;
+    --vim-version)
+    VIM_VERSION="$2"
+    shift # past argument
+    shift # past value
+    ;;
+    --toc)
+    TOC="$2"
+    shift # past argument
+    shift # past value
+    ;;
+    --description)
+    DESCRIPTION="$2"
+    shift # past argument
+    shift # past value
+    ;;
+    --dedup-subheadings)
+    DEDUP_SUBHEADINGS="$2"
+    shift # past argument
+    shift # past value
+    ;;
+    --demojify)
+    DEMOJIFY="$2"
+    shift # past argument
+    shift # past value
+    ;;
+    --treesitter)
+    TREESITTER="$2"
+    shift # past argument
+    shift # past value
+    ;;
+    *)    # unknown option
+    echo "Unknown option: $1"
+    exit 1
+    ;;
+esac
+done
+
+# Check if /scripts directory exists
+if [ -d "/scripts" ]; then
+    SCRIPTS_DIR="/scripts"
+else
+    SCRIPTS_DIR="$(dirname "$(readlink -f "$0")")/scripts"
+fi
+
+# If the scripts folder doesn't exist, throw an error
+if [ ! -d "$SCRIPTS_DIR" ]; then
+  printf "Error: $SCRIPTS_DIR directory not found.\n"
+  exit 1
+fi
+
+# Define arguments in an array
 ARGS=(
-"--metadata=project:$1"
-"--metadata=vimversion:$3"
-"--metadata=toc:$4"
-"--metadata=description:$5"
-"--metadata=dedupsubheadings:$6"
-"--metadata=treesitter:$7"
-"--lua-filter=/scripts/skip-blocks.lua"
-"--lua-filter=/scripts/include-files.lua"
+    "--metadata=project:$PROJECT_NAME"
+    "--metadata=vimversion:$VIM_VERSION"
+    "--metadata=toc:$TOC"
+    "--metadata=description:$DESCRIPTION"
+    "--metadata=dedupsubheadings:$DEDUP_SUBHEADINGS"
+    "--metadata=treesitter:$TREESITTER"
+    "--lua-filter=$SCRIPTS_DIR/skip-blocks.lua"
+    "--lua-filter=$SCRIPTS_DIR/include-files.lua"
 )
 
-if [ "$6" = "true" ]; then
+# Add an additional lua filter if demojify is true
+if [[ "$DEMOJIFY" = "true" ]]; then
   ARGS+=(
-  "--lua-filter=/scripts/remove-emojis.lua"
+  "--lua-filter=$SCRIPTS_DIR/remove-emojis.lua"
   )
 fi
 
-ARGS+=(
-"-t"
-"/scripts/panvimdoc.lua"
-)
+ARGS+=("-t" "$SCRIPTS_DIR/panvimdoc.lua")
 
-echo pandoc "${ARGS[@]}" "$2" -o "doc/$1.txt"
-pandoc "${ARGS[@]}" "$2" -o "doc/$1.txt"
+# Print and execute the command
+printf "%s\n" "pandoc ${ARGS[*]} $INPUT_FILE -o doc/$PROJECT_NAME.txt"
+pandoc "${ARGS[@]}" "$INPUT_FILE" -o "doc/$PROJECT_NAME.txt"
