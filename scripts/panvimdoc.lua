@@ -69,8 +69,10 @@ local TOC = false
 local VIMVERSION = "0.9.0"
 local DESCRIPTION = ""
 local DEDUP_SUBHEADINGS = false
-local CURRENT_HEADER = nil
+local IGNORE_RAWBLOCK = true
 local DATE = nil
+
+local CURRENT_HEADER = nil
 
 local header_count = 1
 local toc = {}
@@ -127,27 +129,31 @@ local function renderTitle()
 end
 
 local function renderToc()
-  local t = {}
-  local function add(s)
-    table.insert(t, s)
-  end
-  add(string.rep("=", 78))
-  local l = "Table of Contents"
-  local tag = "*" .. PROJECT .. "-" .. string.gsub(string.lower(l), "%s", "-") .. "*"
-  add(l .. string.rep(" ", 78 - #l - #tag) .. tag)
-  add("")
-  for _, elem in pairs(toc) do
-    local level, item, link = elem[1], elem[2], elem[3]
-    if level == 1 then
-      local padding = string.rep(" ", 78 - #item - #link)
-      add(item .. padding .. link)
-    elseif level == 2 then
-      local padding = string.rep(" ", 74 - #item - #link)
-      add("  - " .. item .. padding .. link)
+  if TOC then
+    local t = {}
+    local function add(s)
+      table.insert(t, s)
     end
+    add(string.rep("=", 78))
+    local l = "Table of Contents"
+    local tag = "*" .. PROJECT .. "-" .. string.gsub(string.lower(l), "%s", "-") .. "*"
+    add(l .. string.rep(" ", 78 - #l - #tag) .. tag)
+    add("")
+    for _, elem in pairs(toc) do
+      local level, item, link = elem[1], elem[2], elem[3]
+      if level == 1 then
+        local padding = string.rep(" ", 78 - #item - #link)
+        add(item .. padding .. link)
+      elseif level == 2 then
+        local padding = string.rep(" ", 74 - #item - #link)
+        add("  - " .. item .. padding .. link)
+      end
+    end
+    add("")
+    return table.concat(t, "\n")
+  else
+    return ""
   end
-  add("")
-  return table.concat(t, "\n")
 end
 
 local function renderNotes()
@@ -182,6 +188,9 @@ Writer.Pandoc = function(doc, opts)
   TREESITTER = doc.meta.treesitter
   TOC = doc.meta.toc
   VIMVERSION = doc.meta.vimversion
+  DESCRIPTION = doc.meta.description
+  DEDUP_SUBHEADINGS = doc.meta.dedupsubheadings
+  DATE = doc.meta.date
   local d = blocks(doc.blocks)
   local toc = renderToc()
   local notes = renderNotes()
@@ -453,6 +462,8 @@ Writer.Block.RawBlock = function(el)
       return ""
     elseif str == "</summary>" then
       return " ~\n\n"
+    elseif IGNORE_RAWBLOCK then
+      return ""
     else
       return str
     end
