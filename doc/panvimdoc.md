@@ -155,6 +155,109 @@ This is excluded from the links section.
 
 Lastly, if the markdown text is a url, the link is not added to the links section and instead is placed inline.
 
+## Mappings
+
+While you can use codeblocks with the language `vimdoc` to insert text in the generated vimdoc, it can be useful to have a markdown friendly way to write documentation for mappings.
+
+Any markdown header of level 4 will be considered as a special header.
+This can be used to generate documentation of mappings.
+All of the content in curly braces `{...}` that is part of the header is dropped and a tag is created.
+
+For example, the level 4 heading and the contents of the section:
+
+```
+#### abc{xyz}
+
+Docstring for abc {xyz}.
+```
+
+becomes the following vimdoc:
+
+```
+                                                               *projectName-abc*
+
+abc{xyz}                               Docstring for abc {xyz}.
+```
+
+Notice that the tag `*projectName-abc*` is generated for you:
+
+Additionally, content in square brackets `[...]` is also dropped for creating the tag name.
+
+The heading `### :[range]Command` becomes the tag `*projectName-:Command*`.
+
+See following headings as examples:
+
+#### pv{motion}
+
+Command that operates over {motion} moved.
+
+<!-- panvimdoc-ignore-start -->
+
+The following vimdoc mapping is generated:
+
+```
+                                                                *projectName-pv*
+
+pv{motion}                             Command that operates over {motion}
+                                       moved.
+
+```
+
+<!-- panvimdoc-ignore-end -->
+
+#### pvd
+
+Command that takes [count] lines.
+
+<!-- panvimdoc-ignore-start -->
+
+The following vimdoc mapping is generated:
+
+```
+                                                               *projectName-pvd*
+
+pvd                                    Command that takes [count] lines.
+
+```
+
+<!-- panvimdoc-ignore-end -->
+
+#### :[range]CommandName {doc=CommandName}
+
+Command that operates over [range].
+
+<!-- panvimdoc-ignore-start -->
+
+The following vimdoc mapping is generated:
+
+```
+
+                                        *projectName-:CommandName* *CommandName*
+
+:[range]CommandName                    Command that operates over [range].
+```
+
+<!-- panvimdoc-ignore-end -->
+
+You can use `{doc=AdditionalTag}` to generate one additional tag for each header.
+
+#### {Visual}pv
+
+Command that operates over highlighted lines.
+
+<!-- panvimdoc-ignore-start -->
+
+The following vimdoc mapping is generated:
+
+```
+                                                                *panvimdoc-pv*
+
+{Visual}pv                             Command that operates over highlighted
+                                       lines.
+```
+
+<!-- panvimdoc-ignore-end -->
+
 ## Table
 
 Support for markdown tables is also available:

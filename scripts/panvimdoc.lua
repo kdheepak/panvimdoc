@@ -70,6 +70,7 @@ local VIMVERSION = "0.9.0"
 local DESCRIPTION = ""
 local DEDUP_SUBHEADINGS = false
 local IGNORE_RAWBLOCKS = true
+local DOC_MAPPING = true
 local DATE = nil
 
 local CURRENT_HEADER = nil
@@ -190,6 +191,7 @@ Writer.Pandoc = function(doc, opts)
   DESCRIPTION = doc.meta.description
   DEDUP_SUBHEADINGS = doc.meta.dedupsubheadings
   IGNORE_RAWBLOCKS = doc.meta.ignorerawblocks
+  DOC_MAPPING = doc.meta.docmapping
   HEADER_COUNT = HEADER_COUNT + doc.meta.incrementheadinglevelby
   DATE = doc.meta.date
   local d = blocks(doc.blocks)
@@ -238,23 +240,29 @@ Writer.Block.Header = function(el)
     return "\n" .. left .. " ~" .. "\n\n"
   end
   if lev == 4 then
-    left = s
-    if attr.attributes.doc then
-      right = "*" .. attr.attributes.doc .. "*"
+    if DOC_MAPPING then
+      left = s
+      if attr.attributes.doc then
+        right = "*" .. attr.attributes.doc .. "*"
+      else
+        -- stylua: ignore
+        right = string.format(
+          "*%s-%s*",
+          PROJECT,
+          s:gsub("{.+}", "")
+          :gsub("%[.+%]", "")
+          :gsub("^%s*(.-)%s*$", "%1")
+          :gsub("^%s*(.-)%s*$", "%1")
+          :gsub("%s", "-")
+        )
+      end
+      padding = string.rep(" ", 78 - #left - #right)
+      local r = string.format("%s%s%s", left, padding, right)
+      return "\n" .. r .. "\n\n"
     else
-      right = string.format(
-        "*%s-%s*",
-        PROJECT,
-        s:gsub("{.+}", "")
-         :gsub("%[.+%]", "")
-         :gsub("^%s*(.-)%s*$", "%1")
-         :gsub("^%s*(.-)%s*$", "%1")
-         :gsub("%s", "-")
-      )
+      left = string.upper(s)
+      return "\n" .. left .. "\n\n"
     end
-    padding = string.rep(" ", 78 - #left - #right)
-    local r = string.format("%s%s%s", left, padding, right)
-    return "\n" .. r .. "\n\n"
   end
   if lev >= 5 then
     left = string.upper(s)
