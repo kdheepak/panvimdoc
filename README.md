@@ -97,59 +97,7 @@ If you would like to contribute to the specification, have feature requests or o
 
 # Usage
 
-If your project is on GitHub, see [this section for how to use it with GitHub Actions](#using-github-actions).
-
-```bash
-pandoc --metadata=project:${PROJECT} --lua-filter scripts/skip-blocks.lua --lua-filter scripts/include-files.lua -t scripts/panvimdoc.lua ${INPUT} -o ${OUTPUT}
-```
-
-The following are the metadata fields that the custom writer uses:
-
-- `project` (String) _required_: This is typically the plugin name. This is prefixed to all generated tags. (e.g. `*project-heading*`)
-- `toc` (Boolean) _optional_: Whether to generate table of contents or not. If not present, this value is set to `true`.
-- `description` (String) _optional_: The description for your plugin. If not present, the `vimversion` and current date is used.
-- `vimversion` (String) _optional_: The version vim / neovim that the plugin is targeting. If not present, the version of vim in the available environment is used.
-
-Example:
-
-```markdown
----
-project: panvimdoc
-vimversion: Neovim v0.5.0
-toc: true
----
-```
-
-Generates the following:
-
-```
-*panvimdoc.txt*         For Neovim v0.5.0          Last change: 2021 August 12
-
-==============================================================================
-Table of Contents                                *panvimdoc-table-of-contents*
-
-1. panvimdoc                                             |panvimdoc-panvimdoc|
-2. Motivation                                           |panvimdoc-motivation|
-3. Goals                                                     |panvimdoc-goals|
-...
-```
-
-Adding the `description`:
-
-```markdown
----
-project: panvimdoc
-description: pandoc markdown to vimdoc
----
-```
-
-generates the following:
-
-```
-*panvimdoc.txt*                                      pandoc markdown to vimdoc
-```
-
-## Using Github Actions
+### Using Github Actions
 
 Create an empty doc file:
 
@@ -159,7 +107,7 @@ git commit -am "Add empty doc"
 git push
 ```
 
-You don't actually need the file, just the `doc` folder but it is easiest to create a file.
+You don't actually need the file, just the `doc` folder but it is probably easiest to create a file.
 
 Then add the following to `./.github/workflows/panvimdoc.yml`:
 
@@ -177,17 +125,18 @@ jobs:
       - name: panvimdoc
         uses: kdheepak/panvimdoc@main
         with:
-          vimdoc: ${VIMDOC_PROJECT_NAME}
-          # the following are defaults on github actions
-          # description: ""
-          # pandoc: "README.md"
-          # toc: true
-          # version: "NVIM v0.5.0"
-          # demojify: false
-      - uses: stefanzweifel/git-auto-commit-action@v4
-        with:
-          commit_message: "Auto generate docs"
-          branch: ${{ github.head_ref }}
+          vimdoc: ${VIMDOC_PROJECT_NAME} # Output vimdoc project name (required)
+          # The following are all optional
+          pandoc: "README.md" # Input pandoc file
+          version: "NVIM v0.8.0" # Vim version number
+          toc: true # Table of contents
+          description: "" # Project Description
+          demojify: false # Strip emojis from the vimdoc
+          dedupsubheadings: true # Add heading to subheading anchor links to ensure that subheadings are unique
+          treesitter: true # Use treesitter for highlighting codeblocks
+          ignorerawblocks: true # Ignore raw html blocks in markdown when converting to vimdoc
+          shiftheadinglevelby: 0 # Shift heading levels by specified number
+          incrementheadinglevelby: 0 # Increment heading levels by specified number
 ```
 
 Choose `VIMDOC_PROJECT_NAME` appropriately.

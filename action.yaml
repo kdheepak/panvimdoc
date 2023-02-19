@@ -35,7 +35,7 @@ inputs:
   treesitter:
     description: "Use treesitter for highlighting codeblocks"
     required: false
-    default: "false"
+    default: "true"
   ignorerawblocks:
     description: "Ignore raw blocks when generating vimdoc"
     required: false
@@ -45,7 +45,7 @@ inputs:
     required: false
     default: "0"
   incrementheadinglevelby:
-    description: "Shift heading levels by specified number"
+    description: "Increment heading levels by specified number"
     required: false
     default: "0"
 runs:
