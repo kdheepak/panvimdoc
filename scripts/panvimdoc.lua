@@ -58,7 +58,7 @@ local function blocks(bs, sep)
   local dbuff = {}
   for i = 1, #bs do
     local el = bs[i]
-    dbuff[#dbuff + 1] = Writer.Block[el.tag](el)
+    dbuff[#dbuff + 1] = Writer[pandoc.utils.type(el)][el.tag](el)
   end
   return table.concat(dbuff, sep)
 end
@@ -445,8 +445,8 @@ Writer.Inline.Cite = function(el)
   end
 end
 
-Writer.Block.Plain = function(s)
-  return inlines(s.content)
+Writer.Block.Plain = function(el)
+  return inlines(el.content)
 end
 
 Writer.Block.RawBlock = function(el)
@@ -479,11 +479,10 @@ end
 
 Writer.Block.Div = function(el)
   -- TODO: Add more special features here
-  return inlines(el.content.content)
+  return blocks(el.content)
 end
 
 Writer.Block.Figure = function(el)
-  local caption = blocks(el.caption.long)
   return blocks(el.content)
 end
 
