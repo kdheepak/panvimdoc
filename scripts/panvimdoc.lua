@@ -308,12 +308,13 @@ Writer.Block.BulletList = function(items)
   return "\n" .. table.concat(buffer, "\n") .. "\n\n"
 end
 
-Writer.Block.DefinitionList = function(items)
+Writer.Block.DefinitionList = function(el)
   local buffer = {}
-  for _, item in pairs(items) do
-    local k, v = next(item)
-    table.insert(buffer, k .. string.rep(" ", 78 - 40 + 1 - #k) .. table.concat(v, "\n"))
-  end
+  el.content:map(function(item)
+    local k = inlines(item[1])
+    local v = blocks(item[2][1])
+    table.insert(buffer, k .. string.rep(" ", 78 - 40 + 1 - #k) .. v)
+  end)
   return "\n" .. table.concat(buffer, "\n") .. "\n\n"
 end
 
