@@ -2,7 +2,7 @@
   doc = test_pandoc("Hello world :wave:"; demojify = true)
 
   @test doc == """
-*test.txt*            For NVIM v0.8.0            Last change: $(CURRENT_DATE)
+*test.txt*                                                    Test Description
 
 ==============================================================================
 Table of Contents                                     *test-table-of-contents*
@@ -17,7 +17,7 @@ vim:tw=78:ts=8:noet:ft=help:norl:
   doc = test_pandoc("Hello world :wave:"; demojify = false)
 
   @test doc == """
-*test.txt*            For NVIM v0.8.0            Last change: $(CURRENT_DATE)
+*test.txt*                                                    Test Description
 
 ==============================================================================
 Table of Contents                                     *test-table-of-contents*

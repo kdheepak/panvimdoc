@@ -1,5 +1,6 @@
 @testset "Treesitter" begin
-  doc = test_pandoc("""
+  doc = test_pandoc(
+    """
 Here's a YAML codeblock:
 
 ```yaml
@@ -12,9 +13,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 ```
-        """)
+        """;
+    description = nothing,
+  )
   @test doc == """
-*test.txt*                                                    Test Description
+*test.txt*            For NVIM v0.8.0            Last change: 2023 February 18
 
 ==============================================================================
 Table of Contents                                     *test-table-of-contents*
@@ -52,17 +55,18 @@ jobs:
       - uses: actions/checkout@v2
 ```
         """;
-    treesitter = false,
+    vimversion = "VIM v9.0.0",
+    description = nothing,
   )
   @test doc == """
-*test.txt*                                                    Test Description
+*test.txt*             For VIM v9.0.0            Last change: 2023 February 18
 
 ==============================================================================
 Table of Contents                                     *test-table-of-contents*
 
 Here’s a YAML codeblock:
 
->
+>yaml
     name: panvimdoc
     on: [push]
     jobs:
