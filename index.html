@@ -272,55 +272,108 @@ Sub headings are upper cased heading.</code></pre>
 <p>While you can use codeblocks with the language <code>vimdoc</code> to insert text in the generated vimdoc, it can be useful to have a markdown friendly way to write documentation for mappings.</p>
 <p>Any markdown header of level 4 will be considered as a special header. This can be used to generate documentation of mappings. All of the content in curly braces <code>{...}</code> that is part of the header is dropped and a tag is created.</p>
 <p>For example, the level 4 heading and the contents of the section:</p>
-<pre><code>#### abc{xyz}
-
-Docstring for abc {xyz}.</code></pre>
+<div class="sourceCode" id="cb16"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>:FnlCompileBuffer</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>: Compiles current active fennel buffer</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>:FnlCompile<span class="co">[</span><span class="ot">!</span><span class="co">]</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>: Diff compiles all indexed fennel files</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>If bang! is present then forcefully compiles all <span class="in">`source`</span> files</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>:Fnl {expr}</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>: Executes and Evalutate {expr} of fennel</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a><span class="in">     ```fennel</span></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a><span class="in">     :Fnl (print &quot;Hello World&quot;)</span></span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a><span class="in">     :Fnl (values some_var)</span></span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a><span class="in">     ```</span></span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a><span class="in">     Testing</span></span></code></pre></div>
 <p>becomes the following vimdoc:</p>
-<pre><code>                                                               *projectName-abc*
-
-abc{xyz}                               Docstring for abc {xyz}.</code></pre>
-<p>Notice that the tag <code>*projectName-abc*</code> is generated for you:</p>
-<p>Additionally, content in square brackets <code>[...]</code> is also dropped for creating the tag name.</p>
-<p>The heading <code>### :[range]Command</code> becomes the tag <code>*projectName-:Command*</code>.</p>
-<p>See following headings as examples:</p>
-<h4 id="pvmotion">pv{motion}</h4>
-<p>Command that operates over {motion} moved.</p>
-<!-- panvimdoc-ignore-start -->
-<p>The following vimdoc mapping is generated:</p>
-<pre><code>                                                                *projectName-pv*
-
-pv{motion}                             Command that operates over {motion}
-                                       moved.
-</code></pre>
-<!-- panvimdoc-ignore-end -->
-<h4 id="pvd">pvd</h4>
-<p>Command that takes [count] lines.</p>
-<!-- panvimdoc-ignore-start -->
-<p>The following vimdoc mapping is generated:</p>
-<pre><code>                                                               *projectName-pvd*
-
-pvd                                    Command that takes [count] lines.
-</code></pre>
-<!-- panvimdoc-ignore-end -->
-<h4 data-doc="CommandName" id="rangecommandname">:[range]CommandName</h4>
-<p>Command that operates over [range].</p>
-<!-- panvimdoc-ignore-start -->
-<p>The following vimdoc mapping is generated:</p>
 <pre><code>
-                                        *projectName-:CommandName* *CommandName*
+                                                    *test-:FnlCompileBuffer*
 
-:[range]CommandName                    Command that operates over [range].</code></pre>
-<!-- panvimdoc-ignore-end -->
-<p>You can use <code>{doc=AdditionalTag}</code> to generate one additional tag for each header.</p>
-<h4 id="visualpv">{Visual}pv</h4>
-<p>Command that operates over highlighted lines.</p>
+
+:FnlCompileBuffer                      Compiles current active fennel buffer
+
+
+                                                          *test-:FnlCompile*
+
+
+:FnlCompile[!]                         Diff compiles all indexed fennel files
+                                       If bang! is present then forcefully compiles all `source` files
+
+
+                                                                 *test-:Fnl*
+
+
+:Fnl {expr}                            Executes and Evalutate {expr} of fennel
+                                       &gt;fennel
+                                           :Fnl (print &quot;Hello World&quot;)
+
+                                           :Fnl (values some_var)
+                                       &lt;
+                                       Testing</code></pre>
+<p>Notice that the tag <code>*projectName-abc*</code> is generated for you. Additionally, content in square brackets <code>[...]</code> is also dropped for creating the tag name.</p>
+<p>The heading <code>### :[range]Command</code> becomes the tag <code>*projectName-:Command*</code>.</p>
+<p>See following mappings as examples:</p>
+<!-- prettier-ignore-start -->
+<dl>
+<dt>pv{motion}</dt>
+<dd>
+<p>Command that operates over {motion} moved.</p>
+</dd>
+</dl>
 <!-- panvimdoc-ignore-start -->
 <p>The following vimdoc mapping is generated:</p>
-<pre><code>                                                                *panvimdoc-pv*
+<pre><code>                                                              *panvimdoc-pv*
 
-{Visual}pv                             Command that operates over highlighted
-                                       lines.</code></pre>
+
+pv{motion}                             Command that operates over {motion} moved.</code></pre>
 <!-- panvimdoc-ignore-end -->
+<dl>
+<dt>pvd</dt>
+<dd>
+<p>Command that takes [count] lines.</p>
+</dd>
+</dl>
+<!-- panvimdoc-ignore-start -->
+<p>The following vimdoc mapping is generated:</p>
+<pre><code>                                                             *panvimdoc-pvd*
+
+
+pvd                                    Command that takes [count] lines.</code></pre>
+<!-- panvimdoc-ignore-end -->
+<dl>
+<dt>:[range]CommandName {doc=CommandName}</dt>
+<dd>
+<p>Command that operates over [range].</p>
+</dd>
+</dl>
+<!-- panvimdoc-ignore-start -->
+<p>The following vimdoc mapping is generated:</p>
+<pre><code>                                                    *panvimdoc-:CommandName*
+
+
+:[range]CommandName {doc=CommandName}  Command that operates over [range].</code></pre>
+<!-- panvimdoc-ignore-end -->
+<dl>
+<dt>{Visual}pv</dt>
+<dd>
+<p>Command that operates over highlighted lines.</p>
+</dd>
+</dl>
+<!-- panvimdoc-ignore-start -->
+<p>The following vimdoc mapping is generated:</p>
+<pre><code>                                                              *panvimdoc-pv*
+
+
+{Visual}pv                             Command that operates over highlighted lines.</code></pre>
+<!-- panvimdoc-ignore-end -->
+<!-- prettier-ignore-end -->
 <h2 id="table">Table</h2>
 <p>Support for markdown tables is also available:</p>
 <!-- prettier-ignore-start -->
