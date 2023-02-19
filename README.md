@@ -182,7 +182,7 @@ Arguments:
   --increment-heading-level-by: 0 if don't want to increment the starting heading number, n otherwise
 ```
 
-You will need `pandoc` version 3.0.0 or greater for this script to work.
+You will need `pandoc v3.0.0` or greater for this script to work.
 
 # References
 
