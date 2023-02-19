@@ -391,24 +391,20 @@ Writer.Inline.Code = function(el)
   return "`" .. escape(stringify(el)) .. "`"
 end
 
-Writer.Inline.InlineMath = function(s)
+Writer.Inline.Math = function(s)
   return "`" .. escape(stringify(s)) .. "`"
 end
 
-Writer.Inline.DisplayMath = function(s)
-  return "`" .. escape(stringify(s)) .. "`"
-end
-
-Writer.Inline.SingleQuoted = function(s)
-  return "'" .. stringify(s) .. "'"
-end
-
-Writer.Inline.DoubleQuoted = function(s)
-  return "\"" .. stringify(s) .. "\""
+Writer.Inline.Quoted = function(el)
+  if el.quotetype == "DoubleQuote" then
+    return "\"" .. inlines(el.content) .. "\""
+  else
+    return "'" .. inlines(el.content) .. "'"
+  end
 end
 
 Writer.Inline.Note = function(el)
-  return el
+  return stringify(el)
 end
 
 Writer.Inline.Null = function(s)
@@ -416,7 +412,7 @@ Writer.Inline.Null = function(s)
 end
 
 Writer.Inline.Span = function(el)
-  return inlines(el)
+  return inlines(el.content)
 end
 
 Writer.Inline.RawInline = function(el)
