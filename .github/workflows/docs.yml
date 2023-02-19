@@ -18,7 +18,15 @@ jobs:
         uses: docker://pandoc/latex:3.1
         with:
           args: >-
-            --standalone
+            --katex
+            --from markdown+tex_math_single_backslash
+            --to html5+smart
+            --template="./scripts/template.html5"
+            --css="/css/theme.css"
+            --css="/css/skylighting-solarized-theme.css"
+            --toc
+            --wrap=none
+            --metadata title="panvimdoc"
             doc/panvimdoc.md
             --lua-filter=scripts/include-files.lua
             -t html
