@@ -14,6 +14,9 @@ if [ $# -eq 0 ]; then
   echo "  --dedup-subheadings: 'true' if duplicate subheadings should be removed, 'false' otherwise"
   echo "  --demojify: 'false' if emojis should not be removed, 'true' otherwise"
   echo "  --treesitter: 'true' if the project uses Tree-sitter syntax highlighting, 'false' otherwise"
+  echo "  --ignore-rawblocks: 'true' if the project should ignore HTML raw blocks, 'false' otherwise"
+  echo "  --shift-heading-level-by: 0 if you don't want to shift heading levels , n otherwise"
+  echo "  --increment-heading-level-by: 0 if don't want to increment the starting heading number, n otherwise"
   exit 1
 fi
 
