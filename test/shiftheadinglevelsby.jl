@@ -66,7 +66,7 @@ vim:tw=78:ts=8:noet:ft=help:norl:
 
     # References
     """;
-    shift_level_headings_by = 2,
+    shift_heading_levels_by = 2,
   )
   @test doc == """
 *test.txt*                                                    Test Description

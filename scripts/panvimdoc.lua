@@ -65,7 +65,6 @@ end
 
 local PROJECT = ""
 local TREESITTER = false
-local SHIFT_LEVEL_HEADINGS_BY = 0
 local TOC = false
 local VIMVERSION = "0.9.0"
 local DESCRIPTION = ""
@@ -192,7 +191,7 @@ Writer.Pandoc = function(doc, opts)
   DESCRIPTION = doc.meta.description
   DEDUP_SUBHEADINGS = doc.meta.dedupsubheadings
   IGNORE_RAWBLOCKS = doc.meta.ignorerawblocks
-  HEADER_COUNT = HEADER_COUNT + doc.meta.shiftlevelheadingsby
+  HEADER_COUNT = HEADER_COUNT + doc.meta.shiftheadinglevelsby
   DATE = doc.meta.date
   local d = blocks(doc.blocks)
   local toc = renderToc()
