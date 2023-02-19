@@ -1,0 +1,36 @@
+name: docs
+
+on:
+  push:
+
+permissions:
+  contents: write
+
+jobs:
+  publish-gh-page:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout code
+        uses: actions/checkout@v3
+      - name: pandoc markdown to html
+        uses: docker://pandoc/latex:3.1
+        with:
+          args: >-
+            --katex
+            --from markdown+tex_math_single_backslash
+            --to html5+smart
+            --template="./scripts/template.html5"
+            --css="/css/theme.css"
+            --css="/css/skylighting-solarized-theme.css"
+            --toc
+            --wrap=none
+            --metadata title="panvimdoc"
+            doc/panvimdoc.md
+            --lua-filter=scripts/include-files.lua
+            -t html
+            -o public/index.html
+      - name: deploy to GitHub pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: public

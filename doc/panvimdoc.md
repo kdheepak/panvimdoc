@@ -51,7 +51,6 @@ You can use codeblocks that have language as `vimdoc` to write raw vimdoc.
 <!-- panvimdoc-ignore-end -->
 
 This can be used to write any custom whitespace formatted documentation in the generated vimdoc (for mappings, options etc).
-Also see [mappings](#mappings) for a Markdown friendly way to write documentation for mappings.
 
 # Title
 
@@ -155,84 +154,6 @@ The following is generated in vimdoc:
 This is excluded from the links section.
 
 Lastly, if the markdown text is a url, the link is not added to the links section and instead is placed inline.
-
-## Mappings
-
-While you can use codeblocks with the language `vimdoc` to insert text in the generated vimdoc, it can be useful to have a markdown friendly way to write documentation for mappings.
-
-Any markdown header of level 4 will be considered as a special header.
-This can be used to generate documentation of mappings.
-All of the content in curly braces `{...}` that is part of the header is dropped and a tag is created.
-
-For example, the following level 4 heading and the contents of the section:
-
-```
-#### abc{xyz}
-
-Docstring for abc {xyz}.
-```
-
-becomes the following vimdoc:
-
-```
-                                                               *projectName-abc*
-
-abc{xyz}                               Docstring for abc {xyz}.
-```
-
-Notice that the tag `*projectName-abc*` is generated for you.
-
-Additionally, content in square brackets `[...]` is dropped for creating the tag name.
-The heading `### :[range]Command` becomes the tag `*projectName-:Command*`.
-You can also use `{doc=AdditionalTag}` to generate one additional tag for each header.
-
-See following headings as examples:
-
-#### pv{motion}
-
-Command that operates over {motion} moved.
-
-#### pvd
-
-Command that takes [count] lines.
-
-#### :[range]CommandName {doc=CommandName}
-
-Command that operates over [range].
-
-#### {Visual}pv
-
-Command that operates over highlighted lines.
-
-<!-- panvimdoc-ignore-start -->
-
-The above generates the following vimdoc text:
-
-```
-
-                                                                *projectName-pv*
-
-pv{motion}                             Command that operates over {motion}
-                                       moved.
-
-
-                                                               *projectName-pvd*
-
-pvd                                    Command that takes [count] lines.
-
-
-                                        *projectName-:CommandName* *CommandName*
-
-:[range]CommandName                    Command that operates over [range].
-
-
-                                                                *projectName-pv*
-
-{Visual}pv                             Command that operates over highlighted
-                                       lines.
-```
-
-<!-- panvimdoc-ignore-end -->
 
 ## Table
 

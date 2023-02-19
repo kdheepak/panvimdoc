@@ -1,0 +1,21 @@
+name: Test
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - uses: julia-actions/setup-julia@v1
+      - uses: julia-actions/julia-buildpkg@v1
+      - name: Build Docker image
+        run: docker build -t test-image .
+      - uses: julia-actions/julia-runtest@v1
+        with:
+          annotate: true
+        env:
+          DOCKER_IMAGE: test-image

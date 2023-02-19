@@ -14,11 +14,11 @@ inputs:
     default: "README.md"
   version:
     description: "Vim version"
-    required: true
+    required: false
     default: "NVIM v0.8.0"
   toc:
     description: "Table of contents"
-    required: true
+    required: false
     default: "true"
   description:
     description: "Project description"
@@ -31,19 +31,46 @@ inputs:
   dedupsubheadings:
     description: "Add heading to subheading links"
     required: false
-    default: "false"
+    default: "true"
   treesitter:
     description: "Use treesitter for highlighting codeblocks"
     required: false
     default: "false"
+  ignorerawblocks:
+    description: "Ignore raw blocks when generating vimdoc"
+    required: false
+    default: "true"
+  shiftheadinglevelby:
+    description: "Shift heading levels by specified number"
+    required: false
+    default: "0"
+  incrementheadinglevelby:
+    description: "Shift heading levels by specified number"
+    required: false
+    default: "0"
 runs:
   using: "docker"
   image: "Dockerfile"
   args:
+    - --project-name
     - ${{ inputs.vimdoc }}
+    - --input-file
     - ${{ inputs.pandoc }}
+    - --vim-version
     - ${{ inputs.version }}
+    - --toc
     - ${{ inputs.toc }}
+    - --description
     - ${{ inputs.description }}
+    - --dedup-subheadings
+    - ${{ inputs.dedupsubheadings }}
+    - --demojify
     - ${{ inputs.demojify }}
+    - --treesitter
     - ${{ inputs.treesitter }}
+    - --ignore-rawblocks
+    - ${{ inputs.ignorerawblocks }}
+    - --shift-heading-level-by
+    - ${{ inputs.shiftheadinglevelby }}
+    - --increment-heading-level-by
+    - ${{ inputs.incrementheadinglevelby }}

@@ -34,21 +34,15 @@ function RawBlock(el)
   local str = el.text
   if str == "<!-- panvimdoc-ignore-start -->" then
     COMMENT = true
-    return pandoc.Null()
+    return pandoc.List()
   elseif str == "<!-- panvimdoc-ignore-end -->" then
     COMMENT = false
-    return pandoc.Null()
+    return pandoc.List()
   end
   if string.starts_with(str, "<!--") then
-    return pandoc.Null()
-  elseif str == "<p>" or str == "</p>" then
-    return pandoc.Null()
-  elseif str == "<details>" or str == "</details>" then
-    return pandoc.Null()
-  elseif str == "<summary>" or str == "</summary>" then
-    return pandoc.Null()
+    return pandoc.List()
   elseif COMMENT == true then
-    return pandoc.Null()
+    return pandoc.List()
   else
     return el
   end
@@ -56,84 +50,84 @@ end
 
 function Header(el)
   if COMMENT == true then
-    return pandoc.Null()
+    return pandoc.List()
   end
   return el
 end
 
 function Para(el)
   if COMMENT == true then
-    return pandoc.Null()
+    return pandoc.List()
   end
   return el
 end
 
 function BlockQuote(el)
   if COMMENT == true then
-    return pandoc.Null()
+    return pandoc.List()
   end
   return el
 end
 
 function Table(el)
   if COMMENT == true then
-    return pandoc.Null()
+    return pandoc.List()
   end
   return el
 end
 
 function Plain(el)
   if COMMENT == true then
-    return pandoc.Null()
+    return pandoc.List()
   end
   return el
 end
 
 function OrderedList(el)
   if COMMENT == true then
-    return pandoc.Null()
+    return pandoc.List()
   end
   return el
 end
 
 function BulletList(el)
   if COMMENT == true then
-    return pandoc.Null()
+    return pandoc.List()
   end
   return el
 end
 
 function LineBlock(el)
   if COMMENT == true then
-    return pandoc.Null()
+    return pandoc.List()
   end
   return el
 end
 
 function HorizontalRule(el)
   if COMMENT == true then
-    return pandoc.Null()
+    return pandoc.List()
   end
   return el
 end
 
 function Div(el)
   if COMMENT == true then
-    return pandoc.Null()
+    return pandoc.List()
   end
   return el
 end
 
 function DefinitionList(el)
   if COMMENT == true then
-    return pandoc.Null()
+    return pandoc.List()
   end
   return el
 end
 
 function CodeBlock(el)
   if COMMENT == true then
-    return pandoc.Null()
+    return pandoc.List()
   end
   return el
 end

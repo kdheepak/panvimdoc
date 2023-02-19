@@ -3,11 +3,15 @@
 --- Copyright: © 2019–2021 Albert Krewinkel
 --- License:   MIT – see LICENSE file for details
 -- Module pandoc.path is required and was added in version 2.12
-PANDOC_VERSION:must_be_at_least("2.12")
+PANDOC_VERSION:must_be_at_least("3.0")
 
 local List = require("pandoc.List")
 local path = require("pandoc.path")
 local system = require("pandoc.system")
+
+function P(s)
+  require("scripts.logging").temp(s)
+end
 
 --- Get include auto mode
 local include_auto = false
@@ -48,7 +52,6 @@ local function update_contents(blocks, shift_by, include_path)
       return cb
     end,
   }
-
   return pandoc.walk_block(pandoc.Div(blocks), update_contents_filter).content
 end
 
