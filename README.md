@@ -123,7 +123,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: panvimdoc
-        uses: kdheepak/panvimdoc@main
+        uses: kdheepak/panvimdoc@v3
         with:
           vimdoc: ${VIMDOC_PROJECT_NAME} # Output vimdoc project name (required)
           # The following are all optional
@@ -143,13 +143,13 @@ Choose `VIMDOC_PROJECT_NAME` appropriately.
 This is usually the name of the plugin or the documentation file without the `.txt` extension. For example, the following:
 
 ```
-      - name: panvimdoc
-        uses: kdheepak/panvimdoc@main
-        with:
-          vimdoc: panvimdoc
+- name: panvimdoc
+  uses: kdheepak/panvimdoc@main
+  with:
+    vimdoc: panvimdoc
 ```
 
-Will output a file `doc/panvimdoc.txt` and the vim help tag for it will be `panvimdoc`.
+Will output a file `doc/panvimdoc.txt` and the vim help tag for it will be `panvimdoc` using the `main` branch of the repository. It is recommended to pin to an exact version so you can be confident that no surprises occur for you or your users.
 
 For an example of how this is used, see one of the following workflows:
 
