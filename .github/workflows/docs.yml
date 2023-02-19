@@ -2,6 +2,7 @@ name: docs
 
 on:
   push:
+    branch: main
 
 permissions:
   contents: write
