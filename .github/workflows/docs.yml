@@ -20,8 +20,8 @@ jobs:
             --from markdown+tex_math_single_backslash
             --to html5+smart
             --template="./scripts/template.html5"
-            --css="/css/theme.css"
-            --css="/css/skylighting-solarized-theme.css"
+            --css="/panvimdoc/css/theme.css"
+            --css="/panvimdoc/css/skylighting-solarized-theme.css"
             --toc
             --wrap=none
             --metadata title="panvimdoc"
