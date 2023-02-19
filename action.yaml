@@ -44,6 +44,10 @@ inputs:
     description: "Shift heading levels by specified number"
     required: false
     default: "0"
+  incrementheadinglevelby:
+    description: "Shift heading levels by specified number"
+    required: false
+    default: "0"
 runs:
   using: "docker"
   image: "Dockerfile"
@@ -68,3 +72,5 @@ runs:
     - ${{ inputs.ignorerawblocks }}
     - --shift-heading-level-by
     - ${{ inputs.shiftheadinglevelby }}
+    - --increment-heading-level-by
+    - ${{ inputs.incrementheadinglevelby }}
