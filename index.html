@@ -29,6 +29,7 @@
   <li><a href="#usage" id="toc-usage">Usage</a>
   <ul>
   <li><a href="#using-github-actions" id="toc-using-github-actions">Using Github Actions</a></li>
+  <li><a href="#using-it-manually" id="toc-using-it-manually">Using it manually</a></li>
   </ul></li>
   <li><a href="#references" id="toc-references">References</a></li>
   <li><a href="#specification" id="toc-specification">Specification</a>
@@ -162,6 +163,24 @@ git push</code></pre>
 <li><a href="https://github.com/nvim-lualine/lualine.nvim/blob/master/.github/workflows/autogen.yml">nvim-lualine/lualine.nvim</a>: <a href="https://github.com/nvim-lualine/lualine.nvim/blob/master/doc/lualine.txt">doc/lualine.txt</a></li>
 </ul>
 <p><em>Feel free to submit a PR to add your documentation as an example here.</em></p>
+<h3 id="using-it-manually">Using it manually</h3>
+<p>The <code>./entrypoint.sh</code> script runs <code>pandoc</code> along with all the filters and custom output writer.</p>
+<pre><code>./entrypoint.sh
+Usage: ./entrypoint.sh --project-name PROJECT_NAME --input-file INPUT_FILE --vim-version VIM_VERSION --toc TOC --description DESCRIPTION --dedup-subheadings DEDUP_SUBHEADINGS --treesitter TREESITTER
+
+Arguments:
+  --project-name: the name of the project
+  --input-file: the input markdown file
+  --vim-version: the version of Vim that the project is compatible with
+  --toc: &#39;true&#39; if the output should include a table of contents, &#39;false&#39; otherwise
+  --description: a description of the project
+  --dedup-subheadings: &#39;true&#39; if duplicate subheadings should be removed, &#39;false&#39; otherwise
+  --demojify: &#39;false&#39; if emojis should not be removed, &#39;true&#39; otherwise
+  --treesitter: &#39;true&#39; if the project uses Tree-sitter syntax highlighting, &#39;false&#39; otherwise
+  --ignore-rawblocks: &#39;true&#39; if the project should ignore HTML raw blocks, &#39;false&#39; otherwise
+  --shift-heading-level-by: 0 if you don&#39;t want to shift heading levels , n otherwise
+  --increment-heading-level-by: 0 if don&#39;t want to increment the starting heading number, n otherwise</code></pre>
+<p>You will need <code>pandoc</code> version 3.0.0 or greater for this script to work.</p>
 <h1 id="references">References</h1>
 <ul>
 <li><a href="https://learnvimscriptthehardway.stevelosh.com/chapters/54.html" class="uri">https://learnvimscriptthehardway.stevelosh.com/chapters/54.html</a></li>
@@ -175,9 +194,9 @@ git push</code></pre>
 <p>See <a href="./panvimdoc.txt">./panvimdoc.txt</a> for generated output of this file.</p>
 <h2 id="external-includes">External includes</h2>
 <p>Use the following in your markdown file to include any other markdown file:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{.include}</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="in">README.md</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{.include}</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="in">README.md</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div>
 <p>The path of the file is with respect to the working directory where <code>pandoc</code> is executed.</p>
 <h2 id="codeblocks">Codeblocks</h2>
 <pre><code>Multi line Code blocks are indented 4 spaces and
@@ -224,7 +243,7 @@ Sub headings are upper cased heading.</code></pre>
 <!-- panvimdoc-ignore-start -->
 <p>The following markdown:</p>
 <!-- panvimdoc-ignore-end -->
-<div class="sourceCode" id="cb12"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>You can link to the tags by using <span class="co">[</span><span class="ot">sub heading 2</span><span class="co">](#sub-heading-2)</span>.</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>You can link to the tags by using <span class="co">[</span><span class="ot">sub heading 2</span><span class="co">](#sub-heading-2)</span>.</span></code></pre></div>
 <!-- panvimdoc-ignore-start -->
 <p>is converted to the following vimdoc:</p>
 <pre><code>You can link to the tags by using |projectName-sub-heading-2|.</code></pre>
