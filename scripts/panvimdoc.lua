@@ -77,7 +77,6 @@ local CURRENT_HEADER = nil
 local HEADER_COUNT = 1
 local toc = {}
 local links = {}
-local notes = {}
 
 local function osExecute(cmd)
   local fileHandle = assert(io.popen(cmd, "r"))
@@ -171,10 +170,10 @@ local function renderNotes()
     add(string.rep("=", 78) .. "\n" .. string.format("%s%s%s", left, padding, right))
     add("")
     for i, v in ipairs(links) do
-      add(i .. ". *" .. v[1] .. "*" .. ": " .. v[2])
+      add(i .. ". *" .. v.caption .. "*" .. ": " .. v.src)
     end
   end
-  return table.concat(t, "\n")
+  return table.concat(t, "\n") .. "\n"
 end
 
 function renderFooter()
@@ -385,7 +384,7 @@ Writer.Inline.Link = function(el)
 end
 
 Writer.Inline.Image = function(el)
-  return "<img src='" .. escape(src, true) .. "' title='" .. escape(tit, true) .. "'/>"
+  links[#links + 1] = { caption = inlines(el.caption), src = el.src }
 end
 
 Writer.Inline.Code = function(el)
@@ -480,5 +479,30 @@ end
 
 Writer.Block.Div = function(el)
   -- TODO: Add more special features here
+  return inlines(el.content.content)
+end
+
+Writer.Block.Figure = function(el)
+  local caption = blocks(el.caption.long)
   return blocks(el.content)
+end
+
+Writer.Block.BlockQuote = function(el)
+  local lines = {}
+  for line in blocks(el.content):gmatch("[^\r\n]+") do
+    table.insert(lines, line)
+  end
+  return "\n  " .. table.concat(lines, "\n  ") .. "\n"
+end
+
+Writer.Block.HorizontalRule = function()
+  return string.rep("-", 78)
+end
+
+Writer.Block.LineBlock = function(el)
+  local buffer = {}
+  el.content:map(function(item)
+    table.insert(buffer, table.concat({ "| ", inlines(item) }))
+  end)
+  return "\n" .. table.concat(buffer, "\n") .. "\n"
 end
