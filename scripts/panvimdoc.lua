@@ -29,7 +29,7 @@ local function escape(s, in_attribute)
   return s
 end
 
-function indent(s, fl, ol)
+local function indent(s, fl, ol)
   local ret = {}
   local i = 1
   for l in s:gmatch("[^\r\n]+") do
@@ -58,7 +58,7 @@ local function blocks(bs, sep)
   local dbuff = {}
   for i = 1, #bs do
     local el = bs[i]
-    dbuff[#dbuff + 1] = Writer.Block[el.tag](el)
+    dbuff[#dbuff + 1] = Writer[pandoc.utils.type(el)][el.tag](el)
   end
   return table.concat(dbuff, sep)
 end
@@ -77,7 +77,6 @@ local CURRENT_HEADER = nil
 local HEADER_COUNT = 1
 local toc = {}
 local links = {}
-local notes = {}
 
 local function osExecute(cmd)
   local fileHandle = assert(io.popen(cmd, "r"))
@@ -171,10 +170,10 @@ local function renderNotes()
     add(string.rep("=", 78) .. "\n" .. string.format("%s%s%s", left, padding, right))
     add("")
     for i, v in ipairs(links) do
-      add(i .. ". *" .. v[1] .. "*" .. ": " .. v[2])
+      add(i .. ". *" .. v.caption .. "*" .. ": " .. v.src)
     end
   end
-  return table.concat(t, "\n")
+  return table.concat(t, "\n") .. "\n"
 end
 
 function renderFooter()
@@ -385,7 +384,7 @@ Writer.Inline.Link = function(el)
 end
 
 Writer.Inline.Image = function(el)
-  return "<img src='" .. escape(src, true) .. "' title='" .. escape(tit, true) .. "'/>"
+  links[#links + 1] = { caption = inlines(el.caption), src = el.src }
 end
 
 Writer.Inline.Code = function(el)
@@ -446,8 +445,8 @@ Writer.Inline.Cite = function(el)
   end
 end
 
-Writer.Block.Plain = function(s)
-  return inlines(s.content)
+Writer.Block.Plain = function(el)
+  return inlines(el.content)
 end
 
 Writer.Block.RawBlock = function(el)
@@ -481,4 +480,28 @@ end
 Writer.Block.Div = function(el)
   -- TODO: Add more special features here
   return blocks(el.content)
+end
+
+Writer.Block.Figure = function(el)
+  return blocks(el.content)
+end
+
+Writer.Block.BlockQuote = function(el)
+  local lines = {}
+  for line in blocks(el.content):gmatch("[^\r\n]+") do
+    table.insert(lines, line)
+  end
+  return "\n  " .. table.concat(lines, "\n  ") .. "\n"
+end
+
+Writer.Block.HorizontalRule = function()
+  return string.rep("-", 78)
+end
+
+Writer.Block.LineBlock = function(el)
+  local buffer = {}
+  el.content:map(function(item)
+    table.insert(buffer, table.concat({ "| ", inlines(item) }))
+  end)
+  return "\n" .. table.concat(buffer, "\n") .. "\n"
 end
