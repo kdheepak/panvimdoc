@@ -15,6 +15,8 @@ if [ $# -eq 0 ]; then
   echo "  --demojify: 'false' if emojis should not be removed, 'true' otherwise"
   echo "  --treesitter: 'true' if the project uses Tree-sitter syntax highlighting, 'false' otherwise"
   echo "  --ignore-rawblocks: 'true' if the project should ignore HTML raw blocks, 'false' otherwise"
+  echo "  --doc-mapping: 'false' if h4 headings should double as mapping docs, 'true' otherwise"
+  echo "  --doc-mapping-project-name: 'true' if tags generated for mapping docs contain project name, 'false' otherwise"
   echo "  --shift-heading-level-by: 0 if you don't want to shift heading levels , n otherwise"
   echo "  --increment-heading-level-by: 0 if don't want to increment the starting heading number, n otherwise"
   exit 1

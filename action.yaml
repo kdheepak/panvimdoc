@@ -43,7 +43,7 @@ inputs:
   docmapping:
     description: "Use h4 headers as mapping docs"
     required: false
-    default: "true"
+    default: "false"
   docmappingprojectname:
     description: "Use project name in tag when writing mapping docs"
     required: false
