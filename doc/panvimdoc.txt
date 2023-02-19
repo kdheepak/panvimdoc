@@ -18,6 +18,7 @@ Table of Contents                                *panvimdoc-table-of-contents*
 11. Heading                                                |panvimdoc-heading|
   - Sub Heading 2                            |panvimdoc-heading-sub-heading-2|
   - Markdown Links                          |panvimdoc-heading-markdown-links|
+  - Mappings                                      |panvimdoc-heading-mappings|
   - Table                                            |panvimdoc-heading-table|
   - Markdown only content            |panvimdoc-heading-markdown-only-content|
   - Details and summary                |panvimdoc-heading-details-and-summary|
@@ -249,6 +250,7 @@ custom output writer.
       --demojify: 'false' if emojis should not be removed, 'true' otherwise
       --treesitter: 'true' if the project uses Tree-sitter syntax highlighting, 'false' otherwise
       --ignore-rawblocks: 'true' if the project should ignore HTML raw blocks, 'false' otherwise
+      --doc-mapping: 'true' if the project should use h4 headers as mapping docs, 'false' otherwise
       --shift-heading-level-by: 0 if you don't want to shift heading levels , n otherwise
       --increment-heading-level-by: 0 if don't want to increment the starting heading number, n otherwise
 <
@@ -375,6 +377,65 @@ This is excluded from the links section.
 
 Lastly, if the markdown text is a url, the link is not added to the links
 section and instead is placed inline.
+
+
+MAPPINGS                                          *panvimdoc-heading-mappings*
+
+While you can use codeblocks with the language `vimdoc` to insert text in the
+generated vimdoc, it can be useful to have a markdown friendly way to write
+documentation for mappings.
+
+Any markdown header of level 4 will be considered as a special header.This can
+be used to generate documentation of mappings.All of the content in curly
+braces `{...}` that is part of the header is dropped and a tag is created.
+
+For example, the level 4 heading and the contents of the section:
+
+>
+    #### abc{xyz}
+    
+    Docstring for abc {xyz}.
+<
+
+becomes the following vimdoc:
+
+>
+                                                                   *projectName-abc*
+    
+    abc{xyz}                               Docstring for abc {xyz}.
+<
+
+Notice that the tag `*projectName-abc*` is generated for you:
+
+Additionally, content in square brackets `[...]` is also dropped for creating
+the tag name.
+
+The heading `### :[range]Command` becomes the tag `*projectName-:Command*`.
+
+See following headings as examples:
+
+
+pv{motion}                                                      *panvimdoc-pv*
+
+Command that operates over {motion} moved.
+
+
+pvd                                                            *panvimdoc-pvd*
+
+Command that takes [count] lines.
+
+
+:[range]CommandName                                              *CommandName*
+
+Command that operates over [range].
+
+You can use `{doc=AdditionalTag}` to generate one additional tag for each
+header.
+
+
+{Visual}pv                                                      *panvimdoc-pv*
+
+Command that operates over highlighted lines.
 
 
 TABLE                                                *panvimdoc-heading-table*
