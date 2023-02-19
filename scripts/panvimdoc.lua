@@ -336,7 +336,7 @@ Writer.Inline.Space = function()
 end
 
 Writer.Inline.SoftBreak = function()
-  return "\n"
+  return ""
 end
 
 Writer.Inline.LineBreak = function()
@@ -407,19 +407,23 @@ Writer.Inline.DoubleQuoted = function(s)
   return "\"" .. stringify(s) .. "\""
 end
 
-Writer.Inline.Note = function(s)
-  return stringify(s)
+Writer.Inline.Note = function(el)
+  return el
 end
 
 Writer.Inline.Null = function(s)
   return ""
 end
 
-Writer.Inline.Span = function(s, attr)
-  return stringify(s)
+Writer.Inline.Span = function(el)
+  return inlines(el)
 end
 
 Writer.Inline.RawInline = function(el)
+  if IGNORE_RAWBLOCKS then
+    return ""
+  end
+  local str = el.text
   if format == "html" then
     if str == "<b>" then
       return ""
@@ -437,12 +441,13 @@ Writer.Inline.RawInline = function(el)
   end
 end
 
+Writer.Inline.Citation = function(el)
+  return el
+end
+
 Writer.Inline.Cite = function(el)
-  if #cs == 1 then
-    return string.sub(s, 2, (#s - 1))
-  else
-    return inlines(s)
-  end
+  links[#links + 1] = { caption = inlines(el.content), src = "" }
+  return inlines(el.content)
 end
 
 Writer.Block.Plain = function(el)
@@ -479,7 +484,11 @@ end
 
 Writer.Block.Div = function(el)
   -- TODO: Add more special features here
-  return blocks(el.content)
+  if IGNORE_RAWBLOCKS then
+    return "\n"
+  else
+    return blocks(el.content)
+  end
 end
 
 Writer.Block.Figure = function(el)
@@ -495,7 +504,7 @@ Writer.Block.BlockQuote = function(el)
 end
 
 Writer.Block.HorizontalRule = function()
-  return string.rep("-", 78)
+  return string.rep("-", 78) .. "\n"
 end
 
 Writer.Block.LineBlock = function(el)

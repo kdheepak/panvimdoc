@@ -6,10 +6,11 @@ end
 local pandoc = _G.pandoc
 
 function P(s)
-  print(require("scripts.inspect").inspect(s))
+  require("scripts.logging").temp(s)
 end
 
 local COMMENT = false
+local IGNORE_RAWBLOCKS = true
 
 local List = require("pandoc.List")
 

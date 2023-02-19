@@ -34,7 +34,9 @@ function test_pandoc(
   end
 
   cd(ROOT_DIR) do
-    run(`$(Pandoc.pandoc()) --shift-heading-level-by=$shift_heading_level_by $metadata $filters -t $SCRIPTS_DIR/panvimdoc.lua $CUR_DIR/test.md -o test/test.txt`)
+    run(
+      `$(Pandoc.pandoc()) --citeproc --shift-heading-level-by=$shift_heading_level_by $metadata $filters -t $SCRIPTS_DIR/panvimdoc.lua $CUR_DIR/test.md -o test/test.txt`,
+    )
   end
   doc = read(joinpath(ROOT_DIR, "test/test.txt"), String)
   rm(joinpath(ROOT_DIR, "test/test.txt"))
