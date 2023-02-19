@@ -29,7 +29,7 @@ local function escape(s, in_attribute)
   return s
 end
 
-function indent(s, fl, ol)
+local function indent(s, fl, ol)
   local ret = {}
   local i = 1
   for l in s:gmatch("[^\r\n]+") do
