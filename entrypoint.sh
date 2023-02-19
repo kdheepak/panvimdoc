@@ -126,5 +126,5 @@ fi
 ARGS+=("-t" "$SCRIPTS_DIR/panvimdoc.lua")
 
 # Print and execute the command
-printf "%s\n" "pandoc ${ARGS[*]} $INPUT_FILE -o doc/$PROJECT_NAME.txt"
+printf "%s\n" "pandoc --citeproc ${ARGS[*]} $INPUT_FILE -o doc/$PROJECT_NAME.txt"
 pandoc "${ARGS[@]}" "$INPUT_FILE" -o "doc/$PROJECT_NAME.txt"
