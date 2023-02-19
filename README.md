@@ -164,8 +164,8 @@ _Feel free to submit a PR to add your documentation as an example here._
 
 The `./entrypoint.sh` script runs `pandoc` along with all the filters and custom output writer.
 
-```
-./entrypoint.sh
+```bash
+$ ./entrypoint.sh
 Usage: ./entrypoint.sh --project-name PROJECT_NAME --input-file INPUT_FILE --vim-version VIM_VERSION --toc TOC --description DESCRIPTION --dedup-subheadings DEDUP_SUBHEADINGS --treesitter TREESITTER
 
 Arguments:
