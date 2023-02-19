@@ -1,4 +1,4 @@
-@testset "markdown" begin
+@testset "para" begin
   doc = test_pandoc(
     raw"""
 Pandoc supports definition lists: <https://pandoc.org/MANUAL.html#definition-lists>.

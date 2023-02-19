@@ -1,4 +1,4 @@
-@testset "markdown" begin
+@testset "definition-lists" begin
   doc = test_pandoc(
     raw"""
 :FnlCompileBuffer
