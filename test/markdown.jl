@@ -1,7 +1,20 @@
+using InteractiveUtils
 @testset "markdown" begin
   doc = test_pandoc(
     raw"""
 # panvimdoc
+
+<div align="center">
+  <img src="https://user-images.githubusercontent.com/292349/213446185-2db63fd5-8c84-459c-9f04-e286382d6e80.png">
+</div>
+
+<hr>
+
+<div align="center"><p>
+    <a href="https://github.com/LazyVim/LazyVim/releases/latest">
+      <img alt="Latest release" src="https://img.shields.io/github/v/release/LazyVim/LazyVim?style=for-the-badge&logo=starship&color=C9CBFF&logoColor=D9E0EE&labelColor=302D41&include_prerelease&sort=semver" />
+    </a>
+</div>
 
 "Double quoted string"
 
@@ -383,11 +396,13 @@ bar
     toc = false,
     demojify = true,
   )
+  InteractiveUtils.clipboard(doc)
   @test doc == raw"""
 *test.txt*                                                    Test Description
 
 ==============================================================================
 1. panvimdoc                                                  *test-panvimdoc*
+
 
 "Double quoted string"
 
