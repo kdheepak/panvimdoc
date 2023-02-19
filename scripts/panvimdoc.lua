@@ -69,7 +69,7 @@ local TOC = false
 local VIMVERSION = "0.9.0"
 local DESCRIPTION = ""
 local DEDUP_SUBHEADINGS = false
-local IGNORE_RAWBLOCK = true
+local IGNORE_RAWBLOCKS = true
 local DATE = nil
 
 local CURRENT_HEADER = nil
@@ -190,6 +190,7 @@ Writer.Pandoc = function(doc, opts)
   VIMVERSION = doc.meta.vimversion
   DESCRIPTION = doc.meta.description
   DEDUP_SUBHEADINGS = doc.meta.dedupsubheadings
+  IGNORE_RAWBLOCKS = doc.meta.ignorerawblocks
   DATE = doc.meta.date
   local d = blocks(doc.blocks)
   local toc = renderToc()
@@ -462,7 +463,7 @@ Writer.Block.RawBlock = function(el)
       return ""
     elseif str == "</summary>" then
       return " ~\n\n"
-    elseif IGNORE_RAWBLOCK then
+    elseif IGNORE_RAWBLOCKS then
       return ""
     else
       return str

@@ -53,6 +53,11 @@ case $key in
     shift # past argument
     shift # past value
     ;;
+    --ignore-rawblocks)
+    IGNORE_RAWBLOCKS="$2"
+    shift # past argument
+    shift # past value
+    ;;
     --demojify)
     DEMOJIFY="$2"
     shift # past argument
@@ -90,6 +95,7 @@ ARGS=(
     "--metadata=toc:$TOC"
     "--metadata=description:$DESCRIPTION"
     "--metadata=dedupsubheadings:$DEDUP_SUBHEADINGS"
+    "--metadata=ignorerawblocks:$IGNORE_RAWBLOCKS"
     "--metadata=treesitter:$TREESITTER"
     "--lua-filter=$SCRIPTS_DIR/skip-blocks.lua"
     "--lua-filter=$SCRIPTS_DIR/include-files.lua"
