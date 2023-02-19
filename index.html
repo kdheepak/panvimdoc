@@ -134,7 +134,7 @@ git push</code></pre>
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">steps</span><span class="kw">:</span></span>
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/checkout@v2</span></span>
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> panvimdoc</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> kdheepak/panvimdoc@main</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> kdheepak/panvimdoc@v3</span></span>
 <span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">with</span><span class="kw">:</span></span>
 <span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">vimdoc</span><span class="kw">:</span><span class="at"> ${VIMDOC_PROJECT_NAME}</span><span class="co"> # Output vimdoc project name (required)</span></span>
 <span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="co">          # The following are all optional</span></span>
@@ -149,11 +149,11 @@ git push</code></pre>
 <span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">shiftheadinglevelby</span><span class="kw">:</span><span class="at"> </span><span class="dv">0</span><span class="co"> # Shift heading levels by specified number</span></span>
 <span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">incrementheadinglevelby</span><span class="kw">:</span><span class="at"> </span><span class="dv">0</span><span class="co"> # Increment heading levels by specified number</span></span></code></pre></div>
 <p>Choose <code>VIMDOC_PROJECT_NAME</code> appropriately. This is usually the name of the plugin or the documentation file without the <code>.txt</code> extension. For example, the following:</p>
-<pre><code>      - name: panvimdoc
-        uses: kdheepak/panvimdoc@main
-        with:
-          vimdoc: panvimdoc</code></pre>
-<p>Will output a file <code>doc/panvimdoc.txt</code> and the vim help tag for it will be <code>panvimdoc</code>.</p>
+<pre><code>- name: panvimdoc
+  uses: kdheepak/panvimdoc@main
+  with:
+    vimdoc: panvimdoc</code></pre>
+<p>Will output a file <code>doc/panvimdoc.txt</code> and the vim help tag for it will be <code>panvimdoc</code> using the <code>main</code> branch of the repository. It is recommended to pin to an exact version so you can be confident that no surprises occur for you or your users.</p>
 <p>For an example of how this is used, see one of the following workflows:</p>
 <ul>
 <li><a href="./.github/workflows/panvimdoc.yml">kdheepak/panvimdoc</a>: <a href="./doc/panvimdoc.txt">doc/panvimdoc.txt</a></li>
