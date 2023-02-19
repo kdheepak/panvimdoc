@@ -410,25 +410,58 @@ Sub headings are upper cased heading.</code></pre>
 <!-- prettier-ignore-end -->
 <!-- panvimdoc-ignore-start -->
 <p>The following gets generated:</p>
-<pre><code>│              Option              │Background│ Default │                              Description                              │
-│lightness                         │light     │nil      │Change background colors lightness. Options: &#39;bright&#39;, &#39;dim&#39;.          │
-│darkness                          │dark      │nil      │Change background colors darkness. Options: &#39;stark&#39;, &#39;warm&#39;.           │
-│solid_vert_split                  │both      │false    │Solid |hl-VertSplit| background.                                       │
-│solid_line_nr                     │both      │false    │Solid |hl-LineNr| background.                                          │
-│solid_float_border                │both      │false    │Make |hl-FloatBorder| have a more distinguishable background highlight.│
-│darken_noncurrent_window          │light     │false    │Make non-current window background darker than _Normal_.               │
-│lighten_noncurrent_window         │dark      │false    │Make non-current window background lighter than _Normal_.              │
-│italic_comments                   │both      │true     │Make comments italicize.                                               │
-│darken_comments                   │light     │38       │Percentage to darken comments relative to Normal bg.                   │
-│lighten_comments                  │dark      │38       │Percentage to lighten comments relative to Normal bg.                  │
-│darken_non_text                   │light     │25       │Percentage to darken |hl-NonText| relative to Normal bg.               │
-│lighten_non_text                  │dark      │30       │Percentage to lighten |hl-NonText| relative to Normal bg.              │
-│darken_line_nr                    │light     │33       │Percentage to darken |hl-LineNr| relative to Normal bg.                │
-│lighten_line_nr                   │dark      │35       │Percentage to lighten |hl-LineNr| relative to Normal bg.               │
-│darken_cursor_line                │light     │3        │Percentage to darken |hl-CursorLine| relative to Normal bg.            │
-│lighten_cursor_line               │dark      │4        │Percentage to lighten |hl-CursorLine| relative to Normal bg.           │
-│colorize_diagnostic_underline_text│both      │false    │Colorize the fg of DiagnosticUnderline*.                               │
-│transparent_background            │both      │false    │Make background transparent.                                           │</code></pre>
+<pre><code>  -----------------------------------------------------------------------------------------------------
+  Option                               Background   Default   Description
+  ------------------------------------ ------------ --------- -----------------------------------------
+  lightness                            light        nil       Change background colors lightness.
+                                                              Options: &#39;bright&#39;, &#39;dim&#39;.
+
+  darkness                             dark         nil       Change background colors darkness.
+                                                              Options: &#39;stark&#39;, &#39;warm&#39;.
+
+  solid_vert_split                     both         false     Solid |hl-VertSplit| background.
+
+  solid_line_nr                        both         false     Solid |hl-LineNr| background.
+
+  solid_float_border                   both         false     Make |hl-FloatBorder| have a more
+                                                              distinguishable background highlight.
+
+  darken_noncurrent_window             light        false     Make non-current window background darker
+                                                              than Normal.
+
+  lighten_noncurrent_window            dark         false     Make non-current window background
+                                                              lighter than Normal.
+
+  italic_comments                      both         true      Make comments italicize.
+
+  darken_comments                      light        38        Percentage to darken comments relative to
+                                                              Normal bg.
+
+  lighten_comments                     dark         38        Percentage to lighten comments relative
+                                                              to Normal bg.
+
+  darken_non_text                      light        25        Percentage to darken |hl-NonText|
+                                                              relative to Normal bg.
+
+  lighten_non_text                     dark         30        Percentage to lighten |hl-NonText|
+                                                              relative to Normal bg.
+
+  darken_line_nr                       light        33        Percentage to darken |hl-LineNr| relative
+                                                              to Normal bg.
+
+  lighten_line_nr                      dark         35        Percentage to lighten |hl-LineNr|
+                                                              relative to Normal bg.
+
+  darken_cursor_line                   light        3         Percentage to darken |hl-CursorLine|
+                                                              relative to Normal bg.
+
+  lighten_cursor_line                  dark         4         Percentage to lighten |hl-CursorLine|
+                                                              relative to Normal bg.
+
+  colorize_diagnostic_underline_text   both         false     Colorize the fg of DiagnosticUnderline*.
+
+  transparent_background               both         false     Make background transparent.
+  -----------------------------------------------------------------------------------------------------</code></pre>
 <!-- panvimdoc-ignore-end -->
 <h2 id="markdown-only-content">Markdown only content</h2>
 <p>Sometimes you want to show content that is to be present in Markdown and on the rendered view on GitHub but ignored in the generated vimdoc. This can be placed inside <code>panvimdoc-ignore-{start/end}</code> blocks:</p>
