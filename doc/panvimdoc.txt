@@ -10,21 +10,21 @@ Table of Contents                                *panvimdoc-table-of-contents*
 5. Features                                               |panvimdoc-features|
 6. Specification                                     |panvimdoc-specification|
 7. Usage                                                     |panvimdoc-usage|
-  - Using Github Actions                |panvimdoc-usage-using-github-actions|
+  - Using Github Actions                      |panvimdoc-using-github-actions|
 8. References                                           |panvimdoc-references|
 9. Specification                                     |panvimdoc-specification|
-  - External includes              |panvimdoc-specification-external-includes|
-  - Codeblocks                            |panvimdoc-specification-codeblocks|
+  - External includes                            |panvimdoc-external-includes|
+  - Codeblocks                                          |panvimdoc-codeblocks|
 10. Title                                                    |panvimdoc-title|
 11. Heading                                                |panvimdoc-heading|
-  - Sub Heading 2                            |panvimdoc-heading-sub-heading-2|
-  - Markdown Links                          |panvimdoc-heading-markdown-links|
-  - Table                                            |panvimdoc-heading-table|
-  - Markdown only content            |panvimdoc-heading-markdown-only-content|
-  - Details and summary                |panvimdoc-heading-details-and-summary|
-  - Keyboard HTML tag                    |panvimdoc-heading-keyboard-html-tag|
-  - Examples                                      |panvimdoc-heading-examples|
-  - Examples                                      |panvimdoc-heading-examples|
+  - Sub Heading 2                                    |panvimdoc-sub-heading-2|
+  - Markdown Links                                  |panvimdoc-markdown-links|
+  - Table                                                    |panvimdoc-table|
+  - Markdown only content                    |panvimdoc-markdown-only-content|
+  - Details and summary                        |panvimdoc-details-and-summary|
+  - Keyboard HTML tag                            |panvimdoc-keyboard-html-tag|
+  - Examples                                              |panvimdoc-examples|
+  - Examples                                              |panvimdoc-examples|
 
 ==============================================================================
 1. panvimdoc                                             *panvimdoc-panvimdoc*
@@ -47,9 +47,9 @@ This software is released under a MIT License.
 
 >yaml
     name: panvimdoc
-    
+
     on: [push]
-    
+
     jobs:
       docs:
         runs-on: ubuntu-latest
@@ -190,10 +190,10 @@ Generates the following:
 
 >
     *panvimdoc.txt*         For Neovim v0.5.0          Last change: 2021 August 12
-    
+
     ==============================================================================
     Table of Contents                                *panvimdoc-table-of-contents*
-    
+
     1. panvimdoc                                             |panvimdoc-panvimdoc|
     2. Motivation                                           |panvimdoc-motivation|
     3. Goals                                                     |panvimdoc-goals|
@@ -216,7 +216,7 @@ generates the following:
 <
 
 
-USING GITHUB ACTIONS                    *panvimdoc-usage-using-github-actions*
+USING GITHUB ACTIONS                          *panvimdoc-using-github-actions*
 
 Create an empty doc file:
 
@@ -233,9 +233,9 @@ Then add the following to `./.github/workflows/panvimdoc.yml`:
 
 >yaml
     name: panvimdoc
-    
+
     on: [push]
-    
+
     jobs:
       docs:
         runs-on: ubuntu-latest
@@ -301,7 +301,7 @@ _Feel free to submit a PR to add your documentation as an example here._
 See ./panvimdoc.txt <./panvimdoc.txt> for generated output of this file.
 
 
-EXTERNAL INCLUDES                  *panvimdoc-specification-external-includes*
+EXTERNAL INCLUDES                                *panvimdoc-external-includes*
 
 Use the following in your markdown file to include any other markdown file:
 
@@ -315,13 +315,13 @@ The path of the file is with respect to the working directory where `pandoc` is
 executed.
 
 
-CODEBLOCKS                                *panvimdoc-specification-codeblocks*
+CODEBLOCKS                                              *panvimdoc-codeblocks*
 
 >
     Multi line Code blocks are indented 4 spaces and
-    
+
     are formatted
-    
+
     appropriately with > and <.
 <
 
@@ -359,7 +359,7 @@ this:
 Main headings are numbered.
 
 
-SUB HEADING 2                                *panvimdoc-heading-sub-heading-2*
+SUB HEADING 2                                        *panvimdoc-sub-heading-2*
 
 Sub headings are upper cased heading.
 
@@ -373,7 +373,7 @@ in the TOC. They are suffixed with `~` which highlights as **bold** text when
 the file is viewed on GitHub.
 
 
-MARKDOWN LINKS                              *panvimdoc-heading-markdown-links*
+MARKDOWN LINKS                                      *panvimdoc-markdown-links*
 
 You can use markdown links in vimdoc.
 
@@ -404,33 +404,64 @@ Lastly, if the markdown text is a url, the link is not added to the links
 section and instead is placed inline.
 
 
-TABLE                                                *panvimdoc-heading-table*
+TABLE                                                        *panvimdoc-table*
 
 Support for markdown tables is also available:
 
-****
+  -----------------------------------------------------------------------------------------------------
+  Option                               Background   Default   Description
+  ------------------------------------ ------------ --------- -----------------------------------------
+  lightness                            light        nil       Change background colors lightness.
+                                                              Options: 'bright', 'dim'.
 
-│              Option              │Backgr│ Default │                              Description                              │
-│lightness                         │light│nil      │Change background colors lightness. Options: 'bright', 'dim'.          │
-│darkness                          │dark │nil      │Change background colors darkness. Options: 'stark', 'warm'.           │
-│solid_vert_split                  │both │false    │Solid |hl-VertSplit| background.                                       │
-│solid_line_nr                     │both │false    │Solid |hl-LineNr| background.                                          │
-│solid_float_border                │both │false    │Make |hl-FloatBorder| have a more distinguishable background highlight.│
-│darken_noncurrent_window          │light│false    │Make non-current window background darker than _Normal_.               │
-│lighten_noncurrent_window         │dark │false    │Make non-current window background lighter than _Normal_.              │
-│italic_comments                   │both │true     │Make comments italicize.                                               │
-│darken_comments                   │light│38       │Percentage to darken comments relative to Normal bg.                   │
-│lighten_comments                  │dark │38       │Percentage to lighten comments relative to Normal bg.                  │
-│darken_non_text                   │light│25       │Percentage to darken |hl-NonText| relative to Normal bg.               │
-│lighten_non_text                  │dark │30       │Percentage to lighten |hl-NonText| relative to Normal bg.              │
-│darken_line_nr                    │light│33       │Percentage to darken |hl-LineNr| relative to Normal bg.                │
-│lighten_line_nr                   │dark │35       │Percentage to lighten |hl-LineNr| relative to Normal bg.               │
-│darken_cursor_line                │light│3        │Percentage to darken |hl-CursorLine| relative to Normal bg.            │
-│lighten_cursor_line               │dark │4        │Percentage to lighten |hl-CursorLine| relative to Normal bg.           │
-│colorize_diagnostic_underline_text│both │false    │Colorize the fg of DiagnosticUnderline*.                               │
-│transparent_background            │both │false    │Make background transparent.                                           │
+  darkness                             dark         nil       Change background colors darkness.
+                                                              Options: 'stark', 'warm'.
 
-MARKDOWN ONLY CONTENT                *panvimdoc-heading-markdown-only-content*
+  solid_vert_split                     both         false     Solid |hl-VertSplit| background.
+
+  solid_line_nr                        both         false     Solid |hl-LineNr| background.
+
+  solid_float_border                   both         false     Make |hl-FloatBorder| have a more
+                                                              distinguishable background highlight.
+
+  darken_noncurrent_window             light        false     Make non-current window background darker
+                                                              than Normal.
+
+  lighten_noncurrent_window            dark         false     Make non-current window background
+                                                              lighter than Normal.
+
+  italic_comments                      both         true      Make comments italicize.
+
+  darken_comments                      light        38        Percentage to darken comments relative to
+                                                              Normal bg.
+
+  lighten_comments                     dark         38        Percentage to lighten comments relative
+                                                              to Normal bg.
+
+  darken_non_text                      light        25        Percentage to darken |hl-NonText|
+                                                              relative to Normal bg.
+
+  lighten_non_text                     dark         30        Percentage to lighten |hl-NonText|
+                                                              relative to Normal bg.
+
+  darken_line_nr                       light        33        Percentage to darken |hl-LineNr| relative
+                                                              to Normal bg.
+
+  lighten_line_nr                      dark         35        Percentage to lighten |hl-LineNr|
+                                                              relative to Normal bg.
+
+  darken_cursor_line                   light        3         Percentage to darken |hl-CursorLine|
+                                                              relative to Normal bg.
+
+  lighten_cursor_line                  dark         4         Percentage to lighten |hl-CursorLine|
+                                                              relative to Normal bg.
+
+  colorize_diagnostic_underline_text   both         false     Colorize the fg of DiagnosticUnderline*.
+
+  transparent_background               both         false     Make background transparent.
+  -----------------------------------------------------------------------------------------------------
+
+MARKDOWN ONLY CONTENT                        *panvimdoc-markdown-only-content*
 
 Sometimes you want to show content that is to be present in Markdown and on the
 rendered view on GitHub but ignored in the generated vimdoc. This can be placed
@@ -438,15 +469,15 @@ inside `panvimdoc-ignore-{start/end}` blocks:
 
 >
     <!-- panvimdoc-ignore-start -->
-    
+
     <details>
         <summary>Vimdoc Ignored Section</summary>
-    
+
     This section will ignored when generating the vimdoc file.
     This will only show up in the Markdown file.
-    
+
     </details>
-    
+
     <!-- panvimdoc-ignore-end -->
 <
 
@@ -471,14 +502,14 @@ because it may cause the rest of your document to be ignored. Do this instead:
 
 >
     <!-- panvimdoc-ignore-start -->
-    
+
     ![screenshot](./gif.gif)
-    
+
     <!-- panvimdoc-ignore-end -->
 <
 
 
-DETAILS AND SUMMARY                    *panvimdoc-heading-details-and-summary*
+DETAILS AND SUMMARY                            *panvimdoc-details-and-summary*
 
 You can even use `<details>` and `<summary>` tags for your README.md.
 
@@ -493,17 +524,17 @@ If you are using html `<b> ... </b>` tags, use them on new lines. Inline bold
 tags will have a `~` appended to the text and that may not be what you want.
 
 
-KEYBOARD HTML TAG                        *panvimdoc-heading-keyboard-html-tag*
+KEYBOARD HTML TAG                                *panvimdoc-keyboard-html-tag*
 
 Use `<kbd>CMD + o</kbd>` in markdown, for example CMD + o.
 
 
-EXAMPLES                                          *panvimdoc-heading-examples*
+EXAMPLES                                                  *panvimdoc-examples*
 
 First example
 
 
-EXAMPLES                                          *panvimdoc-heading-examples*
+EXAMPLES                                                  *panvimdoc-examples*
 
 Second example
 
