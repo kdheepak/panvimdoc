@@ -68,8 +68,13 @@ case $key in
     shift # past argument
     shift # past value
     ;;
-    --shift-headings-level-by)
-    SHIFT_HEADING_LEVELS_BY="$2"
+    --shift-heading-level-by)
+    SHIFT_HEADING_LEVEL_BY="$2"
+    shift # past argument
+    shift # past value
+    ;;
+    --increment-heading-level-by)
+    INCREMENT_HEADING_LEVEL_BY="$2"
     shift # past argument
     shift # past value
     ;;
@@ -95,6 +100,7 @@ fi
 
 # Define arguments in an array
 ARGS=(
+    "--shift-heading-level-by=$SHIFT_HEADING_LEVEL_BY"
     "--metadata=project:$PROJECT_NAME"
     "--metadata=vimversion:$VIM_VERSION"
     "--metadata=toc:$TOC"
@@ -102,7 +108,7 @@ ARGS=(
     "--metadata=dedupsubheadings:$DEDUP_SUBHEADINGS"
     "--metadata=ignorerawblocks:$IGNORE_RAWBLOCKS"
     "--metadata=treesitter:$TREESITTER"
-    "--metadata=shiftheadinglevelsby:$SHIFT_HEADING_LEVELS_BY"
+    "--metadata=incrementheadinglevelby:$INCREMENT_HEADING_LEVEL_BY"
     "--lua-filter=$SCRIPTS_DIR/skip-blocks.lua"
     "--lua-filter=$SCRIPTS_DIR/include-files.lua"
 )

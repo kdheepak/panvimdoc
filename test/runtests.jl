@@ -17,7 +17,8 @@ function test_pandoc(
   description = "Test Description",
   vimversion = "NVIM v0.8.0",
   ignore_rawblocks = true,
-  shift_heading_levels_by = 0,
+  shift_heading_level_by = 0,
+  increment_heading_level_by = 0,
 )
   isfile(joinpath(ROOT_DIR, "doc/test.txt")) && rm(joinpath(ROOT_DIR, "doc/test.txt"))
   open(joinpath(CUR_DIR, "test.md"), "w") do file
@@ -27,13 +28,13 @@ function test_pandoc(
   if demojify
     filters = `$filters --lua-filter=$SCRIPTS_DIR/remove-emojis.lua`
   end
-  metadata = `--metadata=project:"test" --metadata=vimversion:"$vimversion" --metadata=toc:$toc --metadata=dedupsubheadings:$dedup_subheadings --metadata=treesitter:$treesitter --metadata=ignorerawblocks:$ignore_rawblocks --metadata=shiftheadinglevelsby:$shift_heading_levels_by`
+  metadata = `--metadata=project:"test" --metadata=vimversion:"$vimversion" --metadata=toc:$toc --metadata=dedupsubheadings:$dedup_subheadings --metadata=treesitter:$treesitter --metadata=ignorerawblocks:$ignore_rawblocks --metadata=incrementheadinglevelby:$increment_heading_level_by`
   if description !== nothing
     metadata = `$metadata --metadata=description:"$description"`
   end
 
   cd(ROOT_DIR) do
-    run(`$(Pandoc.pandoc()) $metadata $filters -t $SCRIPTS_DIR/panvimdoc.lua $CUR_DIR/test.md -o test/test.txt`)
+    run(`$(Pandoc.pandoc()) --shift-heading-level-by=$shift_heading_level_by $metadata $filters -t $SCRIPTS_DIR/panvimdoc.lua $CUR_DIR/test.md -o test/test.txt`)
   end
   doc = read(joinpath(ROOT_DIR, "test/test.txt"), String)
   rm(joinpath(ROOT_DIR, "test/test.txt"))

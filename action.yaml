@@ -40,7 +40,7 @@ inputs:
     description: "Ignore raw blocks when generating vimdoc"
     required: false
     default: "true"
-  shiftheadinglevelsby:
+  shiftheadinglevelby:
     description: "Shift heading levels by specified number"
     required: false
     default: "0"
@@ -66,5 +66,5 @@ runs:
     - ${{ inputs.treesitter }}
     - --ignore-rawblocks
     - ${{ inputs.ignorerawblocks }}
-    - --shift-heading-levels-by
-    - ${{ inputs.shiftheadinglevelsby }}
+    - --shift-heading-level-by
+    - ${{ inputs.shiftheadinglevelby }}
