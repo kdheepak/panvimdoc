@@ -165,21 +165,21 @@ git push</code></pre>
 <p><em>Feel free to submit a PR to add your documentation as an example here.</em></p>
 <h3 id="using-it-manually">Using it manually</h3>
 <p>The <code>./entrypoint.sh</code> script runs <code>pandoc</code> along with all the filters and custom output writer.</p>
-<pre><code>./entrypoint.sh
-Usage: ./entrypoint.sh --project-name PROJECT_NAME --input-file INPUT_FILE --vim-version VIM_VERSION --toc TOC --description DESCRIPTION --dedup-subheadings DEDUP_SUBHEADINGS --treesitter TREESITTER
-
-Arguments:
-  --project-name: the name of the project
-  --input-file: the input markdown file
-  --vim-version: the version of Vim that the project is compatible with
-  --toc: &#39;true&#39; if the output should include a table of contents, &#39;false&#39; otherwise
-  --description: a description of the project
-  --dedup-subheadings: &#39;true&#39; if duplicate subheadings should be removed, &#39;false&#39; otherwise
-  --demojify: &#39;false&#39; if emojis should not be removed, &#39;true&#39; otherwise
-  --treesitter: &#39;true&#39; if the project uses Tree-sitter syntax highlighting, &#39;false&#39; otherwise
-  --ignore-rawblocks: &#39;true&#39; if the project should ignore HTML raw blocks, &#39;false&#39; otherwise
-  --shift-heading-level-by: 0 if you don&#39;t want to shift heading levels , n otherwise
-  --increment-heading-level-by: 0 if don&#39;t want to increment the starting heading number, n otherwise</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ./entrypoint.sh</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Usage:</span> ./entrypoint.sh <span class="at">--project-name</span> PROJECT_NAME <span class="at">--input-file</span> INPUT_FILE <span class="at">--vim-version</span> VIM_VERSION <span class="at">--toc</span> TOC <span class="at">--description</span> DESCRIPTION <span class="at">--dedup-subheadings</span> DEDUP_SUBHEADINGS <span class="at">--treesitter</span> TREESITTER</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="ex">Arguments:</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--project-name:</span> the name of the project</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--input-file:</span> the input markdown file</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--vim-version:</span> the version of Vim that the project is compatible with</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--toc:</span> <span class="st">&#39;true&#39;</span> if the output should include a table of contents, <span class="st">&#39;false&#39;</span> otherwise</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--description:</span> a description of the project</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--dedup-subheadings:</span> <span class="st">&#39;true&#39;</span> if duplicate subheadings should be removed, <span class="st">&#39;false&#39;</span> otherwise</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--demojify:</span> <span class="st">&#39;false&#39;</span> if emojis should not be removed, <span class="st">&#39;true&#39;</span> otherwise</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--treesitter:</span> <span class="st">&#39;true&#39;</span> if the project uses Tree-sitter syntax highlighting, <span class="st">&#39;false&#39;</span> otherwise</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--ignore-rawblocks:</span> <span class="st">&#39;true&#39;</span> if the project should ignore HTML raw blocks, <span class="st">&#39;false&#39;</span> otherwise</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--shift-heading-level-by:</span> 0 if you don<span class="st">&#39;t want to shift heading levels , n otherwise</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="st">  --increment-heading-level-by: 0 if don&#39;</span>t want to increment the starting heading number, n otherwise</span></code></pre></div>
 <p>You will need <code>pandoc</code> version 3.0.0 or greater for this script to work.</p>
 <h1 id="references">References</h1>
 <ul>
