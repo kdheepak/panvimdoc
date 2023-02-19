@@ -12,18 +12,18 @@ Table of Contents                                *panvimdoc-table-of-contents*
 7. Usage                                                     |panvimdoc-usage|
 8. References                                           |panvimdoc-references|
 9. Specification                                     |panvimdoc-specification|
-  - External includes                            |panvimdoc-external-includes|
-  - Codeblocks                                          |panvimdoc-codeblocks|
+  - External includes              |panvimdoc-specification-external-includes|
+  - Codeblocks                            |panvimdoc-specification-codeblocks|
 10. Title                                                    |panvimdoc-title|
 11. Heading                                                |panvimdoc-heading|
-  - Sub Heading 2                                    |panvimdoc-sub-heading-2|
-  - Markdown Links                                  |panvimdoc-markdown-links|
-  - Table                                                    |panvimdoc-table|
-  - Markdown only content                    |panvimdoc-markdown-only-content|
-  - Details and summary                        |panvimdoc-details-and-summary|
-  - Keyboard HTML tag                            |panvimdoc-keyboard-html-tag|
-  - Examples                                              |panvimdoc-examples|
-  - Examples                                              |panvimdoc-examples|
+  - Sub Heading 2                            |panvimdoc-heading-sub-heading-2|
+  - Markdown Links                          |panvimdoc-heading-markdown-links|
+  - Table                                            |panvimdoc-heading-table|
+  - Markdown only content            |panvimdoc-heading-markdown-only-content|
+  - Details and summary                |panvimdoc-heading-details-and-summary|
+  - Keyboard HTML tag                    |panvimdoc-heading-keyboard-html-tag|
+  - Examples                                      |panvimdoc-heading-examples|
+  - Examples                                      |panvimdoc-heading-examples|
 
 ==============================================================================
 1. panvimdoc                                             *panvimdoc-panvimdoc*
@@ -45,9 +45,9 @@ documentation in vimdoc.
 
 >yaml
     name: panvimdoc
-
+    
     on: [push]
-
+    
     jobs:
       docs:
         runs-on: ubuntu-latest
@@ -177,9 +177,9 @@ Then add the following to `./.github/workflows/panvimdoc.yml`:
 
 >yaml
     name: panvimdoc
-
+    
     on: [push]
-
+    
     jobs:
       docs:
         runs-on: ubuntu-latest
@@ -238,7 +238,7 @@ custom output writer.
 >bash
     $ ./entrypoint.sh
     Usage: ./entrypoint.sh --project-name PROJECT_NAME --input-file INPUT_FILE --vim-version VIM_VERSION --toc TOC --description DESCRIPTION --dedup-subheadings DEDUP_SUBHEADINGS --treesitter TREESITTER
-
+    
     Arguments:
       --project-name: the name of the project
       --input-file: the input markdown file
@@ -274,7 +274,7 @@ You will need `pandoc v3.0.0` or greater for this script to work.
 See ./panvimdoc.txt <./panvimdoc.txt> for generated output of this file.
 
 
-EXTERNAL INCLUDES                                *panvimdoc-external-includes*
+EXTERNAL INCLUDES                  *panvimdoc-specification-external-includes*
 
 Use the following in your markdown file to include any other markdown file:
 
@@ -288,13 +288,13 @@ The path of the file is with respect to the working directory where `pandoc` is
 executed.
 
 
-CODEBLOCKS                                              *panvimdoc-codeblocks*
+CODEBLOCKS                                *panvimdoc-specification-codeblocks*
 
 >
     Multi line Code blocks are indented 4 spaces and
-
+    
     are formatted
-
+    
     appropriately with > and <.
 <
 
@@ -332,7 +332,7 @@ this:
 Main headings are numbered.
 
 
-SUB HEADING 2                                        *panvimdoc-sub-heading-2*
+SUB HEADING 2                                *panvimdoc-heading-sub-heading-2*
 
 Sub headings are upper cased heading.
 
@@ -346,7 +346,7 @@ in the TOC.They are suffixed with `~` which highlights as **bold** text when
 the file is viewed on GitHub.
 
 
-MARKDOWN LINKS                                      *panvimdoc-markdown-links*
+MARKDOWN LINKS                              *panvimdoc-heading-markdown-links*
 
 You can use markdown links in vimdoc.
 
@@ -377,7 +377,7 @@ Lastly, if the markdown text is a url, the link is not added to the links
 section and instead is placed inline.
 
 
-TABLE                                                        *panvimdoc-table*
+TABLE                                                *panvimdoc-heading-table*
 
 Support for markdown tables is also available:
 
@@ -434,7 +434,7 @@ Support for markdown tables is also available:
   transparent_background               both         false     Make background transparent.
   -----------------------------------------------------------------------------------------------------
 
-MARKDOWN ONLY CONTENT                        *panvimdoc-markdown-only-content*
+MARKDOWN ONLY CONTENT                *panvimdoc-heading-markdown-only-content*
 
 Sometimes you want to show content that is to be present in Markdown and on the
 rendered view on GitHub but ignored in the generated vimdoc.This can be placed
@@ -442,15 +442,15 @@ inside `panvimdoc-ignore-{start/end}` blocks:
 
 >
     <!-- panvimdoc-ignore-start -->
-
+    
     <details>
         <summary>Vimdoc Ignored Section</summary>
-
+    
     This section will ignored when generating the vimdoc file.
     This will only show up in the Markdown file.
-
+    
     </details>
-
+    
     <!-- panvimdoc-ignore-end -->
 <
 
@@ -475,14 +475,14 @@ because it may cause the rest of your document to be ignored. Do this instead:
 
 >
     <!-- panvimdoc-ignore-start -->
-
+    
     ![screenshot](./gif.gif)
-
+    
     <!-- panvimdoc-ignore-end -->
 <
 
 
-DETAILS AND SUMMARY                            *panvimdoc-details-and-summary*
+DETAILS AND SUMMARY                    *panvimdoc-heading-details-and-summary*
 
 You can even use `<details>` and `<summary>` tags for your README.md.
 
@@ -497,17 +497,17 @@ If you are using html `<b> ... </b>` tags, use them on new lines. Inline bold
 tags will havea `~` appended to the text and that may not be what you want.
 
 
-KEYBOARD HTML TAG                                *panvimdoc-keyboard-html-tag*
+KEYBOARD HTML TAG                        *panvimdoc-heading-keyboard-html-tag*
 
 Use `<kbd>CMD + o</kbd>` in markdown, for example CMD + o.
 
 
-EXAMPLES                                                  *panvimdoc-examples*
+EXAMPLES                                          *panvimdoc-heading-examples*
 
 First example
 
 
-EXAMPLES                                                  *panvimdoc-examples*
+EXAMPLES                                          *panvimdoc-heading-examples*
 
 Second example
 
