@@ -40,6 +40,10 @@ inputs:
     description: "Ignore raw blocks when generating vimdoc"
     required: false
     default: "true"
+  shiftheadinglevelsby:
+    description: "Shift heading levels by specified number"
+    required: false
+    default: "0"
 runs:
   using: "docker"
   image: "Dockerfile"
@@ -62,3 +66,5 @@ runs:
     - ${{ inputs.treesitter }}
     - --ignore-rawblocks
     - ${{ inputs.ignorerawblocks }}
+    - --shift-heading-levels-by
+    - ${{ inputs.shiftheadinglevelsby }}

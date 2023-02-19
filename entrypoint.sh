@@ -68,6 +68,11 @@ case $key in
     shift # past argument
     shift # past value
     ;;
+    --shift-level-headings-by)
+    SHIFT_LEVEL_HEADINGS_BY="$2"
+    shift # past argument
+    shift # past value
+    ;;
     *)    # unknown option
     echo "Unknown option: $1"
     exit 1
@@ -97,6 +102,7 @@ ARGS=(
     "--metadata=dedupsubheadings:$DEDUP_SUBHEADINGS"
     "--metadata=ignorerawblocks:$IGNORE_RAWBLOCKS"
     "--metadata=treesitter:$TREESITTER"
+    "--metadata=shiftlevelheadingsby:$SHIFT_LEVEL_HEADINGS_BY"
     "--lua-filter=$SCRIPTS_DIR/skip-blocks.lua"
     "--lua-filter=$SCRIPTS_DIR/include-files.lua"
 )

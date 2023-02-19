@@ -65,6 +65,7 @@ end
 
 local PROJECT = ""
 local TREESITTER = false
+local SHIFT_LEVEL_HEADINGS_BY = 0
 local TOC = false
 local VIMVERSION = "0.9.0"
 local DESCRIPTION = ""
@@ -74,7 +75,7 @@ local DATE = nil
 
 local CURRENT_HEADER = nil
 
-local header_count = 1
+local HEADER_COUNT = 1
 local toc = {}
 local links = {}
 local notes = {}
@@ -162,7 +163,7 @@ local function renderNotes()
     table.insert(t, s)
   end
   if #links > 0 then
-    local left = header_count .. ". Links"
+    local left = HEADER_COUNT .. ". Links"
     local right = "links"
     local right_link = string.format("|%s-%s|", PROJECT, right)
     right = string.format("*%s-%s*", PROJECT, right)
@@ -191,6 +192,7 @@ Writer.Pandoc = function(doc, opts)
   DESCRIPTION = doc.meta.description
   DEDUP_SUBHEADINGS = doc.meta.dedupsubheadings
   IGNORE_RAWBLOCKS = doc.meta.ignorerawblocks
+  HEADER_COUNT = HEADER_COUNT + doc.meta.shiftlevelheadingsby
   DATE = doc.meta.date
   local d = blocks(doc.blocks)
   local toc = renderToc()
@@ -206,7 +208,7 @@ Writer.Block.Header = function(el)
   local attr = el.attr
   local left, right, right_link, padding
   if lev == 1 then
-    left = string.format("%d. %s", header_count, s)
+    left = string.format("%d. %s", HEADER_COUNT, s)
     right = string.lower(string.gsub(s, "%s", "-"))
     CURRENT_HEADER = right
     right_link = string.format("|%s-%s|", PROJECT, right)
@@ -214,7 +216,7 @@ Writer.Block.Header = function(el)
     padding = string.rep(" ", 78 - #left - #right)
     table.insert(toc, { 1, left, right_link })
     s = string.format("%s%s%s", left, padding, right)
-    header_count = header_count + 1
+    HEADER_COUNT = HEADER_COUNT + 1
     s = string.rep("=", 78) .. "\n" .. s
     return "\n" .. s .. "\n\n"
   end

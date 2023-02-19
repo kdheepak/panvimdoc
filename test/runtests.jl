@@ -17,6 +17,7 @@ function test_pandoc(
   description = "Test Description",
   vimversion = "NVIM v0.8.0",
   ignore_rawblocks = true,
+  shift_level_headings_by = 0,
 )
   isfile(joinpath(ROOT_DIR, "doc/test.txt")) && rm(joinpath(ROOT_DIR, "doc/test.txt"))
   open(joinpath(CUR_DIR, "test.md"), "w") do file
@@ -26,7 +27,7 @@ function test_pandoc(
   if demojify
     filters = `$filters --lua-filter=$SCRIPTS_DIR/remove-emojis.lua`
   end
-  metadata = `--metadata=project:"test" --metadata=vimversion:"$vimversion" --metadata=toc:$toc --metadata=dedupsubheadings:$dedup_subheadings --metadata=treesitter:$treesitter --metadata=ignorerawblocks:$ignore_rawblocks`
+  metadata = `--metadata=project:"test" --metadata=vimversion:"$vimversion" --metadata=toc:$toc --metadata=dedupsubheadings:$dedup_subheadings --metadata=treesitter:$treesitter --metadata=ignorerawblocks:$ignore_rawblocks --metadata=shiftlevelheadingsby:$shift_level_headings_by`
   if description !== nothing
     metadata = `$metadata --metadata=description:"$description"`
   end
