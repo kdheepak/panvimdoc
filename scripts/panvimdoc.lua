@@ -245,11 +245,11 @@ Writer.Block.Header = function(el)
       right = string.format(
         "*%s-%s*",
         PROJECT,
-        left:gsub("{.+}", "")
-          :gsub("%[.+%]", "")
-          :gsub("^%s*(.-)%s*$", "%1")
-          :gsub("^%s*(.-)%s*$", "%1")
-          :gsub("%s", "-")
+        s:gsub("{.+}", "")
+         :gsub("%[.+%]", "")
+         :gsub("^%s*(.-)%s*$", "%1")
+         :gsub("^%s*(.-)%s*$", "%1")
+         :gsub("%s", "-")
       )
     end
     padding = string.rep(" ", 78 - #left - #right)
