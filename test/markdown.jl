@@ -1,4 +1,3 @@
-using InteractiveUtils
 @testset "markdown" begin
   doc = test_pandoc(
     raw"""
@@ -396,7 +395,6 @@ bar
     toc = false,
     demojify = true,
   )
-  InteractiveUtils.clipboard(doc)
   @test doc == raw"""
 *test.txt*                                                    Test Description
 
