@@ -40,6 +40,10 @@ inputs:
     description: "Ignore raw blocks when generating vimdoc"
     required: false
     default: "true"
+  docmapping:
+    description: "Use h4 headers as mapping docs"
+    required: false
+    default: "true"
   shiftheadinglevelby:
     description: "Shift heading levels by specified number"
     required: false
@@ -70,6 +74,8 @@ runs:
     - ${{ inputs.treesitter }}
     - --ignore-rawblocks
     - ${{ inputs.ignorerawblocks }}
+    - --doc-mapping
+    - ${{ inputs.docmapping }}
     - --shift-heading-level-by
     - ${{ inputs.shiftheadinglevelby }}
     - --increment-heading-level-by
