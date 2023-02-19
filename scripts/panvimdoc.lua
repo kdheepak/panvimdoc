@@ -238,14 +238,19 @@ Writer.Block.Header = function(el)
     return "\n" .. left .. " ~" .. "\n\n"
   end
   if lev == 4 then
-    left = ""
-    right = string.gsub(s, "{.+}", "")
-    right = string.gsub(right, "%[.+%]", "")
-    right = string.gsub(right, "^%s*(.-)%s*$", "%1")
-    right = string.gsub(right, "%s", "-")
-    right = string.format("*%s-%s*", PROJECT, right)
-    if attr.doc then
-      right = right .. " *" .. attr.doc .. "*"
+    left = s
+    if attr.attributes.doc then
+      right = "*" .. attr.attributes.doc .. "*"
+    else
+      right = string.format(
+        "*%s-%s*",
+        PROJECT,
+        left:gsub("{.+}", "")
+          :gsub("%[.+%]", "")
+          :gsub("^%s*(.-)%s*$", "%1")
+          :gsub("^%s*(.-)%s*$", "%1")
+          :gsub("%s", "-")
+      )
     end
     padding = string.rep(" ", 78 - #left - #right)
     local r = string.format("%s%s%s", left, padding, right)
