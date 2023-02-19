@@ -1,5 +1,3 @@
-using InteractiveUtils
-
 @testset "markdown" begin
   doc = test_pandoc(
     raw"""
@@ -59,7 +57,6 @@ Diff compiles all indexed fennel files
     demojify = true,
     doc_mapping = false,
   )
-  InteractiveUtils.clipboard(doc)
   @test doc == raw"""
 *test.txt*                                                    Test Description
 
