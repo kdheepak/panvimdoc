@@ -25,7 +25,7 @@ This software is released under a MIT License.
        steps:
          - uses: actions/checkout@v2
          - name: panvimdoc
-           uses: kdheepak/panvimdoc@main
+           uses: kdheepak/panvimdoc@v3.0.4
            with:
              vimdoc: ${VIMDOC_PROJECT_NAME}
          - uses: stefanzweifel/git-auto-commit-action@v4
@@ -64,7 +64,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: panvimdoc
-        uses: kdheepak/panvimdoc@v3
+        uses: kdheepak/panvimdoc@main
         with:
           vimdoc: ${VIMDOC_PROJECT_NAME} # Output vimdoc project name (required)
           # The following are all optional
