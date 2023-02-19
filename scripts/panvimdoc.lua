@@ -74,6 +74,7 @@ local DOC_MAPPING = true
 local DATE = nil
 
 local CURRENT_HEADER = nil
+local SOFTBREAK_TO_HARDBREAK = false
 
 local HEADER_COUNT = 1
 local toc = {}
@@ -310,10 +311,53 @@ end
 
 Writer.Block.DefinitionList = function(el)
   local buffer = {}
+  local function add(s)
+    table.insert(buffer, s)
+  end
   el.content:map(function(item)
     local k = inlines(item[1])
-    local v = blocks(item[2][1])
-    table.insert(buffer, k .. string.rep(" ", 78 - 40 + 1 - #k) .. v)
+    local bs = item[2][1]
+    local t = {}
+    for i = 1, #bs do
+      local e = bs[i]
+      if e.tag == "Para" then
+        local tt = {}
+        e.content:map(function(i)
+          if i.tag == "SoftBreak" then
+            table.insert(tt, "\n")
+          else
+            table.insert(tt, Writer[pandoc.utils.type(i)][i.tag](i))
+          end
+        end)
+        table.insert(t, table.concat(tt))
+      else
+        table.insert(t, Writer[pandoc.utils.type(e)][e.tag](e))
+      end
+    end
+    local str = table.concat(t, "\n")
+    local i = 1
+
+    -- stylua: ignore
+    local right = string.format(
+          "*%s-%s*",
+          PROJECT,
+          k:gsub("{.+}", "")
+          :gsub("%[.+%]", "")
+          :gsub("^%s*(.-)%s*$", "%1")
+          :gsub("^%s*(.-)%s*$", "%1")
+          :gsub("%s", "-")
+        )
+    add(string.rep(" ", 78 - #right - 2) .. right)
+    add("\n")
+    for s in str:gmatch("[^\r\n]+") do
+      if i == 1 then
+        add(k .. string.rep(" ", 78 - 40 + 1 - #k) .. s)
+      else
+        add(string.rep(" ", 78 - 40 + 1) .. s)
+      end
+      i = i + 1
+    end
+    add("\n")
   end)
   return "\n" .. table.concat(buffer, "\n") .. "\n\n"
 end
@@ -350,7 +394,11 @@ Writer.Inline.Space = function()
 end
 
 Writer.Inline.SoftBreak = function()
-  return ""
+  if SOFTBREAK_TO_HARDBREAK then
+    return "\n"
+  else
+    return ""
+  end
 end
 
 Writer.Inline.LineBreak = function()

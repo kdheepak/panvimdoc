@@ -1,25 +1,56 @@
-
 @testset "markdown" begin
   doc = test_pandoc(
     raw"""
-Term 1
+:FnlCompileBuffer
 
-:   Definition 1
+:   Compiles current active fennel buffer
 
-Term 2 with *inline markup*
+:FnlCompile[!]
 
-:   Definition 2
+:   Diff compiles all indexed fennel files
+    If bang! is present then forcefully compiles all `source` files
+
+:Fnl {expr}
+
+:    Executes and Evalutate {expr} of fennel
+
+     ```fennel
+     :Fnl (print "Hello World")
+
+     :Fnl (values some_var)
+     ```
+
+     Testing
     """;
     toc = false,
     demojify = true,
   )
-  @test doc == raw"""
+  @test doc === raw"""
 *test.txt*                                                    Test Description
 
-Term 1                                 Definition 1
+                                                    *test-:FnlCompileBuffer*
 
 
-Term 2 with _inline markup_            Definition 2
+:FnlCompileBuffer                      Compiles current active fennel buffer
+
+
+                                                          *test-:FnlCompile*
+
+
+:FnlCompile[!]                         Diff compiles all indexed fennel files
+                                       If bang! is present then forcefully compiles all `source` files
+
+
+                                                                 *test-:Fnl*
+
+
+:Fnl {expr}                            Executes and Evalutate {expr} of fennel
+                                       >fennel
+                                           :Fnl (print "Hello World")
+                                           
+                                           :Fnl (values some_var)
+                                       <
+                                       Testing
 
 
 
