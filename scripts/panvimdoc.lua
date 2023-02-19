@@ -75,7 +75,7 @@ local DOC_MAPPING_PROJECT = true
 local DATE = nil
 
 local CURRENT_HEADER = nil
-local SOFTBREAK_TO_HARDBREAK = false
+local SOFTBREAK_TO_HARDBREAK = "space"
 
 local HEADER_COUNT = 1
 local toc = {}
@@ -419,7 +419,9 @@ Writer.Inline.Space = function()
 end
 
 Writer.Inline.SoftBreak = function()
-  if SOFTBREAK_TO_HARDBREAK then
+  if SOFTBREAK_TO_HARDBREAK == "newline" then
+    return "\n"
+  elseif SOFTBREAK_TO_HARDBREAK == "space" then
     return "\n"
   else
     return ""
@@ -464,7 +466,7 @@ Writer.Inline.Link = function(el)
   elseif string.starts_with(tgt, "#") then
     return "|" .. PROJECT .. "-" .. s:lower():gsub("%s", "-") .. "|"
   elseif string.starts_with(s, "http") then
-    return s
+    return "<" .. s .. ">"
   else
     return s .. " <" .. tgt .. ">"
   end

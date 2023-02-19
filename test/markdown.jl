@@ -402,6 +402,8 @@ bar
 1. panvimdoc                                                  *test-panvimdoc*
 
 
+
+
 "Double quoted string"
 
 
@@ -409,7 +411,8 @@ bar
 
 | testing line
 | block
-% Titlespanning multiple lines% Author OneAuthor Two; Author Three;Author Four
+% Title spanning multiple lines % Author One Author Two; Author Three; Author
+Four
 
 
 ==============================================================================
@@ -431,7 +434,7 @@ RAW LATEX ENVIRONMENTS                           *test-raw-latex-environments*
 
 URLS WITH SPACES AND PUNCTUATION       *test-urls-with-spaces-and-punctuation*
 
-foo </bar%20and%20baz>foo </bar%20and%20baz>foo </bar%20and%20baz>foo
+foo </bar%20and%20baz> foo </bar%20and%20baz> foo </bar%20and%20baz> foo
 <bar%20baz>
 
 baz </foo%20foo> bam </foo%20fee> bork </foo/zee%20zob>
@@ -512,7 +515,7 @@ there`
 
 MULTILINGUAL URLS                                     *test-multilingual-urls*
 
-http://.com?=
+<http://.com?=>
 
 foo </bar/测?x=测>
 
@@ -706,7 +709,7 @@ ENTITIES IN LINKS AND TITLES               *test-entities-in-links-and-titles*
 
 link </ürl>
 
-http://göögle.com
+<http://göögle.com>
 
 me@exämple.com <mailto:me@exämple.com>
 
@@ -735,7 +738,7 @@ REFERENCELINK FALLBACKS                         *test-referencelink-fallbacks*
 REFERENCE LINK FOLLOWED BY A CITATION*test-reference-link-followed-by-a-citation*
 
 MapReduce is a paradigm popularized by Google <http://google.com>
-(**mapreduce?**) as itsmost vocal proponent.
+(**mapreduce?**) as its most vocal proponent.
 
 
 EMPTY REFERENCE LINKS                             *test-empty-reference-links*

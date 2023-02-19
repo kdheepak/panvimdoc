@@ -159,11 +159,11 @@ Lastly, if the markdown text is a url, the link is not added to the links sectio
 
 While you can use codeblocks with the language `vimdoc` to insert text in the generated vimdoc, it can be useful to have a markdown friendly way to write documentation for mappings.
 
-Any markdown header of level 4 will be considered as a special header.
+Pandoc supports definition lists: <https://pandoc.org/MANUAL.html#definition-lists>.
 This can be used to generate documentation of mappings.
 All of the content in curly braces `{...}` that is part of the header is dropped and a tag is created.
 
-For example, the level 4 heading and the contents of the section:
+For example, the following in a markdown file:
 
 ````markdown
 :FnlCompileBuffer
@@ -192,20 +192,20 @@ becomes the following vimdoc:
 
 ```
 
-                                                    *test-:FnlCompileBuffer*
+                                             *projectName-:FnlCompileBuffer*
 
 
 :FnlCompileBuffer                      Compiles current active fennel buffer
 
 
-                                                          *test-:FnlCompile*
+                                                   *projectName-:FnlCompile*
 
 
 :FnlCompile[!]                         Diff compiles all indexed fennel files
                                        If bang! is present then forcefully compiles all `source` files
 
 
-                                                                 *test-:Fnl*
+                                                          *projectName-:Fnl*
 
 
 :Fnl {expr}                            Executes and Evalutate {expr} of fennel
@@ -217,9 +217,9 @@ becomes the following vimdoc:
                                        Testing
 ```
 
-Notice that the tag `*projectName-abc*` is generated for you. Additionally, content in square brackets `[...]` is also dropped for creating the tag name.
+Notice that the tag `*projectName-:Command*` is generated for you. Additionally, content in square brackets `[...]` or curly brackets `{...}` is also dropped for creating the tag name.
 
-The heading `### :[range]Command` becomes the tag `*projectName-:Command*`.
+i.e. the term `### :[range]Command` becomes the tag `*projectName-:Command*`.
 
 See following mappings as examples:
 
