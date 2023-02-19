@@ -640,3 +640,8 @@ Writer.Block.Table = function(el)
   add_row("")
   return table.concat(buffer, "\n")
 end
+
+Writer.Block.Div = function(el)
+  -- TODO: Add more special features here
+  return blocks(el.content)
+end

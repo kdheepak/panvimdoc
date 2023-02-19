@@ -4,6 +4,10 @@ Decrease friction when writing documentation for your plugins.
 Write documentation in [pandoc markdown](https://pandoc.org/MANUAL.html).
 Generate documentation in vimdoc.
 
+::: center
+This software is released under a MIT License.
+:::
+
 # TLDR
 
 1. Choose `${VIMDOC_PROJECT_NAME}`. See [.github/workflows/panvimdoc.yml](./.github/workflows/panvimdoc.yml) as an example.
