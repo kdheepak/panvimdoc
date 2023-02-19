@@ -68,7 +68,7 @@ case $key in
     shift # past argument
     shift # past value
     ;;
-    --shift-level-headings-by)
+    --shift-headings-level-by)
     SHIFT_HEADING_LEVELS_BY="$2"
     shift # past argument
     shift # past value
