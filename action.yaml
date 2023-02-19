@@ -14,11 +14,11 @@ inputs:
     default: "README.md"
   version:
     description: "Vim version"
-    required: true
+    required: false
     default: "NVIM v0.8.0"
   toc:
     description: "Table of contents"
-    required: true
+    required: false
     default: "true"
   description:
     description: "Project description"
@@ -31,7 +31,7 @@ inputs:
   dedupsubheadings:
     description: "Add heading to subheading links"
     required: false
-    default: "false"
+    default: "true"
   treesitter:
     description: "Use treesitter for highlighting codeblocks"
     required: false
