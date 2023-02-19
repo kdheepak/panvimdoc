@@ -45,6 +45,7 @@
   <li><a href="#sub-heading-3" id="toc-sub-heading-3">Sub Heading 3</a></li>
   </ul></li>
   <li><a href="#markdown-links" id="toc-markdown-links">Markdown Links</a></li>
+  <li><a href="#mappings" id="toc-mappings">Mappings</a></li>
   <li><a href="#table" id="toc-table">Table</a></li>
   <li><a href="#markdown-only-content" id="toc-markdown-only-content">Markdown only content</a></li>
   <li><a href="#details-and-summary" id="toc-details-and-summary">Details and summary</a></li>
@@ -178,8 +179,9 @@ git push</code></pre>
 <span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--demojify:</span> <span class="st">&#39;false&#39;</span> if emojis should not be removed, <span class="st">&#39;true&#39;</span> otherwise</span>
 <span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--treesitter:</span> <span class="st">&#39;true&#39;</span> if the project uses Tree-sitter syntax highlighting, <span class="st">&#39;false&#39;</span> otherwise</span>
 <span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--ignore-rawblocks:</span> <span class="st">&#39;true&#39;</span> if the project should ignore HTML raw blocks, <span class="st">&#39;false&#39;</span> otherwise</span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--shift-heading-level-by:</span> 0 if you don<span class="st">&#39;t want to shift heading levels , n otherwise</span></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="st">  --increment-heading-level-by: 0 if don&#39;</span>t want to increment the starting heading number, n otherwise</span></code></pre></div>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--doc-mapping:</span> <span class="st">&#39;true&#39;</span> if the project should use h4 headers as mapping docs, <span class="st">&#39;false&#39;</span> otherwise</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--shift-heading-level-by:</span> 0 if you don<span class="st">&#39;t want to shift heading levels , n otherwise</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="st">  --increment-heading-level-by: 0 if don&#39;</span>t want to increment the starting heading number, n otherwise</span></code></pre></div>
 <p>You will need <code>pandoc v3.0.0</code> or greater for this script to work.</p>
 <h1 id="references">References</h1>
 <ul>
@@ -266,6 +268,59 @@ Sub headings are upper cased heading.</code></pre>
 <!-- panvimdoc-ignore-end -->
 <p>This is excluded from the links section.</p>
 <p>Lastly, if the markdown text is a url, the link is not added to the links section and instead is placed inline.</p>
+<h2 id="mappings">Mappings</h2>
+<p>While you can use codeblocks with the language <code>vimdoc</code> to insert text in the generated vimdoc, it can be useful to have a markdown friendly way to write documentation for mappings.</p>
+<p>Any markdown header of level 4 will be considered as a special header. This can be used to generate documentation of mappings. All of the content in curly braces <code>{...}</code> that is part of the header is dropped and a tag is created.</p>
+<p>For example, the level 4 heading and the contents of the section:</p>
+<pre><code>#### abc{xyz}
+
+Docstring for abc {xyz}.</code></pre>
+<p>becomes the following vimdoc:</p>
+<pre><code>                                                               *projectName-abc*
+
+abc{xyz}                               Docstring for abc {xyz}.</code></pre>
+<p>Notice that the tag <code>*projectName-abc*</code> is generated for you:</p>
+<p>Additionally, content in square brackets <code>[...]</code> is also dropped for creating the tag name.</p>
+<p>The heading <code>### :[range]Command</code> becomes the tag <code>*projectName-:Command*</code>.</p>
+<p>See following headings as examples:</p>
+<h4 id="pvmotion">pv{motion}</h4>
+<p>Command that operates over {motion} moved.</p>
+<!-- panvimdoc-ignore-start -->
+<p>The following vimdoc mapping is generated:</p>
+<pre><code>                                                                *projectName-pv*
+
+pv{motion}                             Command that operates over {motion}
+                                       moved.
+</code></pre>
+<!-- panvimdoc-ignore-end -->
+<h4 id="pvd">pvd</h4>
+<p>Command that takes [count] lines.</p>
+<!-- panvimdoc-ignore-start -->
+<p>The following vimdoc mapping is generated:</p>
+<pre><code>                                                               *projectName-pvd*
+
+pvd                                    Command that takes [count] lines.
+</code></pre>
+<!-- panvimdoc-ignore-end -->
+<h4 data-doc="CommandName" id="rangecommandname">:[range]CommandName</h4>
+<p>Command that operates over [range].</p>
+<!-- panvimdoc-ignore-start -->
+<p>The following vimdoc mapping is generated:</p>
+<pre><code>
+                                        *projectName-:CommandName* *CommandName*
+
+:[range]CommandName                    Command that operates over [range].</code></pre>
+<!-- panvimdoc-ignore-end -->
+<p>You can use <code>{doc=AdditionalTag}</code> to generate one additional tag for each header.</p>
+<h4 id="visualpv">{Visual}pv</h4>
+<p>Command that operates over highlighted lines.</p>
+<!-- panvimdoc-ignore-start -->
+<p>The following vimdoc mapping is generated:</p>
+<pre><code>                                                                *panvimdoc-pv*
+
+{Visual}pv                             Command that operates over highlighted
+                                       lines.</code></pre>
+<!-- panvimdoc-ignore-end -->
 <h2 id="table">Table</h2>
 <p>Support for markdown tables is also available:</p>
 <!-- prettier-ignore-start -->
