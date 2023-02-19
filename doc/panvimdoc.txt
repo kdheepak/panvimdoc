@@ -391,51 +391,96 @@ braces `{...}` that is part of the header is dropped and a tag is created.
 
 For example, the level 4 heading and the contents of the section:
 
->
-    #### abc{xyz}
+>markdown
+    :FnlCompileBuffer
     
-    Docstring for abc {xyz}.
+    : Compiles current active fennel buffer
+    
+    :FnlCompile[!]
+    
+    : Diff compiles all indexed fennel files
+    If bang! is present then forcefully compiles all `source` files
+    
+    :Fnl {expr}
+    
+    : Executes and Evalutate {expr} of fennel
+    
+         ```fennel
+         :Fnl (print "Hello World")
+    
+         :Fnl (values some_var)
+         ```
+    
+         Testing
 <
 
 becomes the following vimdoc:
 
 >
-                                                                   *projectName-abc*
     
-    abc{xyz}                               Docstring for abc {xyz}.
+                                                        *test-:FnlCompileBuffer*
+    
+    
+    :FnlCompileBuffer                      Compiles current active fennel buffer
+    
+    
+                                                              *test-:FnlCompile*
+    
+    
+    :FnlCompile[!]                         Diff compiles all indexed fennel files
+                                           If bang! is present then forcefully compiles all `source` files
+    
+    
+                                                                     *test-:Fnl*
+    
+    
+    :Fnl {expr}                            Executes and Evalutate {expr} of fennel
+                                           >fennel
+                                               :Fnl (print "Hello World")
+    
+                                               :Fnl (values some_var)
+                                           <
+                                           Testing
 <
 
-Notice that the tag `*projectName-abc*` is generated for you:
-
-Additionally, content in square brackets `[...]` is also dropped for creating
-the tag name.
+Notice that the tag `*projectName-abc*` is generated for you. Additionally,
+content in square brackets `[...]` is also dropped for creating the tag name.
 
 The heading `### :[range]Command` becomes the tag `*projectName-:Command*`.
 
-See following headings as examples:
+See following mappings as examples:
 
 
-pv{motion}                                                      *panvimdoc-pv*
-
-Command that operates over {motion} moved.
+                                                              *panvimdoc-pv*
 
 
-pvd                                                            *panvimdoc-pvd*
-
-Command that takes [count] lines.
+pv{motion}                             Command that operates over {motion} moved.
 
 
-:[range]CommandName                                              *CommandName*
-
-Command that operates over [range].
-
-You can use `{doc=AdditionalTag}` to generate one additional tag for each
-header.
 
 
-{Visual}pv                                                      *panvimdoc-pv*
+                                                             *panvimdoc-pvd*
 
-Command that operates over highlighted lines.
+
+pvd                                    Command that takes [count] lines.
+
+
+
+
+                                                    *panvimdoc-:CommandName*
+
+
+:[range]CommandName {doc=CommandName}  Command that operates over [range].
+
+
+
+
+                                                              *panvimdoc-pv*
+
+
+{Visual}pv                             Command that operates over highlighted lines.
+
+
 
 
 TABLE                                                *panvimdoc-heading-table*

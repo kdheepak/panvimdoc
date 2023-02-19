@@ -66,6 +66,11 @@ case $key in
     shift # past argument
     shift # past value
     ;;
+    --doc-mapping-project-name)
+    DOC_MAPPING_PROJECT_NAME="$2"
+    shift # past argument
+    shift # past value
+    ;;
     --demojify)
     DEMOJIFY="$2"
     shift # past argument
@@ -116,6 +121,7 @@ ARGS=(
     "--metadata=dedupsubheadings:$DEDUP_SUBHEADINGS"
     "--metadata=ignorerawblocks:$IGNORE_RAWBLOCKS"
     "--metadata=docmapping:$DOC_MAPPING"
+    "--metadata=docmappingproject:$DOC_MAPPING_PROJECT_NAME"
     "--metadata=treesitter:$TREESITTER"
     "--metadata=incrementheadinglevelby:$INCREMENT_HEADING_LEVEL_BY"
     "--lua-filter=$SCRIPTS_DIR/skip-blocks.lua"

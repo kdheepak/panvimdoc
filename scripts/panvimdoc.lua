@@ -71,6 +71,7 @@ local DESCRIPTION = ""
 local DEDUP_SUBHEADINGS = false
 local IGNORE_RAWBLOCKS = true
 local DOC_MAPPING = true
+local DOC_MAPPING_PROJECT = true
 local DATE = nil
 
 local CURRENT_HEADER = nil
@@ -193,6 +194,7 @@ Writer.Pandoc = function(doc, opts)
   DEDUP_SUBHEADINGS = doc.meta.dedupsubheadings
   IGNORE_RAWBLOCKS = doc.meta.ignorerawblocks
   DOC_MAPPING = doc.meta.docmapping
+  DOC_MAPPING_PROJECT = doc.meta.docmappingproject
   HEADER_COUNT = HEADER_COUNT + doc.meta.incrementheadinglevelby
   DATE = doc.meta.date
   local d = blocks(doc.blocks)
@@ -245,17 +247,27 @@ Writer.Block.Header = function(el)
       left = s
       if attr.attributes.doc then
         right = "*" .. attr.attributes.doc .. "*"
+      elseif DOC_MAPPING_PROJECT then
+          -- stylua: ignore
+          right = string.format(
+            "*%s-%s*",
+            PROJECT,
+            s:gsub("{.+}", "")
+            :gsub("%[.+%]", "")
+            :gsub("^%s*(.-)%s*$", "%1")
+            :gsub("^%s*(.-)%s*$", "%1")
+            :gsub("%s", "-")
+          )
       else
-        -- stylua: ignore
-        right = string.format(
-          "*%s-%s*",
-          PROJECT,
-          s:gsub("{.+}", "")
-          :gsub("%[.+%]", "")
-          :gsub("^%s*(.-)%s*$", "%1")
-          :gsub("^%s*(.-)%s*$", "%1")
-          :gsub("%s", "-")
-        )
+          -- stylua: ignore
+          right = string.format(
+            "*%s*",
+            s:gsub("{.+}", "")
+            :gsub("%[.+%]", "")
+            :gsub("^%s*(.-)%s*$", "%1")
+            :gsub("^%s*(.-)%s*$", "%1")
+            :gsub("%s", "-")
+          )
       end
       padding = string.rep(" ", 78 - #left - #right)
       local r = string.format("%s%s%s", left, padding, right)
@@ -337,16 +349,29 @@ Writer.Block.DefinitionList = function(el)
     local str = table.concat(t, "\n")
     local i = 1
 
-    -- stylua: ignore
-    local right = string.format(
-          "*%s-%s*",
-          PROJECT,
-          k:gsub("{.+}", "")
-          :gsub("%[.+%]", "")
-          :gsub("^%s*(.-)%s*$", "%1")
-          :gsub("^%s*(.-)%s*$", "%1")
-          :gsub("%s", "-")
-        )
+    local right = ""
+    if DOC_MAPPING_PROJECT then
+      -- stylua: ignore
+      right = string.format(
+        "*%s-%s*",
+        PROJECT,
+        k:gsub("{.+}", "")
+        :gsub("%[.+%]", "")
+        :gsub("^%s*(.-)%s*$", "%1")
+        :gsub("^%s*(.-)%s*$", "%1")
+        :gsub("%s", "-")
+      )
+    else
+      -- stylua: ignore
+      right = string.format(
+        "*%s*",
+        k:gsub("{.+}", "")
+        :gsub("%[.+%]", "")
+        :gsub("^%s*(.-)%s*$", "%1")
+        :gsub("^%s*(.-)%s*$", "%1")
+        :gsub("%s", "-")
+      )
+    end
     add(string.rep(" ", 78 - #right - 2) .. right)
     add("\n")
     for s in str:gmatch("[^\r\n]+") do

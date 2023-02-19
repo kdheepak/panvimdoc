@@ -20,6 +20,7 @@ function test_pandoc(
   shift_heading_level_by = 0,
   increment_heading_level_by = 0,
   doc_mapping = true,
+  doc_mapping_project_name = true,
 )
   isfile(joinpath(ROOT_DIR, "doc/test.txt")) && rm(joinpath(ROOT_DIR, "doc/test.txt"))
   open(joinpath(CUR_DIR, "test.md"), "w") do file
@@ -29,7 +30,7 @@ function test_pandoc(
   if demojify
     filters = `$filters --lua-filter=$SCRIPTS_DIR/remove-emojis.lua`
   end
-  metadata = `--metadata=project:"test" --metadata=vimversion:"$vimversion" --metadata=toc:$toc --metadata=dedupsubheadings:$dedup_subheadings --metadata=treesitter:$treesitter --metadata=ignorerawblocks:$ignore_rawblocks --metadata=incrementheadinglevelby:$increment_heading_level_by --metadata=docmapping:$doc_mapping`
+  metadata = `--metadata=project:"test" --metadata=vimversion:"$vimversion" --metadata=toc:$toc --metadata=dedupsubheadings:$dedup_subheadings --metadata=treesitter:$treesitter --metadata=ignorerawblocks:$ignore_rawblocks --metadata=incrementheadinglevelby:$increment_heading_level_by --metadata=docmappingproject:$doc_mapping_project_name --metadata=docmapping:$doc_mapping`
   if description !== nothing
     metadata = `$metadata --metadata=description:"$description"`
   end

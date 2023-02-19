@@ -165,98 +165,135 @@ All of the content in curly braces `{...}` that is part of the header is dropped
 
 For example, the level 4 heading and the contents of the section:
 
-```
-#### abc{xyz}
+````markdown
+:FnlCompileBuffer
 
-Docstring for abc {xyz}.
-```
+: Compiles current active fennel buffer
+
+:FnlCompile[!]
+
+: Diff compiles all indexed fennel files
+If bang! is present then forcefully compiles all `source` files
+
+:Fnl {expr}
+
+: Executes and Evalutate {expr} of fennel
+
+     ```fennel
+     :Fnl (print "Hello World")
+
+     :Fnl (values some_var)
+     ```
+
+     Testing
+````
 
 becomes the following vimdoc:
 
 ```
-                                                               *projectName-abc*
 
-abc{xyz}                               Docstring for abc {xyz}.
+                                                    *test-:FnlCompileBuffer*
+
+
+:FnlCompileBuffer                      Compiles current active fennel buffer
+
+
+                                                          *test-:FnlCompile*
+
+
+:FnlCompile[!]                         Diff compiles all indexed fennel files
+                                       If bang! is present then forcefully compiles all `source` files
+
+
+                                                                 *test-:Fnl*
+
+
+:Fnl {expr}                            Executes and Evalutate {expr} of fennel
+                                       >fennel
+                                           :Fnl (print "Hello World")
+
+                                           :Fnl (values some_var)
+                                       <
+                                       Testing
 ```
 
-Notice that the tag `*projectName-abc*` is generated for you:
-
-Additionally, content in square brackets `[...]` is also dropped for creating the tag name.
+Notice that the tag `*projectName-abc*` is generated for you. Additionally, content in square brackets `[...]` is also dropped for creating the tag name.
 
 The heading `### :[range]Command` becomes the tag `*projectName-:Command*`.
 
-See following headings as examples:
+See following mappings as examples:
 
-#### pv{motion}
+<!-- prettier-ignore-start -->
 
-Command that operates over {motion} moved.
+pv{motion}
+
+:    Command that operates over {motion} moved.
 
 <!-- panvimdoc-ignore-start -->
 
 The following vimdoc mapping is generated:
 
 ```
-                                                                *projectName-pv*
+                                                              *panvimdoc-pv*
 
-pv{motion}                             Command that operates over {motion}
-                                       moved.
 
+pv{motion}                             Command that operates over {motion} moved.
 ```
 
 <!-- panvimdoc-ignore-end -->
 
-#### pvd
+pvd
 
-Command that takes [count] lines.
+:    Command that takes [count] lines.
 
 <!-- panvimdoc-ignore-start -->
 
 The following vimdoc mapping is generated:
 
 ```
-                                                               *projectName-pvd*
+                                                             *panvimdoc-pvd*
+
 
 pvd                                    Command that takes [count] lines.
-
 ```
 
 <!-- panvimdoc-ignore-end -->
 
-#### :[range]CommandName {doc=CommandName}
+:[range]CommandName {doc=CommandName}
 
-Command that operates over [range].
+:     Command that operates over [range].
 
 <!-- panvimdoc-ignore-start -->
 
 The following vimdoc mapping is generated:
 
 ```
+                                                    *panvimdoc-:CommandName*
 
-                                        *projectName-:CommandName* *CommandName*
 
-:[range]CommandName                    Command that operates over [range].
+:[range]CommandName {doc=CommandName}  Command that operates over [range].
 ```
 
 <!-- panvimdoc-ignore-end -->
 
-You can use `{doc=AdditionalTag}` to generate one additional tag for each header.
+{Visual}pv
 
-#### {Visual}pv
-
-Command that operates over highlighted lines.
+:     Command that operates over highlighted lines.
 
 <!-- panvimdoc-ignore-start -->
 
 The following vimdoc mapping is generated:
 
 ```
-                                                                *panvimdoc-pv*
+                                                              *panvimdoc-pv*
 
-{Visual}pv                             Command that operates over highlighted
-                                       lines.
+
+{Visual}pv                             Command that operates over highlighted lines.
 ```
 
 <!-- panvimdoc-ignore-end -->
+
+<!-- prettier-ignore-end -->
 
 ## Table
 
