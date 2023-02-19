@@ -272,8 +272,8 @@ Sub headings are upper cased heading.</code></pre>
 <p>Lastly, if the markdown text is a url, the link is not added to the links section and instead is placed inline.</p>
 <h2 id="mappings">Mappings</h2>
 <p>While you can use codeblocks with the language <code>vimdoc</code> to insert text in the generated vimdoc, it can be useful to have a markdown friendly way to write documentation for mappings.</p>
-<p>Any markdown header of level 4 will be considered as a special header. This can be used to generate documentation of mappings. All of the content in curly braces <code>{...}</code> that is part of the header is dropped and a tag is created.</p>
-<p>For example, the level 4 heading and the contents of the section:</p>
+<p>Pandoc supports definition lists: <a href="https://pandoc.org/MANUAL.html#definition-lists" class="uri">https://pandoc.org/MANUAL.html#definition-lists</a>. This can be used to generate documentation of mappings. All of the content in curly braces <code>{...}</code> that is part of the header is dropped and a tag is created.</p>
+<p>For example, the following in a markdown file:</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>:FnlCompileBuffer</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>: Compiles current active fennel buffer</span>
@@ -296,20 +296,20 @@ Sub headings are upper cased heading.</code></pre>
 <span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a><span class="in">     Testing</span></span></code></pre></div>
 <p>becomes the following vimdoc:</p>
 <pre><code>
-                                                    *test-:FnlCompileBuffer*
+                                             *projectName-:FnlCompileBuffer*
 
 
 :FnlCompileBuffer                      Compiles current active fennel buffer
 
 
-                                                          *test-:FnlCompile*
+                                                   *projectName-:FnlCompile*
 
 
 :FnlCompile[!]                         Diff compiles all indexed fennel files
                                        If bang! is present then forcefully compiles all `source` files
 
 
-                                                                 *test-:Fnl*
+                                                          *projectName-:Fnl*
 
 
 :Fnl {expr}                            Executes and Evalutate {expr} of fennel
@@ -319,8 +319,8 @@ Sub headings are upper cased heading.</code></pre>
                                            :Fnl (values some_var)
                                        &lt;
                                        Testing</code></pre>
-<p>Notice that the tag <code>*projectName-abc*</code> is generated for you. Additionally, content in square brackets <code>[...]</code> is also dropped for creating the tag name.</p>
-<p>The heading <code>### :[range]Command</code> becomes the tag <code>*projectName-:Command*</code>.</p>
+<p>Notice that the tag <code>*projectName-:Command*</code> is generated for you. Additionally, content in square brackets <code>[...]</code> or curly brackets <code>{...}</code> is also dropped for creating the tag name.</p>
+<p>i.e. the term <code>### :[range]Command</code> becomes the tag <code>*projectName-:Command*</code>.</p>
 <p>See following mappings as examples:</p>
 <!-- prettier-ignore-start -->
 <dl>
