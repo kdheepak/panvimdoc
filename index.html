@@ -136,9 +136,9 @@ git push</code></pre>
 </ul>
 <p><em>Feel free to submit a PR to add your documentation as an example here.</em></p>
 <h3 id="using-it-manually">Using it manually</h3>
-<p>The <code>./entrypoint.sh</code> script runs <code>pandoc</code> along with all the filters and custom output writer.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ./entrypoint.sh</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Usage:</span> ./entrypoint.sh <span class="at">--project-name</span> PROJECT_NAME <span class="at">--input-file</span> INPUT_FILE <span class="at">--vim-version</span> VIM_VERSION <span class="at">--toc</span> TOC <span class="at">--description</span> DESCRIPTION <span class="at">--dedup-subheadings</span> DEDUP_SUBHEADINGS <span class="at">--treesitter</span> TREESITTER</span>
+<p>The <code>./panvimdoc.sh</code> script runs <code>pandoc</code> along with all the filters and custom output writer.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ./panvimdoc.sh</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Usage:</span> ./panvimdoc.sh <span class="at">--project-name</span> PROJECT_NAME <span class="at">--input-file</span> INPUT_FILE <span class="at">--vim-version</span> VIM_VERSION <span class="at">--toc</span> TOC <span class="at">--description</span> DESCRIPTION <span class="at">--dedup-subheadings</span> DEDUP_SUBHEADINGS <span class="at">--treesitter</span> TREESITTER</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="ex">Arguments:</span></span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--project-name:</span> the name of the project</span>
@@ -183,7 +183,7 @@ git push</code></pre>
 <li>Support including multiple Markdown files</li>
 </ul>
 <h1 id="specification">Specification</h1>
-<p>The specification is described in <a href="./doc/panvimdoc.md">panvimdoc.md</a> along with examples. The generated output is in <a href="./doc/panvimdoc.txt">panvimdoc.txt</a>. The reference implementation of the Pandoc lua filter is in <a href="./scripts/panvimdoc.lua">panvimdoc.lua</a>. See <a href="./entrypoint.sh">entrypoint.sh</a> for how to use this script, or check the <a href="#usage">Usage</a> section.</p>
+<p>The specification is described in <a href="./doc/panvimdoc.md">panvimdoc.md</a> along with examples. The generated output is in <a href="./doc/panvimdoc.txt">panvimdoc.txt</a>. The reference implementation of the Pandoc lua filter is in <a href="./scripts/panvimdoc.lua">panvimdoc.lua</a>. See <a href="./panvimdoc.sh">panvimdoc.sh</a> for how to use this script, or check the <a href="#usage">Usage</a> section.</p>
 <p>If you would like to contribute to the specification, have feature requests or opinions, please feel free to comment here: <a href="https://github.com/kdheepak/panvimdoc/discussions/11" class="uri">https://github.com/kdheepak/panvimdoc/discussions/11</a>.</p>
 <h1 id="references">References</h1>
 <ul>
