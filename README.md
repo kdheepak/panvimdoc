@@ -122,6 +122,7 @@ Arguments:
   --treesitter: 'true' if the project uses Tree-sitter syntax highlighting, 'false' otherwise
   --ignore-rawblocks: 'true' if the project should ignore HTML raw blocks, 'false' otherwise
   --doc-mapping: 'true' if the project should use h4 headers as mapping docs, 'false' otherwise
+  --doc-mapping-project-name: 'true' if tags generated for mapping docs contain project name, 'false' otherwise
   --shift-heading-level-by: 0 if you don't want to shift heading levels , n otherwise
   --increment-heading-level-by: 0 if don't want to increment the starting heading number, n otherwise
 ```
