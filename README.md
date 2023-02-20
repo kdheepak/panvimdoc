@@ -105,11 +105,11 @@ _Feel free to submit a PR to add your documentation as an example here._
 
 ### Using it manually
 
-The `./entrypoint.sh` script runs `pandoc` along with all the filters and custom output writer.
+The `./panvimdoc.sh` script runs `pandoc` along with all the filters and custom output writer.
 
 ```bash
-$ ./entrypoint.sh
-Usage: ./entrypoint.sh --project-name PROJECT_NAME --input-file INPUT_FILE --vim-version VIM_VERSION --toc TOC --description DESCRIPTION --dedup-subheadings DEDUP_SUBHEADINGS --treesitter TREESITTER
+$ ./panvimdoc.sh
+Usage: ./panvimdoc.sh --project-name PROJECT_NAME --input-file INPUT_FILE --vim-version VIM_VERSION --toc TOC --description DESCRIPTION --dedup-subheadings DEDUP_SUBHEADINGS --treesitter TREESITTER
 
 Arguments:
   --project-name: the name of the project
@@ -183,7 +183,7 @@ This project provides a reference implementation of the specification as well.
 The specification is described in [panvimdoc.md](./doc/panvimdoc.md) along with examples.
 The generated output is in [panvimdoc.txt](./doc/panvimdoc.txt).
 The reference implementation of the Pandoc lua filter is in [panvimdoc.lua](./scripts/panvimdoc.lua).
-See [entrypoint.sh](./entrypoint.sh) for how to use this script, or check the [Usage](#usage) section.
+See [panvimdoc.sh](./panvimdoc.sh) for how to use this script, or check the [Usage](#usage) section.
 
 If you would like to contribute to the specification, have feature requests or opinions, please feel free to comment here: <https://github.com/kdheepak/panvimdoc/discussions/11>.
 
