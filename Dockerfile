@@ -3,12 +3,12 @@ FROM pandoc/core:3.1
 RUN apk update && apk upgrade && apk add bash vim neovim
 
 # Copies your code file  repository to the filesystem
-COPY entrypoint.sh /entrypoint.sh
+COPY panvimdoc.sh /panvimdoc.sh
 COPY scripts/ /scripts/
 COPY lib/Demojify.lua /usr/share/lua/common/lib/Demojify.lua
 
 # change permission to execute the script and
-RUN chmod +x /entrypoint.sh
+RUN chmod +x /panvimdoc.sh
 
 # file to execute when the docker container starts up
-ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT ["/panvimdoc.sh"]
