@@ -46,9 +46,9 @@ documentation in vimdoc.
 
 >yaml
     name: panvimdoc
-
+    
     on: [push]
-
+    
     jobs:
       docs:
         runs-on: ubuntu-latest
@@ -92,9 +92,9 @@ Then add the following to `./.github/workflows/panvimdoc.yml`:
 
 >yaml
     name: panvimdoc
-
+    
     on: [push]
-
+    
     jobs:
       docs:
         runs-on: ubuntu-latest
@@ -149,13 +149,13 @@ _Feel free to submit a PR to add your documentation as an example here._
 
 USING IT MANUALLY ~
 
-The `./panvimdoc.sh` script runs `pandoc` along with all the filters and
-custom output writer.
+The `./panvimdoc.sh` script runs `pandoc` along with all the filters and custom
+output writer.
 
 >bash
     $ ./panvimdoc.sh
     Usage: ./panvimdoc.sh --project-name PROJECT_NAME --input-file INPUT_FILE --vim-version VIM_VERSION --toc TOC --description DESCRIPTION --dedup-subheadings DEDUP_SUBHEADINGS --treesitter TREESITTER
-
+    
     Arguments:
       --project-name: the name of the project
       --input-file: the input markdown file
@@ -296,9 +296,9 @@ CODEBLOCKS                                *panvimdoc-specification-codeblocks*
 
 >
     Multi line Code blocks are indented 4 spaces and
-
+    
     are formatted
-
+    
     appropriately with > and <.
 <
 
@@ -396,51 +396,51 @@ For example, the following in a markdown file:
 
 >markdown
     :FnlCompileBuffer
-
+    
     : Compiles current active fennel buffer
-
+    
     :FnlCompile[!]
-
+    
     : Diff compiles all indexed fennel files
     If bang! is present then forcefully compiles all `source` files
-
+    
     :Fnl {expr}
-
+    
     : Executes and Evalutate {expr} of fennel
-
+    
          ```fennel
          :Fnl (print "Hello World")
-
+    
          :Fnl (values some_var)
          ```
-
+    
          Testing
 <
 
 becomes the following vimdoc:
 
 >
-
+    
                                                  *projectName-:FnlCompileBuffer*
-
-
+    
+    
     :FnlCompileBuffer                      Compiles current active fennel buffer
-
-
+    
+    
                                                        *projectName-:FnlCompile*
-
-
+    
+    
     :FnlCompile[!]                         Diff compiles all indexed fennel files
                                            If bang! is present then forcefully compiles all `source` files
-
-
+    
+    
                                                               *projectName-:Fnl*
-
-
+    
+    
     :Fnl {expr}                            Executes and Evalutate {expr} of fennel
                                            >fennel
                                                :Fnl (print "Hello World")
-
+    
                                                :Fnl (values some_var)
                                            <
                                            Testing
@@ -552,15 +552,15 @@ inside `panvimdoc-ignore-{start/end}` blocks:
 
 >
     <!-- panvimdoc-ignore-start -->
-
+    
     <details>
         <summary>Vimdoc Ignored Section</summary>
-
+    
     This section will ignored when generating the vimdoc file.
     This will only show up in the Markdown file.
-
+    
     </details>
-
+    
     <!-- panvimdoc-ignore-end -->
 <
 
@@ -585,9 +585,9 @@ because it may cause the rest of your document to be ignored. Do this instead:
 
 >
     <!-- panvimdoc-ignore-start -->
-
+    
     ![screenshot](./gif.gif)
-
+    
     <!-- panvimdoc-ignore-end -->
 <
 
