@@ -42,6 +42,7 @@
     """;
     toc = true,
     demojify = true,
+    treesitter = true,
   )
   @test doc == raw"""
 *test.txt*                                                    Test Description
