@@ -451,7 +451,7 @@ Notice that the tag `*projectName-:Command*` is generated for you.
 Additionally, content in square brackets `[...]` or curly brackets `{...}` is
 also dropped for creating the tag name.
 
-i.e. the term `### :[range]Command` becomes the tag `*projectName-:Command*`.
+i.e. the term `### :[range]Command` becomes the tag `*projectName-:Command*`.
 
 See following mappings as examples:
 
