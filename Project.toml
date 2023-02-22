@@ -1,7 +1,7 @@
 name = "panvimdoc"
 uuid = "108592c7-02d7-45fd-92a9-4f9366214548"
 authors = ["Dheepak Krishnamurthy <me@kdheepak.com"]
-version = "3.0.4"
+version = "3.0.5"
 
 [deps]
 Dates = "ade2ca70-3891-5945-98fb-dc099432e06a"
