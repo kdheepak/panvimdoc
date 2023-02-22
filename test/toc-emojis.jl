@@ -42,7 +42,7 @@
     """;
     toc = true,
     demojify = true,
-    treesitter = true,
+    dedup_subheadings = true,
   )
   @test doc == raw"""
 *test.txt*                                                    Test Description
