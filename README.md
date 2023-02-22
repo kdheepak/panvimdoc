@@ -42,7 +42,7 @@ This software is released under a MIT License.
 
 Create an empty doc file:
 
-```
+```bash
 touch doc/${VIMDOC_PROJECT_NAME}.txt
 git commit -am "Add empty doc"
 git push
