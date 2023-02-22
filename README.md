@@ -25,7 +25,7 @@ This software is released under a MIT License.
        steps:
          - uses: actions/checkout@v2
          - name: panvimdoc
-           uses: kdheepak/panvimdoc@v3.0.4
+           uses: kdheepak/panvimdoc@main
            with:
              vimdoc: ${VIMDOC_PROJECT_NAME}
          - uses: stefanzweifel/git-auto-commit-action@v4
@@ -85,14 +85,22 @@ jobs:
 Choose `VIMDOC_PROJECT_NAME` appropriately.
 This is usually the name of the plugin or the documentation file without the `.txt` extension. For example, the following:
 
-```
+```yaml
 - name: panvimdoc
   uses: kdheepak/panvimdoc@main
   with:
     vimdoc: panvimdoc
 ```
 
-Will output a file `doc/panvimdoc.txt` and the vim help tag for it will be `panvimdoc` using the `main` branch of the repository. It is recommended to pin to an exact version so you can be confident that no surprises occur for you or your users.
+Will output a file `doc/panvimdoc.txt` and the vim help tag for it will be `panvimdoc` using the `main` branch of the repository.
+It is recommended to pin to an exact version so you can be confident that no surprises occur for you or your users.
+See <https://github.com/kdheepak/panvimdoc/releases/latest> for which version to use.
+Once you pick a version, you can pin it like so:
+
+```yaml
+- name: panvimdoc
+  uses: kdheepak/panvimdoc@vX.X.X
+```
 
 For an example of how this is used, see one of the following workflows:
 
