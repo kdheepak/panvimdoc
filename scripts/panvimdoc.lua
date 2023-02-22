@@ -226,7 +226,7 @@ Writer.Block.Header = function(el)
   if lev == 2 then
     left = string.upper(s)
     right = string.lower(string.gsub(s, "%s", "-"))
-    if DEDUP_SUBHEADINGS then
+    if DEDUP_SUBHEADINGS and CURRENT_HEADER then
       right_link = string.format("|%s-%s-%s|", PROJECT, CURRENT_HEADER, right)
       right = string.format("*%s-%s-%s*", PROJECT, CURRENT_HEADER, right)
     else
