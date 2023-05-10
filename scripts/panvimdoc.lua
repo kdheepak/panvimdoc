@@ -310,7 +310,7 @@ Writer.Block.OrderedList = function(items)
     table.insert(buffer, ("%s. %s"):format(i, blocks(item)))
     i = i + 1
   end)
-  return "\n" .. table.concat(buffer) .. "\n\n"
+  return table.concat(buffer, "\n") .. "\n\n"
 end
 
 Writer.Block.BulletList = function(items)
@@ -318,7 +318,7 @@ Writer.Block.BulletList = function(items)
   items.content:map(function(item)
     table.insert(buffer, indent(blocks(item, "\n"), "- ", "    "))
   end)
-  return "\n" .. table.concat(buffer, "\n") .. "\n\n"
+  return table.concat(buffer, "\n") .. "\n\n"
 end
 
 Writer.Block.DefinitionList = function(el)
@@ -390,8 +390,8 @@ end
 Writer.Block.CodeBlock = function(el)
   local attr = el.attr
   local s = el.text
-  if attr.class == "vimdoc" then
-    return s
+  if #attr.classes > 0 and attr.classes[1] == "vimdoc" then
+    return s .. "\n\n"
   else
     local lang = ""
     if TREESITTER and #attr.classes > 0 then
