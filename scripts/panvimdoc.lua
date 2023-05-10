@@ -390,8 +390,8 @@ end
 Writer.Block.CodeBlock = function(el)
   local attr = el.attr
   local s = el.text
-  if attr.class == "vimdoc" then
-    return s
+  if #attr.classes > 0 and attr.classes[1] == "vimdoc" then
+    return s .. "\n\n"
   else
     local lang = ""
     if TREESITTER and #attr.classes > 0 then
