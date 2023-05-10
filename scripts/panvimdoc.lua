@@ -310,7 +310,7 @@ Writer.Block.OrderedList = function(items)
     table.insert(buffer, ("%s. %s"):format(i, blocks(item)))
     i = i + 1
   end)
-  return "\n" .. table.concat(buffer) .. "\n\n"
+  return table.concat(buffer) .. "\n\n"
 end
 
 Writer.Block.BulletList = function(items)
@@ -318,7 +318,7 @@ Writer.Block.BulletList = function(items)
   items.content:map(function(item)
     table.insert(buffer, indent(blocks(item, "\n"), "- ", "    "))
   end)
-  return "\n" .. table.concat(buffer, "\n") .. "\n\n"
+  return table.concat(buffer, "\n") .. "\n\n"
 end
 
 Writer.Block.DefinitionList = function(el)
