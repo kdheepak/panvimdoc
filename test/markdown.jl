@@ -468,13 +468,11 @@ $PATH 90 $PATH
 
 COMMENTED-OUT LIST ITEM                         *test-commented-out-list-item*
 
-
 - one
 - three
 
 
 INDENTED CODE AT BEGINNING OF LIST   *test-indented-code-at-beginning-of-list*
-
 
 - >
         code
@@ -524,11 +522,10 @@ foo </bar/测?x=测>
 
 NUMBERED EXAMPLES                                     *test-numbered-examples*
 
-
-1. First example.2. Second example.
+1. First example.
+2. Second example.
 
 Explanation of examples (2) and (3).
-
 
 1. Third example.
 
@@ -556,15 +553,14 @@ CURLY SMART QUOTES                                   *test-curly-smart-quotes*
 
 CONSECUTIVE LISTS                                     *test-consecutive-lists*
 
-
 - one
 - two
 
+1. one
+2. two
 
-1. one2. two
-
-
-1. one2. two
+1. one
+2. two
 
 
 IMPLICIT HEADER REFERENCES                   *test-implicit-header-references*
