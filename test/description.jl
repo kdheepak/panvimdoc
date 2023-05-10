@@ -17,7 +17,7 @@ jobs:
     description = nothing,
   )
   @test """
-*test.txt*            For NVIM v0.8.0            Last change: $(CURRENT_DATE)
+*test.txt*          For NVIM v0.8.0            Last change: $(CURRENT_DATE)
 
 ==============================================================================
 Table of Contents                                     *test-table-of-contents*
@@ -59,7 +59,7 @@ jobs:
     description = nothing,
   )
   @test doc == """
-*test.txt*               For VIM v9.0.0            Last change: $(CURRENT_DATE)
+*test.txt*               For VIM v9.0.0              Last change: $(CURRENT_DATE)
 
 ==============================================================================
 Table of Contents                                     *test-table-of-contents*
