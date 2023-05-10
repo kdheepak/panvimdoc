@@ -41,6 +41,7 @@ function test_pandoc(
     )
   end
   doc = read(joinpath(ROOT_DIR, "test/test.txt"), String)
+  doc = join(strip.(split(doc, "\n")), "\n")
   rm(joinpath(ROOT_DIR, "test/test.txt"))
   rm(joinpath(CUR_DIR, "test.md"))
   return doc
