@@ -22,7 +22,7 @@ Arguments:
   --shift-heading-level-by: 0 if you don't want to shift heading levels , n otherwise
   --increment-heading-level-by: 0 if don't want to increment the starting heading number, n otherwise
 EOF
-  exit 1
+  exit 0
 fi
 
 # Parse command line arguments
