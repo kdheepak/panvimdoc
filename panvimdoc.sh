@@ -117,23 +117,23 @@ fi
 
 # Define arguments in an array
 ARGS=(
-    "--shift-heading-level-by=$SHIFT_HEADING_LEVEL_BY"
+    "--shift-heading-level-by=${SHIFT_HEADING_LEVEL_BY:-0}"
     "--metadata=project:$PROJECT_NAME"
-    "--metadata=vimversion:$VIM_VERSION"
-    "--metadata=toc:$TOC"
-    "--metadata=description:$DESCRIPTION"
-    "--metadata=dedupsubheadings:$DEDUP_SUBHEADINGS"
-    "--metadata=ignorerawblocks:$IGNORE_RAWBLOCKS"
-    "--metadata=docmapping:$DOC_MAPPING"
-    "--metadata=docmappingproject:$DOC_MAPPING_PROJECT_NAME"
-    "--metadata=treesitter:$TREESITTER"
-    "--metadata=incrementheadinglevelby:$INCREMENT_HEADING_LEVEL_BY"
+    "--metadata=vimversion:${VIM_VERSION:-""}"
+    "--metadata=toc:${TOC:-true}"
+    "--metadata=description:${DESCRIPTION:-""}"
+    "--metadata=dedupsubheadings:${DEDUP_SUBHEADINGS:-true}"
+    "--metadata=ignorerawblocks:${IGNORE_RAWBLOCKS:-true}"
+    "--metadata=docmapping:${DOC_MAPPING:-false}"
+    "--metadata=docmappingproject:${DOC_MAPPING_PROJECT_NAME:-true}"
+    "--metadata=treesitter:${TREESITTER:-true}"
+    "--metadata=incrementheadinglevelby:${INCREMENT_HEADING_LEVEL_BY:-0}"
     "--lua-filter=$SCRIPTS_DIR/skip-blocks.lua"
     "--lua-filter=$SCRIPTS_DIR/include-files.lua"
 )
 
 # Add an additional lua filter if demojify is true
-if [[ $DEMOJIFY == "true" ]]; then
+if [[ ${DEMOJIFY:-false} == "true" ]]; then
     ARGS+=(
         "--lua-filter=$SCRIPTS_DIR/remove-emojis.lua"
     )
