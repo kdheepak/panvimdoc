@@ -3,7 +3,7 @@
 set -euo pipefail
 
 # Check if the script was called with no arguments and show help in that case
-if [ $# -eq 0 ]; then
+usage() {
     cat <<EOF
 Usage: $0 --project-name PROJECT_NAME --input-file INPUT_FILE --vim-version VIM_VERSION --toc TOC --description DESCRIPTION --dedup-subheadings DEDUP_SUBHEADINGS --treesitter TREESITTER
 
@@ -23,13 +23,13 @@ Arguments:
   --increment-heading-level-by: 0 if don't want to increment the starting heading number, n otherwise
 EOF
     exit 0
-fi
+}
+
+[[ $# -eq 0 ]] && usage
 
 # Parse command line arguments
 while [[ $# -gt 0 ]]; do
-    key="$1"
-
-    case $key in
+    case $1 in
     --project-name)
         PROJECT_NAME="$2"
         shift # past argument
@@ -94,6 +94,9 @@ while [[ $# -gt 0 ]]; do
         INCREMENT_HEADING_LEVEL_BY="$2"
         shift # past argument
         shift # past value
+        ;;
+    --help | -h)
+        usage
         ;;
     *) # unknown option
         echo "Unknown option: $1"
