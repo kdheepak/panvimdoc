@@ -192,7 +192,7 @@ This project offers a comprehensive suite of features designed to streamline the
 - Maintains markdown syntax for tables, ensuring proper rendering.
 - Allows for manual control through raw vimdoc syntax where necessary.
 - Offers the ability to include multiple Markdown files, providing flexibility in documentation structure.
-- 
+
 # Specification
 
 The specification is described in [panvimdoc.md](./doc/panvimdoc.md) along with examples.
