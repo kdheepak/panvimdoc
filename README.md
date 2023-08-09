@@ -10,7 +10,7 @@ This software is released under a MIT License.
 
 # TLDR
 
-1. Choose `${VIMDOC_PROJECT_NAME}`. See [.github/workflows/panvimdoc.yml](./.github/workflows/panvimdoc.yml) as an example.
+1. Choose a name for your project, i.e. `${VIMDOC_PROJECT_NAME}`. See [.github/workflows/panvimdoc.yml](./.github/workflows/panvimdoc.yml) as an example.
 2. Add the following to `./.github/workflows/panvimdoc.yml`:
 
    ```yaml
@@ -24,8 +24,7 @@ This software is released under a MIT License.
        name: pandoc to vimdoc
        steps:
          - uses: actions/checkout@v2
-         - name: panvimdoc
-           uses: kdheepak/panvimdoc@main
+         - uses: kdheepak/panvimdoc@main
            with:
              vimdoc: ${VIMDOC_PROJECT_NAME}
          - uses: stefanzweifel/git-auto-commit-action@v4
