@@ -120,22 +120,22 @@
 <span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">docmappingprojectname</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span><span class="co"> # Use project name in tag when writing mapping docs</span></span>
 <span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">shiftheadinglevelby</span><span class="kw">:</span><span class="at"> </span><span class="dv">0</span><span class="co"> # Shift heading levels by specified number</span></span>
 <span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">incrementheadinglevelby</span><span class="kw">:</span><span class="at"> </span><span class="dv">0</span><span class="co"> # Increment heading levels by specified number</span></span></code></pre></div>
-<p>Choose <code>VIMDOC_PROJECT_NAME</code> appropriately. This is usually the name of the plugin or the documentation file without the <code>.txt</code> extension. For example, the following:</p>
+<p>The only required thing for you to do is to choose a <code>VIMDOC_PROJECT_NAME</code> appropriately. This is usually the name of the plugin or the documentation file without the <code>.txt</code> extension. For example, the following:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> panvimdoc</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> kdheepak/panvimdoc@main</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">with</span><span class="kw">:</span></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">vimdoc</span><span class="kw">:</span><span class="at"> panvimdoc</span></span></code></pre></div>
-<p>Will output a file <code>doc/panvimdoc.txt</code> and the vim help tag for it will be <code>panvimdoc</code> using the <code>main</code> branch of the repository. It is recommended to pin to an exact version so you can be confident that no surprises occur for you or your users. See <a href="https://github.com/kdheepak/panvimdoc/releases/latest" class="uri">https://github.com/kdheepak/panvimdoc/releases/latest</a> for which version to use. Once you pick a version, you can pin it like so:</p>
+<p>will output a file <code>doc/panvimdoc.txt</code> and the vim help tag for it will be <code>panvimdoc</code> using the <code>main</code> branch of the repository.</p>
+<p>All the other options are optional.</p>
+<p>It is recommended to pin to an exact version so you can be confident that no surprises occur for you or your users. See <a href="https://github.com/kdheepak/panvimdoc/releases/latest" class="uri">https://github.com/kdheepak/panvimdoc/releases/latest</a> for which version to use. Once you pick a version, you can pin it like so:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> panvimdoc</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> kdheepak/panvimdoc@vX.X.X</span></span></code></pre></div>
 <p>For an example of how this is used, see one of the following workflows:</p>
 <ul>
 <li><a href="./.github/workflows/panvimdoc.yml">kdheepak/panvimdoc</a>: <a href="./doc/panvimdoc.txt">doc/panvimdoc.txt</a></li>
 <li><a href="https://github.com/kdheepak/tabline.nvim/blob/main/.github/workflows/ci.yml">kdheepak/tabline.nvim</a>: <a href="https://github.com/kdheepak/tabline.nvim/blob/main/doc/tabline.txt">doc/tabline.txt</a></li>
-<li><a href="https://github.com/mcchrish/zenbones.nvim/blob/main/.github/workflows/doc.yml">mcchrish/zenbones.nvim</a>: <a href="https://github.com/mcchrish/zenbones.nvim/blob/main/doc/zenbones.txt">doc/zenbones.txt</a></li>
-<li><a href="https://github.com/nvim-lualine/lualine.nvim/blob/master/.github/workflows/autogen.yml">nvim-lualine/lualine.nvim</a>: <a href="https://github.com/nvim-lualine/lualine.nvim/blob/master/doc/lualine.txt">doc/lualine.txt</a></li>
 </ul>
-<p><em>Feel free to submit a PR to add your documentation as an example here.</em></p>
+<p>Or see any of the packages here that depend on this action: <a href="https://github.com/kdheepak/panvimdoc/network/dependents" class="uri">https://github.com/kdheepak/panvimdoc/network/dependents</a></p>
 <h3 id="using-it-manually">Using it manually</h3>
 <p>The <code>./panvimdoc.sh</code> script runs <code>pandoc</code> along with all the filters and custom output writer.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ./panvimdoc.sh</span>
