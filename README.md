@@ -81,7 +81,7 @@ jobs:
           incrementheadinglevelby: 0 # Increment heading levels by specified number
 ```
 
-Choose `VIMDOC_PROJECT_NAME` appropriately.
+The only required thing for you to do is to choose a `VIMDOC_PROJECT_NAME` appropriately.
 This is usually the name of the plugin or the documentation file without the `.txt` extension. For example, the following:
 
 ```yaml
@@ -91,7 +91,10 @@ This is usually the name of the plugin or the documentation file without the `.t
     vimdoc: panvimdoc
 ```
 
-Will output a file `doc/panvimdoc.txt` and the vim help tag for it will be `panvimdoc` using the `main` branch of the repository.
+will output a file `doc/panvimdoc.txt` and the vim help tag for it will be `panvimdoc` using the `main` branch of the repository.
+
+All the other options are optional.
+
 It is recommended to pin to an exact version so you can be confident that no surprises occur for you or your users.
 See <https://github.com/kdheepak/panvimdoc/releases/latest> for which version to use.
 Once you pick a version, you can pin it like so:
@@ -105,10 +108,8 @@ For an example of how this is used, see one of the following workflows:
 
 - [kdheepak/panvimdoc](./.github/workflows/panvimdoc.yml): [doc/panvimdoc.txt](./doc/panvimdoc.txt)
 - [kdheepak/tabline.nvim](https://github.com/kdheepak/tabline.nvim/blob/main/.github/workflows/ci.yml): [doc/tabline.txt](https://github.com/kdheepak/tabline.nvim/blob/main/doc/tabline.txt)
-- [mcchrish/zenbones.nvim](https://github.com/mcchrish/zenbones.nvim/blob/main/.github/workflows/doc.yml): [doc/zenbones.txt](https://github.com/mcchrish/zenbones.nvim/blob/main/doc/zenbones.txt)
-- [nvim-lualine/lualine.nvim](https://github.com/nvim-lualine/lualine.nvim/blob/master/.github/workflows/autogen.yml): [doc/lualine.txt](https://github.com/nvim-lualine/lualine.nvim/blob/master/doc/lualine.txt)
 
-_Feel free to submit a PR to add your documentation as an example here._
+Or see any of the packages here that depend on this action: <https://github.com/kdheepak/panvimdoc/network/dependents>
 
 ### Using it manually
 
