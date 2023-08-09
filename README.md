@@ -47,7 +47,7 @@ git commit -am "Add empty doc"
 git push
 ```
 
-You don't actually need the file, just the `doc` folder but it is probably easiest to create a file.
+You don't actually need the file, only the `doc` folder but it is probably easiest to create a file.
 
 Then add the following to `./.github/workflows/panvimdoc.yml`:
 
@@ -140,7 +140,7 @@ You will need `pandoc v3.0.0` or greater for this script to work.
 # Motivation
 
 Writing user-friendly documentation is important for every successful software project.
-This is particularly true when writing documentation for users in the world of vim plugins. 
+This is particularly true when writing documentation for users in the world of vim plugins.
 
 The process of writing and maintaining this documentation can often be a cumbersome, time-consuming task.
 This project is aims to make that process a little bit easier by allowing anyone to write documentation in markdown (or any format Pandoc supports) and converting it to vimdoc automatically.
@@ -172,7 +172,7 @@ Pandoc filters can extend the capability of Pandoc with minimal lua scripting, a
 
 # Goals
 
-By offering a specification and reference implementation for converting Pandoc Markdown to vimdoc, this project aims to reduce friction in the documentation process for vim plugin authors. 
+By offering a specification and reference implementation for converting Pandoc Markdown to vimdoc, this project aims to reduce friction in the documentation process for vim plugin authors.
 
 Here are the specific goals that guide this project:
 
