@@ -1,8 +1,9 @@
 # panvimdoc
 
-Decrease friction when writing documentation for your plugins.
 Write documentation in [pandoc markdown](https://pandoc.org/MANUAL.html).
 Generate documentation in vimdoc.
+
+<img width="1512" alt="image" src="https://github.com/kdheepak/panvimdoc/assets/1813121/dfaed08d-fb9b-4cac-aad0-da71b605265d">
 
 ::: center
 This software is released under a MIT License.
