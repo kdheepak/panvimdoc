@@ -106,8 +106,9 @@ while [[ $# -gt 0 ]]; do
 done
 
 # Check if /scripts directory exists
-if [ -d "/scripts" ]; then
-    SCRIPTS_DIR="/scripts"
+if [ -d "scripts" ]; then
+    SCRIPTS_DIR="scripts"
+    echo "SCRIPTS"
 else
     SCRIPTS_DIR="$(dirname "$(readlink -f "$0")")/scripts"
 fi
