@@ -20,6 +20,7 @@ Table of Contents                                *panvimdoc-table-of-contents*
 11. Heading                                                |panvimdoc-heading|
   - Sub Heading 2                            |panvimdoc-heading-sub-heading-2|
   - Markdown Links                          |panvimdoc-heading-markdown-links|
+  - Linking to help tags              |panvimdoc-heading-linking-to-help-tags|
   - Mappings                                      |panvimdoc-heading-mappings|
   - Table                                            |panvimdoc-heading-table|
   - Markdown only content            |panvimdoc-heading-markdown-only-content|
@@ -392,6 +393,12 @@ This is excluded from the links section.
 
 Lastly, if the markdown text is a url, the link is not added to the links
 section and instead is placed inline.
+
+
+LINKING TO HELP TAGS                  *panvimdoc-heading-linking-to-help-tags*
+
+Markdown doucments may suggest help tags via |help-tag|, which are converted to
+`|help-tag|` "hot links" in vimdoc.
 
 
 MAPPINGS                                          *panvimdoc-heading-mappings*
