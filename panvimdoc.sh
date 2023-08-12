@@ -139,6 +139,7 @@ ARGS=(
 # Add an additional lua filter if demojify is true
 if [[ ${DEMOJIFY:-false} == "true" ]]; then
     ARGS+=(
+        "--data-dir=$SCRIPTS_DIR/../lib"
         "--lua-filter=$SCRIPTS_DIR/remove-emojis.lua"
     )
 fi
