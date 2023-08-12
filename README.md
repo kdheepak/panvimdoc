@@ -201,7 +201,11 @@ The generated output is in [panvimdoc.txt](./doc/panvimdoc.txt).
 The reference implementation of the Pandoc lua filter is in [panvimdoc.lua](./scripts/panvimdoc.lua).
 See [panvimdoc.sh](./panvimdoc.sh) for how to use this script, or check the [Usage](#usage) section.
 
+<!-- panvimdoc-ignore-start -->
+
 If you would like to contribute to the specification, have feature requests or opinions, please feel free to comment here: <https://github.com/kdheepak/panvimdoc/discussions/11>.
+
+<!-- panvimdoc-ignore-end -->
 
 # References
 

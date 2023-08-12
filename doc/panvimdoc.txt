@@ -273,10 +273,6 @@ reference implementation of the Pandoc lua filter is in panvimdoc.lua
 <./scripts/panvimdoc.lua>. See panvimdoc.sh <./panvimdoc.sh> for how to use
 this script, or check the |panvimdoc-usage| section.
 
-If you would like to contribute to the specification, have feature requests or
-opinions, please feel free to comment here:
-<https://github.com/kdheepak/panvimdoc/discussions/11>.
-
 
 ==============================================================================
 8. References                                           *panvimdoc-references*

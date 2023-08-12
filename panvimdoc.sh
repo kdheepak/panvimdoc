@@ -132,8 +132,8 @@ ARGS=(
     "--metadata=docmappingproject:${DOC_MAPPING_PROJECT_NAME:-true}"
     "--metadata=treesitter:${TREESITTER:-true}"
     "--metadata=incrementheadinglevelby:${INCREMENT_HEADING_LEVEL_BY:-0}"
-    "--lua-filter=$SCRIPTS_DIR/skip-blocks.lua"
     "--lua-filter=$SCRIPTS_DIR/include-files.lua"
+    "--lua-filter=$SCRIPTS_DIR/skip-blocks.lua"
 )
 
 # Add an additional lua filter if demojify is true
