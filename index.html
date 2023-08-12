@@ -49,6 +49,7 @@
   <li><a href="#sub-heading-3" id="toc-sub-heading-3">Sub Heading 3</a></li>
   </ul></li>
   <li><a href="#markdown-links" id="toc-markdown-links">Markdown Links</a></li>
+  <li><a href="#linking-to-help-tags" id="toc-linking-to-help-tags">Linking to help tags</a></li>
   <li><a href="#mappings" id="toc-mappings">Mappings</a></li>
   <li><a href="#table" id="toc-table">Table</a></li>
   <li><a href="#markdown-only-content" id="toc-markdown-only-content">Markdown only content</a></li>
@@ -292,6 +293,8 @@ Sub headings are upper cased heading.</code></pre>
 <!-- panvimdoc-ignore-end -->
 <p>This is excluded from the links section.</p>
 <p>Lastly, if the markdown text is a url, the link is not added to the links section and instead is placed inline.</p>
+<h2 id="linking-to-help-tags">Linking to help tags</h2>
+<p>Markdown doucments may suggest help tags via <code>:h help-tag</code>, which are converted to <code>|help-tag|</code> “hot links” in vimdoc.</p>
 <h2 id="mappings">Mappings</h2>
 <p>While you can use codeblocks with the language <code>vimdoc</code> to insert text in the generated vimdoc, it can be useful to have a markdown friendly way to write documentation for mappings.</p>
 <p>Pandoc supports definition lists: <a href="https://pandoc.org/MANUAL.html#definition-lists" class="uri">https://pandoc.org/MANUAL.html#definition-lists</a>. This can be used to generate documentation of mappings. All of the content in curly braces <code>{...}</code> that is part of the header is dropped and a tag is created.</p>
