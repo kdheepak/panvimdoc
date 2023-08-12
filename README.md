@@ -203,7 +203,7 @@ See [panvimdoc.sh](./panvimdoc.sh) for how to use this script, or check the [Usa
 
 <!-- panvimdoc-ignore-start -->
 
-If you would like to contribute to the specification, have feature requests or opinions, please feel free to comment here: <https://github.com/kdheepak/panvimdoc/discussions/11>.
+If you would like to contribute to the specification, or if you have feature requests or opinions, please feel free to comment here: <https://github.com/kdheepak/panvimdoc/discussions/11>.
 
 <!-- panvimdoc-ignore-end -->
 
