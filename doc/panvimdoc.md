@@ -490,3 +490,27 @@ First example
 ## Examples
 
 Second example
+
+## Remove emojis
+
+### :sparkles: Features
+
+### :zap: Requirements
+
+### :package: Installation
+
+<!-- panvimdoc-ignore-start -->
+
+This gets rendered as:
+
+```
+FEATURES                                                   *panvimdoc-features*
+
+
+REQUIREMENTS                                           *panvimdoc-requirements*
+
+
+INSTALLATION                                           *panvimdoc-installation*
+```
+
+<!-- panvimdoc-ignore-end -->
