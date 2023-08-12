@@ -477,7 +477,13 @@ Writer.Inline.Image = function(el)
 end
 
 Writer.Inline.Code = function(el)
-  return "`" .. escape(stringify(el)) .. "`"
+  local content = stringify(el)
+  local vim_help = string.match(content, "^:h %s*([^%s]+)")
+  if vim_help then
+    return string.format("|%s|", escape(vim_help))
+  else
+    return "`" .. escape(content) .. "`"
+  end
 end
 
 Writer.Inline.Math = function(s)
