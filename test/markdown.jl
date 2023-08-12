@@ -142,6 +142,10 @@ there`
 
 there`
 
+## helptags
+
+This content includes a helptag for `:h :a-complex.messy-%tag` inbetween other text.
+
 ## Multilingual URLs
 
 <http://测.com?测=测>
@@ -509,6 +513,12 @@ CODE SPANS                                                   *test-code-spans*
 `hi
 
 there`
+
+
+HELPTAGS                                                       *test-helptags*
+
+This content includes a helptag for |:a-complex.messy-%tag| inbetween other
+text.
 
 
 MULTILINGUAL URLS                                     *test-multilingual-urls*

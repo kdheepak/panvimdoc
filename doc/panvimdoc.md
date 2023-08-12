@@ -155,6 +155,10 @@ This is excluded from the links section.
 
 Lastly, if the markdown text is a url, the link is not added to the links section and instead is placed inline.
 
+## Linking to help tags
+
+Markdown doucments may suggest help tags via `:h help-tag`, which are converted to `|help-tag|` "hot links" in vimdoc.
+
 ## Mappings
 
 While you can use codeblocks with the language `vimdoc` to insert text in the generated vimdoc, it can be useful to have a markdown friendly way to write documentation for mappings.
