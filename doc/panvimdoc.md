@@ -503,14 +503,30 @@ Second example
 
 This gets rendered as:
 
+`demoji: false`:
+
 ```
-FEATURES                                                   *panvimdoc-features*
+:SPARKLES: FEATURES ~
 
 
-REQUIREMENTS                                           *panvimdoc-requirements*
+:ZAP: REQUIREMENTS ~
 
 
-INSTALLATION                                           *panvimdoc-installation*
+:PACKAGE: INSTALLATION ~
+```
+
+OR
+
+`demoji: true`:
+
+```
+FEATURES ~
+
+
+REQUIREMENTS ~
+
+
+INSTALLATION ~
 ```
 
 <!-- panvimdoc-ignore-end -->
