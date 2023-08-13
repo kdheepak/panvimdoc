@@ -53,6 +53,7 @@
   <li><a href="#mappings" id="toc-mappings">Mappings</a></li>
   <li><a href="#table" id="toc-table">Table</a></li>
   <li><a href="#markdown-only-content" id="toc-markdown-only-content">Markdown only content</a></li>
+  <li><a href="#vimdoc-only-content" id="toc-vimdoc-only-content">Vimdoc only content</a></li>
   <li><a href="#details-and-summary" id="toc-details-and-summary">Details and summary</a></li>
   <li><a href="#keyboard-html-tag" id="toc-keyboard-html-tag">Keyboard HTML tag</a></li>
   <li><a href="#examples" id="toc-examples">Examples</a></li>
@@ -619,6 +620,37 @@ Vimdoc Ignored Section
 ![screenshot](./gif.gif)
 
 &lt;!-- panvimdoc-ignore-end --&gt;</code></pre>
+<h2 id="vimdoc-only-content">Vimdoc only content</h2>
+<p>Inversely to <a href="#markdown-only-content">markdown only content</a>, sometimes you want to show content only present in Vimdoc and hidden when viewed on Github.</p>
+<p>This can be placed inside <code>panvimdoc-include-comment</code> comments.</p>
+<p>As with markdown only content, you must include a blank link before and after the comment.</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- panvimdoc-include-comment You can include single lines  --&gt;</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- panvimdoc-include-comment</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="co">Or multiple lines</span></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a><span class="co">- with other</span></span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a><span class="co">- content</span></span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a><span class="co">- types</span></span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a><span class="co"># And vimdoc only headings</span></span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a><span class="co">## That can include subheadings</span></span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a><span class="co">Infact you can include any kind of content in the comment.</span></span>
+<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a><span class="co">--&gt;</span></span></code></pre></div>
+<!-- panvimdoc-include-comment Neovim is a great text editor. -->
+<!-- panvimdoc-include-comment
+
+Neovim supports `:h lua` plugins and is also:
+
+- Multiplatform
+- Open source
+
+-->
 <h2 id="details-and-summary">Details and summary</h2>
 <p>You can even use <code>&lt;details&gt;</code> and <code>&lt;summary&gt;</code> tags for your README.md.</p>
 <details>
