@@ -1,4 +1,4 @@
-*panvimdoc.txt*           For NVIM v0.8.0          Last change: 2023 August 12
+*panvimdoc.txt*           For NVIM v0.8.0          Last change: 2023 August 13
 
 ==============================================================================
 Table of Contents                                *panvimdoc-table-of-contents*
@@ -24,6 +24,7 @@ Table of Contents                                *panvimdoc-table-of-contents*
   - Mappings                                      |panvimdoc-heading-mappings|
   - Table                                            |panvimdoc-heading-table|
   - Markdown only content            |panvimdoc-heading-markdown-only-content|
+  - Vimdoc only content                |panvimdoc-heading-vimdoc-only-content|
   - Details and summary                |panvimdoc-heading-details-and-summary|
   - Keyboard HTML tag                    |panvimdoc-heading-keyboard-html-tag|
   - Examples                                      |panvimdoc-heading-examples|
@@ -610,6 +611,45 @@ because it may cause the rest of your document to be ignored. Do this instead:
     
     <!-- panvimdoc-ignore-end -->
 <
+
+
+VIMDOC ONLY CONTENT                    *panvimdoc-heading-vimdoc-only-content*
+
+Inversely to |panvimdoc-markdown-only-content|, sometimes you want to show
+content only present in Vimdoc and hidden when viewed on Github.
+
+This can be placed inside `panvimdoc-include-comment` comments.
+
+As with markdown only content, you must include a blank link before and after
+the comment.
+
+>markdown
+    
+    <!-- panvimdoc-include-comment You can include single lines  -->
+    
+    <!-- panvimdoc-include-comment
+    
+    Or multiple lines
+    
+    - with other
+    - content
+    - types
+    
+    # And vimdoc only headings
+    
+    ## That can include subheadings
+    
+    Infact you can include any kind of content in the comment.
+    
+    -->
+<
+
+Neovim is a great text editor.
+
+Neovim supports |lua| plugins and is also:
+
+- Multiplatform
+- Open source
 
 
 DETAILS AND SUMMARY                    *panvimdoc-heading-details-and-summary*
