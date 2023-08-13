@@ -395,11 +395,11 @@ bar
 
 [*foo* bar baz [link](url)]{.class #id key=val}
 
-## panvimdoc-include-comment-content
+## panvimdoc-include-comment
 
-<!-- panvimdoc-include-comment-content Neovim is a great text editor. -->
+<!-- panvimdoc-include-comment Neovim is a great text editor. -->
 
-<!-- panvimdoc-include-comment-content
+<!-- panvimdoc-include-comment
 
 Neovim supports `:h lua` plugins and is also:
 
@@ -783,7 +783,7 @@ BRACKETED SPANS                                         *test-bracketed-spans*
 _foo_ bar baz link <url>
 
 
-PANVIMDOC-INCLUDE-COMMENT-CONTENT     *test-panvimdoc-include-comment-content*
+PANVIMDOC-INCLUDE-COMMENT                     *test-panvimdoc-include-comment*
 
 Neovim is a great text editor.
 

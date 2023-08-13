@@ -448,15 +448,15 @@ because it may cause the rest of your document to be ignored. Do this instead:
 
 Inversely to [markdown only content](#markdown-only-content), sometimes you want to show content only present in Vimdoc and hidden when viewed on Github.
 
-This can be placed inside `panvimdoc-include-comment-content` comments.
+This can be placed inside `panvimdoc-include-comment` comments.
 
 As with markdown only content, you must include a blank link before and after the comment.
 
-```
+```markdown
 
-<!-- panvimdoc-include-comment-content You can include single lines  -->
+<!-- panvimdoc-include-comment You can include single lines  -->
 
-<!-- panvimdoc-include-comment-content
+<!-- panvimdoc-include-comment
 
 Or multiple lines
 
@@ -474,9 +474,9 @@ Infact you can include any kind of content in the comment.
 
 ```
 
-<!-- panvimdoc-include-comment-content Neovim is a great text editor. -->
+<!-- panvimdoc-include-comment Neovim is a great text editor. -->
 
-<!-- panvimdoc-include-comment-content
+<!-- panvimdoc-include-comment
 
 Neovim supports `:h lua` plugins and is also:
 
