@@ -161,6 +161,51 @@ For an example of how this is used, see one of the following workflows:
 Or see any of the packages here that depend on this action:
 <https://github.com/kdheepak/panvimdoc/network/dependents>
 
+If you are interested in making your vim plugin documentation available as a
+HTML page, check out .github/workflows/docs.yml <./.github/workflows/docs.yml>
+file.
+
+>yml
+    name: docs
+    
+    on:
+      push:
+        branches: main
+    
+    permissions:
+      contents: write
+    
+    jobs:
+      publish-gh-page:
+        runs-on: ubuntu-latest
+        steps:
+          - name: checkout code
+            uses: actions/checkout@v3
+          - name: pandoc markdown to html
+            uses: docker://pandoc/latex:3.1
+            with:
+              args: >-
+                --katex
+                --from markdown+tex_math_single_backslash
+                --to html5+smart
+                --template="./scripts/template.html5"
+                --css="/panvimdoc/css/theme.css"
+                --css="/panvimdoc/css/skylighting-solarized-theme.css"
+                --toc
+                --wrap=none
+                --metadata title="panvimdoc"
+                doc/panvimdoc.md
+                --lua-filter=scripts/include-files.lua
+                --lua-filter=scripts/skip-blocks.lua
+                -t html
+                -o public/index.html
+          - name: deploy to GitHub pages
+            uses: JamesIves/github-pages-deploy-action@v4
+            with:
+              branch: gh-pages
+              folder: public
+<
+
 
 USING IT MANUALLY ~
 
