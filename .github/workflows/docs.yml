@@ -28,6 +28,7 @@ jobs:
             --metadata title="panvimdoc"
             doc/panvimdoc.md
             --lua-filter=scripts/include-files.lua
+            --lua-filter=scripts/skip-blocks.lua
             -t html
             -o public/index.html
       - name: deploy to GitHub pages
