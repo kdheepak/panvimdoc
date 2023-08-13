@@ -1,5 +1,8 @@
 # panvimdoc
 
+[![Docs](https://img.shields.io/badge/docs-dev-blue.svg)](https://kdheepak.com/panvimdoc/)
+[![Build](https://github.com/kdheepak/panvimdoc/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/kdheepak/panvimdoc/actions/workflows/test.yml?query=branch%3Amain)
+
 Write documentation in [pandoc markdown](https://pandoc.org/MANUAL.html).
 Generate documentation in vimdoc.
 
