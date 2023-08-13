@@ -40,6 +40,15 @@ function RawBlock(el)
     COMMENT = false
     return pandoc.List()
   end
+  if
+    (
+      string.starts_with(str, "<!-- panvimdoc-include-comment ")
+      or string.starts_with(str, "<!-- panvimdoc-include-comment\n")
+    ) and string.ends_with(str, "-->")
+  then
+    local content = string.match(str, "<!%-%- panvimdoc%-include%-comment%s+(.+)%-%->")
+    return pandoc.read(content, "markdown").blocks
+  end
   if string.starts_with(str, "<!--") then
     return pandoc.List()
   elseif COMMENT == true then

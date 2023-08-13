@@ -395,6 +395,25 @@ bar
 
 [*foo* bar baz [link](url)]{.class #id key=val}
 
+## panvimdoc-include-comment
+
+<!-- panvimdoc-include-comment Neovim is a great text editor. -->
+
+<!-- panvimdoc-include-comment
+
+Neovim supports `:h lua` plugins and is also:
+
+- Multiplatform
+- Open source
+
+## All Content Types
+
+### Are supported
+
+See [neovim.org](https://neovim.org).
+
+-->
+
     """;
     toc = false,
     demojify = true,
@@ -762,6 +781,24 @@ WRAPPING                                                       *test-wrapping*
 BRACKETED SPANS                                         *test-bracketed-spans*
 
 _foo_ bar baz link <url>
+
+
+PANVIMDOC-INCLUDE-COMMENT                     *test-panvimdoc-include-comment*
+
+Neovim is a great text editor.
+
+Neovim supports |lua| plugins and is also:
+
+- Multiplatform
+- Open source
+
+
+ALL CONTENT TYPES                                     *test-all-content-types*
+
+
+ARE SUPPORTED ~
+
+See neovim.org <https://neovim.org>.
 
 ==============================================================================
 3. Links                                                          *test-links*
