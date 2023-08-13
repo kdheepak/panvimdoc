@@ -11,6 +11,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       - uses: julia-actions/setup-julia@v1
+        with:
+          version: 1.9
+          arch: x64
       - uses: julia-actions/julia-buildpkg@v1
       - name: Build Docker image
         run: docker build -t test-image .
