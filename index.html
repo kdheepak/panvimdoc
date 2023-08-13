@@ -149,25 +149,67 @@
 <li><a href="https://github.com/kdheepak/tabline.nvim/blob/main/.github/workflows/ci.yml">kdheepak/tabline.nvim</a>: <a href="https://github.com/kdheepak/tabline.nvim/blob/main/doc/tabline.txt">doc/tabline.txt</a></li>
 </ul>
 <p>Or see any of the packages here that depend on this action: <a href="https://github.com/kdheepak/panvimdoc/network/dependents" class="uri">https://github.com/kdheepak/panvimdoc/network/dependents</a></p>
+<summary>
+<p>If you are interested in making your vim plugin documentation available as a HTML page, check out <a href="./.github/workflows/docs.yml">.github/workflows/docs.yml</a> file.</p>
+<details>
+<div class="sourceCode" id="cb6"><pre class="sourceCode yml"><code class="sourceCode yaml"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">name</span><span class="kw">:</span><span class="at"> docs</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">on</span><span class="kw">:</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">push</span><span class="kw">:</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">branches</span><span class="kw">:</span><span class="at"> main</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="fu">permissions</span><span class="kw">:</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">contents</span><span class="kw">:</span><span class="at"> write</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="fu">jobs</span><span class="kw">:</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">publish-gh-page</span><span class="kw">:</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">runs-on</span><span class="kw">:</span><span class="at"> ubuntu-latest</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">steps</span><span class="kw">:</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> checkout code</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/checkout@v3</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> pandoc markdown to html</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> docker://pandoc/latex:3.1</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">with</span><span class="kw">:</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="fu">          args</span><span class="kw">: </span><span class="ch">&gt;-</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>            --katex</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>            --from markdown+tex_math_single_backslash</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>            --to html5+smart</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>            --template=&quot;./scripts/template.html5&quot;</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>            --css=&quot;/panvimdoc/css/theme.css&quot;</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>            --css=&quot;/panvimdoc/css/skylighting-solarized-theme.css&quot;</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>            --toc</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>            --wrap=none</span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>            --metadata title=&quot;panvimdoc&quot;</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>            doc/panvimdoc.md</span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>            --lua-filter=scripts/include-files.lua</span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>            --lua-filter=scripts/skip-blocks.lua</span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>            -t html</span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>            -o public/index.html</span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> deploy to GitHub pages</span></span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> JamesIves/github-pages-deploy-action@v4</span></span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">with</span><span class="kw">:</span></span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">branch</span><span class="kw">:</span><span class="at"> gh-pages</span></span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">folder</span><span class="kw">:</span><span class="at"> public</span></span></code></pre></div>
+</details>
 <h3 id="using-it-manually">Using it manually</h3>
 <p>The <code>./panvimdoc.sh</code> script runs <code>pandoc</code> along with all the filters and custom output writer.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ./panvimdoc.sh</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Usage:</span> ./panvimdoc.sh <span class="at">--project-name</span> PROJECT_NAME <span class="at">--input-file</span> INPUT_FILE <span class="at">--vim-version</span> VIM_VERSION <span class="at">--toc</span> TOC <span class="at">--description</span> DESCRIPTION <span class="at">--dedup-subheadings</span> DEDUP_SUBHEADINGS <span class="at">--treesitter</span> TREESITTER</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="ex">Arguments:</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--project-name:</span> the name of the project</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--input-file:</span> the input markdown file</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--vim-version:</span> the version of Vim that the project is compatible with</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--toc:</span> <span class="st">&#39;true&#39;</span> if the output should include a table of contents, <span class="st">&#39;false&#39;</span> otherwise</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--description:</span> a description of the project</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--dedup-subheadings:</span> <span class="st">&#39;true&#39;</span> if duplicate subheadings should be removed, <span class="st">&#39;false&#39;</span> otherwise</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--demojify:</span> <span class="st">&#39;false&#39;</span> if emojis should not be removed, <span class="st">&#39;true&#39;</span> otherwise</span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--treesitter:</span> <span class="st">&#39;true&#39;</span> if the project uses Tree-sitter syntax highlighting, <span class="st">&#39;false&#39;</span> otherwise</span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--ignore-rawblocks:</span> <span class="st">&#39;true&#39;</span> if the project should ignore HTML raw blocks, <span class="st">&#39;false&#39;</span> otherwise</span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--doc-mapping:</span> <span class="st">&#39;true&#39;</span> if the project should use h4 headers as mapping docs, <span class="st">&#39;false&#39;</span> otherwise</span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--doc-mapping-project-name:</span> <span class="st">&#39;true&#39;</span> if tags generated for mapping docs contain project name, <span class="st">&#39;false&#39;</span> otherwise</span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--shift-heading-level-by:</span> 0 if you don<span class="st">&#39;t want to shift heading levels , n otherwise</span></span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="st">  --increment-heading-level-by: 0 if don&#39;</span>t want to increment the starting heading number, n otherwise</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ./panvimdoc.sh</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Usage:</span> ./panvimdoc.sh <span class="at">--project-name</span> PROJECT_NAME <span class="at">--input-file</span> INPUT_FILE <span class="at">--vim-version</span> VIM_VERSION <span class="at">--toc</span> TOC <span class="at">--description</span> DESCRIPTION <span class="at">--dedup-subheadings</span> DEDUP_SUBHEADINGS <span class="at">--treesitter</span> TREESITTER</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="ex">Arguments:</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--project-name:</span> the name of the project</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--input-file:</span> the input markdown file</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--vim-version:</span> the version of Vim that the project is compatible with</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--toc:</span> <span class="st">&#39;true&#39;</span> if the output should include a table of contents, <span class="st">&#39;false&#39;</span> otherwise</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--description:</span> a description of the project</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--dedup-subheadings:</span> <span class="st">&#39;true&#39;</span> if duplicate subheadings should be removed, <span class="st">&#39;false&#39;</span> otherwise</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--demojify:</span> <span class="st">&#39;false&#39;</span> if emojis should not be removed, <span class="st">&#39;true&#39;</span> otherwise</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--treesitter:</span> <span class="st">&#39;true&#39;</span> if the project uses Tree-sitter syntax highlighting, <span class="st">&#39;false&#39;</span> otherwise</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--ignore-rawblocks:</span> <span class="st">&#39;true&#39;</span> if the project should ignore HTML raw blocks, <span class="st">&#39;false&#39;</span> otherwise</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--doc-mapping:</span> <span class="st">&#39;true&#39;</span> if the project should use h4 headers as mapping docs, <span class="st">&#39;false&#39;</span> otherwise</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--doc-mapping-project-name:</span> <span class="st">&#39;true&#39;</span> if tags generated for mapping docs contain project name, <span class="st">&#39;false&#39;</span> otherwise</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--shift-heading-level-by:</span> 0 if you don<span class="st">&#39;t want to shift heading levels , n otherwise</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="st">  --increment-heading-level-by: 0 if don&#39;</span>t want to increment the starting heading number, n otherwise</span></code></pre></div>
 <p>You will need <code>pandoc v3.0.0</code> or greater for this script to work.</p>
 <h1 id="motivation">Motivation</h1>
 <p>Writing user-friendly documentation is important for every successful software project. This is particularly true when writing documentation for users in the world of vim plugins.</p>
@@ -208,9 +250,6 @@
 </ul>
 <h1 id="specification">Specification</h1>
 <p>The specification is described in <a href="./doc/panvimdoc.md">panvimdoc.md</a> along with examples. The generated output is in <a href="./doc/panvimdoc.txt">panvimdoc.txt</a>. The reference implementation of the Pandoc lua filter is in <a href="./scripts/panvimdoc.lua">panvimdoc.lua</a>. See <a href="./panvimdoc.sh">panvimdoc.sh</a> for how to use this script, or check the <a href="#usage">Usage</a> section.</p>
-<!-- panvimdoc-ignore-start -->
-<p>If you would like to contribute to the specification, or if you have feature requests or opinions, please feel free to comment here: <a href="https://github.com/kdheepak/panvimdoc/discussions/11" class="uri">https://github.com/kdheepak/panvimdoc/discussions/11</a>.</p>
-<!-- panvimdoc-ignore-end -->
 <h1 id="references">References</h1>
 <ul>
 <li><a href="https://learnvimscriptthehardway.stevelosh.com/chapters/54.html" class="uri">https://learnvimscriptthehardway.stevelosh.com/chapters/54.html</a></li>
@@ -224,9 +263,9 @@
 <p>See <a href="./panvimdoc.txt">./panvimdoc.txt</a> for generated output of this file.</p>
 <h2 id="external-includes">External includes</h2>
 <p>Use the following in your markdown file to include any other markdown file:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{.include}</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="in">README.md</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{.include}</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="in">README.md</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div>
 <p>The path of the file is with respect to the working directory where <code>pandoc</code> is executed.</p>
 <h2 id="codeblocks">Codeblocks</h2>
 <pre><code>Multi line Code blocks are indented 4 spaces and
@@ -240,44 +279,20 @@ appropriately with &gt; and &lt;.</code></pre>
 You can use codeblocks that have language as `vimdoc` to write raw vimdoc.
 ```</code></pre>
 <p>will be rendered verbatim in the generated documentation.</p>
-<!-- panvimdoc-ignore-start -->
-<p>e.g.:</p>
-<pre class="vimdoc"><code>You can use codeblocks that have language as `vimdoc` to write raw vimdoc.</code></pre>
-<!-- panvimdoc-ignore-end -->
 <p>This can be used to write any custom whitespace formatted documentation in the generated vimdoc (for mappings, options etc).</p>
 <h1 id="title">Title</h1>
 <p>The first line of the documentation that is generated will look something like this:</p>
 <pre><code>*panvimdoc.txt*    For VIM - Vi IMproved 8.1       Last change: 2021 August 11</code></pre>
 <h1 id="heading">Heading</h1>
 <p>Main headings are numbered.</p>
-<!-- panvimdoc-ignore-start -->
-<p>e.g.:</p>
-<pre><code>==============================================================================
-2. Heading                                                 *panvimdoc-heading*
-
-Main headings are numbered.</code></pre>
-<!-- panvimdoc-ignore-end -->
 <h2 id="sub-heading-2">Sub Heading 2</h2>
 <p>Sub headings are upper cased heading.</p>
-<!-- panvimdoc-ignore-start -->
-<p>e.g.:</p>
-<pre><code>SUB HEADING 2                                        *panvimdoc-sub-heading-2*
-
-Sub headings are upper cased heading.</code></pre>
-<!-- panvimdoc-ignore-end -->
 <p>Notice that both headings and subheadings have tags.</p>
 <h3 id="sub-heading-3">Sub Heading 3</h3>
 <p>Sub headings are upper cased, but do not have tags. They are also not included in the TOC. They are suffixed with <code>~</code> which highlights as <strong>bold</strong> text when the file is viewed on GitHub.</p>
 <h2 id="markdown-links">Markdown Links</h2>
 <p>You can use markdown links in vimdoc.</p>
-<!-- panvimdoc-ignore-start -->
-<p>The following markdown:</p>
-<!-- panvimdoc-ignore-end -->
-<div class="sourceCode" id="cb14"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>You can link to the tags by using <span class="co">[</span><span class="ot">sub heading 2</span><span class="co">](#sub-heading-2)</span>.</span></code></pre></div>
-<!-- panvimdoc-ignore-start -->
-<p>is converted to the following vimdoc:</p>
-<pre><code>You can link to the tags by using |projectName-sub-heading-2|.</code></pre>
-<!-- panvimdoc-ignore-end -->
+<div class="sourceCode" id="cb12"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>You can link to the tags by using <span class="co">[</span><span class="ot">sub heading 2</span><span class="co">](#sub-heading-2)</span>.</span></code></pre></div>
 <p>This way, any links will work in markdown README on GitHub or on the web using anchors AND will work as tags and links in vimdoc. The anchors are simply dropped in vimdoc inline. The onus is on the documentation writer to choose the correct anchor for the appropriate Markdown link.</p>
 <p>In vimdoc tags are created when anchors to the internal document are used. If the target is an external link, the link is inlined.</p>
 <p>If the external link is to the neovim documentation, an internal vim link is generated. For example:</p>
@@ -287,13 +302,6 @@ Sub headings are upper cased heading.</code></pre>
 <li><a href="https://github.com/vim/vim">vim</a></li>
 <li><a href="https://github.com/neovim/neovim">neovim</a></li>
 </ul>
-<!-- panvimdoc-ignore-start -->
-<p>The following is generated in vimdoc:</p>
-<pre><code>- |cursorcolumn|
-- |`completeopt`|
-- vim &lt;https://github.com/vim/vim&gt;
-- neovim &lt;https://github.com/neovim/neovim&gt;</code></pre>
-<!-- panvimdoc-ignore-end -->
 <p>This is excluded from the links section.</p>
 <p>Lastly, if the markdown text is a url, the link is not added to the links section and instead is placed inline.</p>
 <h2 id="linking-to-help-tags">Linking to help tags</h2>
@@ -302,26 +310,26 @@ Sub headings are upper cased heading.</code></pre>
 <p>While you can use codeblocks with the language <code>vimdoc</code> to insert text in the generated vimdoc, it can be useful to have a markdown friendly way to write documentation for mappings.</p>
 <p>Pandoc supports definition lists: <a href="https://pandoc.org/MANUAL.html#definition-lists" class="uri">https://pandoc.org/MANUAL.html#definition-lists</a>. This can be used to generate documentation of mappings. All of the content in curly braces <code>{...}</code> that is part of the header is dropped and a tag is created.</p>
 <p>For example, the following in a markdown file:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>:FnlCompileBuffer</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>: Compiles current active fennel buffer</span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>:FnlCompile<span class="co">[</span><span class="ot">!</span><span class="co">]</span></span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>: Diff compiles all indexed fennel files</span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>If bang! is present then forcefully compiles all <span class="in">`source`</span> files</span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>:Fnl {expr}</span>
-<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>: Executes and Evalutate {expr} of fennel</span>
-<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a><span class="in">     ```fennel</span></span>
-<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a><span class="in">     :Fnl (print &quot;Hello World&quot;)</span></span>
-<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a><span class="in">     :Fnl (values some_var)</span></span>
-<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a><span class="in">     ```</span></span>
-<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a><span class="in">     Testing</span></span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>:FnlCompileBuffer</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>: Compiles current active fennel buffer</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>:FnlCompile<span class="co">[</span><span class="ot">!</span><span class="co">]</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>: Diff compiles all indexed fennel files</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>If bang! is present then forcefully compiles all <span class="in">`source`</span> files</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>:Fnl {expr}</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>: Executes and Evalutate {expr} of fennel</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="in">     ```fennel</span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="in">     :Fnl (print &quot;Hello World&quot;)</span></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a><span class="in">     :Fnl (values some_var)</span></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a><span class="in">     ```</span></span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a><span class="in">     Testing</span></span></code></pre></div>
 <p>becomes the following vimdoc:</p>
 <pre><code>
                                              *projectName-:FnlCompileBuffer*
@@ -350,63 +358,32 @@ Sub headings are upper cased heading.</code></pre>
 <p>Notice that the tag <code>*projectName-:Command*</code> is generated for you. Additionally, content in square brackets <code>[...]</code> or curly brackets <code>{...}</code> is also dropped for creating the tag name.</p>
 <p>i.e. the term <code>### :[range]Command</code> becomes the tag <code>*projectName-:Command*</code>.</p>
 <p>See following mappings as examples:</p>
-<!-- prettier-ignore-start -->
 <dl>
 <dt>pv{motion}</dt>
 <dd>
 <p>Command that operates over {motion} moved.</p>
 </dd>
 </dl>
-<!-- panvimdoc-ignore-start -->
-<p>The following vimdoc mapping is generated:</p>
-<pre><code>                                                              *panvimdoc-pv*
-
-
-pv{motion}                             Command that operates over {motion} moved.</code></pre>
-<!-- panvimdoc-ignore-end -->
 <dl>
 <dt>pvd</dt>
 <dd>
 <p>Command that takes [count] lines.</p>
 </dd>
 </dl>
-<!-- panvimdoc-ignore-start -->
-<p>The following vimdoc mapping is generated:</p>
-<pre><code>                                                             *panvimdoc-pvd*
-
-
-pvd                                    Command that takes [count] lines.</code></pre>
-<!-- panvimdoc-ignore-end -->
 <dl>
 <dt>:[range]CommandName {doc=CommandName}</dt>
 <dd>
 <p>Command that operates over [range].</p>
 </dd>
 </dl>
-<!-- panvimdoc-ignore-start -->
-<p>The following vimdoc mapping is generated:</p>
-<pre><code>                                                    *panvimdoc-:CommandName*
-
-
-:[range]CommandName {doc=CommandName}  Command that operates over [range].</code></pre>
-<!-- panvimdoc-ignore-end -->
 <dl>
 <dt>{Visual}pv</dt>
 <dd>
 <p>Command that operates over highlighted lines.</p>
 </dd>
 </dl>
-<!-- panvimdoc-ignore-start -->
-<p>The following vimdoc mapping is generated:</p>
-<pre><code>                                                              *panvimdoc-pv*
-
-
-{Visual}pv                             Command that operates over highlighted lines.</code></pre>
-<!-- panvimdoc-ignore-end -->
-<!-- prettier-ignore-end -->
 <h2 id="table">Table</h2>
 <p>Support for markdown tables is also available:</p>
-<!-- prettier-ignore-start -->
 <table>
 <colgroup>
 <col style="width: 27%" />
@@ -533,62 +510,6 @@ pvd                                    Command that takes [count] lines.</code><
 </tr>
 </tbody>
 </table>
-<!-- prettier-ignore-end -->
-<!-- panvimdoc-ignore-start -->
-<p>The following gets generated:</p>
-<pre><code>  -----------------------------------------------------------------------------------------------------
-  Option                               Background   Default   Description
-  ------------------------------------ ------------ --------- -----------------------------------------
-  lightness                            light        nil       Change background colors lightness.
-                                                              Options: &#39;bright&#39;, &#39;dim&#39;.
-
-  darkness                             dark         nil       Change background colors darkness.
-                                                              Options: &#39;stark&#39;, &#39;warm&#39;.
-
-  solid_vert_split                     both         false     Solid |hl-VertSplit| background.
-
-  solid_line_nr                        both         false     Solid |hl-LineNr| background.
-
-  solid_float_border                   both         false     Make |hl-FloatBorder| have a more
-                                                              distinguishable background highlight.
-
-  darken_noncurrent_window             light        false     Make non-current window background darker
-                                                              than Normal.
-
-  lighten_noncurrent_window            dark         false     Make non-current window background
-                                                              lighter than Normal.
-
-  italic_comments                      both         true      Make comments italicize.
-
-  darken_comments                      light        38        Percentage to darken comments relative to
-                                                              Normal bg.
-
-  lighten_comments                     dark         38        Percentage to lighten comments relative
-                                                              to Normal bg.
-
-  darken_non_text                      light        25        Percentage to darken |hl-NonText|
-                                                              relative to Normal bg.
-
-  lighten_non_text                     dark         30        Percentage to lighten |hl-NonText|
-                                                              relative to Normal bg.
-
-  darken_line_nr                       light        33        Percentage to darken |hl-LineNr| relative
-                                                              to Normal bg.
-
-  lighten_line_nr                      dark         35        Percentage to lighten |hl-LineNr|
-                                                              relative to Normal bg.
-
-  darken_cursor_line                   light        3         Percentage to darken |hl-CursorLine|
-                                                              relative to Normal bg.
-
-  lighten_cursor_line                  dark         4         Percentage to lighten |hl-CursorLine|
-                                                              relative to Normal bg.
-
-  colorize_diagnostic_underline_text   both         false     Colorize the fg of DiagnosticUnderline*.
-
-  transparent_background               both         false     Make background transparent.
-  -----------------------------------------------------------------------------------------------------</code></pre>
-<!-- panvimdoc-ignore-end -->
 <h2 id="markdown-only-content">Markdown only content</h2>
 <p>Sometimes you want to show content that is to be present in Markdown and on the rendered view on GitHub but ignored in the generated vimdoc. This can be placed inside <code>panvimdoc-ignore-{start/end}</code> blocks:</p>
 <pre><code>&lt;!-- panvimdoc-ignore-start --&gt;
@@ -603,14 +524,6 @@ This will only show up in the Markdown file.
 
 &lt;!-- panvimdoc-ignore-end --&gt;</code></pre>
 <p>The following will only be present in the Markdown document.</p>
-<!-- panvimdoc-ignore-start -->
-<details>
-<summary>
-Vimdoc Ignored Section
-</summary>
-<p>This section will ignored when generating the vimdoc file. This will only show up in the Markdown file. See the raw markdown of this file for examples.</p>
-</details>
-<!-- panvimdoc-ignore-end -->
 <p>The convenient advantage of using <code>&lt;!-- panvimdoc-ignore-{start/end} --&gt;</code> blocks in a HTML comment syntax is that the comment will not rendered in HTML or on GitHub, giving the documentation writers control to present the information differently on GitHub and in vimdoc. If you want to see examples of this, see the raw markdown version of this file.</p>
 <p>The only thing to keep in mind is that you must leave new line spaces before and after a comment tag. For example, <strong>do not</strong> do this:</p>
 <pre><code>&lt;!-- panvimdoc-ignore-start --&gt;
@@ -626,33 +539,30 @@ Vimdoc Ignored Section
 <p>Inversely to <a href="#markdown-only-content">markdown only content</a>, sometimes you want to show content only present in Vimdoc and hidden when viewed on Github.</p>
 <p>This can be placed inside <code>panvimdoc-include-comment</code> comments.</p>
 <p>As with markdown only content, you must include a blank link before and after the comment.</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- panvimdoc-include-comment You can include single lines  --&gt;</span></span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- panvimdoc-include-comment</span></span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="co">Or multiple lines</span></span>
-<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a><span class="co">- with other</span></span>
-<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a><span class="co">- content</span></span>
-<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a><span class="co">- types</span></span>
-<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a><span class="co"># And vimdoc only headings</span></span>
-<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a><span class="co">## That can include subheadings</span></span>
-<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a><span class="co">Infact you can include any kind of content in the comment.</span></span>
-<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a><span class="co">--&gt;</span></span></code></pre></div>
-<!-- panvimdoc-include-comment Neovim is a great text editor. -->
-<!-- panvimdoc-include-comment
-
-Neovim supports `:h lua` plugins and is also:
-
-- Multiplatform
-- Open source
-
--->
+<div class="sourceCode" id="cb18"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- panvimdoc-include-comment You can include single lines  --&gt;</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- panvimdoc-include-comment</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="co">Or multiple lines</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="co">- with other</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="co">- content</span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a><span class="co">- types</span></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a><span class="co"># And vimdoc only headings</span></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a><span class="co">## That can include subheadings</span></span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a><span class="co">Infact you can include any kind of content in the comment.</span></span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a><span class="co">--&gt;</span></span></code></pre></div>
+<p>Neovim is a great text editor.</p>
+<p>Neovim supports <code>:h lua</code> plugins and is also:</p>
+<ul>
+<li>Multiplatform</li>
+<li>Open source</li>
+</ul>
 <h2 id="details-and-summary">Details and summary</h2>
 <p>You can even use <code>&lt;details&gt;</code> and <code>&lt;summary&gt;</code> tags for your README.md.</p>
 <details>
@@ -661,20 +571,10 @@ Neovim supports `:h lua` plugins and is also:
 </summary>
 <p>This section is the details.</p>
 </details>
-<!-- panvimdoc-ignore-start -->
-<p>This gets rendered as:</p>
-<pre><code>Summary ~
-
-This section is the details.</code></pre>
-<!-- panvimdoc-ignore-end -->
 <p>The <code>html</code> tags are dropped and the following output is generated in the vimdoc file.</p>
 <p>If you are using html <code>&lt;b&gt; ... &lt;/b&gt;</code> tags, use them on new lines. <b>Inline bold tags</b> will have a <code>~</code> appended to the text and that may not be what you want.</p>
 <h2 id="keyboard-html-tag">Keyboard HTML tag</h2>
 <p>Use <code>&lt;kbd&gt;CMD + o&lt;/kbd&gt;</code> in markdown, for example <kbd>CMD + o</kbd>.</p>
-<!-- panvimdoc-ignore-start -->
-<p>This gets rendered as:</p>
-<pre><code>Use `&lt;kbd&gt;CMD + o&lt;/kbd&gt;` in markdown, for example CMD + o.</code></pre>
-<!-- panvimdoc-ignore-end -->
 <h2 id="examples">Examples</h2>
 <p>First example</p>
 <h2 id="examples-1">Examples</h2>
@@ -683,26 +583,6 @@ This section is the details.</code></pre>
 <h3 id="sparkles-features">:sparkles: Features</h3>
 <h3 id="zap-requirements">:zap: Requirements</h3>
 <h3 id="package-installation">:package: Installation</h3>
-<!-- panvimdoc-ignore-start -->
-<p>This gets rendered as:</p>
-<p><code>demoji: false</code>:</p>
-<pre><code>:SPARKLES: FEATURES ~
-
-
-:ZAP: REQUIREMENTS ~
-
-
-:PACKAGE: INSTALLATION ~</code></pre>
-<p>OR</p>
-<p><code>demoji: true</code>:</p>
-<pre><code>FEATURES ~
-
-
-REQUIREMENTS ~
-
-
-INSTALLATION ~</code></pre>
-<!-- panvimdoc-ignore-end -->
 </main>
 
 <script>
