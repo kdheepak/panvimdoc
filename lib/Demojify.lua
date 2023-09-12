@@ -104,7 +104,6 @@ local blockedSingles = lookupify({
   0x00023F8,
   0x00023F9,
   0x00023FA,
-  0x0000023,
   0x0001F51F,
   -- unicode 8
   0x0001F6CC,
