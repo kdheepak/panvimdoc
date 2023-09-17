@@ -21,7 +21,7 @@ Arguments:
   --doc-mapping-project-name: 'true' if tags generated for mapping docs contain project name, 'false' otherwise
   --shift-heading-level-by: 0 if you don't want to shift heading levels , n otherwise
   --increment-heading-level-by: 0 if don't want to increment the starting heading number, n otherwise
-  --scripts-dir: '/scripts' if `GITHUB_ACTIONS`=`true` or `.dockerenv` is present, `$0/scripts` if no argument is passed, scripts directory otherwise
+  --scripts-dir: '/scripts' if 'GITHUB_ACTIONS=true' or '.dockerenv' is present, '$0/scripts' if no argument is passed, scripts directory otherwise
 EOF
     exit 0
 }
