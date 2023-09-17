@@ -3,18 +3,28 @@
 [![Docs](https://img.shields.io/badge/docs-dev-blue.svg)](https://kdheepak.com/panvimdoc/)
 [![Build](https://github.com/kdheepak/panvimdoc/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/kdheepak/panvimdoc/actions/workflows/test.yml?query=branch%3Amain)
 
-Write documentation in [pandoc markdown](https://pandoc.org/MANUAL.html).
-Generate documentation in vimdoc.
+Write documentation in [pandoc markdown](https://pandoc.org/MANUAL.html). Generate documentation in
+vimdoc.
 
 <img width="1512" alt="image" src="https://github.com/kdheepak/panvimdoc/assets/1813121/dfaed08d-fb9b-4cac-aad0-da71b605265d">
 
-::: center
-This software is released under a MIT License.
-:::
+::: center This software is released under a MIT License. :::
+
+# Support This Project
+
+If you've found this project helpful, please consider supporting its ongoing development and
+maintenance. You can sponsor me on GitHub Sponsors or Donate via Strip:
+
+[![Sponsor @kdheepak](https://img.shields.io/badge/GitHub_Sponsor-%E2%9D%A4-blue)](https://github.com/sponsors/kdheepak)
+[![Donate](https://img.shields.io/badge/Donate_Via_Stripe-%E2%9D%A4-blue)](https://donate.stripe.com/8wM9E7bBO9ZsbGUdQR)
+
+Every bit of sponsorship helps, whether it's to buy me a coffee or to enable me to dedicate more
+time to maintaining and improving this project. I sincerely appreciate your generosity and support!
 
 # TLDR
 
-1. Choose a name for your project, i.e. `${VIMDOC_PROJECT_NAME}`. See [.github/workflows/panvimdoc.yml](./.github/workflows/panvimdoc.yml) as an example.
+1. Choose a name for your project, i.e. `${VIMDOC_PROJECT_NAME}`. See
+   [.github/workflows/panvimdoc.yml](./.github/workflows/panvimdoc.yml) as an example.
 2. Add the following to `./.github/workflows/panvimdoc.yml`:
 
    ```yaml
@@ -85,8 +95,9 @@ jobs:
           incrementheadinglevelby: 0 # Increment heading levels by specified number
 ```
 
-The only required thing for you to do is to choose a `VIMDOC_PROJECT_NAME` appropriately.
-This is usually the name of the plugin or the documentation file without the `.txt` extension. For example, the following:
+The only required thing for you to do is to choose a `VIMDOC_PROJECT_NAME` appropriately. This is
+usually the name of the plugin or the documentation file without the `.txt` extension. For example,
+the following:
 
 ```yaml
 - name: panvimdoc
@@ -95,12 +106,13 @@ This is usually the name of the plugin or the documentation file without the `.t
     vimdoc: panvimdoc
 ```
 
-will output a file `doc/panvimdoc.txt` and the vim help tag for it will be `panvimdoc` using the `main` branch of the repository.
+will output a file `doc/panvimdoc.txt` and the vim help tag for it will be `panvimdoc` using the
+`main` branch of the repository.
 
 All the other options are optional.
 
-It is recommended to pin to an exact version so you can be confident that no surprises occur for you or your users.
-See <https://github.com/kdheepak/panvimdoc/releases/latest> for which version to use.
+It is recommended to pin to an exact version so you can be confident that no surprises occur for you
+or your users. See <https://github.com/kdheepak/panvimdoc/releases/latest> for which version to use.
 Once you pick a version, you can pin it like so:
 
 ```yaml
@@ -111,13 +123,16 @@ Once you pick a version, you can pin it like so:
 For an example of how this is used, see one of the following workflows:
 
 - [kdheepak/panvimdoc](./.github/workflows/panvimdoc.yml): [doc/panvimdoc.txt](./doc/panvimdoc.txt)
-- [kdheepak/tabline.nvim](https://github.com/kdheepak/tabline.nvim/blob/main/.github/workflows/ci.yml): [doc/tabline.txt](https://github.com/kdheepak/tabline.nvim/blob/main/doc/tabline.txt)
+- [kdheepak/tabline.nvim](https://github.com/kdheepak/tabline.nvim/blob/main/.github/workflows/ci.yml):
+  [doc/tabline.txt](https://github.com/kdheepak/tabline.nvim/blob/main/doc/tabline.txt)
 
-Or see any of the packages here that depend on this action: <https://github.com/kdheepak/panvimdoc/network/dependents>
+Or see any of the packages here that depend on this action:
+<https://github.com/kdheepak/panvimdoc/network/dependents>
 
 <summary>
 
-If you are interested in making your vim plugin documentation available as a HTML page, check out [.github/workflows/docs.yml](./.github/workflows/docs.yml) file.
+If you are interested in making your vim plugin documentation available as a HTML page, check out
+[.github/workflows/docs.yml](./.github/workflows/docs.yml) file.
 
 <details>
 
@@ -141,20 +156,11 @@ jobs:
         uses: docker://pandoc/latex:3.1
         with:
           args: >-
-            --katex
-            --from markdown+tex_math_single_backslash
-            --to html5+smart
-            --template="./scripts/template.html5"
-            --css="/panvimdoc/css/theme.css"
-            --css="/panvimdoc/css/skylighting-solarized-theme.css"
-            --toc
-            --wrap=none
-            --metadata title="panvimdoc"
-            doc/panvimdoc.md
-            --lua-filter=scripts/include-files.lua
-            --lua-filter=scripts/skip-blocks.lua
-            -t html
-            -o public/index.html
+            --katex --from markdown+tex_math_single_backslash --to html5+smart
+            --template="./scripts/template.html5" --css="/panvimdoc/css/theme.css"
+            --css="/panvimdoc/css/skylighting-solarized-theme.css" --toc --wrap=none --metadata
+            title="panvimdoc" doc/panvimdoc.md --lua-filter=scripts/include-files.lua
+            --lua-filter=scripts/skip-blocks.lua -t html -o public/index.html
       - name: deploy to GitHub pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
@@ -192,73 +198,98 @@ You will need `pandoc v3.0.0` or greater for this script to work.
 
 # Motivation
 
-Writing user-friendly documentation is important for every successful software project.
-This is particularly true when writing documentation for users in the world of vim plugins.
+Writing user-friendly documentation is important for every successful software project. This is
+particularly true when writing documentation for users in the world of vim plugins.
 
-The process of writing and maintaining this documentation can often be a cumbersome, time-consuming task.
-This project is aims to make that process a little bit easier by allowing anyone to write documentation in markdown (or any format Pandoc supports) and converting it to vimdoc automatically.
-This way, plugin authors will have to write documentation just once (for example, as part of the README of the project), and the vim documentation can be autogenerated.
+The process of writing and maintaining this documentation can often be a cumbersome, time-consuming
+task. This project is aims to make that process a little bit easier by allowing anyone to write
+documentation in markdown (or any format Pandoc supports) and converting it to vimdoc automatically.
+This way, plugin authors will have to write documentation just once (for example, as part of the
+README of the project), and the vim documentation can be autogenerated.
 
 ## Rationale
 
-1. **Simplicity**: Writing in Markdown is often more intuitive for developers. By converting from Markdown to vimdoc, authors can maintain the simplicity of Markdown while adhering to the vimdoc standards.
-2. **Unified Documentation**: Plugin authors can write their documentation just once (such as in the project's README) and automatically generate vim documentation, ensuring consistency and saving time.
-3. **Preserving Vim Features**: Vimdoc isn’t just plain text; it supports syntax highlighting, tags, links, and careful formatting using whitespace. It's essential to preserve these features when converting to ensure the quality and usefulness of the documentation. See <https://vimhelp.org/helphelp.txt.html#help-writing> or [`@nanotree`'s project](https://github.com/nanotee/vimdoc-notes) for more information.
-4. **Leveraging Pandoc**: Unlike existing solutions, this project leverages Pandoc's wide range of features, including support for multiple Markdown flavors and easy-to-write custom filters in Lua.
-5. **Interoperability**: The choice of Pandoc allows for enhanced flexibility, making it easier to extend functionality or even adapt the converter for other documentation formats in the future.
+1. **Simplicity**: Writing in Markdown is often more intuitive for developers. By converting from
+   Markdown to vimdoc, authors can maintain the simplicity of Markdown while adhering to the vimdoc
+   standards.
+2. **Unified Documentation**: Plugin authors can write their documentation just once (such as in the
+   project's README) and automatically generate vim documentation, ensuring consistency and saving
+   time.
+3. **Preserving Vim Features**: Vimdoc isn’t just plain text; it supports syntax highlighting, tags,
+   links, and careful formatting using whitespace. It's essential to preserve these features when
+   converting to ensure the quality and usefulness of the documentation. See
+   <https://vimhelp.org/helphelp.txt.html#help-writing> or
+   [`@nanotree`'s project](https://github.com/nanotee/vimdoc-notes) for more information.
+4. **Leveraging Pandoc**: Unlike existing solutions, this project leverages Pandoc's wide range of
+   features, including support for multiple Markdown flavors and easy-to-write custom filters in
+   Lua.
+5. **Interoperability**: The choice of Pandoc allows for enhanced flexibility, making it easier to
+   extend functionality or even adapt the converter for other documentation formats in the future.
 
 ## Background
 
 Writing documentation in Markdown and converting it to vimdoc is not a novel idea.
 
-For example, [ibhagwan/ts-vimdoc.nvim](https://github.com/ibhagwan/ts-vimdoc.nvim) is an implementation a neovim treesitter based markdown to vimdoc converter that works fairly well.
-There are no dependencies except for the Markdown treesitter parser.
-It is neovim only but you can use this on github actions even for a vim plugin documentation.
+For example, [ibhagwan/ts-vimdoc.nvim](https://github.com/ibhagwan/ts-vimdoc.nvim) is an
+implementation a neovim treesitter based markdown to vimdoc converter that works fairly well. There
+are no dependencies except for the Markdown treesitter parser. It is neovim only but you can use
+this on github actions even for a vim plugin documentation.
 
 There's also [wincent/docvim](https://github.com/wincent/docvim) which is written in Haskell.
 Finally there's [FooSoft/md2vim](https://github.com/FooSoft/md2vim) which is written in Go.
 
-None of these projects use Pandoc.
-Pandoc Markdown supports a wide number of features: See <https://pandoc.org/MANUAL.html> for more information.
-Most importantly, it supports a range of Markdown formats and flavors.
-And, Pandoc has filters and a custom output writer that can be configured in lua.
-Pandoc filters can extend the capability of Pandoc with minimal lua scripting, and these are very easy to write and maintain too.
+None of these projects use Pandoc. Pandoc Markdown supports a wide number of features: See
+<https://pandoc.org/MANUAL.html> for more information. Most importantly, it supports a range of
+Markdown formats and flavors. And, Pandoc has filters and a custom output writer that can be
+configured in lua. Pandoc filters can extend the capability of Pandoc with minimal lua scripting,
+and these are very easy to write and maintain too.
 
-That means, with this project, you can write your Vim documentation in Markdown, RestructuredText, AsciiDoc, etc and convert it to VimDoc, PDF, Word, HTML etc.
+That means, with this project, you can write your Vim documentation in Markdown, RestructuredText,
+AsciiDoc, etc and convert it to VimDoc, PDF, Word, HTML etc.
 
 # Goals
 
-By offering a specification and reference implementation for converting Pandoc Markdown to vimdoc, this project aims to reduce friction in the documentation process for vim plugin authors.
+By offering a specification and reference implementation for converting Pandoc Markdown to vimdoc,
+this project aims to reduce friction in the documentation process for vim plugin authors.
 
 Here are the specific goals that guide this project:
 
-- **Readability**: The Markdown files must render correctly when presented as README files on platforms like GitHub, GitLab, or SourceHut.
-- **Web-Friendly HTML**: If converted to HTML using Pandoc, the Markdown files must be web-friendly and render appropriately.
-- **VimDoc Features**: The generated vim documentation must support essential features like links and tags.
-- **Aesthetically Pleasing**: The vim documentation must not only be functional but also visually pleasing in both vim and plain text files. This includes the appropriate use of columns and spacing.
-- **Guidelines**: While the format of built-in Vim documentation is a valuable reference, it is used as guidelines rather than strict rules.
+- **Readability**: The Markdown files must render correctly when presented as README files on
+  platforms like GitHub, GitLab, or SourceHut.
+- **Web-Friendly HTML**: If converted to HTML using Pandoc, the Markdown files must be web-friendly
+  and render appropriately.
+- **VimDoc Features**: The generated vim documentation must support essential features like links
+  and tags.
+- **Aesthetically Pleasing**: The vim documentation must not only be functional but also visually
+  pleasing in both vim and plain text files. This includes the appropriate use of columns and
+  spacing.
+- **Guidelines**: While the format of built-in Vim documentation is a valuable reference, it is used
+  as guidelines rather than strict rules.
 
 # Features
 
-This project offers a comprehensive suite of features designed to streamline the conversion process from Markdown to vimdoc:
+This project offers a comprehensive suite of features designed to streamline the conversion process
+from Markdown to vimdoc:
 
 - Automatically generates titles for vim documentation.
 - Creates a table of contents to enhance navigation within the document.
 - Automatically handles the generation of links and tags.
 - Maintains markdown syntax for tables, ensuring proper rendering.
 - Allows for manual control through raw vimdoc syntax where necessary.
-- Offers the ability to include multiple Markdown files, providing flexibility in documentation structure.
+- Offers the ability to include multiple Markdown files, providing flexibility in documentation
+  structure.
 
 # Specification
 
-The specification is described in [panvimdoc.md](./doc/panvimdoc.md) along with examples.
-The generated output is in [panvimdoc.txt](./doc/panvimdoc.txt).
-The reference implementation of the Pandoc lua filter is in [panvimdoc.lua](./scripts/panvimdoc.lua).
-See [panvimdoc.sh](./panvimdoc.sh) for how to use this script, or check the [Usage](#usage) section.
+The specification is described in [panvimdoc.md](./doc/panvimdoc.md) along with examples. The
+generated output is in [panvimdoc.txt](./doc/panvimdoc.txt). The reference implementation of the
+Pandoc lua filter is in [panvimdoc.lua](./scripts/panvimdoc.lua). See [panvimdoc.sh](./panvimdoc.sh)
+for how to use this script, or check the [Usage](#usage) section.
 
 <!-- panvimdoc-ignore-start -->
 
-If you would like to contribute to the specification, or if you have feature requests or opinions, please feel free to comment here: <https://github.com/kdheepak/panvimdoc/discussions/11>.
+If you would like to contribute to the specification, or if you have feature requests or opinions,
+please feel free to comment here: <https://github.com/kdheepak/panvimdoc/discussions/11>.
 
 <!-- panvimdoc-ignore-end -->
 
