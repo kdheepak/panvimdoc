@@ -16,6 +16,10 @@ function string.ends_with(str, ends)
 end
 
 local function cleanup(elem)
+  -- Don't touch code blocks
+  if elem.t == "Code" or elem.t == "CodeBlock" then
+    return elem
+  end
   -- get rid of the space after the emoji, reset
   if elem.t == "Space" and prevEmoji then
     prevEmoji = false
