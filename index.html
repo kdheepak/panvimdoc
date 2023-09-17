@@ -74,12 +74,10 @@
 <p><a href="https://kdheepak.com/panvimdoc/"><img src="https:/img.shields.io/badge/docs-dev-blue.svg" alt="Docs" /></a> <a href="https://github.com/kdheepak/panvimdoc/actions/workflows/test.yml?query=branch%3Amain"><img src="https:/github.com/kdheepak/panvimdoc/actions/workflows/test.yml/badge.svg?branch=main" alt="Build" /></a></p>
 <p>Write documentation in <a href="https://pandoc.org/MANUAL.html">pandoc markdown</a>. Generate documentation in vimdoc.</p>
 <p><img width="1512" alt="image" src="https://github.com/kdheepak/panvimdoc/assets/1813121/dfaed08d-fb9b-4cac-aad0-da71b605265d"></p>
-<div class="center">
-<p>This software is released under a MIT License.</p>
-</div>
+<p>::: center This software is released under a MIT License. :::</p>
 <h1 id="support-this-project">Support This Project</h1>
 <p>If you’ve found this project helpful, please consider supporting its ongoing development and maintenance. You can sponsor me on GitHub Sponsors or Donate via Strip:</p>
-<p><a href="https://github.com/sponsors/yourgithubusername"><img src="https:/img.shields.io/badge/GitHub_Sponsor-%E2%9D%A4-blue" alt="Sponsor @kdheepak" /></a> <a href="https://donate.stripe.com/8wM9E7bBO9ZsbGUdQR"><img src="https:/img.shields.io/badge/Donate_Via_Stripe-%E2%9D%A4-blue" alt="Donate" /></a></p>
+<p><a href="https://github.com/sponsors/kdheepak"><img src="https:/img.shields.io/badge/GitHub_Sponsor-%E2%9D%A4-blue" alt="Sponsor @kdheepak" /></a> <a href="https://donate.stripe.com/8wM9E7bBO9ZsbGUdQR"><img src="https:/img.shields.io/badge/Donate_Via_Stripe-%E2%9D%A4-blue" alt="Donate" /></a></p>
 <p>Every bit of sponsorship helps, whether it’s to buy me a coffee or to enable me to dedicate more time to maintaining and improving this project. I sincerely appreciate your generosity and support!</p>
 <h1 id="tldr">TLDR</h1>
 <ol type="1">
@@ -177,25 +175,16 @@
 <span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> docker://pandoc/latex:3.1</span></span>
 <span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">with</span><span class="kw">:</span></span>
 <span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="fu">          args</span><span class="kw">: </span><span class="ch">&gt;-</span></span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>            --katex</span>
-<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>            --from markdown+tex_math_single_backslash</span>
-<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>            --to html5+smart</span>
-<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>            --template=&quot;./scripts/template.html5&quot;</span>
-<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>            --css=&quot;/panvimdoc/css/theme.css&quot;</span>
-<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>            --css=&quot;/panvimdoc/css/skylighting-solarized-theme.css&quot;</span>
-<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>            --toc</span>
-<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>            --wrap=none</span>
-<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>            --metadata title=&quot;panvimdoc&quot;</span>
-<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>            doc/panvimdoc.md</span>
-<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>            --lua-filter=scripts/include-files.lua</span>
-<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>            --lua-filter=scripts/skip-blocks.lua</span>
-<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>            -t html</span>
-<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>            -o public/index.html</span>
-<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> deploy to GitHub pages</span></span>
-<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> JamesIves/github-pages-deploy-action@v4</span></span>
-<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">with</span><span class="kw">:</span></span>
-<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">branch</span><span class="kw">:</span><span class="at"> gh-pages</span></span>
-<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">folder</span><span class="kw">:</span><span class="at"> public</span></span></code></pre></div>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>            --katex --from markdown+tex_math_single_backslash --to html5+smart</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>            --template=&quot;./scripts/template.html5&quot; --css=&quot;/panvimdoc/css/theme.css&quot;</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>            --css=&quot;/panvimdoc/css/skylighting-solarized-theme.css&quot; --toc --wrap=none --metadata</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>            title=&quot;panvimdoc&quot; doc/panvimdoc.md --lua-filter=scripts/include-files.lua</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>            --lua-filter=scripts/skip-blocks.lua -t html -o public/index.html</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> deploy to GitHub pages</span></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> JamesIves/github-pages-deploy-action@v4</span></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">with</span><span class="kw">:</span></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">branch</span><span class="kw">:</span><span class="at"> gh-pages</span></span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">folder</span><span class="kw">:</span><span class="at"> public</span></span></code></pre></div>
 </details>
 <h3 id="using-it-manually">Using it manually</h3>
 <p>The <code>./panvimdoc.sh</code> script runs <code>pandoc</code> along with all the filters and custom output writer.</p>
