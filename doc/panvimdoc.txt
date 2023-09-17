@@ -4,20 +4,21 @@
 Table of Contents                                *panvimdoc-table-of-contents*
 
 1. panvimdoc                                             |panvimdoc-panvimdoc|
-2. TLDR                                                       |panvimdoc-tldr|
-3. Usage                                                     |panvimdoc-usage|
-4. Motivation                                           |panvimdoc-motivation|
+2. Support This Project                       |panvimdoc-support-this-project|
+3. TLDR                                                       |panvimdoc-tldr|
+4. Usage                                                     |panvimdoc-usage|
+5. Motivation                                           |panvimdoc-motivation|
   - Rationale                                 |panvimdoc-motivation-rationale|
   - Background                               |panvimdoc-motivation-background|
-5. Goals                                                     |panvimdoc-goals|
-6. Features                                               |panvimdoc-features|
-7. Specification                                     |panvimdoc-specification|
-8. References                                           |panvimdoc-references|
-9. Specification                                     |panvimdoc-specification|
+6. Goals                                                     |panvimdoc-goals|
+7. Features                                               |panvimdoc-features|
+8. Specification                                     |panvimdoc-specification|
+9. References                                           |panvimdoc-references|
+10. Specification                                    |panvimdoc-specification|
   - External includes              |panvimdoc-specification-external-includes|
   - Codeblocks                            |panvimdoc-specification-codeblocks|
-10. Title                                                    |panvimdoc-title|
-11. Heading                                                |panvimdoc-heading|
+11. Title                                                    |panvimdoc-title|
+12. Heading                                                |panvimdoc-heading|
   - Sub Heading 2                            |panvimdoc-heading-sub-heading-2|
   - Markdown Links                          |panvimdoc-heading-markdown-links|
   - Linking to help tags              |panvimdoc-heading-linking-to-help-tags|
@@ -42,10 +43,26 @@ Generate documentation in vimdoc.
 
 
 
+::: center This software is released under a MIT License. :::
 
 
 ==============================================================================
-2. TLDR                                                       *panvimdoc-tldr*
+2. Support This Project                       *panvimdoc-support-this-project*
+
+If you’ve found this project helpful, please consider supporting its ongoing
+development and maintenance. You can sponsor me on GitHub Sponsors or Donate
+via Strip:
+
+<https://github.com/sponsors/kdheepak>
+<https://donate.stripe.com/8wM9E7bBO9ZsbGUdQR>
+
+Every bit of sponsorship helps, whether it’s to buy me a coffee or to enable
+me to dedicate more time to maintaining and improving this project. I sincerely
+appreciate your generosity and support!
+
+
+==============================================================================
+3. TLDR                                                       *panvimdoc-tldr*
 
 1. Choose a name for your project, i.e. `${VIMDOC_PROJECT_NAME}`. See
 .github/workflows/panvimdoc.yml <./.github/workflows/panvimdoc.yml> as an
@@ -82,7 +99,7 @@ to the repo.
 
 
 ==============================================================================
-3. Usage                                                     *panvimdoc-usage*
+4. Usage                                                     *panvimdoc-usage*
 
 
 USING GITHUB ACTIONS ~
@@ -159,7 +176,8 @@ use. Once you pick a version, you can pin it like so:
 For an example of how this is used, see one of the following workflows:
 
 - kdheepak/panvimdoc <./.github/workflows/panvimdoc.yml>: doc/panvimdoc.txt <./doc/panvimdoc.txt>
-- kdheepak/tabline.nvim <https://github.com/kdheepak/tabline.nvim/blob/main/.github/workflows/ci.yml>: doc/tabline.txt <https://github.com/kdheepak/tabline.nvim/blob/main/doc/tabline.txt>
+- kdheepak/tabline.nvim <https://github.com/kdheepak/tabline.nvim/blob/main/.github/workflows/ci.yml>:
+    doc/tabline.txt <https://github.com/kdheepak/tabline.nvim/blob/main/doc/tabline.txt>
 
 Or see any of the packages here that depend on this action:
 <https://github.com/kdheepak/panvimdoc/network/dependents>
@@ -188,20 +206,11 @@ file.
             uses: docker://pandoc/latex:3.1
             with:
               args: >-
-                --katex
-                --from markdown+tex_math_single_backslash
-                --to html5+smart
-                --template="./scripts/template.html5"
-                --css="/panvimdoc/css/theme.css"
-                --css="/panvimdoc/css/skylighting-solarized-theme.css"
-                --toc
-                --wrap=none
-                --metadata title="panvimdoc"
-                doc/panvimdoc.md
-                --lua-filter=scripts/include-files.lua
-                --lua-filter=scripts/skip-blocks.lua
-                -t html
-                -o public/index.html
+                --katex --from markdown+tex_math_single_backslash --to html5+smart
+                --template="./scripts/template.html5" --css="/panvimdoc/css/theme.css"
+                --css="/panvimdoc/css/skylighting-solarized-theme.css" --toc --wrap=none --metadata
+                title="panvimdoc" doc/panvimdoc.md --lua-filter=scripts/include-files.lua
+                --lua-filter=scripts/skip-blocks.lua -t html -o public/index.html
           - name: deploy to GitHub pages
             uses: JamesIves/github-pages-deploy-action@v4
             with:
@@ -239,7 +248,7 @@ You will need `pandoc v3.0.0` or greater for this script to work.
 
 
 ==============================================================================
-4. Motivation                                           *panvimdoc-motivation*
+5. Motivation                                           *panvimdoc-motivation*
 
 Writing user-friendly documentation is important for every successful software
 project. This is particularly true when writing documentation for users in the
@@ -255,11 +264,22 @@ of the README of the project), and the vim documentation can be autogenerated.
 
 RATIONALE                                     *panvimdoc-motivation-rationale*
 
-1. **Simplicity**: Writing in Markdown is often more intuitive for developers. By converting from Markdown to vimdoc, authors can maintain the simplicity of Markdown while adhering to the vimdoc standards.
-2. **Unified Documentation**: Plugin authors can write their documentation just once (such as in the project’s README) and automatically generate vim documentation, ensuring consistency and saving time.
-3. **Preserving Vim Features**: Vimdoc isn’t just plain text; it supports syntax highlighting, tags, links, and careful formatting using whitespace. It’s essential to preserve these features when converting to ensure the quality and usefulness of the documentation. See <https://vimhelp.org/helphelp.txt.html#help-writing> or `@nanotree`’s project <https://github.com/nanotee/vimdoc-notes> for more information.
-4. **Leveraging Pandoc**: Unlike existing solutions, this project leverages Pandoc’s wide range of features, including support for multiple Markdown flavors and easy-to-write custom filters in Lua.
-5. **Interoperability**: The choice of Pandoc allows for enhanced flexibility, making it easier to extend functionality or even adapt the converter for other documentation formats in the future.
+1. **Simplicity**: Writing in Markdown is often more intuitive for developers. By converting from
+Markdown to vimdoc, authors can maintain the simplicity of Markdown while adhering to the vimdoc
+standards.
+2. **Unified Documentation**: Plugin authors can write their documentation just once (such as in the
+project’s README) and automatically generate vim documentation, ensuring consistency and saving
+time.
+3. **Preserving Vim Features**: Vimdoc isn’t just plain text; it supports syntax highlighting, tags,
+links, and careful formatting using whitespace. It’s essential to preserve these features when
+converting to ensure the quality and usefulness of the documentation. See
+<https://vimhelp.org/helphelp.txt.html#help-writing> or
+`@nanotree`’s project <https://github.com/nanotee/vimdoc-notes> for more information.
+4. **Leveraging Pandoc**: Unlike existing solutions, this project leverages Pandoc’s wide range of
+features, including support for multiple Markdown flavors and easy-to-write custom filters in
+Lua.
+5. **Interoperability**: The choice of Pandoc allows for enhanced flexibility, making it easier to
+extend functionality or even adapt the converter for other documentation formats in the future.
 
 
 BACKGROUND                                   *panvimdoc-motivation-background*
@@ -290,7 +310,7 @@ HTML etc.
 
 
 ==============================================================================
-5. Goals                                                     *panvimdoc-goals*
+6. Goals                                                     *panvimdoc-goals*
 
 By offering a specification and reference implementation for converting Pandoc
 Markdown to vimdoc, this project aims to reduce friction in the documentation
@@ -298,15 +318,21 @@ process for vim plugin authors.
 
 Here are the specific goals that guide this project:
 
-- **Readability**: The Markdown files must render correctly when presented as README files on platforms like GitHub, GitLab, or SourceHut.
-- **Web-Friendly HTML**: If converted to HTML using Pandoc, the Markdown files must be web-friendly and render appropriately.
-- **VimDoc Features**: The generated vim documentation must support essential features like links and tags.
-- **Aesthetically Pleasing**: The vim documentation must not only be functional but also visually pleasing in both vim and plain text files. This includes the appropriate use of columns and spacing.
-- **Guidelines**: While the format of built-in Vim documentation is a valuable reference, it is used as guidelines rather than strict rules.
+- **Readability**: The Markdown files must render correctly when presented as README files on
+    platforms like GitHub, GitLab, or SourceHut.
+- **Web-Friendly HTML**: If converted to HTML using Pandoc, the Markdown files must be web-friendly
+    and render appropriately.
+- **VimDoc Features**: The generated vim documentation must support essential features like links
+    and tags.
+- **Aesthetically Pleasing**: The vim documentation must not only be functional but also visually
+    pleasing in both vim and plain text files. This includes the appropriate use of columns and
+    spacing.
+- **Guidelines**: While the format of built-in Vim documentation is a valuable reference, it is used
+    as guidelines rather than strict rules.
 
 
 ==============================================================================
-6. Features                                               *panvimdoc-features*
+7. Features                                               *panvimdoc-features*
 
 This project offers a comprehensive suite of features designed to streamline
 the conversion process from Markdown to vimdoc:
@@ -316,11 +342,12 @@ the conversion process from Markdown to vimdoc:
 - Automatically handles the generation of links and tags.
 - Maintains markdown syntax for tables, ensuring proper rendering.
 - Allows for manual control through raw vimdoc syntax where necessary.
-- Offers the ability to include multiple Markdown files, providing flexibility in documentation structure.
+- Offers the ability to include multiple Markdown files, providing flexibility in documentation
+    structure.
 
 
 ==============================================================================
-7. Specification                                     *panvimdoc-specification*
+8. Specification                                     *panvimdoc-specification*
 
 The specification is described in panvimdoc.md <./doc/panvimdoc.md> along with
 examples. The generated output is in panvimdoc.txt <./doc/panvimdoc.txt>. The
@@ -330,7 +357,7 @@ this script, or check the |panvimdoc-usage| section.
 
 
 ==============================================================================
-8. References                                           *panvimdoc-references*
+9. References                                           *panvimdoc-references*
 
 - <https://learnvimscriptthehardway.stevelosh.com/chapters/54.html>
 - <https://github.com/nanotee/vimdoc-notes>
@@ -341,7 +368,7 @@ this script, or check the |panvimdoc-usage| section.
 
 
 ==============================================================================
-9. Specification                                     *panvimdoc-specification*
+10. Specification                                    *panvimdoc-specification*
 
 See ./panvimdoc.txt <./panvimdoc.txt> for generated output of this file.
 
@@ -388,7 +415,7 @@ generated vimdoc (for mappings, options etc).
 
 
 ==============================================================================
-10. Title                                                    *panvimdoc-title*
+11. Title                                                    *panvimdoc-title*
 
 The first line of the documentation that is generated will look something like
 this:
@@ -399,7 +426,7 @@ this:
 
 
 ==============================================================================
-11. Heading                                                *panvimdoc-heading*
+12. Heading                                                *panvimdoc-heading*
 
 Main headings are numbered.
 
@@ -746,10 +773,12 @@ REMOVE EMOJIS                                *panvimdoc-heading-remove-emojis*
 :PACKAGE: INSTALLATION ~
 
 ==============================================================================
-12. Links                                                    *panvimdoc-links*
+13. Links                                                    *panvimdoc-links*
 
 1. *Docs*: https:/img.shields.io/badge/docs-dev-blue.svg
 2. *Build*: https:/github.com/kdheepak/panvimdoc/actions/workflows/test.yml/badge.svg?branch=main
+3. *Sponsor @kdheepak*: https:/img.shields.io/badge/GitHub_Sponsor-%E2%9D%A4-blue
+4. *Donate*: https:/img.shields.io/badge/Donate_Via_Stripe-%E2%9D%A4-blue
 
 Generated by panvimdoc <https://github.com/kdheepak/panvimdoc>
 
