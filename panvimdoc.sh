@@ -21,6 +21,7 @@ Arguments:
   --doc-mapping-project-name: 'true' if tags generated for mapping docs contain project name, 'false' otherwise
   --shift-heading-level-by: 0 if you don't want to shift heading levels , n otherwise
   --increment-heading-level-by: 0 if don't want to increment the starting heading number, n otherwise
+  --scripts-dir: '/scripts' if `GITHUB_ACTIONS`=`true` or `.dockerenv` is present, `$0/scripts` if no argument is passed, scripts directory otherwise
 EOF
     exit 0
 }
@@ -95,6 +96,11 @@ while [[ $# -gt 0 ]]; do
         shift # past argument
         shift # past value
         ;;
+    --scripts-dir)
+        SCRIPTS_DIR="$2"
+        shift # past argument
+        shift # past value
+        ;;
     --help | -h)
         usage
         ;;
@@ -105,11 +111,14 @@ while [[ $# -gt 0 ]]; do
     esac
 done
 
-# Check if /scripts directory exists
-if [ -d "scripts" ]; then
-    SCRIPTS_DIR="scripts"
-    echo "SCRIPTS"
+# If the user provided a scripts directory, use that. Otherwise, determine environment.
+if [[ "${GITHUB_ACTIONS:-false}" == "true" || -f /.dockerenv ]]; then
+    # GitHub Actions or Docker
+    SCRIPTS_DIR="/scripts"
+elif [[ -n "${SCRIPTS_DIR:-}" ]]; then
+    SCRIPTS_DIR="$SCRIPTS_DIR"
 else
+    # Use the scripts directory alongside the script's location
     SCRIPTS_DIR="$(dirname "$(readlink -f "$0")")/scripts"
 fi
 
