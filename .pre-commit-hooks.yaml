@@ -5,6 +5,6 @@
     language: docker
     files: ^README\.md$
     args:
-    - --input-file
-    - README.md
+        - '--input-file'
+        - README.md
     pass_filenames: false
