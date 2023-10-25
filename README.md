@@ -170,6 +170,38 @@ jobs:
 
 </details>
 
+### Using pre-commit
+[pre-commit](https://pre-commit.com/) lets you easily install and manage pre-commit hooks.
+
+First, install pre-commit. Then, add the following to your `.pre-commit-config.yaml`
+
+```yaml
+-   repo: <link-to-repo>
+    rev: d4327e1f
+    hooks:
+    -   id: panvimdoc
+        args:
+        - --project-name
+        - <your-project-name>
+```
+
+You can specify additional arguments to `panvimdoc.sh` using `args`. See the section below (or run `./panvimdoc.sh`) for the full list of arguments.
+
+To change the input file, modify the `files` field of the hook and supply the corresponding `--input-file` to `args`. In the example below, the hook will be triggered if any `.md` file changes:
+
+```yaml
+-   repo: <link-to-repo>
+    rev: d4327e1f
+    hooks:
+    -   id: panvimdoc
+        files: ^.*\.md$
+        args:
+        - --project-name
+        - <your-project-name>
+        - --input-file
+        - <your-input-file.md>
+```
+
 ### Using it manually
 
 The `./panvimdoc.sh` script runs `pandoc` along with all the filters and custom output writer.
