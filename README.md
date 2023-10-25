@@ -176,7 +176,7 @@ jobs:
 First, install pre-commit. Then, add the following to your `.pre-commit-config.yaml`
 
 ```yaml
--   repo: <link-to-repo>
+-   repo: https://github.com/kdheepak/panvimdoc
     rev: d4327e1f
     hooks:
     -   id: panvimdoc
