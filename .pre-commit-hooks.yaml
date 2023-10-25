@@ -1,7 +1,7 @@
 -   id: panvimdoc
     name: pandoc to vimdoc
     description: Convert markdown documentation to vimdoc (using docker)
-    entry: /panvimdoc.sh
+    entry: /panvimdoc.pre-commit.sh
     language: docker
     files: ^README\.md$
     args:
