@@ -171,17 +171,23 @@ jobs:
 </details>
 
 ### Using pre-commit
-[pre-commit](https://pre-commit.com/) lets you easily install and manage pre-commit hooks.
+[pre-commit](https://pre-commit.com/) lets you easily install and manage pre-commit hooks locally.
 
-First, install pre-commit. Then, add the following to your `.pre-commit-config.yaml`
+Two hooks are available, differing only in the way dependencies are handled:
+
+- `panvimdoc-docker`: Requires a running Docker engine on your host. All other dependencies will be loaded inside the container.
+- `panvimdoc`: Runs in your local environment, so you have to make sure all dependencies of panvimdoc are installed
+    (i.e., `pandoc v3.0.0` or greater)
+
+To use a hook, first install pre-commit. Then, add the following to your `.pre-commit-config.yaml` (here `panvimdoc-docker` is used):
 
 ```yaml
--   repo: https://github.com/kdheepak/panvimdoc
-    rev: d4327e1f
-    hooks:
-    -   id: panvimdoc
-        args:
-        - --project-name
+- repo: 'https://github.com/kdheepak/panvimdoc'
+  rev: v4.0.1
+  hooks:
+    - id: panvimdoc-docker
+      args:
+        - '--project-name'
         - <your-project-name>
 ```
 
@@ -190,15 +196,15 @@ You can specify additional arguments to `panvimdoc.sh` using `args`. See the sec
 To change the input file, modify the `files` field of the hook and supply the corresponding `--input-file` to `args`. In the example below, the hook will be triggered if any `.md` file changes:
 
 ```yaml
--   repo: <link-to-repo>
-    rev: d4327e1f
-    hooks:
-    -   id: panvimdoc
-        files: ^.*\.md$
-        args:
-        - --project-name
+- repo: 'https://github.com/kdhee'
+  rev: v4.0.1
+  hooks:
+    - id: panvimdoc-docker
+      files: ^.*\.md$
+      args:
+        - '--project-name'
         - <your-project-name>
-        - --input-file
+        - '--input-file'
         - <your-input-file.md>
 ```
 
