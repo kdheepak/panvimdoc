@@ -84,7 +84,7 @@ jobs:
           pandoc: "README.md" # Input pandoc file
           version: "NVIM v0.8.0" # Vim version number
           toc: true # Table of contents
-          description: "" # Project Description
+          description: "" # Project Description that replaces the first line of the vimdoc
           demojify: false # Strip emojis from the vimdoc
           dedupsubheadings: true # Add heading to subheading anchor links to ensure that subheadings are unique
           treesitter: true # Use treesitter for highlighting codeblocks
@@ -183,7 +183,7 @@ Arguments:
   --input-file: the input markdown file
   --vim-version: the version of Vim that the project is compatible with
   --toc: 'true' if the output should include a table of contents, 'false' otherwise
-  --description: a description of the project
+  --description: a description of the project that replaces the first line of the vimdoc
   --dedup-subheadings: 'true' if duplicate subheadings should be removed, 'false' otherwise
   --demojify: 'false' if emojis should not be removed, 'true' otherwise
   --treesitter: 'true' if the project uses Tree-sitter syntax highlighting, 'false' otherwise

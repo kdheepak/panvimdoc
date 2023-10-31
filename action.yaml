@@ -21,7 +21,7 @@ inputs:
     required: false
     default: "true"
   description:
-    description: "Project description"
+    description: "Project description that replaces the first line of the vimdoc"
     required: false
     default: ""
   demojify:
