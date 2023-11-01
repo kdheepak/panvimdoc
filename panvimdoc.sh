@@ -12,7 +12,7 @@ Arguments:
   --input-file: the input markdown file
   --vim-version: the version of Vim that the project is compatible with
   --toc: 'true' if the output should include a table of contents, 'false' otherwise
-  --description: a description of the project
+  --description: a project description used in title (if empty, uses neovim version and current date)
   --dedup-subheadings: 'true' if duplicate subheadings should be removed, 'false' otherwise
   --demojify: 'false' if emojis should not be removed, 'true' otherwise
   --treesitter: 'true' if the project uses Tree-sitter syntax highlighting, 'false' otherwise
