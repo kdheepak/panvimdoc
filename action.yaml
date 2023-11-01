@@ -21,7 +21,7 @@ inputs:
     required: false
     default: "true"
   description:
-    description: "Project description that replaces the first line of the vimdoc"
+    description: "Project description used in title (if empty, uses neovim version and current date)"
     required: false
     default: ""
   demojify:

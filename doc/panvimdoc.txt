@@ -136,7 +136,7 @@ Then add the following to `./.github/workflows/panvimdoc.yml`:
               pandoc: "README.md" # Input pandoc file
               version: "NVIM v0.8.0" # Vim version number
               toc: true # Table of contents
-              description: "" # Project Description that replaces the first line of the vimdoc
+              description: "" # Project description used in title (if empty, uses neovim version and current date)
               demojify: false # Strip emojis from the vimdoc
               dedupsubheadings: true # Add heading to subheading anchor links to ensure that subheadings are unique
               treesitter: true # Use treesitter for highlighting codeblocks
@@ -233,7 +233,7 @@ output writer.
       --input-file: the input markdown file
       --vim-version: the version of Vim that the project is compatible with
       --toc: 'true' if the output should include a table of contents, 'false' otherwise
-      --description: a description of the project that replaces the first line of the vimdoc
+      --description: a project description used in title (if empty, uses neovim version and current date)
       --dedup-subheadings: 'true' if duplicate subheadings should be removed, 'false' otherwise
       --demojify: 'false' if emojis should not be removed, 'true' otherwise
       --treesitter: 'true' if the project uses Tree-sitter syntax highlighting, 'false' otherwise
