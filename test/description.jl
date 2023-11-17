@@ -4,7 +4,9 @@ function first_line(s::String)
 end
 
 function check(expected::Regex, real::String)
-  if occursin(expected, real) == false
+  if occursin(expected, real)
+    @test true
+  else
     @test false
     @error string("  Expected: ", expected)
     @error string("Expression: ", string(real))
