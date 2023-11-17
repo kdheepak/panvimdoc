@@ -24,8 +24,8 @@ inputs:
     description: "Project description used in title (if empty, uses neovim version and current date)"
     required: false
     default: ""
-  description:
-    titledatepattern: "Pattern for the date that used in the title (if empty, uses '%Y %B %d')"
+  titledatepattern:
+    description: "Pattern for the date that used in the title (if empty, uses '%Y %B %d')"
     required: false
     default: "%Y %B %d"
   demojify:
