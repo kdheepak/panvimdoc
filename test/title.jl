@@ -13,7 +13,7 @@ function check(expected::Regex, real::String)
   end
 end
 
-@testset "Description" begin
+@testset "Title" begin
   doc = test_pandoc(
     """Some readme information.""";
     description = nothing,
