@@ -24,6 +24,10 @@ inputs:
     description: "Project description used in title (if empty, uses neovim version and current date)"
     required: false
     default: ""
+  description:
+    titledatepattern: "Pattern for the date that used in the title (if empty, uses '%Y %B %d')"
+    required: false
+    default: "%Y %B %d"
   demojify:
     description: "Strip emojis from the vimdoc"
     required: false
@@ -70,6 +74,8 @@ runs:
     - ${{ inputs.toc }}
     - --description
     - ${{ inputs.description }}
+    - --title-date-pattern
+    - ${{ inputs.titledatepattern }}
     - --dedup-subheadings
     - ${{ inputs.dedupsubheadings }}
     - --demojify
