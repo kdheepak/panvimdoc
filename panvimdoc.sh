@@ -13,6 +13,7 @@ Arguments:
   --vim-version: the version of Vim that the project is compatible with
   --toc: 'true' if the output should include a table of contents, 'false' otherwise
   --description: a project description used in title (if empty, uses neovim version and current date)
+  --title-date-pattern: '%Y %B %d' a pattern for the date that used in the title
   --dedup-subheadings: 'true' if duplicate subheadings should be removed, 'false' otherwise
   --demojify: 'false' if emojis should not be removed, 'true' otherwise
   --treesitter: 'true' if the project uses Tree-sitter syntax highlighting, 'false' otherwise
@@ -48,6 +49,11 @@ while [[ $# -gt 0 ]]; do
         ;;
     --toc)
         TOC="$2"
+        shift # past argument
+        shift # past value
+        ;;
+    --title-date-pattern)
+        TITLE_DATE_PATTERN="$2"
         shift # past argument
         shift # past value
         ;;
@@ -135,6 +141,7 @@ ARGS=(
     "--metadata=vimversion:${VIM_VERSION:-""}"
     "--metadata=toc:${TOC:-true}"
     "--metadata=description:${DESCRIPTION:-""}"
+    "--metadata=titledatepattern:${TITLE_DATE_PATTERN:-"%Y %B %d"}"
     "--metadata=dedupsubheadings:${DEDUP_SUBHEADINGS:-true}"
     "--metadata=ignorerawblocks:${IGNORE_RAWBLOCKS:-true}"
     "--metadata=docmapping:${DOC_MAPPING:-false}"

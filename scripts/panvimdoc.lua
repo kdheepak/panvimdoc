@@ -73,6 +73,7 @@ local IGNORE_RAWBLOCKS = true
 local DOC_MAPPING = true
 local DOC_MAPPING_PROJECT = true
 local DATE = nil
+local TITLE_DATE_PATTERN = "%Y %B %d"
 
 local CURRENT_HEADER = nil
 local SOFTBREAK_TO_HARDBREAK = "space"
@@ -116,7 +117,7 @@ local function renderTitle()
 
     local date = DATE
     if date == nil then
-      date = os.date("%Y %B %d")
+      date = os.date(TITLE_DATE_PATTERN)
     end
     local m = "For " .. vim_version
     local r = "Last change: " .. date
@@ -197,6 +198,7 @@ Writer.Pandoc = function(doc, opts)
   DOC_MAPPING_PROJECT = doc.meta.docmappingproject
   HEADER_COUNT = HEADER_COUNT + doc.meta.incrementheadinglevelby
   DATE = doc.meta.date
+  TITLE_DATE_PATTERN = doc.meta.titledatepattern
   local d = blocks(doc.blocks)
   local toc = renderToc()
   local notes = renderNotes()
