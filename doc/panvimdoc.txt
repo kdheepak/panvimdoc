@@ -57,10 +57,6 @@ via Strip:
 <https://github.com/sponsors/kdheepak>
 <https://donate.stripe.com/8wM9E7bBO9ZsbGUdQR>
 
-Every bit of sponsorship helps, whether it’s to buy me a coffee or to enable
-me to dedicate more time to maintaining and improving this project. I sincerely
-appreciate your generosity and support!
-
 
 ==============================================================================
 3. TLDR                                                       *panvimdoc-tldr*
