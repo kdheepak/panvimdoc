@@ -1,4 +1,4 @@
-*panvimdoc.txt*          For NVIM v0.8.0         Last change: 2023 November 18
+*panvimdoc.txt*           For NVIM v0.8.0           Last change: 2024 March 27
 
 ==============================================================================
 Table of Contents                                *panvimdoc-table-of-contents*
@@ -31,6 +31,7 @@ Table of Contents                                *panvimdoc-table-of-contents*
   - Examples                                      |panvimdoc-heading-examples|
   - Examples                                      |panvimdoc-heading-examples|
   - Remove emojis                            |panvimdoc-heading-remove-emojis|
+13. Links                                                    |panvimdoc-links|
 
 ==============================================================================
 1. panvimdoc                                             *panvimdoc-panvimdoc*
