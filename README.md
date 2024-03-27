@@ -2,6 +2,8 @@
 
 [![Docs](https://img.shields.io/badge/docs-dev-blue.svg)](https://kdheepak.com/panvimdoc/)
 [![Build](https://github.com/kdheepak/panvimdoc/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/kdheepak/panvimdoc/actions/workflows/test.yml?query=branch%3Amain)
+[![Sponsor](https://img.shields.io/badge/GitHub_Sponsor-%E2%9D%A4-blue)](https://github.com/sponsors/kdheepak)
+[![Donate](https://img.shields.io/badge/Donate_Via_Stripe-%E2%9D%A4-blue)](https://donate.stripe.com/8wM9E7bBO9ZsbGUdQR)
 
 Write documentation in [pandoc markdown](https://pandoc.org/MANUAL.html). Generate documentation in
 vimdoc.
@@ -333,8 +335,4 @@ please feel free to comment here: <https://github.com/kdheepak/panvimdoc/discuss
 
 # Donate
 
-If you've found this project helpful, you can show your appreciation by sponsoring me on GitHub Sponsors or donating via Strip:
-
-[![Sponsor @kdheepak](https://img.shields.io/badge/GitHub_Sponsor-%E2%9D%A4-blue)](https://github.com/sponsors/kdheepak)
-[![Donate](https://img.shields.io/badge/Donate_Via_Stripe-%E2%9D%A4-blue)](https://donate.stripe.com/8wM9E7bBO9ZsbGUdQR)
-
+If you've found this project helpful, you can show your appreciation by sponsoring me on [GitHub Sponsors](https://github.com/sponsors/kdheepak/) or [donating via Strip](https://donate.stripe.com/8wM9E7bBO9ZsbGUdQR).
