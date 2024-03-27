@@ -18,9 +18,6 @@ maintenance. You can sponsor me on GitHub Sponsors or Donate via Strip:
 [![Sponsor @kdheepak](https://img.shields.io/badge/GitHub_Sponsor-%E2%9D%A4-blue)](https://github.com/sponsors/kdheepak)
 [![Donate](https://img.shields.io/badge/Donate_Via_Stripe-%E2%9D%A4-blue)](https://donate.stripe.com/8wM9E7bBO9ZsbGUdQR)
 
-Every bit of sponsorship helps, whether it's to buy me a coffee or to enable me to dedicate more
-time to maintaining and improving this project. I sincerely appreciate your generosity and support!
-
 # TLDR
 
 1. Choose a name for your project, i.e. `${VIMDOC_PROJECT_NAME}`. See
