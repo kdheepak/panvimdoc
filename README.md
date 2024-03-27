@@ -10,14 +10,6 @@ vimdoc.
 
 ::: center This software is released under a MIT License. :::
 
-# Support This Project
-
-If you've found this project helpful, please consider supporting its ongoing development and
-maintenance. You can sponsor me on GitHub Sponsors or Donate via Strip:
-
-[![Sponsor @kdheepak](https://img.shields.io/badge/GitHub_Sponsor-%E2%9D%A4-blue)](https://github.com/sponsors/kdheepak)
-[![Donate](https://img.shields.io/badge/Donate_Via_Stripe-%E2%9D%A4-blue)](https://donate.stripe.com/8wM9E7bBO9ZsbGUdQR)
-
 # TLDR
 
 1. Choose a name for your project, i.e. `${VIMDOC_PROJECT_NAME}`. See
@@ -338,3 +330,11 @@ please feel free to comment here: <https://github.com/kdheepak/panvimdoc/discuss
 - <https://foosoft.net/projects/md2vim/>
 - <https://github.com/wincent/docvim>
 - <https://github.com/Orange-OpenSource/pandoc-terminal-writer/>
+
+# Donate
+
+If you've found this project helpful, you can show your appreciation by sponsoring me on GitHub Sponsors or donating via Strip:
+
+[![Sponsor @kdheepak](https://img.shields.io/badge/GitHub_Sponsor-%E2%9D%A4-blue)](https://github.com/sponsors/kdheepak)
+[![Donate](https://img.shields.io/badge/Donate_Via_Stripe-%E2%9D%A4-blue)](https://donate.stripe.com/8wM9E7bBO9ZsbGUdQR)
+
