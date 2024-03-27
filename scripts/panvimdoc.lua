@@ -200,8 +200,8 @@ Writer.Pandoc = function(doc, opts)
   DATE = doc.meta.date
   TITLE_DATE_PATTERN = doc.meta.titledatepattern
   local d = blocks(doc.blocks)
-  local toc = renderToc()
   local notes = renderNotes()
+  local toc = renderToc()
   local title = renderTitle()
   local footer = renderFooter()
   return { title, layout.blankline, toc, d, notes, layout.blankline, footer }
