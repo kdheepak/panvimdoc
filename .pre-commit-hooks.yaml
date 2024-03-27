@@ -1,0 +1,20 @@
+- id: panvimdoc-docker
+  name: pandoc to vimdoc (docker)
+  description: Convert markdown documentation to vimdoc (using docker)
+  entry: /panvimdoc.pre-commit.sh
+  language: docker
+  files: ^README\.md$
+  args:
+    - '--input-file'
+    - README.md
+  pass_filenames: false
+- id: panvimdoc
+  name: pandoc to vimdoc
+  description: Convert markdown documentation to vimdoc (using local environment)
+  entry: panvimdoc.pre-commit.sh
+  language: script
+  files: ^README\.md$
+  args:
+    - '--input-file'
+    - README.md
+  pass_filenames: false
