@@ -26,6 +26,7 @@
   <li><a href="#usage" id="toc-usage">Usage</a>
   <ul>
   <li><a href="#using-github-actions" id="toc-using-github-actions">Using Github Actions</a></li>
+  <li><a href="#using-pre-commit" id="toc-using-pre-commit">Using pre-commit</a></li>
   <li><a href="#using-it-manually" id="toc-using-it-manually">Using it manually</a></li>
   </ul></li>
   <li><a href="#motivation" id="toc-motivation">Motivation</a>
@@ -187,26 +188,53 @@
 <span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">branch</span><span class="kw">:</span><span class="at"> gh-pages</span></span>
 <span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">folder</span><span class="kw">:</span><span class="at"> public</span></span></code></pre></div>
 </details>
+<h3 id="using-pre-commit">Using pre-commit</h3>
+<p><a href="https://pre-commit.com/">pre-commit</a> lets you easily install and manage pre-commit hooks locally.</p>
+<p>Two hooks are available, differing only in the way dependencies are handled:</p>
+<ul>
+<li><code>panvimdoc-docker</code>: Requires a running Docker engine on your host. All other dependencies will be loaded inside the container.</li>
+<li><code>panvimdoc</code>: Runs in your local environment, so you have to make sure all dependencies of panvimdoc are installed (i.e., <code>pandoc v3.0.0</code> or greater)</li>
+</ul>
+<p>To use a hook, first install pre-commit. Then, add the following to your <code>.pre-commit-config.yaml</code> (here <code>panvimdoc-docker</code> is used):</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">-</span><span class="at"> </span><span class="fu">repo</span><span class="kw">:</span><span class="at"> </span><span class="st">&#39;https://github.com/kdheepak/panvimdoc&#39;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">rev</span><span class="kw">:</span><span class="at"> v4.0.1</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">hooks</span><span class="kw">:</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">id</span><span class="kw">:</span><span class="at"> panvimdoc-docker</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">args</span><span class="kw">:</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="kw">-</span><span class="at"> </span><span class="st">&#39;--project-name&#39;</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="kw">-</span><span class="at"> &lt;your-project-name&gt;</span></span></code></pre></div>
+<p>You can specify additional arguments to <code>panvimdoc.sh</code> using <code>args</code>. See the section below (or run <code>./panvimdoc.sh</code>) for the full list of arguments.</p>
+<p>To change the input file, modify the <code>files</code> field of the hook and supply the corresponding <code>--input-file</code> to <code>args</code>. In the example below, the hook will be triggered if any <code>.md</code> file changes:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">-</span><span class="at"> </span><span class="fu">repo</span><span class="kw">:</span><span class="at"> </span><span class="st">&#39;https://github.com/kdhee&#39;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">rev</span><span class="kw">:</span><span class="at"> v4.0.1</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">hooks</span><span class="kw">:</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">id</span><span class="kw">:</span><span class="at"> panvimdoc-docker</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">files</span><span class="kw">:</span><span class="at"> ^.*\.md$</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">args</span><span class="kw">:</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="kw">-</span><span class="at"> </span><span class="st">&#39;--project-name&#39;</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="kw">-</span><span class="at"> &lt;your-project-name&gt;</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="kw">-</span><span class="at"> </span><span class="st">&#39;--input-file&#39;</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="kw">-</span><span class="at"> &lt;your-input-file.md&gt;</span></span></code></pre></div>
 <h3 id="using-it-manually">Using it manually</h3>
 <p>The <code>./panvimdoc.sh</code> script runs <code>pandoc</code> along with all the filters and custom output writer.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ./panvimdoc.sh</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Usage:</span> ./panvimdoc.sh <span class="at">--project-name</span> PROJECT_NAME <span class="at">--input-file</span> INPUT_FILE <span class="at">--vim-version</span> VIM_VERSION <span class="at">--toc</span> TOC <span class="at">--description</span> DESCRIPTION <span class="at">--dedup-subheadings</span> DEDUP_SUBHEADINGS <span class="at">--treesitter</span> TREESITTER</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="ex">Arguments:</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--project-name:</span> the name of the project</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--input-file:</span> the input markdown file</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--vim-version:</span> the version of Vim that the project is compatible with</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--toc:</span> <span class="st">&#39;true&#39;</span> if the output should include a table of contents, <span class="st">&#39;false&#39;</span> otherwise</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--description:</span> a project description used in title <span class="er">(</span><span class="cf">if</span> <span class="ex">empty,</span> uses neovim version and current date<span class="kw">)</span></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--dedup-subheadings:</span> <span class="st">&#39;true&#39;</span> if duplicate subheadings should be removed, <span class="st">&#39;false&#39;</span> otherwise</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--title-date-pattern:</span> <span class="st">&#39;%Y %B %d&#39;</span> a pattern for the date that used in the title</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--demojify:</span> <span class="st">&#39;false&#39;</span> if emojis should not be removed, <span class="st">&#39;true&#39;</span> otherwise</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--treesitter:</span> <span class="st">&#39;true&#39;</span> if the project uses Tree-sitter syntax highlighting, <span class="st">&#39;false&#39;</span> otherwise</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--ignore-rawblocks:</span> <span class="st">&#39;true&#39;</span> if the project should ignore HTML raw blocks, <span class="st">&#39;false&#39;</span> otherwise</span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--doc-mapping:</span> <span class="st">&#39;true&#39;</span> if the project should use h4 headers as mapping docs, <span class="st">&#39;false&#39;</span> otherwise</span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--doc-mapping-project-name:</span> <span class="st">&#39;true&#39;</span> if tags generated for mapping docs contain project name, <span class="st">&#39;false&#39;</span> otherwise</span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--shift-heading-level-by:</span> 0 if you don<span class="st">&#39;t want to shift heading levels , n otherwise</span></span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="st">  --increment-heading-level-by: 0 if don&#39;</span>t want to increment the starting heading number, n otherwise</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ./panvimdoc.sh</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Usage:</span> ./panvimdoc.sh <span class="at">--project-name</span> PROJECT_NAME <span class="at">--input-file</span> INPUT_FILE <span class="at">--vim-version</span> VIM_VERSION <span class="at">--toc</span> TOC <span class="at">--description</span> DESCRIPTION <span class="at">--dedup-subheadings</span> DEDUP_SUBHEADINGS <span class="at">--treesitter</span> TREESITTER</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="ex">Arguments:</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--project-name:</span> the name of the project</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--input-file:</span> the input markdown file</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--vim-version:</span> the version of Vim that the project is compatible with</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--toc:</span> <span class="st">&#39;true&#39;</span> if the output should include a table of contents, <span class="st">&#39;false&#39;</span> otherwise</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--description:</span> a project description used in title <span class="er">(</span><span class="cf">if</span> <span class="ex">empty,</span> uses neovim version and current date<span class="kw">)</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--dedup-subheadings:</span> <span class="st">&#39;true&#39;</span> if duplicate subheadings should be removed, <span class="st">&#39;false&#39;</span> otherwise</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--title-date-pattern:</span> <span class="st">&#39;%Y %B %d&#39;</span> a pattern for the date that used in the title</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--demojify:</span> <span class="st">&#39;false&#39;</span> if emojis should not be removed, <span class="st">&#39;true&#39;</span> otherwise</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--treesitter:</span> <span class="st">&#39;true&#39;</span> if the project uses Tree-sitter syntax highlighting, <span class="st">&#39;false&#39;</span> otherwise</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--ignore-rawblocks:</span> <span class="st">&#39;true&#39;</span> if the project should ignore HTML raw blocks, <span class="st">&#39;false&#39;</span> otherwise</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--doc-mapping:</span> <span class="st">&#39;true&#39;</span> if the project should use h4 headers as mapping docs, <span class="st">&#39;false&#39;</span> otherwise</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--doc-mapping-project-name:</span> <span class="st">&#39;true&#39;</span> if tags generated for mapping docs contain project name, <span class="st">&#39;false&#39;</span> otherwise</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--shift-heading-level-by:</span> 0 if you don<span class="st">&#39;t want to shift heading levels , n otherwise</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="st">  --increment-heading-level-by: 0 if don&#39;</span>t want to increment the starting heading number, n otherwise</span></code></pre></div>
 <p>You will need <code>pandoc v3.0.0</code> or greater for this script to work.</p>
 <h1 id="motivation">Motivation</h1>
 <p>Writing user-friendly documentation is important for every successful software project. This is particularly true when writing documentation for users in the world of vim plugins.</p>
@@ -260,9 +288,9 @@
 <p>See <a href="./panvimdoc.txt">./panvimdoc.txt</a> for generated output of this file.</p>
 <h2 id="external-includes">External includes</h2>
 <p>Use the following in your markdown file to include any other markdown file:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{.include}</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="in">README.md</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{.include}</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="in">README.md</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div>
 <p>The path of the file is with respect to the working directory where <code>pandoc</code> is executed.</p>
 <h2 id="codeblocks">Codeblocks</h2>
 <pre><code>Multi line Code blocks are indented 4 spaces and
@@ -289,7 +317,7 @@ You can use codeblocks that have language as `vimdoc` to write raw vimdoc.
 <p>Sub headings are upper cased, but do not have tags. They are also not included in the TOC. They are suffixed with <code>~</code> which highlights as <strong>bold</strong> text when the file is viewed on GitHub.</p>
 <h2 id="markdown-links">Markdown Links</h2>
 <p>You can use markdown links in vimdoc.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>You can link to the tags by using <span class="co">[</span><span class="ot">sub heading 2</span><span class="co">](#sub-heading-2)</span>.</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>You can link to the tags by using <span class="co">[</span><span class="ot">sub heading 2</span><span class="co">](#sub-heading-2)</span>.</span></code></pre></div>
 <p>This way, any links will work in markdown README on GitHub or on the web using anchors AND will work as tags and links in vimdoc. The anchors are simply dropped in vimdoc inline. The onus is on the documentation writer to choose the correct anchor for the appropriate Markdown link.</p>
 <p>In vimdoc tags are created when anchors to the internal document are used. If the target is an external link, the link is inlined.</p>
 <p>If the external link is to the neovim documentation, an internal vim link is generated. For example:</p>
@@ -307,26 +335,26 @@ You can use codeblocks that have language as `vimdoc` to write raw vimdoc.
 <p>While you can use codeblocks with the language <code>vimdoc</code> to insert text in the generated vimdoc, it can be useful to have a markdown friendly way to write documentation for mappings.</p>
 <p>Pandoc supports definition lists: <a href="https://pandoc.org/MANUAL.html#definition-lists" class="uri">https://pandoc.org/MANUAL.html#definition-lists</a>. This can be used to generate documentation of mappings. All of the content in curly braces <code>{...}</code> that is part of the header is dropped and a tag is created.</p>
 <p>For example, the following in a markdown file:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>:FnlCompileBuffer</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>: Compiles current active fennel buffer</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>:FnlCompile<span class="co">[</span><span class="ot">!</span><span class="co">]</span></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>: Diff compiles all indexed fennel files</span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>If bang! is present then forcefully compiles all <span class="in">`source`</span> files</span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>:Fnl {expr}</span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>: Executes and Evalutate {expr} of fennel</span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="in">     ```fennel</span></span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="in">     :Fnl (print &quot;Hello World&quot;)</span></span>
-<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a><span class="in">     :Fnl (values some_var)</span></span>
-<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a><span class="in">     ```</span></span>
-<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a><span class="in">     Testing</span></span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>:FnlCompileBuffer</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>: Compiles current active fennel buffer</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>:FnlCompile<span class="co">[</span><span class="ot">!</span><span class="co">]</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>: Diff compiles all indexed fennel files</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>If bang! is present then forcefully compiles all <span class="in">`source`</span> files</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>:Fnl {expr}</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>: Executes and Evalutate {expr} of fennel</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="in">     ```fennel</span></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a><span class="in">     :Fnl (print &quot;Hello World&quot;)</span></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a><span class="in">     :Fnl (values some_var)</span></span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a><span class="in">     ```</span></span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a><span class="in">     Testing</span></span></code></pre></div>
 <p>becomes the following vimdoc:</p>
 <pre><code>
                                              *projectName-:FnlCompileBuffer*
@@ -536,24 +564,24 @@ This will only show up in the Markdown file.
 <p>Inversely to <a href="#markdown-only-content">markdown only content</a>, sometimes you want to show content only present in Vimdoc and hidden when viewed on Github.</p>
 <p>This can be placed inside <code>panvimdoc-include-comment</code> comments.</p>
 <p>As with markdown only content, you must include a blank link before and after the comment.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- panvimdoc-include-comment You can include single lines  --&gt;</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- panvimdoc-include-comment</span></span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="co">Or multiple lines</span></span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="co">- with other</span></span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="co">- content</span></span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a><span class="co">- types</span></span>
-<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a><span class="co"># And vimdoc only headings</span></span>
-<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a><span class="co">## That can include subheadings</span></span>
-<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a><span class="co">Infact you can include any kind of content in the comment.</span></span>
-<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a><span class="co">--&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- panvimdoc-include-comment You can include single lines  --&gt;</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- panvimdoc-include-comment</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="co">Or multiple lines</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="co">- with other</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="co">- content</span></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a><span class="co">- types</span></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a><span class="co"># And vimdoc only headings</span></span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a><span class="co">## That can include subheadings</span></span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a><span class="co">Infact you can include any kind of content in the comment.</span></span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a><span class="co">--&gt;</span></span></code></pre></div>
 <p>Neovim is a great text editor.</p>
 <p>Neovim supports <code>:h lua</code> plugins and is also:</p>
 <ul>
