@@ -4,16 +4,16 @@
 Table of Contents                                *panvimdoc-table-of-contents*
 
 1. panvimdoc                                             |panvimdoc-panvimdoc|
-2. Support This Project                       |panvimdoc-support-this-project|
-3. TLDR                                                       |panvimdoc-tldr|
-4. Usage                                                     |panvimdoc-usage|
-5. Motivation                                           |panvimdoc-motivation|
+2. TLDR                                                       |panvimdoc-tldr|
+3. Usage                                                     |panvimdoc-usage|
+4. Motivation                                           |panvimdoc-motivation|
   - Rationale                                 |panvimdoc-motivation-rationale|
   - Background                               |panvimdoc-motivation-background|
-6. Goals                                                     |panvimdoc-goals|
-7. Features                                               |panvimdoc-features|
-8. Specification                                     |panvimdoc-specification|
-9. References                                           |panvimdoc-references|
+5. Goals                                                     |panvimdoc-goals|
+6. Features                                               |panvimdoc-features|
+7. Specification                                     |panvimdoc-specification|
+8. References                                           |panvimdoc-references|
+9. Donate                                                   |panvimdoc-donate|
 10. Specification                                    |panvimdoc-specification|
   - External includes              |panvimdoc-specification-external-includes|
   - Codeblocks                            |panvimdoc-specification-codeblocks|
@@ -48,18 +48,7 @@ Generate documentation in vimdoc.
 
 
 ==============================================================================
-2. Support This Project                       *panvimdoc-support-this-project*
-
-If you’ve found this project helpful, please consider supporting its ongoing
-development and maintenance. You can sponsor me on GitHub Sponsors or Donate
-via Strip:
-
-<https://github.com/sponsors/kdheepak>
-<https://donate.stripe.com/8wM9E7bBO9ZsbGUdQR>
-
-
-==============================================================================
-3. TLDR                                                       *panvimdoc-tldr*
+2. TLDR                                                       *panvimdoc-tldr*
 
 1. Choose a name for your project, i.e. `${VIMDOC_PROJECT_NAME}`. See
 .github/workflows/panvimdoc.yml <./.github/workflows/panvimdoc.yml> as an
@@ -96,7 +85,7 @@ to the repo.
 
 
 ==============================================================================
-4. Usage                                                     *panvimdoc-usage*
+3. Usage                                                     *panvimdoc-usage*
 
 
 USING GITHUB ACTIONS ~
@@ -292,7 +281,7 @@ You will need `pandoc v3.0.0` or greater for this script to work.
 
 
 ==============================================================================
-5. Motivation                                           *panvimdoc-motivation*
+4. Motivation                                           *panvimdoc-motivation*
 
 Writing user-friendly documentation is important for every successful software
 project. This is particularly true when writing documentation for users in the
@@ -354,7 +343,7 @@ HTML etc.
 
 
 ==============================================================================
-6. Goals                                                     *panvimdoc-goals*
+5. Goals                                                     *panvimdoc-goals*
 
 By offering a specification and reference implementation for converting Pandoc
 Markdown to vimdoc, this project aims to reduce friction in the documentation
@@ -376,7 +365,7 @@ Here are the specific goals that guide this project:
 
 
 ==============================================================================
-7. Features                                               *panvimdoc-features*
+6. Features                                               *panvimdoc-features*
 
 This project offers a comprehensive suite of features designed to streamline
 the conversion process from Markdown to vimdoc:
@@ -391,7 +380,7 @@ the conversion process from Markdown to vimdoc:
 
 
 ==============================================================================
-8. Specification                                     *panvimdoc-specification*
+7. Specification                                     *panvimdoc-specification*
 
 The specification is described in panvimdoc.md <./doc/panvimdoc.md> along with
 examples. The generated output is in panvimdoc.txt <./doc/panvimdoc.txt>. The
@@ -401,7 +390,7 @@ this script, or check the |panvimdoc-usage| section.
 
 
 ==============================================================================
-9. References                                           *panvimdoc-references*
+8. References                                           *panvimdoc-references*
 
 - <https://learnvimscriptthehardway.stevelosh.com/chapters/54.html>
 - <https://github.com/nanotee/vimdoc-notes>
@@ -409,6 +398,16 @@ this script, or check the |panvimdoc-usage| section.
 - <https://foosoft.net/projects/md2vim/>
 - <https://github.com/wincent/docvim>
 - <https://github.com/Orange-OpenSource/pandoc-terminal-writer/>
+
+
+==============================================================================
+9. Donate                                                   *panvimdoc-donate*
+
+If you’ve found this project helpful, you can show your appreciation by
+sponsoring me on GitHub Sponsors or donating via Strip:
+
+<https://github.com/sponsors/kdheepak>
+<https://donate.stripe.com/8wM9E7bBO9ZsbGUdQR>
 
 
 ==============================================================================
