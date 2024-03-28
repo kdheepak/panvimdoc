@@ -31,14 +31,14 @@ vimdoc.
          - uses: actions/checkout@v2
          - uses: kdheepak/panvimdoc@main
            with:
-             vimdoc: ${VIMDOC_PROJECT_NAME}
+             vimdoc: __VIMDOC_PROJECT_NAME_HERE__
          - uses: stefanzweifel/git-auto-commit-action@v4
            with:
              commit_message: "Auto generate docs"
              branch: ${{ github.head_ref }}
    ```
 
-3. `README.md` gets converted to `./doc/${VIMDOC_PROJECT_NAME}.txt` and committed to the repo.
+3. `README.md` gets converted to `./doc/__VIMDOC_PROJECT_NAME_HERE__.txt` and committed to the repo.
 
 # Usage
 
