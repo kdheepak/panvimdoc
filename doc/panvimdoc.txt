@@ -238,7 +238,7 @@ corresponding `--input-file` to `args`. In the example below, the hook will be
 triggered if any `.md` file changes:
 
 >yaml
-    - repo: 'https://github.com/kdhee'
+    - repo: 'https://github.com/kdheepak/panvimdoc'
       rev: v4.0.1
       hooks:
         - id: panvimdoc-docker
