@@ -119,12 +119,14 @@ For an example of how this is used, see one of the following workflows:
 Or see any of the packages here that depend on this action:
 <https://github.com/kdheepak/panvimdoc/network/dependents>
 
-<summary>
+### Generating Web Documentation
 
 If you are interested in making your vim plugin documentation available as a HTML page, check out
-[.github/workflows/docs.yml](./.github/workflows/docs.yml) file.
+[.github/workflows/docs.yml](./.github/workflows/docs.yml) file. 
 
-<details>
+You can find the Markdown file you are reading right now converted to HTML here: https://kdheepak.com/panvimdoc/
+
+Here's an example:
 
 ```yml
 name: docs
@@ -157,8 +159,6 @@ jobs:
           branch: gh-pages
           folder: public
 ```
-
-</details>
 
 ### Using pre-commit
 
