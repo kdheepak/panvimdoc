@@ -47,12 +47,10 @@ vimdoc.
 Create an empty doc file:
 
 ```bash
-touch doc/${VIMDOC_PROJECT_NAME}.txt
-git commit -am "Add empty doc"
+touch doc/.gitkeepp
+git commit -am "Add empty doc folder"
 git push
 ```
-
-You don't actually need the file, only the `doc` folder but it is probably easiest to create a file.
 
 Then add the following to `./.github/workflows/panvimdoc.yml`:
 
