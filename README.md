@@ -38,7 +38,7 @@ vimdoc.
              branch: ${{ github.head_ref }}
    ```
 
-3. `README.md` gets converted to `./doc/__VIMDOC_PROJECT_NAME_HERE__.txt` and committed to the repo.
+3. `README.md` gets converted to `./doc/__VIMDOC_PROJECT_NAME_HERE__.txt` and auto-committed to the repo.
 
 # Usage
 
