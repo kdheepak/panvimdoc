@@ -24,10 +24,10 @@
   <li><a href="#tldr" id="toc-tldr">TLDR</a></li>
   <li><a href="#usage" id="toc-usage">Usage</a>
   <ul>
-  <li><a href="#using-github-actions" id="toc-using-github-actions">Using Github Actions</a></li>
-  <li><a href="#generating-web-documentation" id="toc-generating-web-documentation">Generating Web Documentation</a></li>
-  <li><a href="#using-pre-commit" id="toc-using-pre-commit">Using pre-commit</a></li>
-  <li><a href="#using-it-manually" id="toc-using-it-manually">Using it manually</a></li>
+  <li><a href="#generating-vimdoc-using-github-actions" id="toc-generating-vimdoc-using-github-actions">Generating vimdoc using GitHub Actions</a></li>
+  <li><a href="#generating-html-using-github-actions" id="toc-generating-html-using-github-actions">Generating HTML using GitHub Actions</a></li>
+  <li><a href="#using-pre-commit-locally" id="toc-using-pre-commit-locally">Using pre-commit locally</a></li>
+  <li><a href="#using-it-manually-locally" id="toc-using-it-manually-locally">Using it manually locally</a></li>
   </ul></li>
   <li><a href="#motivation" id="toc-motivation">Motivation</a>
   <ul>
@@ -101,7 +101,7 @@
 <li><p><code>README.md</code> gets converted to <code>./doc/__VIMDOC_PROJECT_NAME_HERE__.txt</code> and auto-committed to the repo.</p></li>
 </ol>
 <h1 id="usage">Usage</h1>
-<h3 id="using-github-actions">Using Github Actions</h3>
+<h3 id="generating-vimdoc-using-github-actions">Generating vimdoc using GitHub Actions</h3>
 <p>Create an empty doc file:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">touch</span> doc/.gitkeep</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-am</span> <span class="st">&quot;Add empty doc folder&quot;</span></span>
@@ -151,7 +151,7 @@
 <li><a href="https://github.com/kdheepak/tabline.nvim/blob/main/.github/workflows/ci.yml">kdheepak/tabline.nvim</a>: <a href="https://github.com/kdheepak/tabline.nvim/blob/main/doc/tabline.txt">doc/tabline.txt</a></li>
 </ul>
 <p>Or see any of the packages here that depend on this action: <a href="https://github.com/kdheepak/panvimdoc/network/dependents" class="uri">https://github.com/kdheepak/panvimdoc/network/dependents</a></p>
-<h3 id="generating-web-documentation">Generating Web Documentation</h3>
+<h3 id="generating-html-using-github-actions">Generating HTML using GitHub Actions</h3>
 <p>If you are interested in making your vim plugin documentation available as a HTML page, check out <a href="./.github/workflows/docs.yml">.github/workflows/docs.yml</a> file.</p>
 <p>You can find the Markdown file you are reading right now converted to HTML here: https://kdheepak.com/panvimdoc/</p>
 <p>Here’s an example:</p>
@@ -184,7 +184,7 @@
 <span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">with</span><span class="kw">:</span></span>
 <span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">branch</span><span class="kw">:</span><span class="at"> gh-pages</span></span>
 <span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">folder</span><span class="kw">:</span><span class="at"> public</span></span></code></pre></div>
-<h3 id="using-pre-commit">Using pre-commit</h3>
+<h3 id="using-pre-commit-locally">Using pre-commit locally</h3>
 <p><a href="https://pre-commit.com/">pre-commit</a> lets you easily install and manage pre-commit hooks locally.</p>
 <p>Two hooks are available, differing only in the way dependencies are handled:</p>
 <ul>
@@ -211,7 +211,7 @@
 <span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="kw">-</span><span class="at"> &lt;your-project-name&gt;</span></span>
 <span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="kw">-</span><span class="at"> </span><span class="st">&#39;--input-file&#39;</span></span>
 <span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="kw">-</span><span class="at"> &lt;your-input-file.md&gt;</span></span></code></pre></div>
-<h3 id="using-it-manually">Using it manually</h3>
+<h3 id="using-it-manually-locally">Using it manually locally</h3>
 <p>The <code>./panvimdoc.sh</code> script runs <code>pandoc</code> along with all the filters and custom output writer.</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ./panvimdoc.sh</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Usage:</span> ./panvimdoc.sh <span class="at">--project-name</span> PROJECT_NAME <span class="at">--input-file</span> INPUT_FILE <span class="at">--vim-version</span> VIM_VERSION <span class="at">--toc</span> TOC <span class="at">--description</span> DESCRIPTION <span class="at">--dedup-subheadings</span> DEDUP_SUBHEADINGS <span class="at">--treesitter</span> TREESITTER</span>
