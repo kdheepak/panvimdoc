@@ -14,7 +14,7 @@ vimdoc.
 
 # TLDR
 
-1. Choose a name for your project, i.e. `${VIMDOC_PROJECT_NAME}`. See
+1. Choose a name for your project, i.e. `__VIMDOC_PROJECT_NAME_HERE__`. See
    [.github/workflows/panvimdoc.yml](./.github/workflows/panvimdoc.yml) as an example.
 2. Add the following to `./.github/workflows/panvimdoc.yml`:
 
