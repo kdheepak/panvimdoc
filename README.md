@@ -42,7 +42,7 @@ vimdoc.
 
 # Usage
 
-### Using Github Actions
+### Generating vimdoc using GitHub Actions
 
 Create an empty doc file:
 
@@ -119,7 +119,7 @@ For an example of how this is used, see one of the following workflows:
 Or see any of the packages here that depend on this action:
 <https://github.com/kdheepak/panvimdoc/network/dependents>
 
-### Generating Web Documentation
+### Generating HTML using GitHub Actions
 
 If you are interested in making your vim plugin documentation available as a HTML page, check out
 [.github/workflows/docs.yml](./.github/workflows/docs.yml) file. 
@@ -160,7 +160,7 @@ jobs:
           folder: public
 ```
 
-### Using pre-commit
+### Using pre-commit locally
 
 [pre-commit](https://pre-commit.com/) lets you easily install and manage pre-commit hooks locally.
 
@@ -199,7 +199,7 @@ To change the input file, modify the `files` field of the hook and supply the co
         - <your-input-file.md>
 ```
 
-### Using it manually
+### Using it manually locally
 
 The `./panvimdoc.sh` script runs `pandoc` along with all the filters and custom output writer.
 
