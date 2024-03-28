@@ -369,7 +369,7 @@ Here are the specific goals that guide this project:
     pleasing in both vim and plain text files. This includes the appropriate use of columns and
     spacing.
 - **Guidelines**: While the format of built-in Vim documentation is a valuable reference, it is used
-    as guidelines rather than strict rules.
+    as a guideline rather than a specification.
 
 
 ==============================================================================
