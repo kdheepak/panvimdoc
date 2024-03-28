@@ -187,7 +187,7 @@ You can specify additional arguments to `panvimdoc.sh` using `args`. See the sec
 To change the input file, modify the `files` field of the hook and supply the corresponding `--input-file` to `args`. In the example below, the hook will be triggered if any `.md` file changes:
 
 ```yaml
-- repo: 'https://github.com/kdhee'
+- repo: 'https://github.com/kdheepak/panvimdoc'
   rev: v4.0.1
   hooks:
     - id: panvimdoc-docker
