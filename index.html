@@ -25,6 +25,7 @@
   <li><a href="#usage" id="toc-usage">Usage</a>
   <ul>
   <li><a href="#using-github-actions" id="toc-using-github-actions">Using Github Actions</a></li>
+  <li><a href="#generating-web-documentation" id="toc-generating-web-documentation">Generating Web Documentation</a></li>
   <li><a href="#using-pre-commit" id="toc-using-pre-commit">Using pre-commit</a></li>
   <li><a href="#using-it-manually" id="toc-using-it-manually">Using it manually</a></li>
   </ul></li>
@@ -150,9 +151,10 @@
 <li><a href="https://github.com/kdheepak/tabline.nvim/blob/main/.github/workflows/ci.yml">kdheepak/tabline.nvim</a>: <a href="https://github.com/kdheepak/tabline.nvim/blob/main/doc/tabline.txt">doc/tabline.txt</a></li>
 </ul>
 <p>Or see any of the packages here that depend on this action: <a href="https://github.com/kdheepak/panvimdoc/network/dependents" class="uri">https://github.com/kdheepak/panvimdoc/network/dependents</a></p>
-<summary>
+<h3 id="generating-web-documentation">Generating Web Documentation</h3>
 <p>If you are interested in making your vim plugin documentation available as a HTML page, check out <a href="./.github/workflows/docs.yml">.github/workflows/docs.yml</a> file.</p>
-<details>
+<p>You can find the Markdown file you are reading right now converted to HTML here: https://kdheepak.com/panvimdoc/</p>
+<p>Here’s an example:</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode yml"><code class="sourceCode yaml"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">name</span><span class="kw">:</span><span class="at"> docs</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">on</span><span class="kw">:</span></span>
@@ -182,7 +184,6 @@
 <span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">with</span><span class="kw">:</span></span>
 <span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">branch</span><span class="kw">:</span><span class="at"> gh-pages</span></span>
 <span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">folder</span><span class="kw">:</span><span class="at"> public</span></span></code></pre></div>
-</details>
 <h3 id="using-pre-commit">Using pre-commit</h3>
 <p><a href="https://pre-commit.com/">pre-commit</a> lets you easily install and manage pre-commit hooks locally.</p>
 <p>Two hooks are available, differing only in the way dependencies are handled:</p>
