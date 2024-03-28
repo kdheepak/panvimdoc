@@ -47,7 +47,7 @@ vimdoc.
 Create an empty doc file:
 
 ```bash
-touch doc/.gitkeepp
+touch doc/.gitkeep
 git commit -am "Add empty doc folder"
 git push
 ```
@@ -68,7 +68,7 @@ jobs:
       - name: panvimdoc
         uses: kdheepak/panvimdoc@main
         with:
-          vimdoc: ${VIMDOC_PROJECT_NAME} # Output vimdoc project name (required)
+          vimdoc: __VIMDOC_PROJECT_NAME_HERE__ # Output vimdoc project name (required)
           # The following are all optional
           pandoc: "README.md" # Input pandoc file
           version: "NVIM v0.8.0" # Vim version number
@@ -85,7 +85,7 @@ jobs:
           incrementheadinglevelby: 0 # Increment heading levels by specified number
 ```
 
-The only required thing for you to do is to choose a `VIMDOC_PROJECT_NAME` appropriately. This is
+The only required thing for you to do is to choose a `__VIMDOC_PROJECT_NAME_HERE__` appropriately. This is
 usually the name of the plugin or the documentation file without the `.txt` extension. For example,
 the following:
 
@@ -161,6 +161,7 @@ jobs:
 </details>
 
 ### Using pre-commit
+
 [pre-commit](https://pre-commit.com/) lets you easily install and manage pre-commit hooks locally.
 
 Two hooks are available, differing only in the way dependencies are handled:
