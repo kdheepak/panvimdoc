@@ -90,7 +90,7 @@ auto-committed to the repo.
 3. Usage                                                     *panvimdoc-usage*
 
 
-USING GITHUB ACTIONS ~
+GENERATING VIMDOC USING GITHUB ACTIONS ~
 
 Create an empty doc file:
 
@@ -170,7 +170,7 @@ Or see any of the packages here that depend on this action:
 <https://github.com/kdheepak/panvimdoc/network/dependents>
 
 
-GENERATING WEB DOCUMENTATION ~
+GENERATING HTML USING GITHUB ACTIONS ~
 
 If you are interested in making your vim plugin documentation available as a
 HTML page, check out .github/workflows/docs.yml <./.github/workflows/docs.yml>
@@ -214,7 +214,7 @@ Here’s an example:
 <
 
 
-USING PRE-COMMIT ~
+USING PRE-COMMIT LOCALLY ~
 
 pre-commit <https://pre-commit.com/> lets you easily install and manage
 pre-commit hooks locally.
@@ -259,7 +259,7 @@ triggered if any `.md` file changes:
 <
 
 
-USING IT MANUALLY ~
+USING IT MANUALLY LOCALLY ~
 
 The `./panvimdoc.sh` script runs `pandoc` along with all the filters and custom
 output writer.
