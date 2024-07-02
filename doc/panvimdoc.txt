@@ -88,10 +88,8 @@ and auto-committed to the repo.
 
 
 
-Optional:
-
-Add the following to `./.github/dependabot.yml` to auto update your github
-action dependencies:
+_Optional_: Add the following to `./.github/dependabot.yml` to auto update your
+github action dependencies:
 
 >
     version: 2
