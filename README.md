@@ -46,9 +46,7 @@ vimdoc.
 
 2. `README.md` gets converted to `./doc/${{ github.event.repository.name }}.txt` and auto-committed to the repo.
 
-Optional:
-
-Add the following to `./.github/dependabot.yml` to auto update your github action dependencies:
+_Optional_: Add the following to `./.github/dependabot.yml` to auto update your github action dependencies:
 
 ```
 version: 2
