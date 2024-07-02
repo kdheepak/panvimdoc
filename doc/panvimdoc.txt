@@ -88,6 +88,22 @@ and auto-committed to the repo.
 
 
 
+Optional:
+
+Add the following to `./.github/dependabot.yml` to auto update your github
+action dependencies:
+
+>
+    version: 2
+    updates:
+      # Maintain dependencies for GitHub Actions
+      - package-ecosystem: github-actions
+        directory: "/"
+        schedule:
+          interval: weekly
+        open-pull-requests-limit: 10
+<
+
 
 ==============================================================================
 3. Usage                                                     *panvimdoc-usage*
