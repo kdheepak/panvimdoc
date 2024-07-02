@@ -107,8 +107,7 @@
 <span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">branch</span><span class="kw">:</span><span class="at"> ${{ github.head_ref }}</span></span></code></pre></div></li>
 <li><p><code>README.md</code> gets converted to <code>./doc/${{ github.event.repository.name }}.txt</code> and auto-committed to the repo.</p></li>
 </ol>
-<p>Optional:</p>
-<p>Add the following to <code>./.github/dependabot.yml</code> to auto update your github action dependencies:</p>
+<p><em>Optional</em>: Add the following to <code>./.github/dependabot.yml</code> to auto update your github action dependencies:</p>
 <pre><code>version: 2
 updates:
   # Maintain dependencies for GitHub Actions
