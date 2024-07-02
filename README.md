@@ -14,15 +14,21 @@ vimdoc.
 
 # TLDR
 
-1. Choose a name for your project, i.e. `__VIMDOC_PROJECT_NAME_HERE__`. See
-   [.github/workflows/panvimdoc.yml](./.github/workflows/panvimdoc.yml) as an example.
-2. Add the following to `./.github/workflows/panvimdoc.yml`:
+1. Add the following to `./.github/workflows/panvimdoc.yml`:
 
    ```yaml
    name: panvimdoc
-
-   on: [push]
-
+   
+   on:
+     push:
+       branches: [main]
+       paths:
+         - README.md 
+         - .github/workflows/panvimdoc.yml 
+   
+   permissions:
+     contents: write
+   
    jobs:
      docs:
        runs-on: ubuntu-latest
@@ -31,14 +37,14 @@ vimdoc.
          - uses: actions/checkout@v2
          - uses: kdheepak/panvimdoc@main
            with:
-             vimdoc: __VIMDOC_PROJECT_NAME_HERE__
+             vimdoc: ${{ github.event.repository.name }}
          - uses: stefanzweifel/git-auto-commit-action@v4
            with:
              commit_message: "Auto generate docs"
              branch: ${{ github.head_ref }}
    ```
 
-3. `README.md` gets converted to `./doc/__VIMDOC_PROJECT_NAME_HERE__.txt` and auto-committed to the repo.
+2. `README.md` gets converted to `./doc/${{ github.event.repository.name }}.txt` and auto-committed to the repo.
 
 # Usage
 
