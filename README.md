@@ -285,9 +285,9 @@ are no dependencies except for the Markdown treesitter parser. It is neovim only
 this on github actions even for a vim plugin documentation.
 
 There's also [wincent/docvim](https://github.com/wincent/docvim) which is written in Haskell.
-Finally there's [FooSoft/md2vim](https://github.com/FooSoft/md2vim) which is written in Go.
+Finally, there's [FooSoft/md2vim](https://github.com/FooSoft/md2vim) which is written in Go.
 
-None of these projects use Pandoc. Pandoc Markdown supports a wide number of features: See
+However, none of these projects use Pandoc. Pandoc Markdown supports a wide number of features: See
 <https://pandoc.org/MANUAL.html> for more information. Most importantly, it supports a range of
 Markdown formats and flavors. And, Pandoc has filters and a custom output writer that can be
 configured in lua. Pandoc filters can extend the capability of Pandoc with minimal lua scripting,
