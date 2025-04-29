@@ -24,6 +24,10 @@ function string.ends_with(str, ends)
   return ends == "" or str:sub(-#ends) == ends
 end
 
+local function empty(s)
+  return s == nil or #s == 0
+end
+
 -- Character escaping
 local function escape(s, in_attribute)
   return s
@@ -97,18 +101,18 @@ local function renderTitle()
   local vim_doc_title = PROJECT .. ".txt"
   local vim_doc_title_tag = "*" .. vim_doc_title .. "*"
   local project_description = DESCRIPTION or ""
-  if not project_description or #project_description == 0 then
+  if empty(project_description) then
     local vim_version = VIMVERSION
-    if vim_version == nil then
+    if empty(vim_version) then
       vim_version = osExecute("nvim --version"):gmatch("([^\n]*)\n?")()
       if string.find(vim_version, "-dev") then
         vim_version = string.gsub(vim_version, "(.*)-dev.*", "%1")
       end
-      if vim_version == "" then
+      if empty(vim_version) then
         vim_version = osExecute("vim --version"):gmatch("([^\n]*)\n?")()
         vim_version = string.gsub(vim_version, "(.*) %(.*%)", "%1")
       end
-      if vim_version == "" then
+      if empty(vim_version) then
         vim_version = "vim"
       end
     elseif vim_version == "vim" then
