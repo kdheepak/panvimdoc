@@ -157,7 +157,7 @@ Lastly, if the markdown text is a url, the link is not added to the links sectio
 
 ## Linking to help tags
 
-Markdown doucments may suggest help tags via `:h help-tag`, which are converted to `|help-tag|` "hot links" in vimdoc.
+Markdown documents may suggest help tags via `:h help-tag`, which are converted to `|help-tag|` "hot links" in vimdoc.
 
 ## Mappings
 
