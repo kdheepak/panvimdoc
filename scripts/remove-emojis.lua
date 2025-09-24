@@ -29,7 +29,8 @@ local function cleanup(elem)
   if elem.text ~= nil then
     elem.text = demojify(elem.text)
     if #elem.text ~= 0 then
-      if elem.text:starts_with(":") and elem.text:ends_with(":") then
+      -- remove github emoji
+      if elem.text:starts_with(":") and elem.text:ends_with(":") and #elem.text > 2 then
         prevEmoji = true
         return {}
       else
