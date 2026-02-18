@@ -89,10 +89,10 @@ jobs:
           vimdoc: __VIMDOC_PROJECT_NAME_HERE__ # Output vimdoc project name (required)
           # The following are all optional
           pandoc: "README.md" # Input pandoc file
-          version: "NVIM v0.8.0" # Vim version number
+          version: "NVIM v0.8.0" # Vim version number shown below title
           toc: true # Table of contents
-          description: "" # Project description used in title (if empty, uses neovim version and current date)
-          titledatepattern: "%Y %B %d" # Pattern for the date that used in the title
+          description: "" # One sentence description used in title
+          titledatepattern: "%Y %B %d" # Pattern for the last modified date
           demojify: false # Strip emojis from the vimdoc
           dedupsubheadings: true # Add heading to subheading anchor links to ensure that subheadings are unique
           treesitter: true # Use treesitter for highlighting codeblocks
@@ -117,7 +117,9 @@ the following:
 will output a file `doc/panvimdoc.txt` and the vim help tag for it will be `panvimdoc` using the
 `main` branch of the repository.
 
-All the other options are optional.
+All the other options are optional. However, a `description` is recommended as
+suggested in Vim's
+[`|help-writing|`](https://github.com/vim/vim/blob/472f46e2316c32fa83ef8c9305d3c878c39a17ac/runtime/doc/helphelp.txt#L400-L407).
 
 It is recommended to pin to an exact version so you can be confident that no surprises occur for you
 or your users. See <https://github.com/kdheepak/panvimdoc/releases/latest> for which version to use.
