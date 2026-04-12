@@ -121,6 +121,17 @@ All the other options are optional. However, a `description` is recommended as
 suggested in Vim's
 [`|help-writing|`](https://github.com/vim/vim/blob/472f46e2316c32fa83ef8c9305d3c878c39a17ac/runtime/doc/helphelp.txt#L400-L407).
 
+```
+The first line in a help file should have the following format:
+
+*plugin_name.txt*	{short description of the plugin}
+
+The first field is a help tag where ":help plugin_name" will jump to.  The
+remainder of the line, after a Tab, describes the plugin purpose in a short
+way.  This will show up in the "LOCAL ADDITIONS" section of the main help
+file.  Check there that it shows up properly: |local-additions|.
+```
+
 It is recommended to pin to an exact version so you can be confident that no surprises occur for you
 or your users. See <https://github.com/kdheepak/panvimdoc/releases/latest> for which version to use.
 Once you pick a version, you can pin it like so:
