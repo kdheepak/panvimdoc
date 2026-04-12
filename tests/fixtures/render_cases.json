@@ -1,5 +1,23 @@
 [
   {
+    "name": "codeblocks_in_nested_lists_1",
+    "input": "fixtures/render/codeblocks_in_nested_lists_1.md",
+    "expected": "fixtures/render/codeblocks_in_nested_lists_1.txt",
+    "options": {
+      "toc": true,
+      "dedup_subheadings": false,
+      "treesitter": true,
+      "demojify": false,
+      "description": "Test Description",
+      "vimversion": "NVIM v0.8.0",
+      "ignore_rawblocks": true,
+      "shift_heading_level_by": 0,
+      "increment_heading_level_by": 0,
+      "doc_mapping": true,
+      "doc_mapping_project_name": true
+    }
+  },
+  {
     "name": "dedupheadings_1",
     "input": "fixtures/render/dedupheadings_1.md",
     "expected": "fixtures/render/dedupheadings_1.txt",

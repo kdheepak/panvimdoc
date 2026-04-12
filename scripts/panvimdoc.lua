@@ -51,6 +51,14 @@ local function indent(s, fl, ol)
   return table.concat(ret, "\n")
 end
 
+-- Vim help code fences must start at column 1; list indentation can also
+-- swallow the blank line before the opening fence, so normalize both markers.
+local function normalize_list_codeblock_fences(s)
+  s = s:gsub("\n +(>[^ \n]*)", "\n\n%1")
+  s = s:gsub("\n +(<)", "\n%1")
+  return s
+end
+
 Writer = pandoc.scaffolding.Writer
 
 local function inlines(ils)
@@ -323,7 +331,8 @@ end
 Writer.Block.BulletList = function(items)
   local buffer = {}
   items.content:map(function(item)
-    table.insert(buffer, indent(blocks(item, "\n"), "- ", "    "))
+    local rendered = indent(blocks(item, "\n"), "- ", "    ")
+    table.insert(buffer, normalize_list_codeblock_fences(rendered))
   end)
   return table.concat(buffer, "\n") .. "\n\n"
 end
