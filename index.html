@@ -420,13 +420,13 @@ You can use codeblocks that have language as `vimdoc` to write raw vimdoc.
 <dl>
 <dt>:[range]CommandName {doc=CommandName}</dt>
 <dd>
-<p>Command that operates over [range].</p>
+<pre><code>Command that operates over [range].</code></pre>
 </dd>
 </dl>
 <dl>
 <dt>{Visual}pv</dt>
 <dd>
-<p>Command that operates over highlighted lines.</p>
+<pre><code>Command that operates over highlighted lines.</code></pre>
 </dd>
 </dl>
 <h2 id="table">Table</h2>
@@ -439,7 +439,7 @@ You can use codeblocks that have language as `vimdoc` to write raw vimdoc.
 <col style="width: 58%" />
 </colgroup>
 <thead>
-<tr class="header">
+<tr>
 <th>Option</th>
 <th>Background</th>
 <th>Default</th>
@@ -447,109 +447,109 @@ You can use codeblocks that have language as `vimdoc` to write raw vimdoc.
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>lightness</td>
 <td>light</td>
 <td><code>nil</code></td>
 <td>Change background colors lightness. Options: <code>'bright'</code>, <code>'dim'</code>.</td>
 </tr>
-<tr class="even">
+<tr>
 <td>darkness</td>
 <td>dark</td>
 <td><code>nil</code></td>
 <td>Change background colors darkness. Options: <code>'stark'</code>, <code>'warm'</code>.</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>solid_vert_split</td>
 <td>both</td>
 <td><code>false</code></td>
 <td>Solid |hl-VertSplit| background.</td>
 </tr>
-<tr class="even">
+<tr>
 <td>solid_line_nr</td>
 <td>both</td>
 <td><code>false</code></td>
 <td>Solid |hl-LineNr| background.</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>solid_float_border</td>
 <td>both</td>
 <td><code>false</code></td>
 <td>Make |hl-FloatBorder| have a more distinguishable background highlight.</td>
 </tr>
-<tr class="even">
+<tr>
 <td>darken_noncurrent_window</td>
 <td>light</td>
 <td><code>false</code></td>
 <td>Make non-current window background darker than <em>Normal</em>.</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>lighten_noncurrent_window</td>
 <td>dark</td>
 <td><code>false</code></td>
 <td>Make non-current window background lighter than <em>Normal</em>.</td>
 </tr>
-<tr class="even">
+<tr>
 <td>italic_comments</td>
 <td>both</td>
 <td><code>true</code></td>
 <td>Make comments italicize.</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>darken_comments</td>
 <td>light</td>
 <td><code>38</code></td>
 <td>Percentage to darken comments relative to Normal bg.</td>
 </tr>
-<tr class="even">
+<tr>
 <td>lighten_comments</td>
 <td>dark</td>
 <td><code>38</code></td>
 <td>Percentage to lighten comments relative to Normal bg.</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>darken_non_text</td>
 <td>light</td>
 <td><code>25</code></td>
 <td>Percentage to darken |hl-NonText| relative to Normal bg.</td>
 </tr>
-<tr class="even">
+<tr>
 <td>lighten_non_text</td>
 <td>dark</td>
 <td><code>30</code></td>
 <td>Percentage to lighten |hl-NonText| relative to Normal bg.</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>darken_line_nr</td>
 <td>light</td>
 <td><code>33</code></td>
 <td>Percentage to darken |hl-LineNr| relative to Normal bg.</td>
 </tr>
-<tr class="even">
+<tr>
 <td>lighten_line_nr</td>
 <td>dark</td>
 <td><code>35</code></td>
 <td>Percentage to lighten |hl-LineNr| relative to Normal bg.</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>darken_cursor_line</td>
 <td>light</td>
 <td><code>3</code></td>
 <td>Percentage to darken |hl-CursorLine| relative to Normal bg.</td>
 </tr>
-<tr class="even">
+<tr>
 <td>lighten_cursor_line</td>
 <td>dark</td>
 <td><code>4</code></td>
 <td>Percentage to lighten |hl-CursorLine| relative to Normal bg.</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>colorize_diagnostic_underline_text</td>
 <td>both</td>
 <td><code>false</code></td>
 <td>Colorize the fg of <code>DiagnosticUnderline*</code>.</td>
 </tr>
-<tr class="even">
+<tr>
 <td>transparent_background</td>
 <td>both</td>
 <td><code>false</code></td>
@@ -586,24 +586,24 @@ This will only show up in the Markdown file.
 <p>Inversely to <a href="#markdown-only-content">markdown only content</a>, sometimes you want to show content only present in Vimdoc and hidden when viewed on Github.</p>
 <p>This can be placed inside <code>panvimdoc-include-comment</code> comments.</p>
 <p>As with markdown only content, you must include a blank link before and after the comment.</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- panvimdoc-include-comment You can include single lines  --&gt;</span></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- panvimdoc-include-comment</span></span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="co">Or multiple lines</span></span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="co">- with other</span></span>
-<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a><span class="co">- content</span></span>
-<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a><span class="co">- types</span></span>
-<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a><span class="co"># And vimdoc only headings</span></span>
-<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a><span class="co">## That can include subheadings</span></span>
-<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a><span class="co">Infact you can include any kind of content in the comment.</span></span>
-<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a><span class="co">--&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- panvimdoc-include-comment You can include single lines  --&gt;</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- panvimdoc-include-comment</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="co">Or multiple lines</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="co">- with other</span></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a><span class="co">- content</span></span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a><span class="co">- types</span></span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a><span class="co"># And vimdoc only headings</span></span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a><span class="co">## That can include subheadings</span></span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a><span class="co">Infact you can include any kind of content in the comment.</span></span>
+<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a><span class="co">--&gt;</span></span></code></pre></div>
 <p>Neovim is a great text editor.</p>
 <p>Neovim supports <code>:h lua</code> plugins and is also:</p>
 <ul>
