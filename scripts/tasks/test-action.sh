@@ -22,7 +22,7 @@ cp tests/fixtures/action/input.md "$tmpdir/input.md"
 cp tests/fixtures/action/expected.txt "$tmpdir/expected.txt"
 
 docker build -t "$image_tag" "$REPO_ROOT"
-docker run --rm -v "$tmpdir:/github/workspace" "$image_tag" \
+docker run --rm -w /github/workspace -v "$tmpdir:/github/workspace" "$image_tag" \
   --project-name action-smoke \
   --input-file input.md \
   --vim-version 'NVIM v0.8.0' \
