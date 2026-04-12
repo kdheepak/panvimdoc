@@ -7,13 +7,13 @@ jobs:
     runs-on: ubuntu-latest
     name: pandoc to vimdoc
     steps:
-      - uses: actions/checkout@v2
-      - name: panvimdoc
-        uses: ./
+      - uses: actions/checkout@v4
+      - uses: jdx/mise-action@v3
         with:
-          vimdoc: panvimdoc
-          pandoc: doc/panvimdoc.md
-          treesitter: true
+          install: true
+          cache: true
+      - name: Build vimdoc
+        run: mise tasks run panvimdoc:build
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: "Auto generate docs"

@@ -1,0 +1,24 @@
+[settings]
+env_shell_expand = true
+status.show_env = true
+
+[tools]
+uv = "latest"
+"github:jgm/pandoc" = "latest"
+"github:neovim/neovim" = "latest"
+
+[tasks."panvimdoc:build"]
+description = "Build doc/panvimdoc.txt from doc/panvimdoc.md"
+run = """
+./panvimdoc.sh --project-name panvimdoc --input-file doc/panvimdoc.md --vim-version 'NVIM v0.8.0' --toc true --description 'Convert Markdown docs to Vimdoc' --title-date-pattern '%Y %B %d' --dedup-subheadings true --demojify false --treesitter true --ignore-rawblocks true --doc-mapping false --doc-mapping-project-name true --shift-heading-level-by 0 --increment-heading-level-by 0
+"""
+
+[tasks."panvimdoc:docs"]
+description = "Build the static docs site"
+run = """
+pandoc --katex --from markdown+tex_math_single_backslash --to html5+smart --template=./scripts/template.html5 --css=/panvimdoc/css/theme.css --css=/panvimdoc/css/skylighting-solarized-theme.css --toc --wrap=none --metadata title=panvimdoc doc/panvimdoc.md --lua-filter=scripts/include-files.lua --lua-filter=scripts/skip-blocks.lua -t html -o public/index.html
+"""
+
+[tasks."panvimdoc:test"]
+description = "Run the pytest suite"
+run = "uv run pytest -q"
