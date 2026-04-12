@@ -7,14 +7,14 @@ jobs:
     runs-on: ubuntu-latest
     name: pandoc to vimdoc
     steps:
-      - uses: actions/checkout@v4
-      - uses: jdx/mise-action@v3
+      - uses: actions/checkout@v6
+      - uses: jdx/mise-action@v4
         with:
           install: true
           cache: true
       - name: Build vimdoc
         run: mise tasks run panvimdoc:build
-      - uses: stefanzweifel/git-auto-commit-action@v4
+      - uses: stefanzweifel/git-auto-commit-action@v7
         with:
           commit_message: "Auto generate docs"
           branch: ${{ github.head_ref }}
