@@ -94,45 +94,42 @@ local function osExecute(cmd)
 end
 
 local function renderTitle()
-  local t = {}
-  local function add(s)
-    table.insert(t, s)
-  end
-  local vim_doc_title = PROJECT .. ".txt"
-  local vim_doc_title_tag = "*" .. vim_doc_title .. "*"
-  local project_description = DESCRIPTION or ""
-  if empty(project_description) then
-    local vim_version = VIMVERSION
-    if empty(vim_version) then
-      vim_version = osExecute("nvim --version"):gmatch("([^\n]*)\n?")()
-      if string.find(vim_version, "-dev") then
-        vim_version = string.gsub(vim_version, "(.*)-dev.*", "%1")
-      end
-      if empty(vim_version) then
-        vim_version = osExecute("vim --version"):gmatch("([^\n]*)\n?")()
-        vim_version = string.gsub(vim_version, "(.*) %(.*%)", "%1")
-      end
-      if empty(vim_version) then
-        vim_version = "vim"
-      end
-    elseif vim_version == "vim" then
-      vim_version = osExecute("vim --version"):gmatch("([^\n]*)\n?")()
-    end
+  local title_lines = {}
 
-    local date = DATE
-    if date == nil then
-      date = os.date(TITLE_DATE_PATTERN)
-    end
-    local m = "For " .. vim_version
-    local r = "Last change: " .. date
-    local n = math.max(0, 78 - #vim_doc_title_tag - #m - #r)
-    local s = string.rep(" ", math.floor(n / 2))
-    project_description = s .. m .. s .. r
+  local title = format("*%s.txt*", PROJECT)
+  local project_description = DESCRIPTION or ""
+  if not empty(project_description) then
+    local pad_size = math.max(1, 78 - #title - #project_description)
+    local pad = string.rep(" ", pad_size)
+    title = title .. pad .. project_description
   end
-  local padding_len = math.max(0, 78 - #vim_doc_title_tag - #project_description)
-  add(vim_doc_title_tag .. string.rep(" ", padding_len) .. project_description)
-  add("")
-  return table.concat(t, "\n")
+  table.insert(title_lines, title)
+
+  local vim_version = VIMVERSION
+  if empty(vim_version) then
+    vim_version = osExecute("nvim --version"):gmatch("([^\n]*)\n?")()
+    if string.find(vim_version, "-dev") then
+      vim_version = string.gsub(vim_version, "(.*)-dev.*", "%1")
+    end
+    if empty(vim_version) then
+      vim_version = osExecute("vim --version"):gmatch("([^\n]*)\n?")()
+      vim_version = string.gsub(vim_version, "(.*) %(.*%)", "%1")
+    end
+    if empty(vim_version) then
+      vim_version = "vim"
+    end
+  elseif vim_version == "vim" then
+    vim_version = osExecute("vim --version"):gmatch("([^\n]*)\n?")()
+  end
+
+  local date = DATE or os.date(TITLE_DATE_PATTERN)
+  local subtitle = format("For %s    Last change: %s", vim_version, date)
+  subtitle = string.rep(" ", 78 - #subtitle) .. subtitle
+
+  table.insert(title_lines, subtitle)
+  table.insert(title_lines, "")
+
+  return table.concat(title_lines, "\n")
 end
 
 local function renderToc()

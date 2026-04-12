@@ -8,6 +8,32 @@ CUR_DIR = abspath(@__DIR__)
 SCRIPTS_DIR = joinpath(ROOT_DIR, "scripts")
 CURRENT_DATE = Dates.format(Dates.now(), dateformat"yyyy U dd")
 
+function expected_title(;
+  project = "test",
+  description::Union{String, Nothing} = "Test Description",
+  vimversion = "NVIM v0.8.0",
+  date = CURRENT_DATE,
+)
+  title = "*$(project).txt*"
+  if description !== nothing && !isempty(description)
+    title *= repeat(" ", max(1, 78 - length(title) - length(description))) * description
+  end
+  subtitle = "For $(vimversion)    Last change: $(date)"
+  subtitle = repeat(" ", max(0, 78 - length(subtitle))) * subtitle
+  return title * "\n" * subtitle
+end
+
+function with_current_title(
+  expected::String;
+  description::Union{String, Nothing} = "Test Description",
+  vimversion = "NVIM v0.8.0",
+  date = CURRENT_DATE,
+)
+  lines = split(expected, "\n"; keepempty = true)
+  body = join(lines[3:end], "\n")
+  return expected_title(; description, vimversion, date) * "\n\n" * body
+end
+
 function test_pandoc(
   text::String;
   toc = true,
@@ -21,6 +47,7 @@ function test_pandoc(
   increment_heading_level_by = 0,
   doc_mapping = true,
   doc_mapping_project_name = true,
+  date = CURRENT_DATE,
 )
   isfile(joinpath(ROOT_DIR, "doc/test.txt")) && rm(joinpath(ROOT_DIR, "doc/test.txt"))
   open(joinpath(CUR_DIR, "test.md"), "w") do file
@@ -30,7 +57,7 @@ function test_pandoc(
   if demojify
     filters = `$filters --lua-filter=$SCRIPTS_DIR/remove-emojis.lua`
   end
-  metadata = `--metadata=project:"test" --metadata=vimversion:"$vimversion" --metadata=toc:$toc --metadata=dedupsubheadings:$dedup_subheadings --metadata=treesitter:$treesitter --metadata=ignorerawblocks:$ignore_rawblocks --metadata=incrementheadinglevelby:$increment_heading_level_by --metadata=docmappingproject:$doc_mapping_project_name --metadata=docmapping:$doc_mapping`
+  metadata = `--metadata=project:"test" --metadata=vimversion:"$vimversion" --metadata=toc:$toc --metadata=dedupsubheadings:$dedup_subheadings --metadata=treesitter:$treesitter --metadata=ignorerawblocks:$ignore_rawblocks --metadata=incrementheadinglevelby:$increment_heading_level_by --metadata=docmappingproject:$doc_mapping_project_name --metadata=docmapping:$doc_mapping --metadata=date:"$date"`
   if description !== nothing
     metadata = `$metadata --metadata=description:"$description"`
   end
