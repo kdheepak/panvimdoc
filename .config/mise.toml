@@ -7,6 +7,7 @@ uv = "latest"
 "github:jgm/pandoc" = "latest"
 "github:neovim/neovim" = "latest"
 "github:j178/prek" = "latest"
+"github:BurntSushi/ripgrep" = "latest"
 
 [tasks."panvimdoc:build"]
 description = "Build doc/panvimdoc.txt from doc/panvimdoc.md"
