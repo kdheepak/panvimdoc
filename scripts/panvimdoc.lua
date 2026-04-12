@@ -24,6 +24,10 @@ function string.ends_with(str, ends)
   return ends == "" or str:sub(-#ends) == ends
 end
 
+local function normalize_spaces(str)
+  return str:gsub("\u{00A0}", " "):gsub("\u{FFFD}", " ")
+end
+
 local function empty(s)
   return s == nil or #s == 0
 end
@@ -409,7 +413,7 @@ Writer.Block.CodeBlock = function(el)
 end
 
 Writer.Inline.Str = function(el)
-  local s = stringify(el)
+  local s = normalize_spaces(stringify(el))
   if string.starts_with(s, "(http") and string.ends_with(s, ")") then
     return " <" .. string.sub(s, 2, #s - 2) .. ">"
   else
