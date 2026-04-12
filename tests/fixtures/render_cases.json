@@ -1,0 +1,416 @@
+[
+  {
+    "name": "dedupheadings_1",
+    "input": "fixtures/render/dedupheadings_1.md",
+    "expected": "fixtures/render/dedupheadings_1.txt",
+    "options": {
+      "toc": true,
+      "dedup_subheadings": true,
+      "treesitter": true,
+      "demojify": false,
+      "description": "Test Description",
+      "vimversion": "NVIM v0.8.0",
+      "ignore_rawblocks": true,
+      "shift_heading_level_by": 0,
+      "increment_heading_level_by": 0,
+      "doc_mapping": true,
+      "doc_mapping_project_name": true
+    }
+  },
+  {
+    "name": "definition-lists_1",
+    "input": "fixtures/render/definition-lists_1.md",
+    "expected": "fixtures/render/definition-lists_1.txt",
+    "options": {
+      "toc": false,
+      "dedup_subheadings": false,
+      "treesitter": true,
+      "demojify": true,
+      "description": "Test Description",
+      "vimversion": "NVIM v0.8.0",
+      "ignore_rawblocks": true,
+      "shift_heading_level_by": 0,
+      "increment_heading_level_by": 0,
+      "doc_mapping": true,
+      "doc_mapping_project_name": true
+    }
+  },
+  {
+    "name": "definition-lists_2",
+    "input": "fixtures/render/definition-lists_2.md",
+    "expected": "fixtures/render/definition-lists_2.txt",
+    "options": {
+      "toc": false,
+      "dedup_subheadings": false,
+      "treesitter": true,
+      "demojify": true,
+      "description": "Test Description",
+      "vimversion": "NVIM v0.8.0",
+      "ignore_rawblocks": true,
+      "shift_heading_level_by": 0,
+      "increment_heading_level_by": 0,
+      "doc_mapping": true,
+      "doc_mapping_project_name": false
+    }
+  },
+  {
+    "name": "demojify_1",
+    "input": "fixtures/render/demojify_1.md",
+    "expected": "fixtures/render/demojify_1.txt",
+    "options": {
+      "toc": true,
+      "dedup_subheadings": false,
+      "treesitter": true,
+      "demojify": true,
+      "description": "Test Description",
+      "vimversion": "NVIM v0.8.0",
+      "ignore_rawblocks": true,
+      "shift_heading_level_by": 0,
+      "increment_heading_level_by": 0,
+      "doc_mapping": true,
+      "doc_mapping_project_name": true
+    }
+  },
+  {
+    "name": "demojify_2",
+    "input": "fixtures/render/demojify_2.md",
+    "expected": "fixtures/render/demojify_2.txt",
+    "options": {
+      "toc": true,
+      "dedup_subheadings": false,
+      "treesitter": true,
+      "demojify": false,
+      "description": "Test Description",
+      "vimversion": "NVIM v0.8.0",
+      "ignore_rawblocks": true,
+      "shift_heading_level_by": 0,
+      "increment_heading_level_by": 0,
+      "doc_mapping": true,
+      "doc_mapping_project_name": true
+    }
+  },
+  {
+    "name": "demojify_3",
+    "input": "fixtures/render/demojify_3.md",
+    "expected": "fixtures/render/demojify_3.txt",
+    "options": {
+      "toc": true,
+      "dedup_subheadings": false,
+      "treesitter": true,
+      "demojify": true,
+      "description": "Test Description",
+      "vimversion": "NVIM v0.8.0",
+      "ignore_rawblocks": true,
+      "shift_heading_level_by": 0,
+      "increment_heading_level_by": 0,
+      "doc_mapping": true,
+      "doc_mapping_project_name": true
+    }
+  },
+  {
+    "name": "description_1",
+    "input": "fixtures/render/description_1.md",
+    "expected": "fixtures/render/description_1.txt",
+    "options": {
+      "toc": true,
+      "dedup_subheadings": false,
+      "treesitter": true,
+      "demojify": false,
+      "description": null,
+      "vimversion": "NVIM v0.8.0",
+      "ignore_rawblocks": true,
+      "shift_heading_level_by": 0,
+      "increment_heading_level_by": 0,
+      "doc_mapping": true,
+      "doc_mapping_project_name": true
+    }
+  },
+  {
+    "name": "description_2",
+    "input": "fixtures/render/description_2.md",
+    "expected": "fixtures/render/description_2.txt",
+    "options": {
+      "toc": true,
+      "dedup_subheadings": false,
+      "treesitter": true,
+      "demojify": false,
+      "description": null,
+      "vimversion": "VIM v9.0.0",
+      "ignore_rawblocks": true,
+      "shift_heading_level_by": 0,
+      "increment_heading_level_by": 0,
+      "doc_mapping": true,
+      "doc_mapping_project_name": true
+    }
+  },
+  {
+    "name": "headinglevelsby_1",
+    "input": "fixtures/render/headinglevelsby_1.md",
+    "expected": "fixtures/render/headinglevelsby_1.txt",
+    "options": {
+      "toc": true,
+      "dedup_subheadings": false,
+      "treesitter": true,
+      "demojify": false,
+      "description": "Test Description",
+      "vimversion": "NVIM v0.8.0",
+      "ignore_rawblocks": true,
+      "shift_heading_level_by": 0,
+      "increment_heading_level_by": 0,
+      "doc_mapping": true,
+      "doc_mapping_project_name": true
+    }
+  },
+  {
+    "name": "headinglevelsby_2",
+    "input": "fixtures/render/headinglevelsby_2.md",
+    "expected": "fixtures/render/headinglevelsby_2.txt",
+    "options": {
+      "toc": true,
+      "dedup_subheadings": false,
+      "treesitter": true,
+      "demojify": false,
+      "description": "Test Description",
+      "vimversion": "NVIM v0.8.0",
+      "ignore_rawblocks": true,
+      "shift_heading_level_by": 0,
+      "increment_heading_level_by": 2,
+      "doc_mapping": true,
+      "doc_mapping_project_name": true
+    }
+  },
+  {
+    "name": "headinglevelsby_3",
+    "input": "fixtures/render/headinglevelsby_3.md",
+    "expected": "fixtures/render/headinglevelsby_3.txt",
+    "options": {
+      "toc": true,
+      "dedup_subheadings": false,
+      "treesitter": true,
+      "demojify": false,
+      "description": "Test Description",
+      "vimversion": "NVIM v0.8.0",
+      "ignore_rawblocks": true,
+      "shift_heading_level_by": 1,
+      "increment_heading_level_by": 2,
+      "doc_mapping": true,
+      "doc_mapping_project_name": true
+    }
+  },
+  {
+    "name": "ignore_rawblock_1",
+    "input": "fixtures/render/ignore_rawblock_1.md",
+    "expected": "fixtures/render/ignore_rawblock_1.txt",
+    "options": {
+      "toc": true,
+      "dedup_subheadings": false,
+      "treesitter": true,
+      "demojify": false,
+      "description": "Test Description",
+      "vimversion": "NVIM v0.8.0",
+      "ignore_rawblocks": true,
+      "shift_heading_level_by": 0,
+      "increment_heading_level_by": 0,
+      "doc_mapping": true,
+      "doc_mapping_project_name": true
+    }
+  },
+  {
+    "name": "ignore_rawblock_2",
+    "input": "fixtures/render/ignore_rawblock_2.md",
+    "expected": "fixtures/render/ignore_rawblock_2.txt",
+    "options": {
+      "toc": true,
+      "dedup_subheadings": false,
+      "treesitter": true,
+      "demojify": false,
+      "description": "Test Description",
+      "vimversion": "NVIM v0.8.0",
+      "ignore_rawblocks": false,
+      "shift_heading_level_by": 0,
+      "increment_heading_level_by": 0,
+      "doc_mapping": true,
+      "doc_mapping_project_name": true
+    }
+  },
+  {
+    "name": "mapping_1",
+    "input": "fixtures/render/mapping_1.md",
+    "expected": "fixtures/render/mapping_1.txt",
+    "options": {
+      "toc": false,
+      "dedup_subheadings": false,
+      "treesitter": true,
+      "demojify": true,
+      "description": "Test Description",
+      "vimversion": "NVIM v0.8.0",
+      "ignore_rawblocks": true,
+      "shift_heading_level_by": 0,
+      "increment_heading_level_by": 0,
+      "doc_mapping": true,
+      "doc_mapping_project_name": true
+    }
+  },
+  {
+    "name": "mapping_2",
+    "input": "fixtures/render/mapping_2.md",
+    "expected": "fixtures/render/mapping_2.txt",
+    "options": {
+      "toc": false,
+      "dedup_subheadings": false,
+      "treesitter": true,
+      "demojify": true,
+      "description": "Test Description",
+      "vimversion": "NVIM v0.8.0",
+      "ignore_rawblocks": true,
+      "shift_heading_level_by": 0,
+      "increment_heading_level_by": 0,
+      "doc_mapping": false,
+      "doc_mapping_project_name": true
+    }
+  },
+  {
+    "name": "markdown_1",
+    "input": "fixtures/render/markdown_1.md",
+    "expected": "fixtures/render/markdown_1.txt",
+    "options": {
+      "toc": false,
+      "dedup_subheadings": false,
+      "treesitter": true,
+      "demojify": true,
+      "description": "Test Description",
+      "vimversion": "NVIM v0.8.0",
+      "ignore_rawblocks": true,
+      "shift_heading_level_by": 0,
+      "increment_heading_level_by": 0,
+      "doc_mapping": true,
+      "doc_mapping_project_name": true
+    }
+  },
+  {
+    "name": "para_1",
+    "input": "fixtures/render/para_1.md",
+    "expected": "fixtures/render/para_1.txt",
+    "options": {
+      "toc": false,
+      "dedup_subheadings": false,
+      "treesitter": true,
+      "demojify": true,
+      "description": "Test Description",
+      "vimversion": "NVIM v0.8.0",
+      "ignore_rawblocks": true,
+      "shift_heading_level_by": 0,
+      "increment_heading_level_by": 0,
+      "doc_mapping": true,
+      "doc_mapping_project_name": true
+    }
+  },
+  {
+    "name": "tables_1",
+    "input": "fixtures/render/tables_1.md",
+    "expected": "fixtures/render/tables_1.txt",
+    "options": {
+      "toc": false,
+      "dedup_subheadings": false,
+      "treesitter": true,
+      "demojify": false,
+      "description": "Test Description",
+      "vimversion": "NVIM v0.8.0",
+      "ignore_rawblocks": true,
+      "shift_heading_level_by": 0,
+      "increment_heading_level_by": 0,
+      "doc_mapping": true,
+      "doc_mapping_project_name": true
+    }
+  },
+  {
+    "name": "toc-emojis_1",
+    "input": "fixtures/render/toc-emojis_1.md",
+    "expected": "fixtures/render/toc-emojis_1.txt",
+    "options": {
+      "toc": true,
+      "dedup_subheadings": true,
+      "treesitter": true,
+      "demojify": true,
+      "description": "Test Description",
+      "vimversion": "NVIM v0.8.0",
+      "ignore_rawblocks": true,
+      "shift_heading_level_by": 0,
+      "increment_heading_level_by": 0,
+      "doc_mapping": true,
+      "doc_mapping_project_name": true
+    }
+  },
+  {
+    "name": "toc_1",
+    "input": "fixtures/render/toc_1.md",
+    "expected": "fixtures/render/toc_1.txt",
+    "options": {
+      "toc": true,
+      "dedup_subheadings": false,
+      "treesitter": true,
+      "demojify": false,
+      "description": "Test Description",
+      "vimversion": "NVIM v0.8.0",
+      "ignore_rawblocks": true,
+      "shift_heading_level_by": 0,
+      "increment_heading_level_by": 0,
+      "doc_mapping": true,
+      "doc_mapping_project_name": true
+    }
+  },
+  {
+    "name": "toc_2",
+    "input": "fixtures/render/toc_2.md",
+    "expected": "fixtures/render/toc_2.txt",
+    "options": {
+      "toc": false,
+      "dedup_subheadings": false,
+      "treesitter": true,
+      "demojify": false,
+      "description": "Test Description",
+      "vimversion": "NVIM v0.8.0",
+      "ignore_rawblocks": true,
+      "shift_heading_level_by": 0,
+      "increment_heading_level_by": 0,
+      "doc_mapping": true,
+      "doc_mapping_project_name": true
+    }
+  },
+  {
+    "name": "treesitter_1",
+    "input": "fixtures/render/treesitter_1.md",
+    "expected": "fixtures/render/treesitter_1.txt",
+    "options": {
+      "toc": true,
+      "dedup_subheadings": false,
+      "treesitter": true,
+      "demojify": false,
+      "description": "Test Description",
+      "vimversion": "NVIM v0.8.0",
+      "ignore_rawblocks": true,
+      "shift_heading_level_by": 0,
+      "increment_heading_level_by": 0,
+      "doc_mapping": true,
+      "doc_mapping_project_name": true
+    }
+  },
+  {
+    "name": "treesitter_2",
+    "input": "fixtures/render/treesitter_2.md",
+    "expected": "fixtures/render/treesitter_2.txt",
+    "options": {
+      "toc": true,
+      "dedup_subheadings": false,
+      "treesitter": false,
+      "demojify": false,
+      "description": "Test Description",
+      "vimversion": "NVIM v0.8.0",
+      "ignore_rawblocks": true,
+      "shift_heading_level_by": 0,
+      "increment_heading_level_by": 0,
+      "doc_mapping": true,
+      "doc_mapping_project_name": true
+    }
+  }
+]

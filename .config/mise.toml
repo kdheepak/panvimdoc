@@ -1,0 +1,30 @@
+[settings]
+env_shell_expand = true
+status.show_env = true
+
+[tools]
+uv = "latest"
+"github:jgm/pandoc" = "latest"
+"github:neovim/neovim" = "latest"
+"github:j178/prek" = "latest"
+"github:BurntSushi/ripgrep" = "latest"
+
+[tasks."panvimdoc:build"]
+description = "Build doc/panvimdoc.txt from doc/panvimdoc.md"
+run = "./scripts/tasks/build.sh"
+
+[tasks."panvimdoc:docs"]
+description = "Build the static docs site"
+run = "./scripts/tasks/docs.sh"
+
+[tasks."panvimdoc:test"]
+description = "Run the pytest suite"
+run = "./scripts/tasks/test.sh"
+
+[tasks."panvimdoc:test-action"]
+description = "Build the Docker action and smoke-test it in an isolated workspace"
+run = "./scripts/tasks/test-action.sh"
+
+[tasks."panvimdoc:test-prek"]
+description = "Validate the hook manifest and smoke-test the pre-commit hook with prek"
+run = "./scripts/tasks/test-prek.sh"

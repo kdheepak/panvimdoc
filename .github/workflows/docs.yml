@@ -12,25 +12,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: checkout code
-        uses: actions/checkout@v3
-      - name: pandoc markdown to html
-        uses: docker://pandoc/latex:3.1
+        uses: actions/checkout@v6
+      - name: Set up mise
+        uses: jdx/mise-action@v4
         with:
-          args: >-
-            --katex
-            --from markdown+tex_math_single_backslash
-            --to html5+smart
-            --template="./scripts/template.html5"
-            --css="/panvimdoc/css/theme.css"
-            --css="/panvimdoc/css/skylighting-solarized-theme.css"
-            --toc
-            --wrap=none
-            --metadata title="panvimdoc"
-            doc/panvimdoc.md
-            --lua-filter=scripts/include-files.lua
-            --lua-filter=scripts/skip-blocks.lua
-            -t html
-            -o public/index.html
+          install: true
+          cache: true
+      - name: Build docs site
+        run: mise tasks run panvimdoc:docs
       - name: deploy to GitHub pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:

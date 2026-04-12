@@ -22,7 +22,7 @@ Arguments:
   --doc-mapping-project-name: 'true' if tags generated for mapping docs contain project name, 'false' otherwise
   --shift-heading-level-by: 0 if you don't want to shift heading levels , n otherwise
   --increment-heading-level-by: 0 if don't want to increment the starting heading number, n otherwise
-  --scripts-dir: '/scripts' if 'GITHUB_ACTIONS=true' or '.dockerenv' is present, '$0/scripts' if no argument is passed, scripts directory otherwise
+  --scripts-dir: overrides the scripts directory; otherwise panvimdoc uses the scripts directory next to this file and falls back to '/scripts'
 EOF
     exit 0
 }
@@ -117,15 +117,19 @@ while [[ $# -gt 0 ]]; do
     esac
 done
 
-# If the user provided a scripts directory, use that. Otherwise, determine environment.
-if [[ "${GITHUB_ACTIONS:-false}" == "true" || -f /.dockerenv ]]; then
-    # GitHub Actions or Docker
+# If the user provided a scripts directory, use that. Otherwise prefer the
+# scripts directory next to this file and fall back to the Docker action path.
+SCRIPT_DIR="$(cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd)"
+DEFAULT_SCRIPTS_DIR="$SCRIPT_DIR/scripts"
+
+if [[ -n "${SCRIPTS_DIR:-}" ]]; then
+    :
+elif [[ -d "$DEFAULT_SCRIPTS_DIR" ]]; then
+    SCRIPTS_DIR="$DEFAULT_SCRIPTS_DIR"
+elif [[ -d "/scripts" ]]; then
     SCRIPTS_DIR="/scripts"
-elif [[ -n "${SCRIPTS_DIR:-}" ]]; then
-    SCRIPTS_DIR="$SCRIPTS_DIR"
 else
-    # Use the scripts directory alongside the script's location
-    SCRIPTS_DIR="$(dirname "$(readlink -f "$0")")/scripts"
+    SCRIPTS_DIR="$DEFAULT_SCRIPTS_DIR"
 fi
 
 # If the scripts folder doesn't exist, throw an error
