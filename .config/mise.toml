@@ -23,3 +23,49 @@ pandoc --katex --from markdown+tex_math_single_backslash --to html5+smart --temp
 [tasks."panvimdoc:test"]
 description = "Run the pytest suite"
 run = "uv run pytest -q"
+
+[tasks."panvimdoc:test-prek"]
+description = "Validate the hook manifest and smoke-test the pre-commit hook with prek"
+run = """
+mkdir -p /tmp/prek-home
+PREK_HOME=/tmp/prek-home prek validate-manifest .pre-commit-hooks.yaml
+REPO_ROOT="$PWD"
+TMPDIR="$(mktemp -d)"
+cleanup() {
+  rm -rf "$TMPDIR"
+}
+trap cleanup EXIT
+git -C "$TMPDIR" init -q
+mkdir -p "$TMPDIR/doc"
+printf '# sample\n' > "$TMPDIR/README.md"
+git -C "$TMPDIR" add README.md
+cat > "$TMPDIR/.pre-commit-config.yaml" <<EOF
+repos:
+- repo: local
+  hooks:
+  - id: panvimdoc-local
+    name: panvimdoc local
+    entry: ${REPO_ROOT}/panvimdoc.pre-commit.sh
+    language: system
+    files: ^README\\.md$
+    args:
+      - --project-name
+      - sample
+      - --input-file
+      - README.md
+      - --scripts-dir
+      - ${REPO_ROOT}/scripts
+    pass_filenames: false
+EOF
+(
+  cd "$TMPDIR"
+  "$REPO_ROOT/panvimdoc.sh" --project-name sample --input-file README.md --scripts-dir "$REPO_ROOT/scripts" >/dev/null
+)
+PREK_HOME=/tmp/prek-home PREK_COLOR=never prek run --config "$TMPDIR/.pre-commit-config.yaml" --all-files -C "$TMPDIR"
+printf '\nMore text\n' >> "$TMPDIR/README.md"
+if PREK_HOME=/tmp/prek-home PREK_COLOR=never prek run --config "$TMPDIR/.pre-commit-config.yaml" --all-files -C "$TMPDIR"; then
+  echo "expected prek to fail when generated documentation is stale"
+  exit 1
+fi
+rg -q 'More text' "$TMPDIR/doc/sample.txt"
+"""
