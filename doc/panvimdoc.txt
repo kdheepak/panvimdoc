@@ -1,5 +1,4 @@
-*panvimdoc.txt*                                Convert Markdown docs to Vimdoc
-                              For NVIM v0.8.0    Last change: 2026 February 18
+*panvimdoc.txt*         For NVIM v0.8.0         Last change: 2025 September 26
 
 ==============================================================================
 Table of Contents                                *panvimdoc-table-of-contents*
@@ -136,10 +135,10 @@ Then add the following to `./.github/workflows/panvimdoc.yml`:
               vimdoc: __VIMDOC_PROJECT_NAME_HERE__ # Output vimdoc project name (required)
               # The following are all optional
               pandoc: "README.md" # Input pandoc file
-              version: "NVIM v0.8.0" # Vim version number shown below title
+              version: "NVIM v0.8.0" # Vim version number
               toc: true # Table of contents
-              description: "" # One sentence description used in title
-              titledatepattern: "%Y %B %d" # Pattern for the last modified date
+              description: "" # Project description used in title (if empty, uses neovim version and current date)
+              titledatepattern: "%Y %B %d" # Pattern for the date that used in the title
               demojify: false # Strip emojis from the vimdoc
               dedupsubheadings: true # Add heading to subheading anchor links to ensure that subheadings are unique
               treesitter: true # Use treesitter for highlighting codeblocks
@@ -165,21 +164,7 @@ following:
 will output a file `doc/panvimdoc.txt` and the vim help tag for it will be
 `panvimdoc` using the `main` branch of the repository.
 
-
-All the other options are optional. However, a `description` is recommended as
-suggested in Vim’s [`|help-writing|`](https://github.com/vim/vim/blob/472f46e2316c32fa83ef8c9305d3c878c39a17ac/runtime/doc/helphelp.txt#L400-L407).
-
-```
-The first line in a help file should have the following format:
-
-*plugin_name.txt*	{short description of the plugin}
-
-The first field is a help tag where ":help plugin_name" will jump to.  The
-remainder of the line, after a Tab, describes the plugin purpose in a short
-way.  This will show up in the "LOCAL ADDITIONS" section of the main help
-file.  Check there that it shows up properly: |local-additions|.
-```
-
+All the other options are optional.
 
 It is recommended to pin to an exact version so you can be confident that no
 surprises occur for you or your users. See
@@ -629,7 +614,7 @@ Notice that the tag `*projectName-:Command*` is generated for you.
 Additionally, content in square brackets `[...]` or curly brackets `{...}` is
 also dropped for creating the tag name.
 
-i.e. the term `### :[range]Command` becomes the tag `*projectName-:Command*`.
+i.e. the term `### :[range]Command` becomes the tag `*projectName-:Command*`.
 
 See following mappings as examples:
 
