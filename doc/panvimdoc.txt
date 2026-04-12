@@ -56,17 +56,17 @@ Generate documentation in vimdoc.
 
 >yaml
     name: panvimdoc
-
+    
     on:
       push:
         branches: [main]
         paths:
-          - README.md
-          - .github/workflows/panvimdoc.yml
-
+          - README.md 
+          - .github/workflows/panvimdoc.yml 
+    
     permissions:
       contents: write
-
+    
     jobs:
       docs:
         runs-on: ubuntu-latest
@@ -121,9 +121,9 @@ Then add the following to `./.github/workflows/panvimdoc.yml`:
 
 >yaml
     name: panvimdoc
-
+    
     on: [push]
-
+    
     jobs:
       docs:
         runs-on: ubuntu-latest
@@ -171,9 +171,9 @@ suggested in Vim’s `|help-writing|`
 
 >
     The first line in a help file should have the following format:
-
+    
     *plugin_name.txt*	{short description of the plugin}
-
+    
     The first field is a help tag where ":help plugin_name" will jump to.  The
     remainder of the line, after a Tab, describes the plugin purpose in a short
     way.  This will show up in the "LOCAL ADDITIONS" section of the main help
@@ -213,14 +213,14 @@ Here’s an example:
 
 >yml
     name: docs
-
+    
     on:
       push:
         branches: main
-
+    
     permissions:
       contents: write
-
+    
     jobs:
       publish-gh-page:
         runs-on: ubuntu-latest
@@ -297,7 +297,7 @@ output writer.
 >bash
     $ ./panvimdoc.sh
     Usage: ./panvimdoc.sh --project-name PROJECT_NAME --input-file INPUT_FILE --vim-version VIM_VERSION --toc TOC --description DESCRIPTION --dedup-subheadings DEDUP_SUBHEADINGS --treesitter TREESITTER
-
+    
     Arguments:
       --project-name: the name of the project
       --input-file: the input markdown file
@@ -469,9 +469,9 @@ CODEBLOCKS                                *panvimdoc-specification-codeblocks*
 
 >
     Multi line Code blocks are indented 4 spaces and
-
+    
     are formatted
-
+    
     appropriately with > and <.
 <
 
@@ -574,51 +574,51 @@ For example, the following in a markdown file:
 
 >markdown
     :FnlCompileBuffer
-
+    
     : Compiles current active fennel buffer
-
+    
     :FnlCompile[!]
-
+    
     : Diff compiles all indexed fennel files
     If bang! is present then forcefully compiles all `source` files
-
+    
     :Fnl {expr}
-
+    
     : Executes and Evalutate {expr} of fennel
-
+    
          ```fennel
          :Fnl (print "Hello World")
-
+    
          :Fnl (values some_var)
          ```
-
+    
          Testing
 <
 
 becomes the following vimdoc:
 
 >
-
+    
                                                  *projectName-:FnlCompileBuffer*
-
-
+    
+    
     :FnlCompileBuffer                      Compiles current active fennel buffer
-
-
+    
+    
                                                        *projectName-:FnlCompile*
-
-
+    
+    
     :FnlCompile[!]                         Diff compiles all indexed fennel files
                                            If bang! is present then forcefully compiles all `source` files
-
-
+    
+    
                                                               *projectName-:Fnl*
-
-
+    
+    
     :Fnl {expr}                            Executes and Evalutate {expr} of fennel
                                            >fennel
                                                :Fnl (print "Hello World")
-
+    
                                                :Fnl (values some_var)
                                            <
                                            Testing
@@ -734,15 +734,15 @@ inside `panvimdoc-ignore-{start/end}` blocks:
 
 >
     <!-- panvimdoc-ignore-start -->
-
+    
     <details>
         <summary>Vimdoc Ignored Section</summary>
-
+    
     This section will ignored when generating the vimdoc file.
     This will only show up in the Markdown file.
-
+    
     </details>
-
+    
     <!-- panvimdoc-ignore-end -->
 <
 
@@ -767,9 +767,9 @@ because it may cause the rest of your document to be ignored. Do this instead:
 
 >
     <!-- panvimdoc-ignore-start -->
-
+    
     ![screenshot](./gif.gif)
-
+    
     <!-- panvimdoc-ignore-end -->
 <
 
@@ -785,23 +785,23 @@ As with markdown only content, you must include a blank link before and after
 the comment.
 
 >markdown
-
+    
     <!-- panvimdoc-include-comment You can include single lines  -->
-
+    
     <!-- panvimdoc-include-comment
-
+    
     Or multiple lines
-
+    
     - with other
     - content
     - types
-
+    
     # And vimdoc only headings
-
+    
     ## That can include subheadings
-
+    
     Infact you can include any kind of content in the comment.
-
+    
     -->
 <
 
