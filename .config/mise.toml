@@ -10,62 +10,20 @@ uv = "latest"
 
 [tasks."panvimdoc:build"]
 description = "Build doc/panvimdoc.txt from doc/panvimdoc.md"
-run = """
-./panvimdoc.sh --project-name panvimdoc --input-file doc/panvimdoc.md --toc true --description 'Convert Markdown docs to Vimdoc' --title-date-pattern '%Y %B %d' --dedup-subheadings true --demojify false --treesitter true --ignore-rawblocks true --doc-mapping false --doc-mapping-project-name true --shift-heading-level-by 0 --increment-heading-level-by 0
-"""
+run = "./scripts/tasks/build.sh"
 
 [tasks."panvimdoc:docs"]
 description = "Build the static docs site"
-run = """
-pandoc --katex --from markdown+tex_math_single_backslash --to html5+smart --template=./scripts/template.html5 --css=/panvimdoc/css/theme.css --css=/panvimdoc/css/skylighting-solarized-theme.css --toc --wrap=none --metadata title=panvimdoc doc/panvimdoc.md --lua-filter=scripts/include-files.lua --lua-filter=scripts/skip-blocks.lua -t html -o public/index.html
-"""
+run = "./scripts/tasks/docs.sh"
 
 [tasks."panvimdoc:test"]
 description = "Run the pytest suite"
-run = "uv run pytest -q"
+run = "./scripts/tasks/test.sh"
+
+[tasks."panvimdoc:test-action"]
+description = "Build the Docker action and smoke-test it in an isolated workspace"
+run = "./scripts/tasks/test-action.sh"
 
 [tasks."panvimdoc:test-prek"]
 description = "Validate the hook manifest and smoke-test the pre-commit hook with prek"
-run = """
-mkdir -p /tmp/prek-home
-PREK_HOME=/tmp/prek-home prek validate-manifest .pre-commit-hooks.yaml
-REPO_ROOT="$PWD"
-TMPDIR="$(mktemp -d)"
-cleanup() {
-  rm -rf "$TMPDIR"
-}
-trap cleanup EXIT
-git -C "$TMPDIR" init -q
-mkdir -p "$TMPDIR/doc"
-printf '# sample\n' > "$TMPDIR/README.md"
-git -C "$TMPDIR" add README.md
-cat > "$TMPDIR/.pre-commit-config.yaml" <<EOF
-repos:
-- repo: local
-  hooks:
-  - id: panvimdoc-local
-    name: panvimdoc local
-    entry: ${REPO_ROOT}/panvimdoc.pre-commit.sh
-    language: system
-    files: ^README\\.md$
-    args:
-      - --project-name
-      - sample
-      - --input-file
-      - README.md
-      - --scripts-dir
-      - ${REPO_ROOT}/scripts
-    pass_filenames: false
-EOF
-(
-  cd "$TMPDIR"
-  "$REPO_ROOT/panvimdoc.sh" --project-name sample --input-file README.md --scripts-dir "$REPO_ROOT/scripts" >/dev/null
-)
-PREK_HOME=/tmp/prek-home PREK_COLOR=never prek run --config "$TMPDIR/.pre-commit-config.yaml" --all-files -C "$TMPDIR"
-printf '\nMore text\n' >> "$TMPDIR/README.md"
-if PREK_HOME=/tmp/prek-home PREK_COLOR=never prek run --config "$TMPDIR/.pre-commit-config.yaml" --all-files -C "$TMPDIR"; then
-  echo "expected prek to fail when generated documentation is stale"
-  exit 1
-fi
-rg -q 'More text' "$TMPDIR/doc/sample.txt"
-"""
+run = "./scripts/tasks/test-prek.sh"
