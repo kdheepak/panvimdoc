@@ -46,6 +46,21 @@ class RenderCase(BaseModel):
         return TESTS_DIR / self.expected
 
 
+DEFAULT_RENDER_OPTIONS = RenderOptions(
+    toc=True,
+    dedup_subheadings=False,
+    treesitter=True,
+    demojify=False,
+    description="Test Description",
+    vimversion="NVIM v0.8.0",
+    ignore_rawblocks=True,
+    shift_heading_level_by=0,
+    increment_heading_level_by=0,
+    doc_mapping=True,
+    doc_mapping_project_name=True,
+)
+
+
 def load_render_cases() -> list[RenderCase]:
     return TypeAdapter(list[RenderCase]).validate_json(
         CASES_PATH.read_text(encoding="utf-8")
@@ -59,6 +74,22 @@ def metadata_arg(key: str, value: str | bool | int) -> str:
 
 def normalize_output(text: str) -> str:
     return "\n".join(line.rstrip() for line in text.split("\n"))
+
+
+def current_neovim_version() -> str:
+    completed = subprocess.run(
+        ["nvim", "--version"],
+        cwd=ROOT,
+        capture_output=True,
+        check=False,
+        text=True,
+    )
+    if completed.returncode != 0:
+        raise AssertionError(f"nvim --version failed:\n{completed.stderr}")
+    first_line = completed.stdout.splitlines()[0]
+    if "-dev" in first_line:
+        return first_line.split("-dev", maxsplit=1)[0]
+    return first_line
 
 
 def render_markdown(markdown: str, options: RenderOptions) -> str:
@@ -139,3 +170,77 @@ def test_help_usage() -> None:
     assert completed.returncode == 0, completed.stderr
     assert "Usage:" in completed.stdout
     assert "Arguments:" in completed.stdout
+
+
+def test_render_uses_current_neovim_version_when_vimversion_is_empty() -> None:
+    actual = render_markdown(
+        "# panvimdoc\n",
+        DEFAULT_RENDER_OPTIONS.model_copy(
+            update={"description": None, "vimversion": ""}
+        ),
+    )
+    lines = actual.splitlines()
+    assert lines[0] == "*test.txt*"
+    assert lines[1].endswith(
+        f"For {current_neovim_version()}    Last change: {TEST_DATE}"
+    )
+
+
+def test_panvimdoc_shell_uses_current_neovim_version_when_vimversion_is_omitted() -> (
+    None
+):
+    project_name = "test-current-neovim"
+    output_path = ROOT / "doc" / f"{project_name}.txt"
+
+    with tempfile.TemporaryDirectory() as tmpdir:
+        input_path = Path(tmpdir) / "input.md"
+        input_path.write_text("# panvimdoc\n", encoding="utf-8")
+
+        if output_path.exists():
+            output_path.unlink()
+
+        completed = subprocess.run(
+            [
+                str(ROOT / "panvimdoc.sh"),
+                "--project-name",
+                project_name,
+                "--input-file",
+                str(input_path),
+                "--toc",
+                "true",
+                "--description",
+                "",
+                "--dedup-subheadings",
+                "false",
+                "--treesitter",
+                "true",
+                "--ignore-rawblocks",
+                "true",
+                "--doc-mapping",
+                "true",
+                "--doc-mapping-project-name",
+                "true",
+                "--demojify",
+                "false",
+                "--shift-heading-level-by",
+                "0",
+                "--increment-heading-level-by",
+                "0",
+                "--scripts-dir",
+                str(ROOT / "scripts"),
+            ],
+            cwd=ROOT,
+            capture_output=True,
+            check=False,
+            text=True,
+        )
+        try:
+            assert completed.returncode == 0, completed.stderr
+            actual = normalize_output(output_path.read_text(encoding="utf-8"))
+        finally:
+            if output_path.exists():
+                output_path.unlink()
+
+    lines = actual.splitlines()
+    assert lines[0] == f"*{project_name}.txt*"
+    assert f"For {current_neovim_version()}    Last change:" in lines[1]
