@@ -91,6 +91,13 @@ local DOC_MAPPING_PROJECT = true
 local DATE = nil
 local TITLE_DATE_PATTERN = "%Y %B %d"
 
+local ANCHORS = {}
+
+-- Compare link text to a heading loosely, ignoring case, spacing and markup.
+local function normalize(text)
+  return (text:lower():gsub("[^%w]", ""))
+end
+
 local CURRENT_HEADER = nil
 local SOFTBREAK_TO_HARDBREAK = "space"
 
@@ -212,6 +219,28 @@ Writer.Pandoc = function(doc, opts)
   HEADER_COUNT = HEADER_COUNT + doc.meta.incrementheadinglevelby
   DATE = doc.meta.date
   TITLE_DATE_PATTERN = doc.meta.titledatepattern
+  ANCHORS = {}
+  local section = nil
+  doc:walk({
+    Header = function(h)
+      local slug = string.lower(string.gsub(stringify(h), "%s", "-"))
+      local tag
+      if h.level == 1 then
+        section = slug
+        tag = string.format("%s-%s", PROJECT, slug)
+      elseif h.level == 2 then
+        if DEDUP_SUBHEADINGS and section then
+          tag = string.format("%s-%s-%s", PROJECT, section, slug)
+        else
+          tag = string.format("%s-%s", PROJECT, slug)
+        end
+      end
+      -- Deeper levels are rendered without a tag, so they stay unresolvable.
+      if tag and h.identifier and #h.identifier > 0 then
+        ANCHORS[h.identifier] = { tag = tag, text = stringify(h) }
+      end
+    end,
+  })
   local d = blocks(doc.blocks)
   local notes = renderNotes()
   local toc = renderToc()
@@ -480,7 +509,17 @@ Writer.Inline.Link = function(el)
   if string.starts_with(tgt, "https://neovim.io/doc/") then
     return "|" .. s .. "|"
   elseif string.starts_with(tgt, "#") then
-    return "|" .. PROJECT .. "-" .. s:lower():gsub("%s", "-") .. "|"
+    local anchor = ANCHORS[tgt:sub(2)]
+    if anchor then
+      -- Keep wording that adds something; drop it when it just repeats the
+      -- heading, which the tag already spells out.
+      if normalize(s) == normalize(anchor.text) then
+        return "|" .. anchor.tag .. "|"
+      end
+      return s .. " |" .. anchor.tag .. "|"
+    end
+    io.stderr:write(string.format("panvimdoc: '%s' has no tagged heading\n", tgt))
+    return s
   elseif string.starts_with(s, "http") then
     return "<" .. s .. ">"
   else
