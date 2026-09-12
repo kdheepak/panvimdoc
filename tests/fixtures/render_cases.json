@@ -252,6 +252,42 @@
     }
   },
   {
+    "name": "internal-links_1",
+    "input": "fixtures/render/internal-links_1.md",
+    "expected": "fixtures/render/internal-links_1.txt",
+    "options": {
+      "toc": true,
+      "dedup_subheadings": false,
+      "treesitter": true,
+      "demojify": false,
+      "description": "Test Description",
+      "vimversion": "NVIM v0.8.0",
+      "ignore_rawblocks": true,
+      "shift_heading_level_by": 0,
+      "increment_heading_level_by": 0,
+      "doc_mapping": true,
+      "doc_mapping_project_name": true
+    }
+  },
+  {
+    "name": "internal-links_2",
+    "input": "fixtures/render/internal-links_2.md",
+    "expected": "fixtures/render/internal-links_2.txt",
+    "options": {
+      "toc": true,
+      "dedup_subheadings": true,
+      "treesitter": true,
+      "demojify": false,
+      "description": "Test Description",
+      "vimversion": "NVIM v0.8.0",
+      "ignore_rawblocks": true,
+      "shift_heading_level_by": 0,
+      "increment_heading_level_by": 0,
+      "doc_mapping": true,
+      "doc_mapping_project_name": true
+    }
+  },
+  {
     "name": "mapping_1",
     "input": "fixtures/render/mapping_1.md",
     "expected": "fixtures/render/mapping_1.txt",
