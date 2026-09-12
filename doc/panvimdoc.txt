@@ -1,5 +1,5 @@
 *panvimdoc.txt*                                Convert Markdown docs to Vimdoc
-                                For NVIM v0.12.1    Last change: 2026 April 12
+                            For NVIM v0.12.1    Last change: 2026 September 12
 
 ==============================================================================
 Table of Contents                                *panvimdoc-table-of-contents*
@@ -776,8 +776,8 @@ because it may cause the rest of your document to be ignored. Do this instead:
 
 VIMDOC ONLY CONTENT                    *panvimdoc-heading-vimdoc-only-content*
 
-Inversely to |panvimdoc-markdown-only-content|, sometimes you want to show
-content only present in Vimdoc and hidden when viewed on Github.
+Inversely to |panvimdoc-heading-markdown-only-content|, sometimes you want to
+show content only present in Vimdoc and hidden when viewed on Github.
 
 This can be placed inside `panvimdoc-include-comment` comments.
 
