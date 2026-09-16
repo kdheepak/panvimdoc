@@ -244,3 +244,66 @@ def test_panvimdoc_shell_uses_current_neovim_version_when_vimversion_is_omitted(
     lines = actual.splitlines()
     assert lines[0] == f"*{project_name}.txt*"
     assert f"For {current_neovim_version()}    Last change:" in lines[1]
+
+
+def run_panvimdoc_shell(workdir: Path, markdown: str) -> Path:
+    input_path = workdir / "input.md"
+    input_path.write_text(markdown, encoding="utf-8")
+    (workdir / "doc").mkdir(exist_ok=True)
+
+    completed = subprocess.run(
+        [
+            str(ROOT / "panvimdoc.sh"),
+            "--project-name",
+            "test",
+            "--input-file",
+            str(input_path),
+            "--vim-version",
+            "NVIM v0.8.0",
+            "--description",
+            "Test Description",
+            "--scripts-dir",
+            str(ROOT / "scripts"),
+        ],
+        cwd=workdir,
+        capture_output=True,
+        check=False,
+        text=True,
+    )
+    assert completed.returncode == 0, completed.stderr
+    return workdir / "doc" / "test.txt"
+
+
+def backdate(vimdoc: str, date: str) -> str:
+    lines = vimdoc.split("\n")
+    subtitle = lines[1].strip().rsplit("Last change: ", maxsplit=1)[0]
+    lines[1] = f"{subtitle}Last change: {date}".rjust(78)
+    return "\n".join(lines)
+
+
+def test_panvimdoc_shell_keeps_existing_vimdoc_when_only_the_date_changes() -> None:
+    with tempfile.TemporaryDirectory() as tmpdir:
+        workdir = Path(tmpdir)
+        output_path = run_panvimdoc_shell(workdir, "# panvimdoc\n")
+        existing = backdate(output_path.read_text(encoding="utf-8"), "2000 January 01")
+        output_path.write_text(existing, encoding="utf-8")
+
+        run_panvimdoc_shell(workdir, "# panvimdoc\n")
+
+        assert output_path.read_text(encoding="utf-8") == existing
+
+
+def test_panvimdoc_shell_updates_the_date_when_the_content_changes() -> None:
+    with tempfile.TemporaryDirectory() as tmpdir:
+        workdir = Path(tmpdir)
+        output_path = run_panvimdoc_shell(workdir, "# panvimdoc\n")
+        output_path.write_text(
+            backdate(output_path.read_text(encoding="utf-8"), "2000 January 01"),
+            encoding="utf-8",
+        )
+
+        run_panvimdoc_shell(workdir, "# panvimdoc\n\nMore text\n")
+
+        actual = output_path.read_text(encoding="utf-8")
+        assert "More text" in actual
+        assert "2000 January 01" not in actual.splitlines()[1]

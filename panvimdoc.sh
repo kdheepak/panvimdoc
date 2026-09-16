@@ -166,6 +166,30 @@ fi
 
 ARGS+=("-t" "$SCRIPTS_DIR/panvimdoc.lua")
 
+OUTPUT_FILE="doc/$PROJECT_NAME.txt"
+
+# Keep a copy of the existing vimdoc to compare the new one against
+PREVIOUS_FILE=""
+if [[ -f "$OUTPUT_FILE" ]]; then
+    PREVIOUS_FILE="$(mktemp)"
+    cp "$OUTPUT_FILE" "$PREVIOUS_FILE"
+fi
+
 # Print and execute the command
-printf "%s\n" "pandoc --citeproc ${ARGS[*]} $INPUT_FILE -o doc/$PROJECT_NAME.txt"
-pandoc "${ARGS[@]}" "$INPUT_FILE" -o "doc/$PROJECT_NAME.txt"
+printf "%s\n" "pandoc --citeproc ${ARGS[*]} $INPUT_FILE -o $OUTPUT_FILE"
+pandoc "${ARGS[@]}" "$INPUT_FILE" -o "$OUTPUT_FILE"
+
+# Drop the "Last change" date, and the padding that right-aligns it, from the
+# second line
+without_date() {
+    sed -e '2s/^ *\(.*Last change:\).*$/\1/' "$1"
+}
+
+# If only the date changed, restore the existing vimdoc so that regenerating
+# unchanged docs does not modify the file
+if [[ -n "$PREVIOUS_FILE" ]]; then
+    if cmp -s <(without_date "$PREVIOUS_FILE") <(without_date "$OUTPUT_FILE"); then
+        cp "$PREVIOUS_FILE" "$OUTPUT_FILE"
+    fi
+    rm -f "$PREVIOUS_FILE"
+fi
