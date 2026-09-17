@@ -72,10 +72,6 @@ def metadata_arg(key: str, value: str | bool | int) -> str:
     return f"--metadata={key}:{rendered}"
 
 
-def normalize_output(text: str) -> str:
-    return "\n".join(line.rstrip() for line in text.split("\n"))
-
-
 def current_neovim_version() -> str:
     completed = subprocess.run(
         ["nvim", "--version"],
@@ -146,7 +142,7 @@ def render_markdown(markdown: str, options: RenderOptions) -> str:
             raise AssertionError(
                 f"pandoc failed for {input_path.name}\nstdout:\n{completed.stdout}\nstderr:\n{completed.stderr}"
             )
-        return normalize_output(output_path.read_text(encoding="utf-8"))
+        return output_path.read_text(encoding="utf-8")
 
 
 RENDER_CASES = load_render_cases()
@@ -236,7 +232,7 @@ def test_panvimdoc_shell_uses_current_neovim_version_when_vimversion_is_omitted(
         )
         try:
             assert completed.returncode == 0, completed.stderr
-            actual = normalize_output(output_path.read_text(encoding="utf-8"))
+            actual = output_path.read_text(encoding="utf-8")
         finally:
             if output_path.exists():
                 output_path.unlink()

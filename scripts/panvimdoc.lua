@@ -241,7 +241,11 @@ Writer.Pandoc = function(doc, opts)
       end
     end,
   })
-  local d = blocks(doc.blocks)
+  -- Code blocks indent their blank lines, lists and definition lists indent
+  -- them again, and tables pad their cells. Trailing whitespace means nothing
+  -- in a help file, and editors and pre-commit hooks that trim it would
+  -- otherwise rewrite the generated file, so strip it from the body once.
+  local d = blocks(doc.blocks):gsub("[ \t]+\n", "\n")
   local notes = renderNotes()
   local toc = renderToc()
   local title = renderTitle()
