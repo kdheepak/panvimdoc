@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import subprocess
 import tempfile
+import time
 from pathlib import Path
 
 import pytest  # pyright: ignore[reportMissingImports]
@@ -276,3 +277,20 @@ def test_panvimdoc_shell_omits_the_date_when_no_date_is_true() -> None:
         lines = run_panvimdoc_shell(Path(tmpdir), "--no-date", "true")
 
     assert lines[1] == "For NVIM v0.8.0".rjust(78)
+
+
+def test_panvimdoc_shell_omits_the_version_when_no_vim_version_is_true() -> None:
+    with tempfile.TemporaryDirectory() as tmpdir:
+        lines = run_panvimdoc_shell(Path(tmpdir), "--no-vim-version", "true")
+
+    assert lines[1] == f"Last change: {time.strftime('%Y %B %d')}".rjust(78)
+
+
+def test_panvimdoc_shell_omits_the_subtitle_when_neither_is_wanted() -> None:
+    with tempfile.TemporaryDirectory() as tmpdir:
+        lines = run_panvimdoc_shell(
+            Path(tmpdir), "--no-vim-version", "true", "--no-date", "true"
+        )
+
+    assert lines[0].startswith("*test.txt*")
+    assert lines[1] == ""

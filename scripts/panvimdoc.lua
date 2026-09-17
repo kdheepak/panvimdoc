@@ -91,6 +91,7 @@ local DOC_MAPPING_PROJECT = true
 local DATE = nil
 local TITLE_DATE_PATTERN = "%Y %B %d"
 local NO_DATE = false
+local NO_VIM_VERSION = false
 
 local ANCHORS = {}
 
@@ -126,7 +127,9 @@ local function renderTitle()
   table.insert(title_lines, title)
 
   local vim_version = VIMVERSION
-  if empty(vim_version) then
+  if NO_VIM_VERSION then
+    vim_version = nil
+  elseif empty(vim_version) then
     vim_version = osExecute("nvim --version"):gmatch("([^\n]*)\n?")()
     if string.find(vim_version, "-dev") then
       vim_version = string.gsub(vim_version, "(.*)-dev.*", "%1")
@@ -149,13 +152,20 @@ local function renderTitle()
     date = DATE or os.date(TITLE_DATE_PATTERN)
   end
 
-  local subtitle = format("For %s", vim_version)
-  if not empty(date) then
-    subtitle = subtitle .. format("    Last change: %s", date)
+  -- help-writing asks for the version and the date on the second line, right
+  -- aligned, but only "if you want to", so leave the line out when neither is
+  -- wanted.
+  local subtitle = {}
+  if not empty(vim_version) then
+    table.insert(subtitle, format("For %s", vim_version))
   end
-  subtitle = string.rep(" ", 78 - #subtitle) .. subtitle
-
-  table.insert(title_lines, subtitle)
+  if not empty(date) then
+    table.insert(subtitle, format("Last change: %s", date))
+  end
+  if #subtitle > 0 then
+    local line = table.concat(subtitle, "    ")
+    table.insert(title_lines, string.rep(" ", 78 - #line) .. line)
+  end
   table.insert(title_lines, "")
 
   return table.concat(title_lines, "\n")
@@ -230,6 +240,7 @@ Writer.Pandoc = function(doc, opts)
   DATE = doc.meta.date
   TITLE_DATE_PATTERN = doc.meta.titledatepattern
   NO_DATE = doc.meta.nodate
+  NO_VIM_VERSION = doc.meta.novimversion
   ANCHORS = {}
   local section = nil
   doc:walk({
