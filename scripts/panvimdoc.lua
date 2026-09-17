@@ -90,6 +90,8 @@ local DOC_MAPPING = true
 local DOC_MAPPING_PROJECT = true
 local DATE = nil
 local TITLE_DATE_PATTERN = "%Y %B %d"
+local NO_DATE = false
+local NO_VIM_VERSION = false
 
 local ANCHORS = {}
 
@@ -125,7 +127,9 @@ local function renderTitle()
   table.insert(title_lines, title)
 
   local vim_version = VIMVERSION
-  if empty(vim_version) then
+  if NO_VIM_VERSION then
+    vim_version = nil
+  elseif empty(vim_version) then
     vim_version = osExecute("nvim --version"):gmatch("([^\n]*)\n?")()
     if string.find(vim_version, "-dev") then
       vim_version = string.gsub(vim_version, "(.*)-dev.*", "%1")
@@ -141,11 +145,27 @@ local function renderTitle()
     vim_version = osExecute("vim --version"):gmatch("([^\n]*)\n?")()
   end
 
-  local date = DATE or os.date(TITLE_DATE_PATTERN)
-  local subtitle = format("For %s    Last change: %s", vim_version, date)
-  subtitle = string.rep(" ", 78 - #subtitle) .. subtitle
+  -- Leaving the date out keeps regenerating unchanged documentation from
+  -- rewriting the file.
+  local date = nil
+  if not NO_DATE then
+    date = DATE or os.date(TITLE_DATE_PATTERN)
+  end
 
-  table.insert(title_lines, subtitle)
+  -- help-writing asks for the version and the date on the second line, right
+  -- aligned, but only "if you want to", so leave the line out when neither is
+  -- wanted.
+  local subtitle = {}
+  if not empty(vim_version) then
+    table.insert(subtitle, format("For %s", vim_version))
+  end
+  if not empty(date) then
+    table.insert(subtitle, format("Last change: %s", date))
+  end
+  if #subtitle > 0 then
+    local line = table.concat(subtitle, "    ")
+    table.insert(title_lines, string.rep(" ", 78 - #line) .. line)
+  end
   table.insert(title_lines, "")
 
   return table.concat(title_lines, "\n")
@@ -219,6 +239,8 @@ Writer.Pandoc = function(doc, opts)
   HEADER_COUNT = HEADER_COUNT + doc.meta.incrementheadinglevelby
   DATE = doc.meta.date
   TITLE_DATE_PATTERN = doc.meta.titledatepattern
+  NO_DATE = doc.meta.nodate
+  NO_VIM_VERSION = doc.meta.novimversion
   ANCHORS = {}
   local section = nil
   doc:walk({

@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import subprocess
 import tempfile
+import time
 from pathlib import Path
 
 import pytest  # pyright: ignore[reportMissingImports]
@@ -240,3 +241,56 @@ def test_panvimdoc_shell_uses_current_neovim_version_when_vimversion_is_omitted(
     lines = actual.splitlines()
     assert lines[0] == f"*{project_name}.txt*"
     assert f"For {current_neovim_version()}    Last change:" in lines[1]
+
+
+def run_panvimdoc_shell(workdir: Path, *args: str) -> list[str]:
+    input_path = workdir / "input.md"
+    input_path.write_text("# panvimdoc\n", encoding="utf-8")
+    (workdir / "doc").mkdir()
+
+    completed = subprocess.run(
+        [
+            str(ROOT / "panvimdoc.sh"),
+            "--project-name",
+            "test",
+            "--input-file",
+            str(input_path),
+            "--vim-version",
+            "NVIM v0.8.0",
+            "--description",
+            "Test Description",
+            "--scripts-dir",
+            str(ROOT / "scripts"),
+            *args,
+        ],
+        cwd=workdir,
+        capture_output=True,
+        check=False,
+        text=True,
+    )
+    assert completed.returncode == 0, completed.stderr
+    return (workdir / "doc" / "test.txt").read_text(encoding="utf-8").splitlines()
+
+
+def test_panvimdoc_shell_omits_the_date_when_no_date_is_true() -> None:
+    with tempfile.TemporaryDirectory() as tmpdir:
+        lines = run_panvimdoc_shell(Path(tmpdir), "--no-date", "true")
+
+    assert lines[1] == "For NVIM v0.8.0".rjust(78)
+
+
+def test_panvimdoc_shell_omits_the_version_when_no_vim_version_is_true() -> None:
+    with tempfile.TemporaryDirectory() as tmpdir:
+        lines = run_panvimdoc_shell(Path(tmpdir), "--no-vim-version", "true")
+
+    assert lines[1] == f"Last change: {time.strftime('%Y %B %d')}".rjust(78)
+
+
+def test_panvimdoc_shell_omits_the_subtitle_when_neither_is_wanted() -> None:
+    with tempfile.TemporaryDirectory() as tmpdir:
+        lines = run_panvimdoc_shell(
+            Path(tmpdir), "--no-vim-version", "true", "--no-date", "true"
+        )
+
+    assert lines[0].startswith("*test.txt*")
+    assert lines[1] == ""
