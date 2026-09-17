@@ -90,6 +90,7 @@ local DOC_MAPPING = true
 local DOC_MAPPING_PROJECT = true
 local DATE = nil
 local TITLE_DATE_PATTERN = "%Y %B %d"
+local NO_DATE = false
 
 local ANCHORS = {}
 
@@ -141,8 +142,17 @@ local function renderTitle()
     vim_version = osExecute("vim --version"):gmatch("([^\n]*)\n?")()
   end
 
-  local date = DATE or os.date(TITLE_DATE_PATTERN)
-  local subtitle = format("For %s    Last change: %s", vim_version, date)
+  -- Leaving the date out keeps regenerating unchanged documentation from
+  -- rewriting the file.
+  local date = nil
+  if not NO_DATE then
+    date = DATE or os.date(TITLE_DATE_PATTERN)
+  end
+
+  local subtitle = format("For %s", vim_version)
+  if not empty(date) then
+    subtitle = subtitle .. format("    Last change: %s", date)
+  end
   subtitle = string.rep(" ", 78 - #subtitle) .. subtitle
 
   table.insert(title_lines, subtitle)
@@ -219,6 +229,7 @@ Writer.Pandoc = function(doc, opts)
   HEADER_COUNT = HEADER_COUNT + doc.meta.incrementheadinglevelby
   DATE = doc.meta.date
   TITLE_DATE_PATTERN = doc.meta.titledatepattern
+  NO_DATE = doc.meta.nodate
   ANCHORS = {}
   local section = nil
   doc:walk({

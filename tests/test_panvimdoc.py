@@ -240,3 +240,39 @@ def test_panvimdoc_shell_uses_current_neovim_version_when_vimversion_is_omitted(
     lines = actual.splitlines()
     assert lines[0] == f"*{project_name}.txt*"
     assert f"For {current_neovim_version()}    Last change:" in lines[1]
+
+
+def run_panvimdoc_shell(workdir: Path, *args: str) -> list[str]:
+    input_path = workdir / "input.md"
+    input_path.write_text("# panvimdoc\n", encoding="utf-8")
+    (workdir / "doc").mkdir()
+
+    completed = subprocess.run(
+        [
+            str(ROOT / "panvimdoc.sh"),
+            "--project-name",
+            "test",
+            "--input-file",
+            str(input_path),
+            "--vim-version",
+            "NVIM v0.8.0",
+            "--description",
+            "Test Description",
+            "--scripts-dir",
+            str(ROOT / "scripts"),
+            *args,
+        ],
+        cwd=workdir,
+        capture_output=True,
+        check=False,
+        text=True,
+    )
+    assert completed.returncode == 0, completed.stderr
+    return (workdir / "doc" / "test.txt").read_text(encoding="utf-8").splitlines()
+
+
+def test_panvimdoc_shell_omits_the_date_when_no_date_is_true() -> None:
+    with tempfile.TemporaryDirectory() as tmpdir:
+        lines = run_panvimdoc_shell(Path(tmpdir), "--no-date", "true")
+
+    assert lines[1] == "For NVIM v0.8.0".rjust(78)

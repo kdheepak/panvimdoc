@@ -28,6 +28,10 @@ inputs:
     description: "Pattern for the date that used in the title (if empty, uses '%Y %B %d')"
     required: false
     default: "%Y %B %d"
+  nodate:
+    description: "Leave the last change date out of the title"
+    required: false
+    default: "false"
   demojify:
     description: "Strip emojis from the vimdoc"
     required: false
@@ -76,6 +80,8 @@ runs:
     - ${{ inputs.description }}
     - --title-date-pattern
     - ${{ inputs.titledatepattern }}
+    - --no-date
+    - ${{ inputs.nodate }}
     - --dedup-subheadings
     - ${{ inputs.dedupsubheadings }}
     - --demojify

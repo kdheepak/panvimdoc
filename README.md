@@ -93,6 +93,7 @@ jobs:
           toc: true # Table of contents
           description: "" # One sentence description used in title
           titledatepattern: "%Y %B %d" # Pattern for the last modified date
+          nodate: false # Leave the last change date out of the title
           demojify: false # Strip emojis from the vimdoc
           dedupsubheadings: true # Add heading to subheading anchor links to ensure that subheadings are unique
           treesitter: true # Use treesitter for highlighting codeblocks
@@ -246,6 +247,7 @@ Arguments:
   --description: a project description used in title (if empty, uses neovim version and current date)
   --dedup-subheadings: 'true' if duplicate subheadings should be removed, 'false' otherwise
   --title-date-pattern: '%Y %B %d' a pattern for the date that used in the title
+  --no-date: 'true' to leave the last change date out of the title, 'false' otherwise
   --demojify: 'false' if emojis should not be removed, 'true' otherwise
   --treesitter: 'true' if the project uses Tree-sitter syntax highlighting, 'false' otherwise
   --ignore-rawblocks: 'true' if the project should ignore HTML raw blocks, 'false' otherwise

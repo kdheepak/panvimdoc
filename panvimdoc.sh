@@ -14,6 +14,7 @@ Arguments:
   --toc: 'true' if the output should include a table of contents, 'false' otherwise
   --description: a project description used in title (if empty, uses neovim version and current date)
   --title-date-pattern: '%Y %B %d' a pattern for the date that used in the title
+  --no-date: 'true' to leave the last change date out of the title, 'false' otherwise
   --dedup-subheadings: 'true' if duplicate subheadings should be removed, 'false' otherwise
   --demojify: 'false' if emojis should not be removed, 'true' otherwise
   --treesitter: 'true' if the project uses Tree-sitter syntax highlighting, 'false' otherwise
@@ -54,6 +55,11 @@ while [[ $# -gt 0 ]]; do
         ;;
     --title-date-pattern)
         TITLE_DATE_PATTERN="$2"
+        shift # past argument
+        shift # past value
+        ;;
+    --no-date)
+        NO_DATE="$2"
         shift # past argument
         shift # past value
         ;;
@@ -146,6 +152,7 @@ ARGS=(
     "--metadata=toc:${TOC:-true}"
     "--metadata=description:${DESCRIPTION:-""}"
     "--metadata=titledatepattern:${TITLE_DATE_PATTERN:-"%Y %B %d"}"
+    "--metadata=nodate:${NO_DATE:-false}"
     "--metadata=dedupsubheadings:${DEDUP_SUBHEADINGS:-true}"
     "--metadata=ignorerawblocks:${IGNORE_RAWBLOCKS:-true}"
     "--metadata=docmapping:${DOC_MAPPING:-false}"
