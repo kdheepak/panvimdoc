@@ -93,6 +93,7 @@ local TITLE_DATE_PATTERN = "%Y %B %d"
 local NO_DATE = false
 local NO_VIM_VERSION = false
 local NO_FOOTER = false
+local NO_HEADING_NUMBERS = false
 
 local ANCHORS = {}
 
@@ -106,6 +107,15 @@ local SOFTBREAK_TO_HARDBREAK = "space"
 
 local HEADER_COUNT = 1
 local toc = {}
+
+-- Level-1 headings, including the generated Links section, are numbered
+-- unless numbering is turned off.
+local function numberedHeading(text)
+  if NO_HEADING_NUMBERS then
+    return text
+  end
+  return string.format("%d. %s", HEADER_COUNT, text)
+end
 local links = {}
 
 local function osExecute(cmd)
@@ -206,7 +216,7 @@ local function renderNotes()
     table.insert(t, s)
   end
   if #links > 0 then
-    local left = HEADER_COUNT .. ". Links"
+    local left = numberedHeading("Links")
     local right = "links"
     local right_link = string.format("|%s-%s|", PROJECT, right)
     right = string.format("*%s-%s*", PROJECT, right)
@@ -247,6 +257,7 @@ Writer.Pandoc = function(doc, opts)
   NO_DATE = doc.meta.nodate
   NO_VIM_VERSION = doc.meta.novimversion
   NO_FOOTER = doc.meta.nofooter
+  NO_HEADING_NUMBERS = doc.meta.noheadingnumbers
   ANCHORS = {}
   local section = nil
   doc:walk({
@@ -287,7 +298,7 @@ Writer.Block.Header = function(el)
   local attr = el.attr
   local left, right, right_link, padding
   if lev == 1 then
-    left = string.format("%d. %s", HEADER_COUNT, s)
+    left = numberedHeading(s)
     right = string.lower(string.gsub(s, "%s", "-"))
     CURRENT_HEADER = right
     right_link = string.format("|%s-%s|", PROJECT, right)
