@@ -225,7 +225,7 @@ file.  Check there that it shows up properly: |local-additions|.</code></pre>
 </ul>
 <p>To use a hook, first install pre-commit. Then, add the following to your <code>.pre-commit-config.yaml</code> (here <code>panvimdoc-docker</code> is used):</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">- </span><span class="fu">repo</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;https://github.com/kdheepak/panvimdoc&quot;</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">rev</span><span class="kw">:</span><span class="at"> v6.0.0</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">rev</span><span class="kw">:</span><span class="at"> v6.1.0</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">hooks</span><span class="kw">:</span></span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">- </span><span class="fu">id</span><span class="kw">:</span><span class="at"> panvimdoc-docker</span></span>
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">args</span><span class="kw">:</span></span>
@@ -234,7 +234,7 @@ file.  Check there that it shows up properly: |local-additions|.</code></pre>
 <p>You can specify additional arguments to <code>panvimdoc.sh</code> using <code>args</code>. See the section below (or run <code>./panvimdoc.sh</code>) for the full list of arguments.</p>
 <p>To change the input file, modify the <code>files</code> field of the hook and supply the corresponding <code>--input-file</code> to <code>args</code>. In the example below, the hook will be triggered if any <code>.md</code> file changes:</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">- </span><span class="fu">repo</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;https://github.com/kdheepak/panvimdoc&quot;</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">rev</span><span class="kw">:</span><span class="at"> v6.0.0</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">rev</span><span class="kw">:</span><span class="at"> v6.1.0</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">hooks</span><span class="kw">:</span></span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">- </span><span class="fu">id</span><span class="kw">:</span><span class="at"> panvimdoc-docker</span></span>
 <span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">files</span><span class="kw">:</span><span class="at"> ^.*\.md$</span></span>
