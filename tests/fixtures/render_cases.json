@@ -144,6 +144,24 @@
     }
   },
   {
+    "name": "demojify_4",
+    "input": "fixtures/render/demojify_4.md",
+    "expected": "fixtures/render/demojify_4.txt",
+    "options": {
+      "toc": true,
+      "dedup_subheadings": false,
+      "treesitter": true,
+      "demojify": true,
+      "description": "Test Description",
+      "vimversion": "NVIM v0.8.0",
+      "ignore_rawblocks": true,
+      "shift_heading_level_by": 0,
+      "increment_heading_level_by": 0,
+      "doc_mapping": true,
+      "doc_mapping_project_name": true
+    }
+  },
+  {
     "name": "description_1",
     "input": "fixtures/render/description_1.md",
     "expected": "fixtures/render/description_1.txt",

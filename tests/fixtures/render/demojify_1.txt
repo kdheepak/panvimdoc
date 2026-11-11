@@ -6,7 +6,7 @@ Table of Contents                                     *test-table-of-contents*
 
 Hello world
 
-echocool # comment
+echo cool # comment
 
 >lua
     "some/**/glob*"
