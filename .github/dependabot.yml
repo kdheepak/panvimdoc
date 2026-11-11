@@ -5,11 +5,15 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
+      time: "09:00"
+      timezone: America/New_York
     allow:
       - dependency-type: "direct"
     groups:
-      github-actions-dependencies:
+      github-actions:
         patterns:
           - "*"
     cooldown:
       default-days: 7
+    commit-message:
+      prefix: "chore(deps)"
