@@ -217,7 +217,7 @@ To use a hook, first install pre-commit. Then, add the following to your `.pre-c
 
 ```yaml
 - repo: "https://github.com/kdheepak/panvimdoc"
-  rev: v6.0.0
+  rev: v6.1.0
   hooks:
     - id: panvimdoc-docker
       args:
@@ -234,7 +234,7 @@ changes:
 
 ```yaml
 - repo: "https://github.com/kdheepak/panvimdoc"
-  rev: v6.0.0
+  rev: v6.1.0
   hooks:
     - id: panvimdoc-docker
       files: ^.*\.md$
