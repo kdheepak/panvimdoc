@@ -330,7 +330,9 @@ def test_panvimdoc_shell_numbers_level_one_headings_by_default() -> None:
     assert "3. Links".ljust(78 - len("*test-links*")) + "*test-links*" in lines
 
 
-def test_panvimdoc_shell_omits_heading_numbers_when_no_heading_numbers_is_true() -> None:
+def test_panvimdoc_shell_omits_heading_numbers_when_no_heading_numbers_is_true() -> (
+    None
+):
     with tempfile.TemporaryDirectory() as tmpdir:
         lines = run_panvimdoc_shell(
             Path(tmpdir),
