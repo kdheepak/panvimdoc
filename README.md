@@ -17,17 +17,17 @@ vimdoc.
 
    ```yaml
    name: panvimdoc
-   
+
    on:
      push:
        branches: [main]
        paths:
-         - README.md 
-         - .github/workflows/panvimdoc.yml 
-   
+         - README.md
+         - .github/workflows/panvimdoc.yml
+
    permissions:
      contents: write
-   
+
    jobs:
      docs:
        runs-on: ubuntu-latest
@@ -43,9 +43,11 @@ vimdoc.
              branch: ${{ github.head_ref }}
    ```
 
-2. `README.md` gets converted to `./doc/${{ github.event.repository.name }}.txt` and auto-committed to the repo.
+2. `README.md` gets converted to `./doc/${{ github.event.repository.name }}.txt` and auto-committed
+   to the repo.
 
-_Optional_: Add the following to `./.github/dependabot.yml` to auto update your github action dependencies:
+_Optional_: Add the following to `./.github/dependabot.yml` to auto update your github action
+dependencies:
 
 ```
 version: 2
@@ -106,9 +108,9 @@ jobs:
           incrementheadinglevelby: 0 # Increment heading levels by specified number
 ```
 
-The only required thing for you to do is to choose a `__VIMDOC_PROJECT_NAME_HERE__` appropriately. This is
-usually the name of the plugin or the documentation file without the `.txt` extension. For example,
-the following:
+The only required thing for you to do is to choose a `__VIMDOC_PROJECT_NAME_HERE__` appropriately.
+This is usually the name of the plugin or the documentation file without the `.txt` extension. For
+example, the following:
 
 ```yaml
 - name: panvimdoc
@@ -120,8 +122,7 @@ the following:
 will output a file `doc/panvimdoc.txt` and the vim help tag for it will be `panvimdoc` using the
 `main` branch of the repository.
 
-All the other options are optional. However, a `description` is recommended as
-suggested in Vim's
+All the other options are optional. However, a `description` is recommended as suggested in Vim's
 [`|help-writing|`](https://github.com/vim/vim/blob/472f46e2316c32fa83ef8c9305d3c878c39a17ac/runtime/doc/helphelp.txt#L400-L407).
 
 ```
@@ -156,9 +157,10 @@ Or see any of the packages here that depend on this action:
 ### Generating HTML using GitHub Actions
 
 If you are interested in making your vim plugin documentation available as a HTML page, check out
-[.github/workflows/docs.yml](./.github/workflows/docs.yml) file. 
+[.github/workflows/docs.yml](./.github/workflows/docs.yml) file.
 
-You can find the Markdown file you are reading right now converted to HTML here: https://kdheepak.com/panvimdoc/
+You can find the Markdown file you are reading right now converted to HTML here:
+https://kdheepak.com/panvimdoc/
 
 Here's an example:
 
@@ -200,36 +202,41 @@ jobs:
 
 Two hooks are available, differing only in the way dependencies are handled:
 
-- `panvimdoc-docker`: Requires a running Docker engine on your host. All other dependencies will be loaded inside the container.
-- `panvimdoc`: Runs in your local environment, so you have to make sure all dependencies of panvimdoc are installed
-    (i.e., `pandoc v3.0.0` or greater)
+- `panvimdoc-docker`: Requires a running Docker engine on your host. All other dependencies will be
+  loaded inside the container.
+- `panvimdoc`: Runs in your local environment, so you have to make sure all dependencies of
+  panvimdoc are installed (i.e., `pandoc v3.0.0` or greater)
 
-To use a hook, first install pre-commit. Then, add the following to your `.pre-commit-config.yaml` (here `panvimdoc-docker` is used):
+To use a hook, first install pre-commit. Then, add the following to your `.pre-commit-config.yaml`
+(here `panvimdoc-docker` is used):
 
 ```yaml
-- repo: 'https://github.com/kdheepak/panvimdoc'
+- repo: "https://github.com/kdheepak/panvimdoc"
   rev: v4.0.1
   hooks:
     - id: panvimdoc-docker
       args:
-        - '--project-name'
+        - "--project-name"
         - <your-project-name>
 ```
 
-You can specify additional arguments to `panvimdoc.sh` using `args`. See the section below (or run `./panvimdoc.sh`) for the full list of arguments.
+You can specify additional arguments to `panvimdoc.sh` using `args`. See the section below (or run
+`./panvimdoc.sh`) for the full list of arguments.
 
-To change the input file, modify the `files` field of the hook and supply the corresponding `--input-file` to `args`. In the example below, the hook will be triggered if any `.md` file changes:
+To change the input file, modify the `files` field of the hook and supply the corresponding
+`--input-file` to `args`. In the example below, the hook will be triggered if any `.md` file
+changes:
 
 ```yaml
-- repo: 'https://github.com/kdheepak/panvimdoc'
+- repo: "https://github.com/kdheepak/panvimdoc"
   rev: v4.0.1
   hooks:
     - id: panvimdoc-docker
       files: ^.*\.md$
       args:
-        - '--project-name'
+        - "--project-name"
         - <your-project-name>
-        - '--input-file'
+        - "--input-file"
         - <your-input-file.md>
 ```
 
@@ -371,4 +378,5 @@ please feel free to comment here: <https://github.com/kdheepak/panvimdoc/discuss
 
 # Donate
 
-If you've found this project helpful, you can show your appreciation by sponsoring me on [GitHub Sponsors](https://github.com/sponsors/kdheepak/).
+If you've found this project helpful, you can show your appreciation by sponsoring me on
+[GitHub Sponsors](https://github.com/sponsors/kdheepak/).
