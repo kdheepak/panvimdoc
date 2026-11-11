@@ -1,1 +1,24 @@
 doc/tags
+
+# Built by `mise run panvimdoc:docs` and published to gh-pages
+public/index.html
+
+# Python
+.venv
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# mise
+mise.local.toml
+mise.local.lock
+.config/mise.local.toml
+.config/mise.local.lock
+
+# Neovim
+.nvimlog
+
+# OS
+.DS_Store
