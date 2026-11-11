@@ -1,0 +1,49 @@
+name: Update mise lockfile
+
+on:
+  schedule:
+    - cron: "0 4 * * 6"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: update-mise-lockfile
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7.0.1
+
+      - name: Install mise
+        uses: jdx/mise-action@v5.2.4
+        with:
+          install: false
+          cache: false
+          github_token: ${{ github.token }}
+
+      - name: Update lockfile
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: mise lock --upgrade --bump
+
+      - name: Open dependency pull request
+        uses: peter-evans/create-pull-request@v8.1.1
+        with:
+          token: ${{ github.token }}
+          base: main
+          branch: automation/mise-lockfile
+          delete-branch: true
+          commit-message: "chore(deps): update mise lockfile"
+          title: "chore(deps): update mise lockfile"
+          body: |
+            Weekly update of the mise lockfile.
+
+            Generated with `mise lock --upgrade --bump`, which re-resolves the `latest` requests in `.config/mise.toml`.
+          add-paths: |
+            .config/mise.lock
