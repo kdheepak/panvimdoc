@@ -8,7 +8,7 @@ REPO_ROOT="$(cd -- "$SCRIPT_DIR/../.." &> /dev/null && pwd)"
 cd "$REPO_ROOT"
 
 pandoc \
-  --katex \
+  --math-method=katex \
   --from markdown+tex_math_single_backslash \
   --to html5+smart \
   --template=./scripts/template.html5 \

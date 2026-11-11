@@ -33,11 +33,11 @@ vimdoc.
        runs-on: ubuntu-latest
        name: pandoc to vimdoc
        steps:
-         - uses: actions/checkout@v2
+         - uses: actions/checkout@v7.0.1
          - uses: kdheepak/panvimdoc@main
            with:
              vimdoc: ${{ github.event.repository.name }}
-         - uses: stefanzweifel/git-auto-commit-action@v4
+         - uses: stefanzweifel/git-auto-commit-action@v7.2.1
            with:
              commit_message: "Auto generate docs"
              branch: ${{ github.head_ref }}
@@ -84,7 +84,7 @@ jobs:
     runs-on: ubuntu-latest
     name: pandoc to vimdoc
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v7.0.1
       - name: panvimdoc
         uses: kdheepak/panvimdoc@main
         with:
@@ -179,18 +179,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: checkout code
-        uses: actions/checkout@v3
-      - name: pandoc markdown to html
-        uses: docker://pandoc/latex:3.1
+        uses: actions/checkout@v7.0.1
+      - name: install pandoc
+        uses: jdx/mise-action@v5.2.7
         with:
-          args: >-
-            --katex --from markdown+tex_math_single_backslash --to html5+smart
-            --template="./scripts/template.html5" --css="/panvimdoc/css/theme.css"
-            --css="/panvimdoc/css/skylighting-solarized-theme.css" --toc --wrap=none --metadata
-            title="panvimdoc" doc/panvimdoc.md --lua-filter=scripts/include-files.lua
-            --lua-filter=scripts/skip-blocks.lua -t html -o public/index.html
+          mise_toml: |
+            [tools]
+            "github:jgm/pandoc" = "3.13"
+      - name: pandoc markdown to html
+        run: >-
+          mkdir -p public && pandoc --math-method=katex --from markdown+tex_math_single_backslash --to html5+smart
+          --template="./scripts/template.html5" --css="/panvimdoc/css/theme.css"
+          --css="/panvimdoc/css/skylighting-solarized-theme.css" --toc --wrap=none --metadata
+          title="panvimdoc" doc/panvimdoc.md --lua-filter=scripts/include-files.lua
+          --lua-filter=scripts/skip-blocks.lua -t html -o public/index.html
       - name: deploy to GitHub pages
-        uses: JamesIves/github-pages-deploy-action@v4
+        uses: JamesIves/github-pages-deploy-action@v4.9.0
         with:
           branch: gh-pages
           folder: public
@@ -212,7 +216,7 @@ To use a hook, first install pre-commit. Then, add the following to your `.pre-c
 
 ```yaml
 - repo: "https://github.com/kdheepak/panvimdoc"
-  rev: v4.0.1
+  rev: v6.0.0
   hooks:
     - id: panvimdoc-docker
       args:
@@ -229,7 +233,7 @@ changes:
 
 ```yaml
 - repo: "https://github.com/kdheepak/panvimdoc"
-  rev: v4.0.1
+  rev: v6.0.0
   hooks:
     - id: panvimdoc-docker
       files: ^.*\.md$
