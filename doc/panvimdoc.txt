@@ -1,5 +1,5 @@
 *panvimdoc.txt*                                Convert Markdown docs to Vimdoc
-                            For NVIM v0.12.1    Last change: 2026 September 17
+                             For NVIM v0.12.6    Last change: 2026 November 11
 
 ==============================================================================
 Table of Contents                                *panvimdoc-table-of-contents*
